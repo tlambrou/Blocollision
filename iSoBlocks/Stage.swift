@@ -1,5 +1,5 @@
 //
-//  Grid.swift
+//  Stage.swift
 //  iSoBlocks
 //
 //  Created by Tassos Lambrou on 7/9/16.
@@ -10,11 +10,11 @@ import Foundation
 import SpriteKit
 
 
-class Grid: SKSpriteNode {
+class Stage: SKSpriteNode {
     
     
     /* Grid array dimensions */
-    let rows = 8
+    let rows = 1
     let columns = 8
     
     /* Individual cell dimension, calculated in setup*/

@@ -9,12 +9,26 @@
 import SpriteKit
 
 
-
+var gridNode: Grid!
+var topStage: Stage!
+var bottomStage: Stage!
+var leftStage: Stage!
+var rightStage: Stage!
 
 
 class GameScene: SKScene {
+    
+    
+    
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+        
+        gridNode = childNodeWithName("gridNode") as! Grid
+        topStage = childNodeWithName("topStage") as! Stage
+        bottomStage = childNodeWithName("bottomStage") as! Stage
+        leftStage = childNodeWithName("leftStage") as! Stage
+        rightStage = childNodeWithName("rightStage") as! Stage
         
     }
     
