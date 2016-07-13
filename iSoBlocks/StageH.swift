@@ -56,6 +56,38 @@ class StageH: SKSpriteNode {
         
     }
     
+    func addBlockToEmptyStage() {
+        var blockCreated: Bool = false
+        var rand = Int.random(spaces)
+        var block = stageArray[rand]
+        var index = 0
+        
+        while blockCreated == false {
+            if block.state == .inactive {
+                let typeRand = Int.random(3)+1
+                switch typeRand {
+                //case 0?
+                case 1:
+                    block.state = .rock
+                case 2:
+                    block.state = .paper
+                case 3:
+                    block.state = .scissors
+                default:
+                    print("switch statement in addBlockToEmptyStage didn't work")
+                }
+                
+                blockCreated = true
+            } else if block.state != .inactive && index < spaces{
+                rand = Int.random(spaces)
+                block = stageArray[rand]
+                index += 1
+            } else {
+                break
+            }
+            
+        }
+    }
     
     
     

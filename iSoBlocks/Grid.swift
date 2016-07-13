@@ -108,7 +108,7 @@ class Grid: SKSpriteNode {
         
         while blockCreated == false {
             if block.state == .inactive {
-                let typeRand = Int.random(5)+1
+                let typeRand = Int.random(3)+1
                 switch typeRand {
                 //case 0?
                 case 1:
@@ -127,7 +127,7 @@ class Grid: SKSpriteNode {
                 yRand = Int.random(rows)
                 block = gridArray[xRand][yRand]
                 index += 1
-                print(index)
+            
             } else {
                 break
             }

@@ -32,7 +32,6 @@
 		96492F4D1D318CE6004F887C /* iSoBlocksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F4C1D318CE6004F887C /* iSoBlocksUITests.swift */; };
 		96492F5B1D318E8F004F887C /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F5A1D318E8F004F887C /* Grid.swift */; };
 		96492F6E1D31BC7E004F887C /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F6D1D31BC7E004F887C /* Block.swift */; };
-		96492F701D31BD40004F887C /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F6F1D31BD40004F887C /* Goal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +83,6 @@
 		96492F4E1D318CE6004F887C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96492F5A1D318E8F004F887C /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		96492F6D1D31BC7E004F887C /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
-		96492F6F1D31BD40004F887C /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,7 +160,6 @@
 				96492F5A1D318E8F004F887C /* Grid.swift */,
 				96044ACF1D3598330097D096 /* StageH.swift */,
 				96044AD11D35C53F0097D096 /* StageV.swift */,
-				96492F6F1D31BD40004F887C /* Goal.swift */,
 				96492F2E1D318CE6004F887C /* GameViewController.swift */,
 				96492F301D318CE6004F887C /* Main.storyboard */,
 				96492F331D318CE6004F887C /* Assets.xcassets */,
@@ -336,7 +333,6 @@
 				96044AC71D3589B90097D096 /* SKAction+Extensions.swift in Sources */,
 				96044AC81D3589B90097D096 /* SKAction+SpecialEffects.swift in Sources */,
 				96044AD21D35C53F0097D096 /* StageV.swift in Sources */,
-				96492F701D31BD40004F887C /* Goal.swift in Sources */,
 				96492F5B1D318E8F004F887C /* Grid.swift in Sources */,
 				96044ACC1D3589B90097D096 /* SKTEffects.swift in Sources */,
 				96044AC61D3589B90097D096 /* Int+Extensions.swift in Sources */,

@@ -29,6 +29,10 @@ class GameScene: SKScene {
         bottomStageNode = childNodeWithName("bottomStage") as! StageH
         leftStageNode = childNodeWithName("leftStage") as! StageV
         rightStageNode = childNodeWithName("rightStage") as! StageV
+        topStageNode.addBlockToEmptyStage()
+        bottomStageNode.addBlockToEmptyStage()
+        leftStageNode.addBlockToEmptyStage()
+        rightStageNode.addBlockToEmptyStage()
         
     }
     

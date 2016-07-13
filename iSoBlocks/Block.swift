@@ -24,7 +24,7 @@ class Block: SKSpriteNode {
                 hidden = true
                 
             case .rock:
-                let action = SKAction.setTexture(SKTexture(imageNamed: "voxelTile_45"))
+                let action = SKAction.setTexture(SKTexture(imageNamed: "voxelTile_08"))
                 runAction(action)
                 hidden = false
                 break;
