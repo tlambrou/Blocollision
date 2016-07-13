@@ -10,10 +10,10 @@ import SpriteKit
 
 
 var gridNode: Grid!
-var topStage: Stage!
-var bottomStage: Stage!
-var leftStage: Stage!
-var rightStage: Stage!
+var topStageNode: StageH!
+var bottomStageNode: StageH!
+var leftStageNode: StageV!
+var rightStageNode: StageV!
 
 
 class GameScene: SKScene {
@@ -25,10 +25,10 @@ class GameScene: SKScene {
         /* Setup your scene here */
         
         gridNode = childNodeWithName("gridNode") as! Grid
-        topStage = childNodeWithName("topStage") as! Stage
-        bottomStage = childNodeWithName("bottomStage") as! Stage
-        leftStage = childNodeWithName("leftStage") as! Stage
-        rightStage = childNodeWithName("rightStage") as! Stage
+        topStageNode = childNodeWithName("topStage") as! StageH
+        bottomStageNode = childNodeWithName("bottomStage") as! StageH
+        leftStageNode = childNodeWithName("leftStage") as! StageV
+        rightStageNode = childNodeWithName("rightStage") as! StageV
         
     }
     

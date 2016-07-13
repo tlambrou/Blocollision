@@ -82,11 +82,13 @@ class Grid: SKSpriteNode {
         let block = Block()
         
         //Convert the row/column position into a grid screen position
-        let gridPosition = CGPoint(x: x*cellWidth, y: y*cellHeight)
+        let gridPosition = CGPoint(x: x*cellWidth + (cellWidth/2), y: y*cellHeight + (cellHeight/2))
         block.position = gridPosition
-        
-        block.xScale = CGFloat((320.0/CGFloat(rows))/(60.0))
-        block.yScale = CGFloat((320.0/CGFloat(columns))/(60.0))
+
+        block.size.width = CGFloat(cellWidth)*0.87
+        block.size.height = CGFloat(cellHeight)*0.87
+//        block.xScale = CGFloat((320.0/CGFloat(rows))/(60.0))
+//        block.yScale = CGFloat((320.0/CGFloat(columns))/(60.0))
         
         //Add block as a child of the grid node
         addChild(block)

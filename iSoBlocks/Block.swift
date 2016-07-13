@@ -66,7 +66,7 @@ class Block: SKSpriteNode {
         
         
         /* Set anchor point to bottom-left */
-        anchorPoint = CGPoint(x: 0, y: 0)
+        anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         
         
