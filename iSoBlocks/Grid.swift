@@ -9,13 +9,13 @@
 import Foundation
 import SpriteKit
 
+let rows = 8
+let columns = 8
 
 class Grid: SKSpriteNode {
     
     
     /* Grid array dimensions */
-    let rows = 8
-    let columns = 8
     
     /* Individual cell dimension, calculated in setup*/
     var cellWidth = 0

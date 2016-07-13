@@ -14,7 +14,7 @@ class StageV: SKSpriteNode {
     
     
     /* Grid array dimensions */
-    let spaces = 8
+    let spaces = rows
     var stageArray: [Block] = []
     
     var cellWidth = 0
