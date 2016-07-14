@@ -41,7 +41,6 @@ class StageV: SKSpriteNode {
             
             block.size.width = CGFloat(cellWidth)*0.87
             block.size.height = CGFloat(cellHeight)*0.87
-            print(cellHeight)
             
             
             //Add block as a child of the grid node

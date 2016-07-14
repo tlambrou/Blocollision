@@ -93,6 +93,10 @@ class Grid: SKSpriteNode {
         //Add block as a child of the grid node
         addChild(block)
         
+//        let label = SKLabelNode(text: "\(x),\(y)")
+//        label.zPosition = 100
+//        block.addChild(label)
+        
         //Add block to the gridArray at the x,y position
         gridArray[x].append(block)
         
@@ -160,4 +164,5 @@ class Grid: SKSpriteNode {
     }
     
     
+        
 }

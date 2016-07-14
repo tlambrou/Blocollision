@@ -13,68 +13,78 @@ enum BlockType { case inactive, rock, paper, scissors }
 
 class Block: SKSpriteNode {
     
-    /* Character side */
-    var state:BlockType = .inactive
-        {
         
-        didSet {
+    
+        /* Character side */
+        var state:BlockType = .inactive
+            {
             
-            switch state {
-            case .inactive:
-                hidden = true
+            didSet {
                 
-            case .rock:
-                let action = SKAction.setTexture(SKTexture(imageNamed: "voxelTile_08"))
-                runAction(action)
-                hidden = false
-                break;
-                
-            case .paper:
-                let action = SKAction.setTexture(SKTexture(imageNamed: "voxelTile_54"))
-                runAction(action)
-                hidden = false
-                break;
-                
-            case .scissors:
-                let action = SKAction.setTexture(SKTexture(imageNamed: "platformerTile_26"))
-                runAction(action)
-                hidden = false
-                break;
-                
+                switch state {
+                case .inactive:
+                    let action = SKAction.setTexture(SKTexture(imageNamed: "abstractTile_09"))
+                        runAction(action)
+                    hidden = false
+                    
+                case .rock:
+                    let action = SKAction.setTexture(SKTexture(imageNamed: "Rock"))
+                    runAction(action)
+                    hidden = false
+                    break;
+                    
+                case .paper:
+                    let action = SKAction.setTexture(SKTexture(imageNamed: "Paper"))
+                    runAction(action)
+                    hidden = false
+                    break;
+                    
+                case .scissors:
+                    let action = SKAction.setTexture(SKTexture(imageNamed: "Scissors"))
+                    runAction(action)
+                    hidden = false
+                    break;
+                    
+                }
             }
+            
         }
         
-    }
-    
-    //    var isAlive: Bool = false {
-    //        didSet {
-    //            /* Visibility */
-    //            hidden = !isAlive
-    //        }
-    //    }
-    
-    
-    
-    init() {
-        /* Initialize with 'block' asset */
-        let texture = SKTexture(imageNamed: "abstractTile_09")
-        super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
-        hidden = false
-        
-        /* Set Z-Position, ensure it's on top of grid */
-        zPosition = 1
-        
-        
-        /* Set anchor point to bottom-left */
-        anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        //    var isAlive: Bool = false {
+        //        didSet {
+        //            /* Visibility */
+        //            hidden = !isAlive
+        //        }
+        //    }
         
         
         
-    }
-    
-    /* You are required to implement this for your subclass to work */
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
+        init() {
+            /* Initialize with 'block' asset */
+            let texture = SKTexture(imageNamed: "abstractTile_09")
+            super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
+            hidden = false
+            
+            /* Set Z-Position, ensure it's on top of grid */
+            zPosition = 1
+            
+            
+            /* Set anchor point to bottom-left */
+            anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            
+            
+            
+        }
+        
+        
+        
+        /* You are required to implement this for your subclass to work */
+        required init?(coder aDecoder: NSCoder) {
+            super.init(coder: aDecoder)
+        }
+        
+        
+        
+        
+        
 }
