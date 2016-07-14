@@ -23,24 +23,24 @@ class Block: SKSpriteNode {
                 
                 switch state {
                 case .inactive:
-                    let action = SKAction.setTexture(SKTexture(imageNamed: "abstractTile_09"))
+                    let action = SKAction.setTexture(SKTexture(imageNamed: "RoundRect"))
                         runAction(action)
                     hidden = false
                     
                 case .rock:
-                    let action = SKAction.setTexture(SKTexture(imageNamed: "Rock"))
+                    let action = SKAction.setTexture(SKTexture(imageNamed: "RockBlock"))
                     runAction(action)
                     hidden = false
                     break;
                     
                 case .paper:
-                    let action = SKAction.setTexture(SKTexture(imageNamed: "Paper"))
+                    let action = SKAction.setTexture(SKTexture(imageNamed: "PaperBlock"))
                     runAction(action)
                     hidden = false
                     break;
                     
                 case .scissors:
-                    let action = SKAction.setTexture(SKTexture(imageNamed: "Scissors"))
+                    let action = SKAction.setTexture(SKTexture(imageNamed: "ScissorsBlock"))
                     runAction(action)
                     hidden = false
                     break;
@@ -61,7 +61,7 @@ class Block: SKSpriteNode {
         
         init() {
             /* Initialize with 'block' asset */
-            let texture = SKTexture(imageNamed: "abstractTile_09")
+            let texture = SKTexture(imageNamed: "RoundRect")
             super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
             hidden = false
             

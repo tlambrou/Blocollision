@@ -9,8 +9,8 @@
 import Foundation
 import SpriteKit
 
-let rows = 8
-let columns = 8
+let rows = 4
+let columns = 4
 
 class Grid: SKSpriteNode {
     
