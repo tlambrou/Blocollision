@@ -49,7 +49,8 @@ class Block: SKSpriteNode {
             }
             
         }
-        
+    var stacked: Bool = false
+    
         //    var isAlive: Bool = false {
         //        didSet {
         //            /* Visibility */

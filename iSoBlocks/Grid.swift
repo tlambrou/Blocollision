@@ -94,6 +94,7 @@ class Grid: SKSpriteNode {
         addChild(block)
         
 //        let label = SKLabelNode(text: "\(x),\(y)")
+//        label.fontSize = 40
 //        label.zPosition = 100
 //        block.addChild(label)
         

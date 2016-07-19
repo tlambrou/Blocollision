@@ -23,6 +23,9 @@
 		96044AD21D35C53F0097D096 /* StageV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96044AD11D35C53F0097D096 /* StageV.swift */; };
 		96044AD51D35EBDD0097D096 /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96044AD31D35EBDD0097D096 /* MSButtonNode.swift */; };
 		96044AD61D35EBDD0097D096 /* MSReferenceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96044AD41D35EBDD0097D096 /* MSReferenceNode.swift */; };
+		9620C1751D3DA16800B045E7 /* Rock.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9620C1741D3DA16800B045E7 /* Rock.sks */; };
+		9620C1771D3DA1F800B045E7 /* Paper.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9620C1761D3DA1F800B045E7 /* Paper.sks */; };
+		9620C1791D3DA22B00B045E7 /* Scissors.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9620C1781D3DA22B00B045E7 /* Scissors.sks */; };
 		96492F291D318CE6004F887C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F281D318CE6004F887C /* AppDelegate.swift */; };
 		96492F2B1D318CE6004F887C /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 96492F2A1D318CE6004F887C /* GameScene.sks */; };
 		96492F2D1D318CE6004F887C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F2C1D318CE6004F887C /* GameScene.swift */; };
@@ -70,6 +73,9 @@
 		96044AD11D35C53F0097D096 /* StageV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageV.swift; sourceTree = "<group>"; };
 		96044AD31D35EBDD0097D096 /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
 		96044AD41D35EBDD0097D096 /* MSReferenceNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSReferenceNode.swift; sourceTree = "<group>"; };
+		9620C1741D3DA16800B045E7 /* Rock.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Rock.sks; sourceTree = "<group>"; };
+		9620C1761D3DA1F800B045E7 /* Paper.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Paper.sks; sourceTree = "<group>"; };
+		9620C1781D3DA22B00B045E7 /* Scissors.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Scissors.sks; sourceTree = "<group>"; };
 		96492F251D318CE6004F887C /* iSoBlocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSoBlocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96492F281D318CE6004F887C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96492F2A1D318CE6004F887C /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -160,6 +166,9 @@
 				96492F281D318CE6004F887C /* AppDelegate.swift */,
 				96492F2A1D318CE6004F887C /* GameScene.sks */,
 				96492F2C1D318CE6004F887C /* GameScene.swift */,
+				9620C1741D3DA16800B045E7 /* Rock.sks */,
+				9620C1761D3DA1F800B045E7 /* Paper.sks */,
+				9620C1781D3DA22B00B045E7 /* Scissors.sks */,
 				96492F6D1D31BC7E004F887C /* Block.swift */,
 				96492F5A1D318E8F004F887C /* Grid.swift */,
 				96044ACF1D3598330097D096 /* StageH.swift */,
@@ -298,10 +307,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9620C1771D3DA1F800B045E7 /* Paper.sks in Resources */,
 				96492F2B1D318CE6004F887C /* GameScene.sks in Resources */,
 				96492F371D318CE6004F887C /* LaunchScreen.storyboard in Resources */,
 				96492F341D318CE6004F887C /* Assets.xcassets in Resources */,
+				9620C1751D3DA16800B045E7 /* Rock.sks in Resources */,
 				96492F321D318CE6004F887C /* Main.storyboard in Resources */,
+				9620C1791D3DA22B00B045E7 /* Scissors.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
