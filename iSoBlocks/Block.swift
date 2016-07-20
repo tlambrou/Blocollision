@@ -49,7 +49,6 @@ class Block: SKSpriteNode {
             }
             
         }
-    var stacked: Bool = false
     
         //    var isAlive: Bool = false {
         //        didSet {
@@ -58,8 +57,8 @@ class Block: SKSpriteNode {
         //        }
         //    }
         
-        
-        
+    var stack: Int = 0
+    
         init() {
             /* Initialize with 'block' asset */
             let texture = SKTexture(imageNamed: "RoundRect")

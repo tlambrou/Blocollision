@@ -5,14 +5,38 @@
 //  Created by Tassos Lambrou on 7/9/16.
 //  Copyright (c) 2016 Ssos Games. All rights reserved.
 //
-
+import Foundation
 import SpriteKit
 
 enum swipeType {
     case up, down, left, right
 }
 
+struct Outcome {
+    var winnner:Block
+    var loser:Block
+    //Int that is 0 if tied, 1 if block 1 wins, and 2 if block 2 wins
+    var tie: Int
+}
+var idle: Bool = false
+var instShown: Bool = false
+var firstInstShown: Bool = false
+
+var timeElapsed: Int = 0 {
+didSet {
+    if timeElapsed > 180 && firstInstShown == false {
+        idle = true
+    } else if timeElapsed > 600 && firstInstShown == true {
+        idle = true
+    } else if timeElapsed < 180 {
+        idle = false
+    }
+}
+}
+
+
 class GameScene: SKScene {
+    
     
     var gridNode: Grid!
     var topStageNode: StageH!
@@ -20,6 +44,7 @@ class GameScene: SKScene {
     var leftStageNode: StageV!
     var rightStageNode: StageV!
     var restartButton: MSButtonNode!
+    var swipeInstructions: SKSpriteNode!
     
     
     func swipedUp(sender:UISwipeGestureRecognizer) {
@@ -39,302 +64,6 @@ class GameScene: SKScene {
     }
     
     
-//    func swipedUp(sender:UISwipeGestureRecognizer){
-//        let preSwipeGrid = gridNode
-//        
-//        
-//        // loop through the columns
-//        for gridX in 0..<columns{
-//            
-//            // loop through the rows
-//            for gridY in (rows-1).stride(through: 1, by: -1) {
-//                
-//                // Is the row we're on, on the edge (aka wall row)?
-//                if gridY == rows-1 {
-//                    let dummyType: BlockType = .inactive
-//                    gridNode.gridArray[gridX][gridY].stacked = true
-//                    
-//                    // If block along the wall is active...
-//                    if preSwipeGrid.gridArray[gridX][gridY].state != dummyType  {
-//                        
-//                        // If the adjacent block is inactive...
-//                        if preSwipeGrid.gridArray[gridX][gridY-1].state == dummyType {
-//                            
-//                            // Do not change the value if on the wall and adjacent value is inactive
-//                            gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX][gridY].state
-//                        }
-//                            
-//                            //Otherwise if the adjacent block is active...
-//                        else if preSwipeGrid.gridArray[gridX][gridY-1].state != dummyType {
-//                            // APPLY COLLISION RULES!!
-//                            let block1: BlockType = preSwipeGrid.gridArray[gridX][gridY].state
-//                            let block2: BlockType = preSwipeGrid.gridArray[gridX][gridY-1].state
-//                            
-//                            
-//                            if block1 == block2 {
-//                                gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX][gridY].state
-//                            } else {
-//                                gridNode.gridArray[gridX][gridY].state = battle(block1, block2: block2)
-//                            }
-//                        }
-//                    }
-//                        
-//                        //Otherwise if the block along the wall is inactive...
-//                    else if preSwipeGrid.gridArray[gridX][gridY].state == dummyType {
-//                        
-//                        // Change the value to the adjacent cell's value
-//                        gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX][gridY-1].state
-//                        
-//                    }
-//                    
-//                } else {
-//                    //                    let block0 = gridNode.gridArray[gridX][gridY+1]
-//                    //                    let block1 = gridNode.gridArray[gridX][gridY]
-//                    //                    let block2 = gridNode.gridArray[gridX][gridY-1]
-//                    //
-//                    //                    // check to see if block above is immoveable and is the same
-//                    //                    if block0.stackedUp == true && block1.state == block0.state {
-//                    //
-//                    //                        gridNode.gridArray[gridX][gridY].state =
-//                    //                    }
-//                    //set the value of the gridArray equal to the value at the previous row (no conditional)
-//                    //stops at the last row (can't have a row = -1)
-//                    
-//                    gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX][gridY-1].state
-//                }
-//            }
-//            
-//            //set the zeroith row equal to what's in the stage
-//            
-//            gridNode.gridArray[gridX][0].state = bottomStageNode.stageArray[gridX].state
-//            
-//            //reset the stage to all .inactive
-//            
-//            bottomStageNode.stageArray[gridX].state = .inactive
-//        }
-//        
-//        //add a new block to the empty stage
-//        
-//        bottomStageNode.addBlockToEmptyStage()
-//        
-//    }
-//    
-//    
-//    
-//    func swipedDown(sender:UISwipeGestureRecognizer){
-//        let preSwipeGrid = gridNode
-//        
-//        //loop through the columns
-//        for gridX in 0..<columns{
-//            
-//            //loop through the rows
-//            for gridY in 0..<rows-1 {
-//                
-//                // Is the row we're on, on the edge (aka wall row)?
-//                if gridY == 0 {
-//                    let dummyType: BlockType = .inactive
-//                    
-//                    // If block along the wall is active...
-//                    if preSwipeGrid.gridArray[gridX][gridY].state != dummyType  {
-//                        
-//                        // If the adjacent block is inactive...
-//                        if preSwipeGrid.gridArray[gridX][gridY+1].state == dummyType {
-//                            
-//                            // Do not change the value if on the wall and adjacent value is inactive
-//                            gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX][gridY].state
-//                        }
-//                            
-//                            //Otherwise if the adjacent block is active...
-//                        else if preSwipeGrid.gridArray[gridX][gridY+1].state != dummyType {
-//                            
-//                            // APPLY COLLISION RULES!!
-//                            let block1: BlockType = preSwipeGrid.gridArray[gridX][gridY].state
-//                            let block2: BlockType = preSwipeGrid.gridArray[gridX][gridY+1].state
-//                            
-//                            gridNode.gridArray[gridX][gridY].state = battle(block1, block2: block2)
-//                        }
-//                    }
-//                        
-//                        //Otherwise if the block along the wall is inactive...
-//                    else if preSwipeGrid.gridArray[gridX][gridY].state == dummyType {
-//                        
-//                        // Change the value to the adjacent cell's value
-//                        gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX][gridY+1].state
-//                        
-//                    }
-//                    
-//                } else {
-//                    
-//                    //set the value of the gridArray equal to the value at the previous row (no conditional)
-//                    //stops at the last row (can't have a row = -1)
-//                    
-//                    gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX][gridY+1].state
-//                }
-//            }
-//            
-//            //set the top row equal to what's in the stage
-//            
-//            gridNode.gridArray[gridX][rows-1].state = topStageNode.stageArray[gridX].state
-//            
-//            //reset the stage to all .inactive
-//            
-//            topStageNode.stageArray[gridX].state = .inactive
-//        }
-//        
-//        //add a new block to the empty stage
-//        
-//        topStageNode.addBlockToEmptyStage()
-//        
-//        
-//    }
-//    
-//    func swipedLeft(sender:UISwipeGestureRecognizer){
-//        
-//        let preSwipeGrid = gridNode
-//        
-//        //loop through the rows
-//        for gridY in 0..<rows{
-//            
-//            //loop through the columns
-//            for gridX in 0..<columns-1 {
-//                
-//                
-//                // Is the row we're on, on the edge (aka wall row)?
-//                if gridX == 0 {
-//                    let dummyType: BlockType = .inactive
-//                    
-//                    // If block along the wall is active...
-//                    if preSwipeGrid.gridArray[gridX][gridY].state != dummyType  {
-//                        
-//                        // If the adjacent block is inactive...
-//                        if preSwipeGrid.gridArray[gridX+1][gridY].state == dummyType {
-//                            
-//                            // Do not change the value if on the wall and adjacent value is inactive
-//                            gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX][gridY].state
-//                        }
-//                            
-//                            //Otherwise if the adjacent block is active...
-//                        else if preSwipeGrid.gridArray[gridX+1][gridY].state != dummyType {
-//                            
-//                            // APPLY COLLISION RULES!!
-//                            let block1: BlockType = preSwipeGrid.gridArray[gridX][gridY].state
-//                            let block2: BlockType = preSwipeGrid.gridArray[gridX+1][gridY].state
-//                            
-//                            gridNode.gridArray[gridX][gridY].state = battle(block1, block2: block2)
-//                        }
-//                    }
-//                        
-//                        //Otherwise if the block along the wall is inactive...
-//                    else if preSwipeGrid.gridArray[gridX][gridY].state == dummyType {
-//                        
-//                        // Change the value to the adjacent cell's value
-//                        gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX+1][gridY].state
-//                        
-//                    }
-//                    
-//                } else {
-//                    
-//                    //set the value of the gridArray equal to the value at the previous row (no conditional)
-//                    //stops at the last row (can't have a row = -1)
-//                    
-//                    gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX+1][gridY].state
-//                }
-//                
-//                //set the value of the gridArray equal to the value at the previous column (no conditional)
-//                //stops at the last column (can't have a column = -1)
-//                
-//                //gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX+1][gridY].state
-//            }
-//            
-//            //set the top column equal to what's in the stage
-//            
-//            gridNode.gridArray[columns-1][gridY].state = rightStageNode.stageArray[gridY].state
-//            
-//            //reset the stage to all .inactive
-//            
-//            rightStageNode.stageArray[gridY].state = .inactive
-//        }
-//        
-//        //add a new block to the empty stage
-//        
-//        rightStageNode.addBlockToEmptyStage()
-//        
-//    }
-//    
-//    func swipedRight(sender:UISwipeGestureRecognizer){
-//        
-//        let preSwipeGrid = gridNode
-//        
-//        //loop through the rows
-//        for gridY in 0..<rows{
-//            
-//            //loop through the columns
-//            for gridX in (columns-1).stride(through: 1, by: -1) {
-//                
-//                
-//                // Is the row we're on, on the edge (aka wall row)?
-//                if gridX == columns-1 {
-//                    let dummyType: BlockType = .inactive
-//                    
-//                    // If block along the wall is active...
-//                    if preSwipeGrid.gridArray[gridX][gridY].state != dummyType  {
-//                        
-//                        // If the adjacent block is inactive...
-//                        if preSwipeGrid.gridArray[gridX-1][gridY].state == dummyType {
-//                            
-//                            // Do not change the value if on the wall and adjacent value is inactive
-//                            gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX][gridY].state
-//                        }
-//                            
-//                            //Otherwise if the adjacent block is active...
-//                        else if preSwipeGrid.gridArray[gridX-1][gridY].state != dummyType {
-//                            
-//                            // APPLY COLLISION RULES!!
-//                            let block1: BlockType = preSwipeGrid.gridArray[gridX][gridY].state
-//                            let block2: BlockType = preSwipeGrid.gridArray[gridX-1][gridY].state
-//                            
-//                            gridNode.gridArray[gridX][gridY].state = battle(block1, block2: block2)
-//                        }
-//                    }
-//                        
-//                        //Otherwise if the block along the wall is inactive...
-//                    else if preSwipeGrid.gridArray[gridX][gridY].state == dummyType {
-//                        
-//                        // Change the value to the adjacent cell's value
-//                        gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX-1][gridY].state
-//                        
-//                    }
-//                    
-//                } else {
-//                    
-//                    //set the value of the gridArray equal to the value at the previous row (no conditional)
-//                    //stops at the last row (can't have a row = -1)
-//                    
-//                    gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX-1][gridY].state
-//                }
-//                
-//                //set the value of the gridArray equal to the value at the previous column (no conditional)
-//                //stops at the last column (can't have a column = -1)
-//                
-//                //gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX-1][gridY].state
-//            }
-//            
-//            //set the top column equal to what's in the stage
-//            
-//            gridNode.gridArray[0][gridY].state = leftStageNode.stageArray[gridY].state
-//            
-//            //reset the stage to all .inactive
-//            
-//            leftStageNode.stageArray[gridY].state = .inactive
-//        }
-//        
-//        //add a new block to the empty stage
-//        
-//        leftStageNode.addBlockToEmptyStage()
-//        
-//    }
-    
-    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
@@ -345,6 +74,8 @@ class GameScene: SKScene {
         rightStageNode = childNodeWithName("rightStage") as! StageV
         /* Set UI connections */
         restartButton = self.childNodeWithName("restartButton") as! MSButtonNode
+        swipeInstructions = childNodeWithName("swipeInstructions") as! SKSpriteNode
+        swipeInstructions.alpha = CGFloat(0)
         
         topStageNode.addBlockToEmptyStage()
         bottomStageNode.addBlockToEmptyStage()
@@ -391,33 +122,56 @@ class GameScene: SKScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         
-        //        for touch in touches {
-        //
-        //        }
+                timeElapsed = 0
         
     }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        timeElapsed += 1
+        print("timeElapsed: \(timeElapsed)")
+        print("idle: \(idle)")
+        print("instShown: \(instShown)")
+        print("firstInstShown: \(firstInstShown)")
+        print("alpha: \(swipeInstructions.alpha)")
+        if instShown == false && idle == true {
+            instShown = true
+            
+            let fadeUp = SKAction.fadeAlphaTo(1.0, duration: NSTimeInterval(1.0))
+            let fadeDown = SKAction.fadeAlphaTo(0.55, duration: NSTimeInterval(1.0))
+            
+            let sequence = SKAction.repeatActionForever(SKAction.sequence([fadeUp, fadeDown]))
+            swipeInstructions.runAction(sequence)
+            firstInstShown = true
+            
+        } else if instShown == true && idle == false {
+            instShown = false
+            let fadeDown = SKAction.fadeAlphaTo(0, duration: NSTimeInterval(0.5))
+            swipeInstructions.removeAllActions()
+            swipeInstructions.runAction(fadeDown)
+            
+            
+        }
         
     }
     
+    
+    
+    //MAIN SWIPE FUNCTION
     func swipe(swipeDirection: swipeType) {
-//        let preSwipeGrid:Grid = gridNode
         var xStart: Int
         var xEnd: Int
         var yStart: Int
         var yEnd: Int
         var xIncrement: Int = 1
         var yIncrement: Int = 1
-//        var stage: AnyObject?
         var stageRegen: Bool = false
         
+        timeElapsed = 0
         
         switch swipeDirection {
         case .up:
-            print("swiped up")
-//            stage = bottomStageNode
+            //print("swiped up")
             xStart = 0
             xEnd = columns-1
             yStart = rows-1
@@ -426,8 +180,7 @@ class GameScene: SKScene {
             yIncrement = -1
             
         case .down:
-            print("swiped down")
-//            stage = topStageNode
+            //print("swiped down")
             xStart = columns-1
             xEnd = 0
             yStart = 0
@@ -436,8 +189,7 @@ class GameScene: SKScene {
             yIncrement = 1
             
         case .left:
-            print("swiped left")
-//            stage = rightStageNode
+            //print("swiped left")
             xStart = 0
             xEnd = columns-1
             yStart = 0
@@ -446,8 +198,7 @@ class GameScene: SKScene {
             yIncrement = 1
             
         case .right:
-            print("swiped right")
-//            stage = leftStageNode
+            //print("swiped right")
             xStart = columns-1
             xEnd = 0
             yStart = rows-1
@@ -457,11 +208,7 @@ class GameScene: SKScene {
             
             
         }
-//        
-//        if xStart > xEnd { xIncrement = -1 // down, right
-//        } else if xStart < xEnd { xIncrement = 1 // up, left
-//        } else if yStart > yEnd { yIncrement = -1 // up, right
-//        } else if yStart < yEnd { yIncrement = 1 } // down, left
+        
         
         // If direction of swipe is vertical...
         if (swipeDirection == .up) || (swipeDirection == .down) {
@@ -497,7 +244,7 @@ class GameScene: SKScene {
                             }
                             
                         } else if swipeDirection == .down {
-                         
+                            
                             // Is the stage value active at this column?
                             if topStageNode.stageArray[gridX].state != .inactive {
                                 
@@ -512,7 +259,7 @@ class GameScene: SKScene {
                                     
                                 }
                             }
-
+                            
                             
                         }
                         
@@ -524,9 +271,9 @@ class GameScene: SKScene {
                         if currentBlock != nextBlock {
                             
                             
-                            let resourcePath = NSBundle.mainBundle().pathForResource("Penguin", ofType: "sks")
-                            let rock = MSReferenceNode(URL: NSURL (fileURLWithPath: resourcePath!))
+                            //INSERT ANIMATION!!!!!
                             
+                            animateCollision(gridNode.gridArray[gridX][gridY], block2: gridNode.gridArray[gridX][gridY+yIncrement])
                             
                             // Clear the next block state to inactive...
                             gridNode.gridArray[gridX][gridY+yIncrement].state = .inactive
@@ -534,6 +281,7 @@ class GameScene: SKScene {
                             
                             
                             // If so perform a battle and set the current block equal to the winner
+                            
                             gridNode.gridArray[gridX][gridY].state = battle(currentBlock, block2: nextBlock)
                             
                             
@@ -544,11 +292,11 @@ class GameScene: SKScene {
                             // Since they must be equal, do nothing to either value
                             
                         }
-
+                        
                     }
                     
                     
-                
+                    
                 }
                 
                 // Is the regen bool equal to true?
@@ -568,10 +316,10 @@ class GameScene: SKScene {
                         
                     }
                 }
-
+                
                 
             }
-        
+            
             // Is the swipe Up?
             if swipeDirection == .up {
                 
@@ -599,7 +347,7 @@ class GameScene: SKScene {
                     stageRegen = false
                     
                 }
-
+                
             }
             
         }
@@ -661,16 +409,21 @@ class GameScene: SKScene {
                         
                     } else {
                         
+                        //Create a reference variable to make cleaner
                         let nextBlock = gridNode.gridArray[gridX+xIncrement][gridY].state
                         
                         // Are the current and adjacent blocks different?...
                         if currentBlock != nextBlock {
                             
-                            // If so perform a battle and set the current block equal to the winner
-                            gridNode.gridArray[gridX][gridY].state = battle(currentBlock, block2: nextBlock)
+                            animateCollision(gridNode.gridArray[gridX][gridY], block2: gridNode.gridArray[gridX+xIncrement][gridY])
                             
                             // Clear the next block state to inactive...
                             gridNode.gridArray[gridX+xIncrement][gridY].state = .inactive
+                            
+                            // If so perform a battle and set the current block equal to the winner
+                            gridNode.gridArray[gridX][gridY].state = battle(currentBlock, block2: nextBlock)
+                            
+                           
                             
                             
                         } else {
@@ -684,7 +437,7 @@ class GameScene: SKScene {
                     
                     
                 }
-             
+                
                 // Is the regen bool equal to true?
                 if stageRegen == true {
                     
@@ -701,7 +454,7 @@ class GameScene: SKScene {
                         
                     }
                 }
-            
+                
                 
             }
             
@@ -736,199 +489,10 @@ class GameScene: SKScene {
             }
             
         }
-
+        
         
     }
     
-    //                // Is the row we're on, on the edge (aka wall row)?
-    //                if gridY == yEnd {
-    //
-    //                    //creating some simplified references
-    //                    let typeInactive: BlockType = .inactive
-    ////                    gridNode.gridArray[gridX][gridY].stacked = true
-    //
-    //
-    //                    // If block along the wall is active...
-    //                    if preSwipeGrid.gridArray[gridX][gridY].state != typeInactive  {
-    //
-    //                        //CHECK IF SWIPE IS VERTICAL
-    //                        if swipeDirection == .up || swipeDirection == .down
-    //                        {
-    //                            // If the adjacent block is inactive...
-    //                            if preSwipeGrid.gridArray[gridX][gridY+yIncrement].state == typeInactive {
-    //
-    //                                // Do not change the value if on the wall and adjacent value is inactive
-    //                                gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX][gridY].state
-    //                            }
-    //
-    //                                //Otherwise if the adjacent block is active...
-    //                            else if preSwipeGrid.gridArray[gridX][gridY+yIncrement].state != typeInactive {
-    //                                // APPLY COLLISION RULES!!
-    //                                let block1: BlockType = preSwipeGrid.gridArray[gridX][gridY].state
-    //                                let block2: BlockType = preSwipeGrid.gridArray[gridX][gridY+yIncrement].state
-    //
-    //
-    //                                if block1 == block2 {
-    //                                    gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX][gridY].state
-    //                                } else {
-    //                                    gridNode.gridArray[gridX][gridY].state = battle(block1, block2: block2)
-    //                                }
-    //                            }
-    //
-    //                            //REPEAT CODE FOR HORIZONTAL
-    //
-    //                            //check to see if swipe direction is horizontal
-    //                        } else if swipeDirection == .left || swipeDirection == .right {
-    //
-    //                            // If the adjacent block is inactive...
-    //                            if preSwipeGrid.gridArray[gridX+xIncrement][gridY].state == typeInactive {
-    //
-    //                                // Do not change the value if on the wall and adjacent value is inactive
-    //                                gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX][gridY].state
-    //                            }
-    //
-    //                                //Otherwise if the adjacent block is active...
-    //                            else if preSwipeGrid.gridArray[gridX+xIncrement][gridY].state != typeInactive {
-    //
-    //                                // APPLY COLLISION RULES!!
-    //                                let block1: BlockType = preSwipeGrid.gridArray[gridX][gridY].state
-    //                                let block2: BlockType = preSwipeGrid.gridArray[gridX+xIncrement][gridY].state
-    //
-    //
-    //                                if block1 == block2 {
-    //                                    gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX][gridY].state
-    //                                } else {
-    //                                    gridNode.gridArray[gridX][gridY].state = battle(block1, block2: block2)
-    //                                }
-    //                            }
-    //
-    //                        }
-    //
-    //                    }
-    //                        //INACTIVE
-    //                        //Otherwise if the block along the wall is inactive...
-    //                    else if preSwipeGrid.gridArray[gridX][gridY].state == typeInactive {
-    //
-    //                        // Change the value to the adjacent cell's value
-    //                        gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX][gridY-1].state
-    //
-    //                    }
-    //
-    //                }
-    //
-    //                    //ALL OTHER AISLES
-    //                else {
-    //
-    //                    //CHECK FOR HORIZONTAL OR VERTICAL FOR NON-FIRST AISLES
-    //                    //IF VERTICAL
-    //                    if swipeDirection == .up || swipeDirection == .down
-    //                    {
-    //                        //Reference points in the grid
-    //                        let previousBlock = gridNode.gridArray[gridX][gridY-yIncrement]
-    //                        let currentBlock = gridNode.gridArray[gridX][gridY]
-    //                        let nextBlock = gridNode.gridArray[gridX][gridY+yIncrement]
-    //
-    //
-    //                        // Check to see if the previous block is stacked, active, and equal to current
-    //                        if previousBlock.stacked == true && currentBlock.state != previousBlock.state{
-    //
-    //                            //Set the current block equal to the results of a battle
-    //                            gridNode.gridArray[gridX][gridY].state = battle(currentBlock.state, block2: nextBlock.state)
-    //
-    //                            // Check to see if winner is the same as the previous block
-    //                            if gridNode.gridArray[gridX][gridY].state == previousBlock.state {
-    //
-    //                                // Set the current block stacked bool equal to true
-    //                                gridNode.gridArray[gridX][gridY].stacked = true
-    //
-    //                            // Otherwise...
-    //                            } else {
-    //
-    //                                // Set the current block stacked bool equal to false
-    //                                 gridNode.gridArray[gridX][gridY].stacked = false
-    //
-    //                            }
-    //                        }
-    //
-    //
-    //
-    
-    //                        // Check to see if the current block is inactive
-    //                        if (currentBlock.state == .inactive){
-    //
-    //                            // Set the current block equal to the next block
-    //                            gridNode.gridArray[gridX][gridY].state = nextBlock.state
-    //
-    //                        }
-    //                        // If previous block is stacked and equal in state...
-    //                        else if (currentBlock.state != .inactive) && (previousBlock.stacked == true) && (currentBlock.state == previousBlock.state) {
-    //
-    //                            // Set the stacked property to true
-    //                            gridNode.gridArray[gridX][gridY].stacked = true
-    //
-    //                            // Check to see if the next block is active and not equal to the current block
-    //                            if (nextBlock.state != .inactive) && (nextBlock.state != currentBlock.state){
-    //
-    //                                // Set the current block equal to the winner of the battle between current block and next block
-    //                                gridNode.gridArray[gridX][gridY].state = battle(currentBlock.state, block2: nextBlock.state)
-    //
-    //                                // Check to see who won
-    //                                if gridNode.gridArray[gridX][gridY].state != previousBlock.state {
-    //                                    gridNode.gridArray[gridX][gridY].stacked = false
-    //                                }
-    //
-    //                                // Set the next block equal to zero (so as not to calculate in the next stack evaluation
-    //                                gridNode.gridArray[gridX][gridY+xIncrement].state = .inactive
-    //
-    //                            // Check to see if the next block is inactive
-    //                            } else if (nextBlock.state == .inactive) && (currentBlock.state != .inactive){
-    //
-    //                                // Set the current block equal to itself
-    //                                gridNode.gridArray[gridX][gridY].state = currentBlock.state
-    //
-    //                                // Check to see if the
-    //                            }
-    //                            //
-    //                        }
-    
-    //                        else if (currentBlock.state != .inactive) && (previousBlock.stacked == true) && (currentBlock.state != previousBlock.state) {
-    //
-    //                        }
-    //
-    //                        //IF HORIZONTAL
-    //                    } else if swipeDirection == .left || swipeDirection == .right {
-    //
-    //                    }
-    //                    //                    let block0 = gridNode.gridArray[gridX][gridY+1]
-    //                    //                    let block1 = gridNode.gridArray[gridX][gridY]
-    //                    //                    let block2 = gridNode.gridArray[gridX][gridY-1]
-    //                    //
-    //                    //                    // check to see if block above is immoveable and is the same
-    //                    //                    if block0.stackedUp == true && block1.state == block0.state {
-    //                    //
-    //                    //                        gridNode.gridArray[gridX][gridY].state =
-    //                    //                     }
-    //                    //set the value of the gridArray equal to the value at the previous row (no conditional)
-    //                    //stops at the last row (can't have a row = -1)
-    //
-    //                    gridNode.gridArray[gridX][gridY].state = preSwipeGrid.gridArray[gridX][gridY-1].state
-    //                }
-    //            }
-    //
-    //            //set the zeroith row equal to what's in the stage
-    //
-    //            gridNode.gridArray[gridX][0].state = stage!.stageArray[gridX].state
-    //
-    //            //reset the stage to all .inactive
-    //
-    //            stage!.stageArray[gridX].state = .inactive
-    //        }
-    //
-    //        //add a new block to the empty stage
-    //
-    //        stage!.addBlockToEmptyStage()
-    //
-    //    }
     
     func battle(block1: BlockType, block2: BlockType) -> BlockType {
         let rock: BlockType = .rock
@@ -994,96 +558,245 @@ class GameScene: SKScene {
         
         
     }
-}
-
-func xRef(x: Int, swipe: swipeType) -> Int {
     
-    var xNew: Int = x
     
-    // If swipe direction...
-    if swipe == .up {
-        switch x {
-        case 0: xNew = 0
-        case 1: xNew = 1
-        case 2: xNew = 2
-        case 3: xNew = 3
-        default:
-            xNew = x
+    func collision(block1: Block, block2: Block) -> Outcome {
+        let rock: BlockType = .rock
+        let paper: BlockType = .paper
+        let scissors: BlockType = .scissors
+        let inactive: BlockType = .inactive
+        let block1State = block1.state
+        let block2State = block2.state
+        
+        //rock vs paper...
+        if (block1State == rock) && (block2State == paper) {
+            //block2 wins!!
+            return Outcome(winnner: block2, loser: block1, tie: 2)
+            
+            //paper vs rock
+        } else if (block1State == paper) && (block2State == rock) {
+            //block1 wins!!
+            return Outcome(winnner: block1, loser: block2, tie: 1)
+            
+            //paper vs scissors
+        } else if (block1State == paper) && (block2State == scissors){
+            //block2 wins!!
+            return Outcome(winnner: block2, loser: block1, tie: 2)
+            
+            //scissors vs paper
+        } else if (block1State == scissors) && (block2State == paper) {
+            //block1 wins!!
+            return Outcome(winnner: block1, loser: block2, tie: 1)
+            
+            //scissors vs rock
+        } else if (block1State == scissors) && (block2State == rock){
+            //block2 wins!!
+            return Outcome(winnner: block2, loser: block1, tie: 2)
+            
+            //rock vs scissors
+        } else if (block1State == rock) && (block2State == scissors) {
+            //block1 wins!!
+            return Outcome(winnner: block1, loser: block2, tie: 1)
+            
+            // nothing vs rock
+        } else if (block1State == inactive) && (block2State == rock) {
+            //block2 wins!!
+            return Outcome(winnner: block2, loser: block1, tie: 2)
+            
+            // rock vs nothing
+        } else if (block1State == rock) && (block2State == inactive) {
+            //block1 wins!!
+            return Outcome(winnner: block1, loser: block2, tie: 1)
+            
+            // paper vs nothing
+        } else if (block1State == paper) && (block2State == inactive) {
+            //block1 wins!!
+            return Outcome(winnner: block1, loser: block2, tie: 1)
+            
+            // nothing vs paper
+        } else if (block1State == inactive) && (block2State == paper) {
+            //block2 wins!!
+            return Outcome(winnner: block2, loser: block1, tie: 2)
+            
+            // scissors vs nothing
+        } else if (block1State == scissors) && (block2State == inactive) {
+            //block1 wins!!
+            return Outcome(winnner: block1, loser: block2, tie: 1)
+            
+            // nothing vs scissors
+        } else if (block1State == inactive) && (block2State == scissors){
+            //block2 wins!!
+            return Outcome(winnner: block2, loser: block1, tie: 2)
+            
+            // nothing vs nothing
+        } else if ((block1State == inactive) && (block2State == inactive)) || ((block1State == inactive) && (block2State == inactive)) {
+            //tie!!
+            return Outcome(winnner: block1, loser: block2, tie: 0)
+            
+            // rock vs rock
+        } else if ((block1State == rock) && (block2State == rock)) || ((block1State == rock) && (block2State == rock)) {
+            //tie!!
+            return Outcome(winnner: block1, loser: block2, tie: 0)
+            
+            // paper vs paper
+        } else if ((block1State == paper) && (block2State == paper)) || ((block1State == paper) && (block2State == paper)) {
+            //tie!!
+            return Outcome(winnner: block1, loser: block2, tie: 0)
+            
+            // scissors vs scissors
+        } else if ((block1State == scissors) && (block2State == scissors)) || ((block1State == scissors) && (block2State == scissors)) {
+            //tie!!
+            return Outcome(winnner: block1, loser: block2, tie: 0)
         }
-    } else if swipe == .down {
-        switch x {
-        case 0: xNew = 3
-        case 1: xNew = 2
-        case 2: xNew = 1
-        case 3: xNew = 0
-        default:
-            xNew = x
+            
+        else{
+            
+            print("collision rules did not work")
+            return Outcome(winnner: block1, loser: block2, tie: 0)
+            
+            
         }
-    } else if swipe == .left {
-        switch x {
-        case 0: xNew = 0
-        case 1: xNew = 1
-        case 2: xNew = 2
-        case 3: xNew = 3
-        default:
-            xNew = x
-        }
-    } else if swipe == .right {
-        switch x {
-        case 0: xNew = 3
-        case 1: xNew = 2
-        case 2: xNew = 1
-        case 3: xNew = 0
-        default:
-            xNew = x
-        }
+        
+        
     }
-    return xNew
-}
+    
+    
+    func animateCollision(block1: Block, block2: Block) {
+        
+        let result: Outcome = collision(block1, block2: block2)
+        
+        let winBlock = result.winnner
+        let loseBlock = result.loser
+        let tie = result.tie
+        
+        var winAssetString = ""
+        var loseAssetString = ""
+        var winAssetString2 = ""
+        var loseAssetString2 = ""
+        
+        if (tie != 0) && (winBlock == block2) && (loseBlock.state != .inactive) {
+            
+            switch winBlock.state {
+            case .rock:
+                winAssetString = "RockBlock"
+            case .paper:
+                winAssetString = "PaperBlock"
+            case .scissors:
+                winAssetString = "ScissorsBlock"
+            case .inactive:
+                break
+                
+            }
+            
+            switch loseBlock.state {
+            case .rock:
+                loseAssetString = "RockBlock"
+            case .paper:
+                loseAssetString = "PaperBlock"
+            case .scissors:
+                loseAssetString = "ScissorsBlock"
+            case .inactive:
+                break
+                
+            }
+            
+            
+            
+            let winNode = SKSpriteNode(imageNamed: winAssetString)
+            let scale = SKAction.scaleTo(1.35, duration: 0.1)
+            let descale = SKAction.scaleTo(1, duration: 0.1)
+            let destination = loseBlock.position
+            let move = SKAction.moveTo(destination, duration: 0.2)
+            let remove = SKAction.removeFromParent()
+            let wait = SKAction.waitForDuration(0.4)
+            
+            winNode.position = winBlock.position
+            /* Position winNode at the location of the winning block */
+            winNode.anchorPoint = winBlock.anchorPoint
+            winNode.size = winBlock.size
+            let loseNode = SKSpriteNode(imageNamed: loseAssetString)
+            loseNode.position = loseBlock.position
+            loseNode.size = loseBlock.size
+            loseNode.anchorPoint = loseBlock.anchorPoint
+            loseNode.zPosition = loseBlock.zPosition + 1
+            winNode.zPosition = winBlock.zPosition + 2
+            print(loseNode.zPosition)
+            print(winNode.zPosition)
+            gridNode.addChild(loseNode)
+            gridNode.addChild(winNode)
+            let collisionSeq = SKAction.sequence([scale, move, descale, remove])
+            winNode.runAction(collisionSeq)
+            loseNode.runAction(SKAction.sequence([wait, remove]))
+            
+            
+        } else if (tie != 0) && (winBlock == block1) && (loseBlock.state != .inactive){
+            
+            switch winBlock.state {
+            case .rock:
+                winAssetString2 = "RockBlock"
+            case .paper:
+                winAssetString2 = "PaperBlock"
+            case .scissors:
+                winAssetString2 = "ScissorsBlock"
+            case .inactive:
+                break
+                
+            }
+            
+            switch loseBlock.state {
+            case .rock:
+                loseAssetString2 = "RockBlock"
+            case .paper:
+                loseAssetString2 = "PaperBlock"
+            case .scissors:
+                loseAssetString2 = "ScissorsBlock"
+            case .inactive:
+                break
+                
+            }
+            
+            let winNode2 = SKSpriteNode(imageNamed: winAssetString2)
+            let scale2 = SKAction.scaleTo(1.35, duration: 0.1)
+            let descale2 = SKAction.scaleTo(1, duration: 0.1)
+            let destination2 = winBlock.position
+            let move2 = SKAction.moveTo(destination2, duration: 0.2)
+            let remove2 = SKAction.removeFromParent()
+//            let wait2 = SKAction.waitForDuration(0.4)
+            
+            winNode2.position = winBlock.position
+            /* Position winNode at the location of the winning block */
+            winNode2.anchorPoint = winBlock.anchorPoint
+            winNode2.size = winBlock.size
+            let loseNode2 = SKSpriteNode(imageNamed: loseAssetString2)
+            loseNode2.position = loseBlock.position
+            loseNode2.size = loseBlock.size
+            loseNode2.anchorPoint = loseBlock.anchorPoint
+            loseNode2.zPosition = loseBlock.zPosition + 1
+            winNode2.zPosition = winBlock.zPosition + 2
+            print(loseNode2.zPosition)
+            print(winNode2.zPosition)
+            gridNode.addChild(loseNode2)
+            gridNode.addChild(winNode2)
+            
+            let collisionSeq2 = SKAction.sequence([scale2, descale2, remove2])
+            winNode2.runAction(collisionSeq2)
+            loseNode2.runAction(SKAction.sequence([move2, remove2]))
+            
 
-func yRef(y: Int, swipe: swipeType) -> Int {
-    
-    var yNew: Int = y
-    
-    // If swipe direction...
-    if swipe == .up {
-        switch y {
-        case 0: yNew = 0
-        case 1: yNew = 1
-        case 2: yNew = 2
-        case 3: yNew = 3
-        default:
-            yNew = y
+            
         }
-    } else if swipe == .down {
-        switch y {
-        case 0: yNew = 3
-        case 1: yNew = 2
-        case 2: yNew = 1
-        case 3: yNew = 0
-        default:
-            yNew = y
-        }
-    } else if swipe == .left {
-        switch y {
-        case 0: yNew = 3
-        case 1: yNew = 2
-        case 2: yNew = 1
-        case 3: yNew = 0
-        default:
-            yNew = y
-        }
-    } else if swipe == .right {
-        switch y {
-        case 0: yNew = 1
-        case 1: yNew = 2
-        case 2: yNew = 3
-        case 3: yNew = 4
-        default:
-            yNew = y
-        }
+        
+        
+        
+        
     }
-    return yNew
+    
+    // Show the instructions if the user is idle
+    func instructions() {
+        
+        
+    }
+    
 }
 
 
