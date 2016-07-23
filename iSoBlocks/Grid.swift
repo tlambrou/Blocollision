@@ -18,6 +18,7 @@ class Grid: SKSpriteNode {
     /* Grid array dimensions */
     
     /* Individual cell dimension, calculated in setup*/
+    var label:SKLabelNode!
     var cellWidth = 0
     var cellHeight = 0
     
@@ -92,6 +93,8 @@ class Grid: SKSpriteNode {
         
         //Add block as a child of the grid node
         addChild(block)
+        
+       
         
 //        let label = SKLabelNode(text: "\(x),\(y)")
 //        label.fontSize = 40

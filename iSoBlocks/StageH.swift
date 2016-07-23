@@ -68,10 +68,13 @@ class StageH: SKSpriteNode {
                 //case 0?
                 case 1:
                     block.state = .rock
+                    block.stack = 1
                 case 2:
                     block.state = .paper
+                    block.stack = 1
                 case 3:
                     block.state = .scissors
+                    block.stack = 1
                 default:
                     print("switch statement in addBlockToEmptyStage didn't work")
                 }

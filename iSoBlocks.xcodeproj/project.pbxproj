@@ -37,6 +37,8 @@
 		96492F4D1D318CE6004F887C /* iSoBlocksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F4C1D318CE6004F887C /* iSoBlocksUITests.swift */; };
 		96492F5B1D318E8F004F887C /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F5A1D318E8F004F887C /* Grid.swift */; };
 		96492F6E1D31BC7E004F887C /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F6D1D31BC7E004F887C /* Block.swift */; };
+		968914431D41461F00CD2AD6 /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968914421D41461F00CD2AD6 /* UIColorExt.swift */; };
+		968914471D41529500CD2AD6 /* ASAttributedLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968914461D41529500CD2AD6 /* ASAttributedLabelNode.swift */; };
 		96F3A4491D3E9EB900DD41D8 /* Snippets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F3A4481D3E9EB900DD41D8 /* Snippets.swift */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +96,9 @@
 		96492F4E1D318CE6004F887C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96492F5A1D318E8F004F887C /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		96492F6D1D31BC7E004F887C /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
+		968914421D41461F00CD2AD6 /* UIColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
+		968914461D41529500CD2AD6 /* ASAttributedLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASAttributedLabelNode.swift; sourceTree = "<group>"; };
+		968914481D42F68A00CD2AD6 /* soundeffect.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = soundeffect.m4a; sourceTree = "<group>"; };
 		96F3A4481D3E9EB900DD41D8 /* Snippets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snippets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,10 +183,13 @@
 				96492F2E1D318CE6004F887C /* GameViewController.swift */,
 				96044AD31D35EBDD0097D096 /* MSButtonNode.swift */,
 				96044AD41D35EBDD0097D096 /* MSReferenceNode.swift */,
+				968914421D41461F00CD2AD6 /* UIColorExt.swift */,
 				96F3A4481D3E9EB900DD41D8 /* Snippets.swift */,
+				968914461D41529500CD2AD6 /* ASAttributedLabelNode.swift */,
 				96492F301D318CE6004F887C /* Main.storyboard */,
 				96492F331D318CE6004F887C /* Assets.xcassets */,
 				96492F351D318CE6004F887C /* LaunchScreen.storyboard */,
+				968914481D42F68A00CD2AD6 /* soundeffect.m4a */,
 				96492F381D318CE6004F887C /* Info.plist */,
 			);
 			path = iSoBlocks;
@@ -346,10 +354,12 @@
 				96492F2F1D318CE6004F887C /* GameViewController.swift in Sources */,
 				96044AC51D3589B90097D096 /* CGVector+Extensions.swift in Sources */,
 				96044AC41D3589B90097D096 /* CGPoint+Extensions.swift in Sources */,
+				968914471D41529500CD2AD6 /* ASAttributedLabelNode.swift in Sources */,
 				96044AC31D3589B90097D096 /* CGFloat+Extensions.swift in Sources */,
 				96492F6E1D31BC7E004F887C /* Block.swift in Sources */,
 				96044ACB1D3589B90097D096 /* SKTAudio.swift in Sources */,
 				96044AD01D3598330097D096 /* StageH.swift in Sources */,
+				968914431D41461F00CD2AD6 /* UIColorExt.swift in Sources */,
 				96F3A4491D3E9EB900DD41D8 /* Snippets.swift in Sources */,
 				96492F291D318CE6004F887C /* AppDelegate.swift in Sources */,
 				96044ACA1D3589B90097D096 /* SKNode+Extensions.swift in Sources */,
