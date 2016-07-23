@@ -225,6 +225,7 @@ class GameScene: SKScene {
                     // Create some variable references for simplification
                     let currentBlock = gridNode.gridArray[gridX][gridY].state
                     
+                    print(gridNode.gridArray[gridX][gridY].stack)
                     
                     // Is it the last row?
                     if gridY == yEnd {
@@ -235,32 +236,21 @@ class GameScene: SKScene {
                             // Is the stage value active at this column?
                             if bottomStageNode.stageArray[gridX].state != .inactive {
                                 
-                                // Is the current block equal to stage block?
-                                if currentBlock == bottomStageNode.stageArray[gridX].state {
+                                // Is the current block different?
+                                if currentBlock != bottomStageNode.stageArray[gridX].state {
                                     
-                                    // Perform collision
-//                                    animateSimpleCollision(gridNode.gridArray[gridX][gridY], loseBlock: bottomStageNode.stageArray[gridX])
-                                    
-                                    // Set the current block equal to the stage value
-                                    gridNode.gridArray[gridX][gridY].state = bottomStageNode.stageArray[gridX].state
-                                    
-                                    // Add block stacks together
+                                    // Combine Stacks
                                     gridNode.gridArray[gridX][gridY].stack += bottomStageNode.stageArray[gridX].stack
+                                    
+                                    // Perform battle and store the result in current block
+                                    gridNode.gridArray[gridX][gridY].state = battle(currentBlock, block2: bottomStageNode.stageArray[gridX].state)
                                     
                                     // Set the stage regen bool equal to true
                                     stageRegen = true
                                     
-                                } else if currentBlock == .inactive {
-                                    
-                                    //Set the Current equal to the next
-                                    gridNode.gridArray[gridX][gridY].state = bottomStageNode.stageArray[gridX].state
-                                    
-                                    // Set the Stage Block equal to Inactive
-                                    bottomStageNode.stageArray[gridX].state = .inactive
-                                    
-                                    stageRegen = true
                                 }
                             }
+
                             
                         } else if swipeDirection == .down {
                             
@@ -269,6 +259,9 @@ class GameScene: SKScene {
                                 
                                 // Is the current block different?
                                 if currentBlock != topStageNode.stageArray[gridX].state {
+                                    
+                                    // Combine Stacks
+                                    gridNode.gridArray[gridX][gridY].stack += topStageNode.stageArray[gridX].stack
                                     
                                     // Perform battle and store the result in current block
                                     gridNode.gridArray[gridX][gridY].state = battle(currentBlock, block2: topStageNode.stageArray[gridX].state)
@@ -292,12 +285,17 @@ class GameScene: SKScene {
                             
                             //INSERT ANIMATION!!!!!
                             
+                           
+                            
+                            // Create collision
                             animateCollision(gridNode.gridArray[gridX][gridY], block2: gridNode.gridArray[gridX][gridY+yIncrement])
                             
+                             // Combine Stacks
+                            gridNode.gridArray[gridX][gridY].stack += gridNode.gridArray[gridX][gridY+yIncrement].stack
+
                             // Clear the next block state to inactive...
                             gridNode.gridArray[gridX][gridY+yIncrement].state = .inactive
-                            
-                            
+                        
                             
                             // If so perform a battle and set the current block equal to the winner
                             
@@ -399,6 +397,9 @@ class GameScene: SKScene {
                                 // Is the current block different?
                                 if currentBlock != rightStageNode.stageArray[gridY].state {
                                     
+                                    // Combine Stacks
+                                    gridNode.gridArray[gridX][gridY].stack += rightStageNode.stageArray[gridY].stack
+                                    
                                     // Perform battle and store the result in current block
                                     gridNode.gridArray[gridX][gridY].state = battle(currentBlock, block2: rightStageNode.stageArray[gridY].state)
                                     
@@ -416,6 +417,9 @@ class GameScene: SKScene {
                                 
                                 // Is the current block different?
                                 if currentBlock != leftStageNode.stageArray[gridY].state {
+                                    
+                                    // Combine Stacks
+                                    gridNode.gridArray[gridX][gridY].stack += leftStageNode.stageArray[gridY].stack
                                     
                                     // Perform battle and store the result in current block
                                     gridNode.gridArray[gridX][gridY].state = battle(currentBlock, block2: leftStageNode.stageArray[gridY].state)
@@ -440,6 +444,9 @@ class GameScene: SKScene {
                         if currentBlock != nextBlock {
                             
                             animateCollision(gridNode.gridArray[gridX][gridY], block2: gridNode.gridArray[gridX+xIncrement][gridY])
+                            
+                            // Combine Stacks
+                            gridNode.gridArray[gridX][gridY].stack += gridNode.gridArray[gridX+xIncrement][gridY].stack
                             
                             // Clear the next block state to inactive...
                             gridNode.gridArray[gridX+xIncrement][gridY].state = .inactive
@@ -744,8 +751,8 @@ class GameScene: SKScene {
             loseNode.anchorPoint = loseBlock.anchorPoint
             loseNode.zPosition = loseBlock.zPosition + 1
             winNode.zPosition = winBlock.zPosition + 2
-            print(loseNode.zPosition)
-            print(winNode.zPosition)
+//            print(loseNode.zPosition)
+//            print(winNode.zPosition)
             gridNode.addChild(loseNode)
             gridNode.addChild(winNode)
             let collisionSeq = SKAction.sequence([scale, move, descale, remove])
@@ -911,3 +918,4 @@ func clearLines () {
 
 
 
+    }}

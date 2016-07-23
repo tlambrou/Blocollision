@@ -28,7 +28,6 @@ class Block: SKSpriteNode {
     var label: SKLabelNode!
     var labelBG: SKLabelNode!
     
-    /* Character side */
     var state:BlockType = .inactive
         {
         
@@ -66,13 +65,6 @@ class Block: SKSpriteNode {
         
     }
     
-    //    var isAlive: Bool = false {
-    //        didSet {
-    //            /* Visibility */
-    //            hidden = !isAlive
-    //        }
-    //    }
-    
     
     init() {
         /* Initialize with 'block' asset */
@@ -108,7 +100,7 @@ class Block: SKSpriteNode {
         
         addChild(label)
         addChild(labelBG)
-        print(stack)
+       
         
         
         /* Set Z-Position, ensure it's on top of grid */
