@@ -18,6 +18,7 @@ struct Outcome {
     //Int that is 0 if tied, 1 if block 1 wins, and 2 if block 2 wins
     var tie: Int
 }
+
 var idle: Bool = false
 var instShown: Bool = false
 var firstInstShown: Bool = false
@@ -250,7 +251,7 @@ class GameScene: SKScene {
                                     
                                 }
                             }
-
+                            
                             
                         } else if swipeDirection == .down {
                             
@@ -285,17 +286,17 @@ class GameScene: SKScene {
                             
                             //INSERT ANIMATION!!!!!
                             
-                           
+                            
                             
                             // Create collision
                             animateCollision(gridNode.gridArray[gridX][gridY], block2: gridNode.gridArray[gridX][gridY+yIncrement])
                             
-                             // Combine Stacks
+                            // Combine Stacks
                             gridNode.gridArray[gridX][gridY].stack += gridNode.gridArray[gridX][gridY+yIncrement].stack
-
+                            
                             // Clear the next block state to inactive...
                             gridNode.gridArray[gridX][gridY+yIncrement].state = .inactive
-                        
+                            
                             
                             // If so perform a battle and set the current block equal to the winner
                             
@@ -408,7 +409,7 @@ class GameScene: SKScene {
                                     
                                 }
                             }
-                          
+                            
                             //MARK: Swipe Right
                         } else if swipeDirection == .right {
                             
@@ -454,7 +455,7 @@ class GameScene: SKScene {
                             // If so perform a battle and set the current block equal to the winner
                             gridNode.gridArray[gridX][gridY].state = battle(currentBlock, block2: nextBlock)
                             
-                           
+                            
                             
                             
                         } else {
@@ -503,7 +504,7 @@ class GameScene: SKScene {
                     
                 }
                 
-                // Is the swip down?
+                // Is the swipe down?
             } else if swipeDirection == .right {
                 
                 // Is the stage regen bool equal to true?
@@ -589,7 +590,6 @@ class GameScene: SKScene {
         
         
     }
-    
     
     func collision(block1: Block, block2: Block) -> Outcome {
         let rock: BlockType = .rock
@@ -690,7 +690,7 @@ class GameScene: SKScene {
         
         
     }
-    
+
     
     func animateCollision(block1: Block, block2: Block) {
         
@@ -749,10 +749,8 @@ class GameScene: SKScene {
             loseNode.position = loseBlock.position
             loseNode.size = loseBlock.size
             loseNode.anchorPoint = loseBlock.anchorPoint
-            loseNode.zPosition = loseBlock.zPosition + 1
-            winNode.zPosition = winBlock.zPosition + 2
-//            print(loseNode.zPosition)
-//            print(winNode.zPosition)
+            loseNode.zPosition = 2
+            winNode.zPosition = 3
             gridNode.addChild(loseNode)
             gridNode.addChild(winNode)
             let collisionSeq = SKAction.sequence([scale, move, descale, remove])
@@ -773,149 +771,52 @@ class GameScene: SKScene {
                 break
                 
             }
-func animateCollision(block1: Block, block2: Block) {
-    
-    let result: Outcome = collision(block1, block2: block2)
-    
-    let winBlock = result.winnner
-    let loseBlock = result.loser
-    let tie = result.tie
-    
-    var winAssetString = ""
-    var loseAssetString = ""
-    var winAssetString2 = ""
-    var loseAssetString2 = ""
-    
-    if (tie != 0) && (winBlock == block2) && (loseBlock.state != .inactive) {
-        
-        switch winBlock.state {
-        case .rock:
-            winAssetString = "RockBlock"
-        case .paper:
-            winAssetString = "PaperBlock"
-        case .scissors:
-            winAssetString = "ScissorsBlock"
-        case .inactive:
-            break
+            
+            switch loseBlock.state {
+            case .rock:
+                loseAssetString2 = "RockBlock"
+            case .paper:
+                loseAssetString2 = "PaperBlock"
+            case .scissors:
+                loseAssetString2 = "ScissorsBlock"
+            case .inactive:
+                break
+                
+            }
+            
+            let winNode2 = SKSpriteNode(imageNamed: winAssetString2)
+            let scale2 = SKAction.scaleTo(1.35, duration: 0.1)
+            let descale2 = SKAction.scaleTo(1, duration: 0.1)
+            let destination2 = winBlock.position
+            let move2 = SKAction.moveTo(destination2, duration: 0.2)
+            let remove2 = SKAction.removeFromParent()
+//            let wait2 = SKAction.waitForDuration(0.4)
+            
+            winNode2.position = winBlock.position
+            /* Position winNode at the location of the winning block */
+            winNode2.anchorPoint = winBlock.anchorPoint
+            winNode2.size = winBlock.size
+            let loseNode2 = SKSpriteNode(imageNamed: loseAssetString2)
+            loseNode2.position = loseBlock.position
+            loseNode2.size = loseBlock.size
+            loseNode2.anchorPoint = loseBlock.anchorPoint
+            loseNode2.zPosition = 2
+            winNode2.zPosition = 3
+            
+            gridNode.addChild(loseNode2)
+            gridNode.addChild(winNode2)
+            
+            let collisionSeq2 = SKAction.sequence([scale2, descale2, remove2])
+            winNode2.runAction(collisionSeq2)
+            loseNode2.runAction(SKAction.sequence([move2, remove2]))
+            
+            
             
         }
         
-        switch loseBlock.state {
-        case .rock:
-            loseAssetString = "RockBlock"
-        case .paper:
-            loseAssetString = "PaperBlock"
-        case .scissors:
-            loseAssetString = "ScissorsBlock"
-        case .inactive:
-            break
-            
-        }
         
         
         
-        let winNode = SKSpriteNode(imageNamed: winAssetString)
-        let scale = SKAction.scaleTo(1.35, duration: 0.1)
-        let descale = SKAction.scaleTo(1, duration: 0.1)
-        let destination = loseBlock.position
-        let move = SKAction.moveTo(destination, duration: 0.2)
-        let remove = SKAction.removeFromParent()
-        let wait = SKAction.waitForDuration(0.4)
-        
-        winNode.position = winBlock.position
-        /* Position winNode at the location of the winning block */
-        winNode.anchorPoint = winBlock.anchorPoint
-        winNode.size = winBlock.size
-        let loseNode = SKSpriteNode(imageNamed: loseAssetString)
-        loseNode.position = loseBlock.position
-        loseNode.size = loseBlock.size
-        loseNode.anchorPoint = loseBlock.anchorPoint
-        loseNode.zPosition = loseBlock.zPosition + 1
-        winNode.zPosition = winBlock.zPosition + 2
-        gridNode.addChild(loseNode)
-        gridNode.addChild(winNode)
-        let collisionSeq = SKAction.sequence([scale, move, descale, remove])
-        winNode.runAction(collisionSeq)
-        loseNode.runAction(SKAction.sequence([wait, remove]))
-        
-        
-    } else if (tie != 0) && (winBlock == block1) && (loseBlock.state != .inactive){
-        
-        switch winBlock.state {
-        case .rock:
-            winAssetString2 = "RockBlock"
-        case .paper:
-            winAssetString2 = "PaperBlock"
-        case .scissors:
-            winAssetString2 = "ScissorsBlock"
-        case .inactive:
-            break
-            
-        }
-        
-        switch loseBlock.state {
-        case .rock:
-            loseAssetString2 = "RockBlock"
-        case .paper:
-            loseAssetString2 = "PaperBlock"
-        case .scissors:
-            loseAssetString2 = "ScissorsBlock"
-        case .inactive:
-            break
-            
-        }
-        
-        let winNode2 = SKSpriteNode(imageNamed: winAssetString2)
-        let scale2 = SKAction.scaleTo(1.35, duration: 0.1)
-        let descale2 = SKAction.scaleTo(1, duration: 0.1)
-        let destination2 = winBlock.position
-        let move2 = SKAction.moveTo(destination2, duration: 0.2)
-        let remove2 = SKAction.removeFromParent()
-        //            let wait2 = SKAction.waitForDuration(0.4)
-        
-        winNode2.position = winBlock.position
-        /* Position winNode at the location of the winning block */
-        winNode2.anchorPoint = winBlock.anchorPoint
-        winNode2.size = winBlock.size
-        let loseNode2 = SKSpriteNode(imageNamed: loseAssetString2)
-        loseNode2.position = loseBlock.position
-        loseNode2.size = loseBlock.size
-        loseNode2.anchorPoint = loseBlock.anchorPoint
-        loseNode2.zPosition = loseBlock.zPosition + 1
-        winNode2.zPosition = winBlock.zPosition + 2
-        
-        gridNode.addChild(loseNode2)
-        gridNode.addChild(winNode2)
-        
-        let collisionSeq2 = SKAction.sequence([scale2, descale2, remove2])
-        winNode2.runAction(collisionSeq2)
-        loseNode2.runAction(SKAction.sequence([move2, remove2]))
-        
-        
-        
-    }
-    
-    
-    
+}
     
 }
-
-// Show the instructions if the user is idle
-func instructions() {
-    
-    
-}
-
-func clearLines () {
-    
-    // Loop through the rows
-    
-    
-    
-}
-
-}
-
-
-
-    }}
