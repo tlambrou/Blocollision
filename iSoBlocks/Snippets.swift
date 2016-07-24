@@ -609,3 +609,395 @@ import Foundation
 //        leftStageNode.addBlockToEmptyStage()
 //
 //    }
+
+
+
+
+
+//
+//
+////2ND VERSION SWIPE FUNCTION
+//func swipe(swipeDirection: swipeType) {
+//    var xStart: Int
+//    var xEnd: Int
+//    var yStart: Int
+//    var yEnd: Int
+//    var xIncrement: Int = 1
+//    var yIncrement: Int = 1
+//    var stageRegen: Bool = false
+//    
+//    timeElapsed = 0
+//    
+//    switch swipeDirection {
+//    case .up:
+//        //print("swiped up")
+//        xStart = 0
+//        xEnd = columns-1
+//        yStart = rows-1
+//        yEnd = 0
+//        xIncrement = 1
+//        yIncrement = -1
+//        
+//    case .down:
+//        //print("swiped down")
+//        xStart = columns-1
+//        xEnd = 0
+//        yStart = 0
+//        yEnd = rows-1
+//        xIncrement = -1
+//        yIncrement = 1
+//        
+//    case .left:
+//        //print("swiped left")
+//        xStart = 0
+//        xEnd = columns-1
+//        yStart = 0
+//        yEnd = rows-1
+//        xIncrement = 1
+//        yIncrement = 1
+//        
+//    case .right:
+//        //print("swiped right")
+//        xStart = columns-1
+//        xEnd = 0
+//        yStart = rows-1
+//        yEnd = 0
+//        xIncrement = -1
+//        yIncrement = -1
+//        
+//        
+//    }
+//    
+//    
+//    
+//    
+//    // If direction of swipe is vertical...
+//    if (swipeDirection == .up) || (swipeDirection == .down) {
+//        
+//        // loop through the columns
+//        for gridX in xStart.stride(through: xEnd, by: xIncrement){
+//            
+//            // loop through the rows
+//            for gridY in yStart.stride(through: yEnd, by: yIncrement) {
+//                
+//                
+//                // Create some variable references for simplification
+//                let currentBlock = gridNode.gridArray[gridX][gridY].state
+//                let current = gridNode.gridArray[gridX][gridY]
+//                
+//                
+//                //MARK: Last Row Vertical
+//                // Is it the last row?
+//                if gridY == yEnd {
+//                    
+//                    //MARK: Swipe Up
+//                    // Is it a swipe up?
+//                    if swipeDirection == .up {
+//                        let next = bottomStageNode.stageArray[gridX]
+//                        
+//                        // Is the stage value active at this column?
+//                        if bottomStageNode.stageArray[gridX].state != .inactive {
+//                            
+//                            // Is the current block different?
+//                            if currentBlock != bottomStageNode.stageArray[gridX].state {
+//                                
+//                                // Combine Stacks
+//                                gridNode.gridArray[gridX][gridY].stack += bottomStageNode.stageArray[gridX].stack
+//                                
+//                                // Perform collision & store the result
+//                                let result: Outcome = collision(gridNode.gridArray[gridX][gridY], block2: bottomStageNode.stageArray[gridX])
+//                                
+//                                // Set the current equal to the winner state
+//                                gridNode.gridArray[gridX][gridY].state = result.winnner.state
+//                                
+//                                
+//                                //                                    // Perform battle and store the result in current block
+//                                //                                    gridNode.gridArray[gridX][gridY].state = battle(currentBlock, block2: bottomStageNode.stageArray[gridX].state)
+//                                
+//                                // Set the stage regen bool equal to true
+//                                stageRegen = true
+//                                
+//                            }
+//                        }
+//                        
+//                        
+//                    } else if swipeDirection == .down {
+//                        
+//                        let next = topStageNode.stageArray[gridX]
+//                        
+//                        // Is the stage value active at this column?
+//                        if topStageNode.stageArray[gridX].state != .inactive {
+//                            
+//                            // Is the current block different?
+//                            if currentBlock != topStageNode.stageArray[gridX].state {
+//                                
+//                                // Combine Stacks
+//                                gridNode.gridArray[gridX][gridY].stack += topStageNode.stageArray[gridX].stack
+//                                
+//                                // Perform collision & store the result
+//                                let result: Outcome = collision(gridNode.gridArray[gridX][gridY], block2: topStageNode.stageArray[gridX])
+//                                
+//                                // Set the current equal to the winner state
+//                                gridNode.gridArray[gridX][gridY].state = result.winnner.state
+//                                
+//                                //                                    // Perform battle and store the result in current block
+//                                //                                    gridNode.gridArray[gridX][gridY].state = battle(currentBlock, block2: topStageNode.stageArray[gridX].state)
+//                                
+//                                // Set the stage regen bool equal to true
+//                                stageRegen = true
+//                                
+//                            }
+//                        }
+//                        
+//                        
+//                    }
+//                    
+//                } else {
+//                    
+//                    let nextBlock = gridNode.gridArray[gridX][gridY+yIncrement].state
+//                    
+//                    // Are the current and adjacent blocks different?...
+//                    if currentBlock != nextBlock {
+//                        
+//                        
+//                        //INSERT ANIMATION!!!!!
+//                        
+//                        
+//                        
+//                        // Create collision
+//                        animateCollision(gridNode.gridArray[gridX][gridY], block2: gridNode.gridArray[gridX][gridY+yIncrement])
+//                        
+//                        // Combine Stacks
+//                        gridNode.gridArray[gridX][gridY].stack += gridNode.gridArray[gridX][gridY+yIncrement].stack
+//                        
+//                        // Clear the next block state to inactive...
+//                        gridNode.gridArray[gridX][gridY+yIncrement].state = .inactive
+//                        
+//                        
+//                        // If so perform a battle and set the current block equal to the winner
+//                        
+//                        gridNode.gridArray[gridX][gridY].state = battle(currentBlock, block2: nextBlock)
+//                        
+//                        
+//                        
+//                        
+//                    } else {
+//                        
+//                        // Since they must be equal, do nothing to either value
+//                        
+//                    }
+//                    
+//                }
+//                
+//                
+//                
+//            }
+//            
+//            // Is the regen bool equal to true?
+//            if stageRegen == true {
+//                
+//                // Is the swipe up?
+//                if swipeDirection == .up {
+//                    
+//                    // Clear the stage
+//                    bottomStageNode.stageArray[gridX].state = .inactive
+//                    
+//                    //Is the swipe down?
+//                } else if swipeDirection == .down {
+//                    
+//                    // Clear the stage
+//                    topStageNode.stageArray[gridX].state = .inactive
+//                    
+//                }
+//            }
+//            
+//            
+//        }
+//        
+//        // Is the swipe Up?
+//        if swipeDirection == .up {
+//            
+//            // Is the stage regen bool equal to true?
+//            if stageRegen == true {
+//                
+//                // Add a new block to the stage
+//                bottomStageNode.addBlockToEmptyStage()
+//                
+//                // Reset the stage regen bool to false
+//                stageRegen = false
+//                
+//            }
+//            
+//            // Is the swipe down?
+//        } else if swipeDirection == .down {
+//            
+//            // Is the stage regen bool equal to true?
+//            if stageRegen == true {
+//                
+//                // Add a new block to the stage
+//                topStageNode.addBlockToEmptyStage()
+//                
+//                // Reset the stage regen bool to false
+//                stageRegen = false
+//                
+//            }
+//            
+//        }
+//        
+//    }
+//    
+//    
+//    // If direction of swipe is horizontal
+//    if (swipeDirection == .left) || (swipeDirection == .right) {
+//        
+//        // loop through the columns
+//        for gridY in yStart.stride(through: yEnd, by: yIncrement){
+//            
+//            // loop through the rows
+//            for gridX in xStart.stride(through: xEnd, by: xIncrement) {
+//                
+//                // Create some variable references for simplification
+//                let currentBlock = gridNode.gridArray[gridX][gridY].state
+//                
+//                
+//                //MARK: Last Row Horizontal
+//                // Is it the last row?
+//                if gridX == xEnd {
+//                    
+//                    //MARK: Swipe Left
+//                    // Is it a swipe left?
+//                    if swipeDirection == .left {
+//                        
+//                        // Is the stage value active at this column?
+//                        if rightStageNode.stageArray[gridY].state != .inactive {
+//                            
+//                            // Is the current block different?
+//                            if currentBlock != rightStageNode.stageArray[gridY].state {
+//                                
+//                                // Combine Stacks
+//                                gridNode.gridArray[gridX][gridY].stack += rightStageNode.stageArray[gridY].stack
+//                                
+//                                // Perform battle and store the result in current block
+//                                gridNode.gridArray[gridX][gridY].state = battle(currentBlock, block2: rightStageNode.stageArray[gridY].state)
+//                                
+//                                // Set the stage regen bool equal to true
+//                                stageRegen = true
+//                                
+//                            }
+//                        }
+//                        
+//                        //MARK: Swipe Right
+//                    } else if swipeDirection == .right {
+//                        
+//                        // Is the stage value active at this column?
+//                        if leftStageNode.stageArray[gridY].state != .inactive {
+//                            
+//                            // Is the current block different?
+//                            if currentBlock != leftStageNode.stageArray[gridY].state {
+//                                
+//                                // Combine Stacks
+//                                gridNode.gridArray[gridX][gridY].stack += leftStageNode.stageArray[gridY].stack
+//                                
+//                                // Perform battle and store the result in current block
+//                                gridNode.gridArray[gridX][gridY].state = battle(currentBlock, block2: leftStageNode.stageArray[gridY].state)
+//                                
+//                                // Set the stage regen bool equal to true
+//                                stageRegen = true
+//                                
+//                            }
+//                        }
+//                        
+//                        
+//                    }
+//                    
+//                    //MARK: Horizontal Swipe Main Gameboard Rules
+//                    
+//                } else {
+//                    
+//                    //Create a reference variable to make cleaner
+//                    let nextBlock = gridNode.gridArray[gridX+xIncrement][gridY].state
+//                    
+//                    // Are the current and adjacent blocks different?...
+//                    if currentBlock != nextBlock {
+//                        
+//                        animateCollision(gridNode.gridArray[gridX][gridY], block2: gridNode.gridArray[gridX+xIncrement][gridY])
+//                        
+//                        // Combine Stacks
+//                        gridNode.gridArray[gridX][gridY].stack += gridNode.gridArray[gridX+xIncrement][gridY].stack
+//                        
+//                        // Clear the next block state to inactive...
+//                        gridNode.gridArray[gridX+xIncrement][gridY].state = .inactive
+//                        
+//                        // If so perform a battle and set the current block equal to the winner
+//                        gridNode.gridArray[gridX][gridY].state = battle(currentBlock, block2: nextBlock)
+//                        
+//                        
+//                        
+//                        
+//                    } else {
+//                        
+//                        // Since they must be equal, do nothing to either value
+//                        
+//                    }
+//                    
+//                }
+//                
+//                
+//                
+//            }
+//            
+//            // Is the regen bool equal to true?
+//            if stageRegen == true {
+//                
+//                // Is the swipe left?
+//                if swipeDirection == .left {
+//                    
+//                    // Clear the stage
+//                    rightStageNode.stageArray[gridY].state = .inactive
+//                    
+//                } else if swipeDirection == .right {
+//                    
+//                    // Clear the stage
+//                    leftStageNode.stageArray[gridY].state = .inactive
+//                    
+//                }
+//            }
+//            
+//            
+//        }
+//        
+//        // Is the swipe Up?
+//        if swipeDirection == .left {
+//            
+//            // Is the stage regen bool equal to true?
+//            if stageRegen == true {
+//                
+//                // Add a new block to the stage
+//                rightStageNode.addBlockToEmptyStage()
+//                
+//                // Reset the stage regen bool to false
+//                stageRegen = false
+//                
+//            }
+//            
+//            // Is the swipe down?
+//        } else if swipeDirection == .right {
+//            
+//            // Is the stage regen bool equal to true?
+//            if stageRegen == true {
+//                
+//                // Add a new block to the stage
+//                leftStageNode.addBlockToEmptyStage()
+//                
+//                // Reset the stage regen bool to false
+//                stageRegen = false
+//                
+//            }
+//            
+//        }
+//        
+//    }
+//    
+//    
+//}
+
