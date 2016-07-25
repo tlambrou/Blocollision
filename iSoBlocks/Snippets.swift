@@ -614,9 +614,9 @@ import Foundation
 
 
 
-//
-//
-////2ND VERSION SWIPE FUNCTION
+
+
+//2ND VERSION SWIPE FUNCTION
 //func swipe(swipeDirection: swipeType) {
 //    var xStart: Int
 //    var xEnd: Int
@@ -1000,4 +1000,110 @@ import Foundation
 //    
 //    
 //}
+
+
+
+
+
+// ROCK PAPER SCISSORS COLLISION RULES
+//func collision(block1: Block, block2: Block) -> Outcome {
+//    let rock: BlockType = .rock
+//    let paper: BlockType = .paper
+//    let scissors: BlockType = .scissors
+//    let inactive: BlockType = .inactive
+//    let block1State = block1.state
+//    let block2State = block2.state
+//    
+//    //rock vs paper...
+//    if (block1State == rock) && (block2State == paper) {
+//        //block2 wins!!
+//        return Outcome(winnner: block2, loser: block1, tie: 2)
+//        
+//        //paper vs rock
+//    } else if (block1State == paper) && (block2State == rock) {
+//        //block1 wins!!
+//        return Outcome(winnner: block1, loser: block2, tie: 1)
+//        
+//        //paper vs scissors
+//    } else if (block1State == paper) && (block2State == scissors){
+//        //block2 wins!!
+//        return Outcome(winnner: block2, loser: block1, tie: 2)
+//        
+//        //scissors vs paper
+//    } else if (block1State == scissors) && (block2State == paper) {
+//        //block1 wins!!
+//        return Outcome(winnner: block1, loser: block2, tie: 1)
+//        
+//        //scissors vs rock
+//    } else if (block1State == scissors) && (block2State == rock){
+//        //block2 wins!!
+//        return Outcome(winnner: block2, loser: block1, tie: 2)
+//        
+//        //rock vs scissors
+//    } else if (block1State == rock) && (block2State == scissors) {
+//        //block1 wins!!
+//        return Outcome(winnner: block1, loser: block2, tie: 1)
+//        
+//        // nothing vs rock
+//    } else if (block1State == inactive) && (block2State == rock) {
+//        //block2 wins!!
+//        return Outcome(winnner: block2, loser: block1, tie: 2)
+//        
+//        // rock vs nothing
+//    } else if (block1State == rock) && (block2State == inactive) {
+//        //block1 wins!!
+//        return Outcome(winnner: block1, loser: block2, tie: 1)
+//        
+//        // paper vs nothing
+//    } else if (block1State == paper) && (block2State == inactive) {
+//        //block1 wins!!
+//        return Outcome(winnner: block1, loser: block2, tie: 1)
+//        
+//        // nothing vs paper
+//    } else if (block1State == inactive) && (block2State == paper) {
+//        //block2 wins!!
+//        return Outcome(winnner: block2, loser: block1, tie: 2)
+//        
+//        // scissors vs nothing
+//    } else if (block1State == scissors) && (block2State == inactive) {
+//        //block1 wins!!
+//        return Outcome(winnner: block1, loser: block2, tie: 1)
+//        
+//        // nothing vs scissors
+//    } else if (block1State == inactive) && (block2State == scissors){
+//        //block2 wins!!
+//        return Outcome(winnner: block2, loser: block1, tie: 2)
+//        
+//        // nothing vs nothing
+//    } else if ((block1State == inactive) && (block2State == inactive)) || ((block1State == inactive) && (block2State == inactive)) {
+//        //tie!!
+//        return Outcome(winnner: block1, loser: block2, tie: 0)
+//        
+//        // rock vs rock
+//    } else if ((block1State == rock) && (block2State == rock)) || ((block1State == rock) && (block2State == rock)) {
+//        //tie!!
+//        return Outcome(winnner: block1, loser: block2, tie: 0)
+//        
+//        // paper vs paper
+//    } else if ((block1State == paper) && (block2State == paper)) || ((block1State == paper) && (block2State == paper)) {
+//        //tie!!
+//        return Outcome(winnner: block1, loser: block2, tie: 0)
+//        
+//        // scissors vs scissors
+//    } else if ((block1State == scissors) && (block2State == scissors)) || ((block1State == scissors) && (block2State == scissors)) {
+//        //tie!!
+//        return Outcome(winnner: block1, loser: block2, tie: 0)
+//    }
+//        
+//    else{
+//        
+//        print("collision rules did not work")
+//        return Outcome(winnner: block1, loser: block2, tie: 0)
+//        
+//        
+//    }
+//    
+//    
+//}
+
 

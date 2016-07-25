@@ -67,13 +67,13 @@ class StageV: SKSpriteNode {
                 switch typeRand {
                 //case 0?
                 case 1:
-                    block.state = .rock
+                    block.state = .red
                     block.stack = 1
                 case 2:
-                    block.state = .paper
+                    block.state = .blue
                     block.stack = 1
                 case 3:
-                    block.state = .scissors
+                    block.state = .green
                     block.stack = 1
                 default:
                     print("switch statement in addBlockToEmptyStage didn't work")

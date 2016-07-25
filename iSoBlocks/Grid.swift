@@ -120,11 +120,11 @@ class Grid: SKSpriteNode {
                 switch typeRand {
                 //case 0?
                 case 1:
-                    block.state = .rock
+                    block.state = .red
                 case 2:
-                    block.state = .paper
+                    block.state = .blue
                 case 3:
-                    block.state = .scissors
+                    block.state = .green
                 default:
                     print("switch statement in addBlockToEmptyGrid didn't work")
                 }

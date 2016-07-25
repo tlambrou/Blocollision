@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-enum BlockType { case inactive, rock, paper, scissors }
+enum BlockType { case inactive, red, blue, green }
 
 class Block: SKSpriteNode {
     
@@ -19,14 +19,14 @@ class Block: SKSpriteNode {
             if stack > 1 {
                 label.text = String(stack)
                 label.hidden = false
-                labelBG.text = String(stack)
-                labelBG.hidden = false
+//                labelBG.text = String(stack)
+//                labelBG.hidden = false
                 
             }
         }
     }
     var label: SKLabelNode!
-    var labelBG: SKLabelNode!
+    //var labelBG: SKLabelNode!
     
     var state:BlockType = .inactive
         {
@@ -39,23 +39,23 @@ class Block: SKSpriteNode {
                 runAction(action)
                 stack = 0
                 label.hidden = true
-                labelBG.hidden = true
+//                labelBG.hidden = true
                 hidden = false
                 
-            case .rock:
-                let action = SKAction.setTexture(SKTexture(imageNamed: "RockBlock"))
+            case .red:
+                let action = SKAction.setTexture(SKTexture(imageNamed: "RoundRectCoral"))
                 runAction(action)
                 hidden = false
                 break;
                 
-            case .paper:
-                let action = SKAction.setTexture(SKTexture(imageNamed: "PaperBlock"))
+            case .blue:
+                let action = SKAction.setTexture(SKTexture(imageNamed: "RoundRectTeal"))
                 runAction(action)
                 hidden = false
                 break;
                 
-            case .scissors:
-                let action = SKAction.setTexture(SKTexture(imageNamed: "ScissorsBlock"))
+            case .green:
+                let action = SKAction.setTexture(SKTexture(imageNamed: "RoundRectGreen"))
                 runAction(action)
                 hidden = false
                 break;
@@ -87,19 +87,19 @@ class Block: SKSpriteNode {
         label.horizontalAlignmentMode = .Right
         label.zPosition = 10
         
-        labelBG = SKLabelNode(text: String(stack))
-        labelBG.fontSize = 60
-        labelBG.fontName = "AvenirNext-Heavy"
-        labelBG.hidden = true
-        labelBG.position.offset(dx: xLabel, dy: yLabel)
-        labelBG.verticalAlignmentMode = .Baseline
-        labelBG.horizontalAlignmentMode = .Right
-        labelBG.zPosition = 9
-        labelBG.alpha = 0.9
-        labelBG.fontColor = UIColor(netHex:0xBE1D30)
+//        labelBG = SKLabelNode(text: String(stack))
+//        labelBG.fontSize = 60
+//        labelBG.fontName = "AvenirNext-Heavy"
+//        labelBG.hidden = true
+//        labelBG.position.offset(dx: xLabel, dy: yLabel)
+//        labelBG.verticalAlignmentMode = .Baseline
+//        labelBG.horizontalAlignmentMode = .Right
+//        labelBG.zPosition = 9
+//        labelBG.alpha = 0.9
+//        labelBG.fontColor = UIColor(netHex:0xBE1D30)
         
         addChild(label)
-        addChild(labelBG)
+//        addChild(labelBG)
        
         
         
