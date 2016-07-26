@@ -873,17 +873,45 @@ class GameScene: SKScene {
                     
                     monkeyBeer = 0
                     break
-                    
                 }
-                
-                
-                
             }
-            
         }
         
+    }
+    
+    func columnsCheck () {
+        
+        var monkeyBeer: Int = 0
+        
+        // Loop through the rows
+        for gridX in 0..<columns {
+            // Loop through the columns
+            for gridY in 1..<rows {
+                
+                let currentBlock = gridNode.gridArray[gridX][gridY]
+                let prevBlock = gridNode.gridArray[gridX][gridY-1]
+                
+                if (currentBlock.state == prevBlock.state) && (prevBlock.state != .inactive) {
+                    
+                    monkeyBeer += 1
+                    
+                } else if (monkeyBeer == 3)   {
+                    
+                    //Call clear column and/or clear blocks function
+                    print("Clear the column!")
+                    monkeyBeer = 0
+                    break
+                    
+                } else {
+                    
+                    monkeyBeer = 0
+                    break
+                }
+            }
+        }
         
     }
+
     
     
 }
