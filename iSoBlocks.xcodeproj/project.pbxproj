@@ -39,6 +39,7 @@
 		96492F6E1D31BC7E004F887C /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F6D1D31BC7E004F887C /* Block.swift */; };
 		968914431D41461F00CD2AD6 /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968914421D41461F00CD2AD6 /* UIColorExt.swift */; };
 		968914471D41529500CD2AD6 /* ASAttributedLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968914461D41529500CD2AD6 /* ASAttributedLabelNode.swift */; };
+		968914501D4828FB00CD2AD6 /* clearRow.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9689144F1D4828FB00CD2AD6 /* clearRow.caf */; };
 		96F3A4491D3E9EB900DD41D8 /* Snippets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F3A4481D3E9EB900DD41D8 /* Snippets.swift */; };
 /* End PBXBuildFile section */
 
@@ -98,7 +99,7 @@
 		96492F6D1D31BC7E004F887C /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		968914421D41461F00CD2AD6 /* UIColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
 		968914461D41529500CD2AD6 /* ASAttributedLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASAttributedLabelNode.swift; sourceTree = "<group>"; };
-		968914481D42F68A00CD2AD6 /* soundeffect.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = soundeffect.m4a; sourceTree = "<group>"; };
+		9689144F1D4828FB00CD2AD6 /* clearRow.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = clearRow.caf; sourceTree = "<group>"; };
 		96F3A4481D3E9EB900DD41D8 /* Snippets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snippets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,7 +190,7 @@
 				96492F301D318CE6004F887C /* Main.storyboard */,
 				96492F331D318CE6004F887C /* Assets.xcassets */,
 				96492F351D318CE6004F887C /* LaunchScreen.storyboard */,
-				968914481D42F68A00CD2AD6 /* soundeffect.m4a */,
+				9689144B1D481C0B00CD2AD6 /* SFX */,
 				96492F381D318CE6004F887C /* Info.plist */,
 			);
 			path = iSoBlocks;
@@ -211,6 +212,14 @@
 				96492F4E1D318CE6004F887C /* Info.plist */,
 			);
 			path = iSoBlocksUITests;
+			sourceTree = "<group>";
+		};
+		9689144B1D481C0B00CD2AD6 /* SFX */ = {
+			isa = PBXGroup;
+			children = (
+				9689144F1D4828FB00CD2AD6 /* clearRow.caf */,
+			);
+			name = SFX;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +333,7 @@
 				96492F341D318CE6004F887C /* Assets.xcassets in Resources */,
 				9620C1751D3DA16800B045E7 /* Rock.sks in Resources */,
 				96492F321D318CE6004F887C /* Main.storyboard in Resources */,
+				968914501D4828FB00CD2AD6 /* clearRow.caf in Resources */,
 				9620C1791D3DA22B00B045E7 /* Scissors.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

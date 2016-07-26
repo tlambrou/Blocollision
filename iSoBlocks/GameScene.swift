@@ -19,11 +19,17 @@ struct Outcome {
     var tie: Int
 }
 
-var score: Int = 0
+
 
 var idle: Bool = false
 var instShown: Bool = false
 var firstInstShown: Bool = false
+var scoreLabel: SKLabelNode!
+
+var score: Int = 0 {
+didSet {
+    scoreLabel.text = String(score)
+} }
 
 var timeElapsed: Int = 0 {
 didSet {
@@ -50,20 +56,45 @@ class GameScene: SKScene {
     var swipeInstructions: SKSpriteNode!
     
     
+    
     func swipedUp(sender:UISwipeGestureRecognizer) {
         swipe(.up)
+        
+        // Check for complete rows
+        rowsCheck()
+        
+        // Check for complete columns
+        columnsCheck()
     }
     
     func swipedDown(sender:UISwipeGestureRecognizer) {
         swipe(.down)
+        
+        // Check for complete rows
+        rowsCheck()
+        
+        // Check for complete columns
+        columnsCheck()
     }
     
     func swipedLeft(sender:UISwipeGestureRecognizer) {
         swipe(.left)
+        
+        // Check for complete rows
+        rowsCheck()
+        
+        // Check for complete columns
+        columnsCheck()
     }
     
     func swipedRight(sender:UISwipeGestureRecognizer) {
         swipe(.right)
+        
+        // Check for complete rows
+        rowsCheck()
+        
+        // Check for complete columns
+        columnsCheck()
     }
     
     override func didMoveToView(view: SKView) {
@@ -77,6 +108,7 @@ class GameScene: SKScene {
         /* Set UI connections */
         restartButton = self.childNodeWithName("restartButton") as! MSButtonNode
         swipeInstructions = childNodeWithName("swipeInstructions") as! SKSpriteNode
+        scoreLabel = childNodeWithName("scoreLabel") as! SKLabelNode
         swipeInstructions.alpha = CGFloat(0)
         
         topStageNode.addBlockToEmptyStage()
@@ -431,8 +463,7 @@ class GameScene: SKScene {
             }
         }
         
-        // Check for complete rows
-        rowsCheck()
+        
         
     }
     
@@ -723,8 +754,8 @@ class GameScene: SKScene {
         } else if (tie == 2) && loseBlock.state != .inactive {
             
             let winNode = SKSpriteNode(imageNamed: winAssetString)
-            let scale = SKAction.scaleTo(1.35, duration: 0.1)
-            let descale = SKAction.scaleTo(1, duration: 0.1)
+//            let scale = SKAction.scaleTo(1.35, duration: 0.1)
+//            let descale = SKAction.scaleTo(1, duration: 0.1)
             let destination = loseBlock.position
             let move = SKAction.moveTo(destination, duration: 0.2)
             let remove = SKAction.removeFromParent()
@@ -862,17 +893,19 @@ class GameScene: SKScene {
                     
                     monkeyBeer += 1
                     
-                } else if (monkeyBeer == 3)   {
-                    
-                    //Call clear row and/or clear blocks function
-                    print("Clear the row!")
-                    monkeyBeer = 0
-                    break
-                    
                 } else {
                     
                     monkeyBeer = 0
                     break
+                }
+                
+                if (monkeyBeer == 3)   {
+                    
+                    //Call clear row and/or clear blocks function
+                    clearRow(gridY)
+                    monkeyBeer = 0
+                    break
+                    
                 }
             }
         }
@@ -895,23 +928,74 @@ class GameScene: SKScene {
                     
                     monkeyBeer += 1
                     
-                } else if (monkeyBeer == 3)   {
-                    
-                    //Call clear column and/or clear blocks function
-                    print("Clear the column!")
-                    monkeyBeer = 0
-                    break
-                    
                 } else {
                     
                     monkeyBeer = 0
                     break
                 }
+                
+                if (monkeyBeer == 3)   {
+                    
+                    //Call clear column and/or clear blocks function
+                    clearColumn(gridX)
+                    monkeyBeer = 0
+                    break
+                    
+                }
             }
         }
         
     }
-
+    
+    func clearRow (rowNumber: Int) {
+        let gridY = rowNumber
+        var rowScore: Int = 1
+        
+        // Loop through the row
+        for gridX in 0..<columns {
+            
+            let currentBlock = gridNode.gridArray[gridX][gridY]
+            
+            // Multiply the current stack times the rowScore
+            rowScore = rowScore * currentBlock.stack
+            
+            // Set the node equal to inactive
+            currentBlock.state = .inactive
+            
+        }
+        
+        // Add the rowScore to the player's score
+        score += rowScore
+        
+        /* Play SFX */
+        let scoreSFX = SKAction.playSoundFileNamed("clearRow", waitForCompletion: true)
+        self.runAction(scoreSFX)
+    }
+    
+    func clearColumn (columnNumber: Int) {
+        let gridX = columnNumber
+        var columnScore: Int = 1
+        
+        // Loop through the row
+        for gridY in 0..<rows {
+            
+            let currentBlock = gridNode.gridArray[gridX][gridY]
+            
+            // Multiply the current stack times the rowScore
+            columnScore = columnScore * currentBlock.stack
+            
+            // Set the node equal to inactive
+            currentBlock.state = .inactive
+            
+        }
+        
+        // Add the rowScore to the player's score
+        score += columnScore
+        
+        /* Play SFX */
+        let scoreSFX = SKAction.playSoundFileNamed("clearRow", waitForCompletion: true)
+        self.runAction(scoreSFX)
+    }
     
     
 }
