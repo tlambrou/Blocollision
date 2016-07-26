@@ -19,6 +19,8 @@ struct Outcome {
     var tie: Int
 }
 
+var score: Int = 0
+
 var idle: Bool = false
 var instShown: Bool = false
 var firstInstShown: Bool = false
@@ -63,9 +65,6 @@ class GameScene: SKScene {
     func swipedRight(sender:UISwipeGestureRecognizer) {
         swipe(.right)
     }
-    
-    
-    
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -157,8 +156,6 @@ class GameScene: SKScene {
         }
         
     }
-    
-    
     
     //MAIN SWIPE FUNCTION
     func swipe(swipeDirection: swipeType) {
@@ -260,9 +257,9 @@ class GameScene: SKScene {
                             
                             
                         }
-                        
-                        //MARK: Swipe Down
-                        // Is it a swipe down?
+                            
+                            //MARK: Swipe Down
+                            // Is it a swipe down?
                         else if swipeDirection == .down {
                             let nextBlock = topStageNode.stageArray[gridX]
                             
@@ -364,7 +361,7 @@ class GameScene: SKScene {
                                 stageRegen = true
                             }
                             
-                            print(currentBlock.position)
+                            //                            print(currentBlock.position)
                             
                             // Perform the collision rules
                             collisionRules(currentBlock, nextBlock: nextBlock)
@@ -434,11 +431,10 @@ class GameScene: SKScene {
             }
         }
         
+        // Check for complete rows
+        rowsCheck()
+        
     }
-    
-    
-    
-    
     
     func battle(block1: BlockType, block2: BlockType) -> BlockType {
         let red: BlockType = .red
@@ -605,7 +601,6 @@ class GameScene: SKScene {
         
     }
     
-    
     func animateCollision(block1: Block, block2: Block) {
         
         let result: Outcome = collision(block1, block2: block2)
@@ -745,10 +740,10 @@ class GameScene: SKScene {
             loseNode.anchorPoint = loseBlock.anchorPoint
             loseNode.zPosition = 2
             winNode.zPosition = 3
-//            
-//            print("winNode State: \(winBlock.state)")
-//            print("winNode Position: \(winNode.position)")
-//            print("loseNode Position: \(loseNode.position)")
+            //
+            //            print("winNode State: \(winBlock.state)")
+            //            print("winNode Position: \(winNode.position)")
+            //            print("loseNode Position: \(loseNode.position)")
             gridNode.addChild(loseNode)
             gridNode.addChild(winNode)
             let collisionSeq = SKAction.sequence([ move, wait, remove])
@@ -776,10 +771,10 @@ class GameScene: SKScene {
             loseNode2.anchorPoint = loseBlock.anchorPoint
             loseNode2.zPosition = 2
             winNode2.zPosition = 3
-//            
-//            print("winNode2 State: \(winBlock.state)")
-//            print("winNode2 Position: \(winNode2.position)")
-//            print("loseNode2 Position: \(loseNode2.position)")
+            //
+            //            print("winNode2 State: \(winBlock.state)")
+            //            print("winNode2 Position: \(winNode2.position)")
+            //            print("loseNode2 Position: \(loseNode2.position)")
             
             gridNode.addChild(loseNode2)
             gridNode.addChild(winNode2)
@@ -795,7 +790,6 @@ class GameScene: SKScene {
         
         
     }
-    
     
     func collisionRules (currentBlock: Block, nextBlock: Block) {
         
@@ -851,7 +845,46 @@ class GameScene: SKScene {
         
         
     }
-
     
+    func rowsCheck () {
+        
+        var monkeyBeer: Int = 0
+        
+        // Loop through the rows
+        for gridY in 0..<rows {
+            // Loop through the columns
+            for gridX in 1..<columns {
+                
+                let currentBlock = gridNode.gridArray[gridX][gridY]
+                let prevBlock = gridNode.gridArray[gridX-1][gridY]
+                
+                if (currentBlock.state == prevBlock.state) && (prevBlock.state != .inactive) {
+                    
+                    monkeyBeer += 1
+                    
+                } else if (monkeyBeer == 3)   {
+                    
+                    //Call clear row and/or clear blocks function
+                    print("Clear the row!")
+                    monkeyBeer = 0
+                    break
+                    
+                } else {
+                    
+                    monkeyBeer = 0
+                    break
+                    
+                }
+                
+                
+                
+            }
+            
+        }
+        
+        
     }
+    
+    
+}
 
