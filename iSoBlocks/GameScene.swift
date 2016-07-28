@@ -19,17 +19,33 @@ struct Outcome {
     var tie: Int
 }
 
+struct structBlock {
+    
+    var block: Block
+    
+}
 
+var sumScore: Int = 0 {
+didSet {
+    score = multiplierScore + sumScore
+}
+}
+var multiplierScore: Int = 0 {
+didSet {
+    score = multiplierScore + sumScore
+}
+}
+var score: Int = multiplierScore + sumScore {
+didSet {
+    scoreLabel.text = String(score)
+} }
 
 var idle: Bool = false
 var instShown: Bool = false
 var firstInstShown: Bool = false
 var scoreLabel: SKLabelNode!
 
-var score: Int = 0 {
-didSet {
-    scoreLabel.text = String(score)
-} }
+
 
 var timeElapsed: Int = 0 {
 didSet {
@@ -54,6 +70,7 @@ class GameScene: SKScene {
     var rightStageNode: StageV!
     var restartButton: MSButtonNode!
     var swipeInstructions: SKSpriteNode!
+//    var instructions: SKLabelNode!
     
     
     
@@ -65,6 +82,9 @@ class GameScene: SKScene {
         
         // Check for complete columns
         columnsCheck()
+        
+        // Calculate the grid score (sumScore)
+        gridScore()
     }
     
     func swipedDown(sender:UISwipeGestureRecognizer) {
@@ -75,6 +95,9 @@ class GameScene: SKScene {
         
         // Check for complete columns
         columnsCheck()
+        
+        // Calculate the grid score (sumScore)
+        gridScore()
     }
     
     func swipedLeft(sender:UISwipeGestureRecognizer) {
@@ -85,6 +108,9 @@ class GameScene: SKScene {
         
         // Check for complete columns
         columnsCheck()
+        
+        // Calculate the grid score (sumScore)
+        gridScore()
     }
     
     func swipedRight(sender:UISwipeGestureRecognizer) {
@@ -95,6 +121,9 @@ class GameScene: SKScene {
         
         // Check for complete columns
         columnsCheck()
+        
+        // Calculate the grid score (sumScore)
+        gridScore()
     }
     
     override func didMoveToView(view: SKView) {
@@ -109,6 +138,7 @@ class GameScene: SKScene {
         restartButton = self.childNodeWithName("restartButton") as! MSButtonNode
         swipeInstructions = childNodeWithName("swipeInstructions") as! SKSpriteNode
         scoreLabel = childNodeWithName("scoreLabel") as! SKLabelNode
+        
         swipeInstructions.alpha = CGFloat(0)
         
         topStageNode.addBlockToEmptyStage()
@@ -467,71 +497,6 @@ class GameScene: SKScene {
         
     }
     
-    func battle(block1: BlockType, block2: BlockType) -> BlockType {
-        let red: BlockType = .red
-        let blue: BlockType = .blue
-        let green: BlockType = .green
-        let inactive: BlockType = .inactive
-        
-        //red vs blue...
-        if ((block1 == red) && (block2 == blue)) || ((block1 == blue) && (block2 == red)) {
-            //blue wins!!
-            return blue
-            
-            //blue vs green
-        } else if ((block1 == blue) && (block2 == green)) || ((block1 == green) && (block2 == blue)) {
-            //green wins!!
-            return green
-            
-            //green vs red
-        } else if ((block1 == green) && (block2 == red)) || ((block1 == red) && (block2 == green)) {
-            //red wins!!
-            return red
-            
-            // red vs nothing
-        } else if ((block1 == inactive) && (block2 == red)) || ((block1 == red) && (block2 == inactive)) {
-            //red wins!!
-            return red
-            
-            // blue vs nothing
-        } else if ((block1 == inactive) && (block2 == blue)) || ((block1 == blue) && (block2 == inactive)) {
-            //blue wins!!
-            return blue
-            
-            // green vs nothing
-        } else if ((block1 == inactive) && (block2 == green)) || ((block1 == green) && (block2 == inactive)) {
-            //blue wins!!
-            return green
-            
-            // nothing vs nothing
-        } else if ((block1 == inactive) && (block2 == inactive)) || ((block1 == inactive) && (block2 == inactive)) {
-            //nothing wins!!
-            return inactive
-            
-            // red vs red
-        } else if ((block1 == red) && (block2 == red)) || ((block1 == red) && (block2 == red)) {
-            //red wins!!
-            return red
-            
-            // blue vs blue
-        } else if ((block1 == blue) && (block2 == blue)) || ((block1 == blue) && (block2 == blue)) {
-            //blue wins!!
-            return blue
-            
-            // green vs green
-        } else if ((block1 == green) && (block2 == green)) || ((block1 == green) && (block2 == green)) {
-            //green wins!!
-            return green
-        }
-            
-        else{
-            return block1
-            
-        }
-        
-        
-    }
-    
     func collision(block1: Block, block2: Block) -> Outcome {
         let red: BlockType = .red
         let blue: BlockType = .blue
@@ -754,8 +719,8 @@ class GameScene: SKScene {
         } else if (tie == 2) && loseBlock.state != .inactive {
             
             let winNode = SKSpriteNode(imageNamed: winAssetString)
-//            let scale = SKAction.scaleTo(1.35, duration: 0.1)
-//            let descale = SKAction.scaleTo(1, duration: 0.1)
+            //            let scale = SKAction.scaleTo(1.35, duration: 0.1)
+            //            let descale = SKAction.scaleTo(1, duration: 0.1)
             let destination = loseBlock.position
             let move = SKAction.moveTo(destination, duration: 0.2)
             let remove = SKAction.removeFromParent()
@@ -818,7 +783,9 @@ class GameScene: SKScene {
         }
         
         
-        
+        /* Play SFX */
+        let combineSFX = SKAction.playSoundFileNamed("clearDot", waitForCompletion: true)
+        self.runAction(combineSFX)
         
     }
     
@@ -834,12 +801,13 @@ class GameScene: SKScene {
                 // Are Current & Next the same values?
                 if currentBlock.state == nextBlock.state {
                     
-                    
                     // Animate the collision
                     animateCollision(currentBlock, block2: nextBlock)
+//
                     
                     // Combine stack values
                     currentBlock.stack += nextBlock.stack
+                    
                     
                     // Set the Next block to .inactive
                     nextBlock.state = .inactive
@@ -902,7 +870,11 @@ class GameScene: SKScene {
                 if (monkeyBeer == 3)   {
                     
                     //Call clear row and/or clear blocks function
-                    clearRow(gridY)
+//                    clearRow(gridY)
+                    
+                    //Clear the color
+                    clearColor(currentBlock.state)
+                    
                     monkeyBeer = 0
                     break
                     
@@ -937,7 +909,11 @@ class GameScene: SKScene {
                 if (monkeyBeer == 3)   {
                     
                     //Call clear column and/or clear blocks function
-                    clearColumn(gridX)
+//                    clearColumn(gridX)
+                    
+                    // Clear the color
+                    clearColor(currentBlock.state)
+                    
                     monkeyBeer = 0
                     break
                     
@@ -950,19 +926,29 @@ class GameScene: SKScene {
     func clearRow (rowNumber: Int) {
         let gridY = rowNumber
         var rowScore: Int = 1
+        var stackSum: Int = 0
         
         // Loop through the row
         for gridX in 0..<columns {
             
             let currentBlock = gridNode.gridArray[gridX][gridY]
             
+            // Add the stack to the stack sum
+            stackSum += currentBlock.stack
+            
             // Multiply the current stack times the rowScore
             rowScore = rowScore * currentBlock.stack
             
-            // Set the node equal to inactive
-            currentBlock.state = .inactive
+            // Animate the block's death
+            animateBlockClear(currentBlock)
+            
+            //            // Set the node equal to inactive
+            //            currentBlock.state = .inactive
             
         }
+        
+        //Add the stackSum to the rowScore
+        rowScore += stackSum
         
         // Add the rowScore to the player's score
         score += rowScore
@@ -975,19 +961,29 @@ class GameScene: SKScene {
     func clearColumn (columnNumber: Int) {
         let gridX = columnNumber
         var columnScore: Int = 1
+        var stackSum: Int = 0
         
         // Loop through the row
         for gridY in 0..<rows {
             
             let currentBlock = gridNode.gridArray[gridX][gridY]
             
+            // Add the stack to the stack sum
+            stackSum += currentBlock.stack
+            
             // Multiply the current stack times the rowScore
             columnScore = columnScore * currentBlock.stack
             
+            // Animate the block's death
+            animateBlockClear(currentBlock)
+            
             // Set the node equal to inactive
-            currentBlock.state = .inactive
+            //            currentBlock.state = .inactive
             
         }
+        
+        //Add the stackSum to the columnScore
+        columnScore += stackSum
         
         // Add the rowScore to the player's score
         score += columnScore
@@ -997,6 +993,117 @@ class GameScene: SKScene {
         self.runAction(scoreSFX)
     }
     
+    func animateBlockClear (dieBlock: Block) {
+        
+        // Create variables & particulars
+        var assetString = ""
+        
+        switch dieBlock.state {
+        case .red:
+            assetString = "RoundRectCoral"
+        case .blue:
+            assetString = "RoundRectTeal"
+        case .green:
+            assetString = "RoundRectGreen"
+        case .inactive:
+            assetString = "RoundRect"
+            
+        }
+        
+        let dieNode = SKSpriteNode(imageNamed: assetString)
+        
+        /* Position dieNode at the location of the gridNode block */
+        dieNode.anchorPoint = dieBlock.anchorPoint
+        dieNode.size = dieBlock.size
+        dieNode.position = dieBlock.position
+        dieNode.zPosition = dieBlock.zPosition + 1
+        
+        // Create a scale action
+        let scale = SKAction.scaleTo(1.35, duration: 0.1)
+        
+        // Create a descale action
+        let descale = SKAction.scaleTo(0, duration: 0.5)
+        
+        // Create a wait action just in case
+        //        let wait = SKAction.waitForDuration(0.4)
+        
+        // Create a "poof" animation
+        
+        // Create a remove action
+        let remove = SKAction.removeFromParent()
+        
+        // Create a sound effect action
+        //        let scoreSFX = SKAction.playSoundFileNamed("poof", waitForCompletion: true)
+        //        self.runAction(scoreSFX)
+        
+        // Create the sequence action
+        let dieSeq = SKAction.sequence([scale, descale, remove])
+        
+        // Add the node as a child of the parent
+        gridNode.addChild(dieNode)
+        
+        // Set the state to .inactive
+        dieBlock.state = .inactive
+        
+        // Run the sequence
+        dieNode.runAction(dieSeq)
+        
+    }
+    
+    func clearColor (color: BlockType) {
+        
+        var clearScore: Int = 1
+//        var stackSum: Int = 0
+        
+        // Loop through the row
+        for gridX in 0..<columns {
+            for gridY in 0..<rows {
+                
+                let currentBlock = gridNode.gridArray[gridX][gridY]
+                if currentBlock.state == color {
+//                    
+//                    stackSum += currentBlock.stack
+                    clearScore *= currentBlock.stack
+                    
+                    // Animate the block's death
+                    animateBlockClear(currentBlock)
+                    
+                }
+            }
+        }
+        
+        //Add the stackSum to the clearScore
+//        clearScore += stackSum
+        
+        // Add the clearScore to the player's score
+        multiplierScore += clearScore
+        
+        /* Play SFX */
+        let scoreSFX = SKAction.playSoundFileNamed("clearRow", waitForCompletion: true)
+        self.runAction(scoreSFX)
+    }
+    
+    func gridScore() {
+        
+        sumScore = 0
+        
+        //Loop through the columns
+        for gridX in 0..<columns {
+            //Loop through the rows
+            for gridY in 0..<rows {
+                
+                // Set the current block
+                let currentBlock = gridNode.gridArray[gridX][gridY]
+                
+                if currentBlock.stack > 1 {
+                    sumScore += currentBlock.stack
+                }
+                
+                
+            }
+        }
+        
+    }
     
 }
 

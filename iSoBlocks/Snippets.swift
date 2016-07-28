@@ -1107,3 +1107,74 @@ import Foundation
 //}
 
 
+
+
+
+// OLD BATTLE FUNCTION
+//func battle(block1: BlockType, block2: BlockType) -> BlockType {
+//    let red: BlockType = .red
+//    let blue: BlockType = .blue
+//    let green: BlockType = .green
+//    let inactive: BlockType = .inactive
+//    
+//    //red vs blue...
+//    if ((block1 == red) && (block2 == blue)) || ((block1 == blue) && (block2 == red)) {
+//        //blue wins!!
+//        return blue
+//        
+//        //blue vs green
+//    } else if ((block1 == blue) && (block2 == green)) || ((block1 == green) && (block2 == blue)) {
+//        //green wins!!
+//        return green
+//        
+//        //green vs red
+//    } else if ((block1 == green) && (block2 == red)) || ((block1 == red) && (block2 == green)) {
+//        //red wins!!
+//        return red
+//        
+//        // red vs nothing
+//    } else if ((block1 == inactive) && (block2 == red)) || ((block1 == red) && (block2 == inactive)) {
+//        //red wins!!
+//        return red
+//        
+//        // blue vs nothing
+//    } else if ((block1 == inactive) && (block2 == blue)) || ((block1 == blue) && (block2 == inactive)) {
+//        //blue wins!!
+//        return blue
+//        
+//        // green vs nothing
+//    } else if ((block1 == inactive) && (block2 == green)) || ((block1 == green) && (block2 == inactive)) {
+//        //blue wins!!
+//        return green
+//        
+//        // nothing vs nothing
+//    } else if ((block1 == inactive) && (block2 == inactive)) || ((block1 == inactive) && (block2 == inactive)) {
+//        //nothing wins!!
+//        return inactive
+//        
+//        // red vs red
+//    } else if ((block1 == red) && (block2 == red)) || ((block1 == red) && (block2 == red)) {
+//        //red wins!!
+//        return red
+//        
+//        // blue vs blue
+//    } else if ((block1 == blue) && (block2 == blue)) || ((block1 == blue) && (block2 == blue)) {
+//        //blue wins!!
+//        return blue
+//        
+//        // green vs green
+//    } else if ((block1 == green) && (block2 == green)) || ((block1 == green) && (block2 == green)) {
+//        //green wins!!
+//        return green
+//    }
+//        
+//    else{
+//        return block1
+//        
+//    }
+//    
+//    
+//}
+
+
+
