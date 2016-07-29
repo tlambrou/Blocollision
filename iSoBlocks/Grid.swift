@@ -74,6 +74,7 @@ class Grid: SKSpriteNode {
                 
                 /* Create a new block at row / column position */
                 addBlockAtGrid(x:gridX, y:gridY)
+//                randomActiveBlock(gridX, y: gridY)
             }
         }
     }
@@ -107,12 +108,9 @@ class Grid: SKSpriteNode {
         
     }
     
-    func addBlockToEmptyGrid() {
+    func randomActiveBlock(x: Int, y: Int) {
         var blockCreated: Bool = false
-        var xRand = Int.random(columns)
-        var yRand = Int.random(rows)
-        var block = gridArray[xRand][yRand]
-        var index = 0
+        let block = gridArray[x][y]
         
         while blockCreated == false {
             if block.state == .inactive {
@@ -121,25 +119,20 @@ class Grid: SKSpriteNode {
                 //case 0?
                 case 1:
                     block.state = .red
+                    block.stack = 1
                 case 2:
                     block.state = .blue
+                    block.stack = 1
                 case 3:
                     block.state = .green
+                    block.stack = 1
                 default:
                     print("switch statement in addBlockToEmptyGrid didn't work")
                 }
                 
                 blockCreated = true
-            } else if block.state != .inactive && index < rows*columns{
-                xRand = Int.random(columns)
-                yRand = Int.random(rows)
-                block = gridArray[xRand][yRand]
-                index += 1
             
-            } else {
-                break
             }
-            
         }
     }
     

@@ -36,8 +36,9 @@ class StageV: SKSpriteNode {
         for stageX in 0..<spaces {
             let block = Block()
             //Convert the row/column position into a stage screen position
-            let stagePosition = CGPoint(x: 0 + (cellWidth/2), y: stageX*cellHeight + (cellHeight/2))
-            block.position = stagePosition
+            block.position.y = CGFloat(stageX*cellHeight + (cellHeight/2))
+            block.position.x = CGFloat(0 + CGFloat((cellWidth/2)))
+
             
             block.size.width = CGFloat(cellWidth)*0.87
             block.size.height = CGFloat(cellHeight)*0.87
@@ -48,6 +49,22 @@ class StageV: SKSpriteNode {
             
             //Add block to the stageArray at the x,y position
             stageArray.append(block)
+            
+//            randomActiveBlock(stageX)
+            
+//            let x = block.position.x
+//            let y = block.position.y
+//            let labelX = SKLabelNode(text: "\(x)")
+//            labelX.fontName = "Helvetica"
+//            labelX.fontSize = 40
+//            labelX.zPosition = 100
+//            block.addChild(labelX)
+//            let labelY = SKLabelNode(text: "\(y)")
+//            labelY.fontName = "Helvetica"
+//            labelY.fontSize = 40
+//            labelY.position.offset(dx: 0, dy: CGFloat(-45))
+//            labelY.zPosition = 100
+//            block.addChild(labelY)
             
         }
 
@@ -92,7 +109,46 @@ class StageV: SKSpriteNode {
     }
 
     
-    
+    func randomActiveBlock(y: Int) {
+        var blockCreated: Bool = false
+        let block = stageArray[y]
+        
+        while blockCreated == false {
+            if block.state == .inactive {
+                let typeRand = Int.random(3)+1
+                switch typeRand {
+                //case 0?
+                case 1:
+                    block.state = .red
+                    block.stack = 1
+                case 2:
+                    block.state = .blue
+                    block.stack = 1
+                case 3:
+                    block.state = .green
+                    block.stack = 1
+                default:
+                    print("switch statement in addBlockToEmptyGrid didn't work")
+                }
+                
+                blockCreated = true
+                
+            }
+        }
+    }
+
+    func stageRegen() {
+        
+        for gridSpace in 0..<spaces {
+            
+            if stageArray[gridSpace].state == .inactive {
+                
+                randomActiveBlock(gridSpace)
+                
+            }
+        }
+        
+    }
     
 }
 

@@ -8,6 +8,8 @@
 import Foundation
 import SpriteKit
 
+var time: Int = 0
+
 enum swipeType {
     case up, down, left, right
 }
@@ -191,6 +193,8 @@ class GameScene: SKScene {
     }
     
     override func update(currentTime: CFTimeInterval) {
+        time += 1
+        
         /* Called before each frame is rendered */
         timeElapsed += 1
         //        print("timeElapsed: \(timeElapsed)")
@@ -315,7 +319,7 @@ class GameScene: SKScene {
                             
                             // Perform the collision rules
                             collisionRules(currentBlock, nextBlock: nextBlock)
-                            
+//                            topStageNode.stageRegen()
                             
                             
                         }
@@ -332,6 +336,7 @@ class GameScene: SKScene {
                             
                             // Perform the collision rules
                             collisionRules(currentBlock, nextBlock: nextBlock)
+//                            topStageNode.stageRegen()
                             
                             
                             
@@ -365,6 +370,7 @@ class GameScene: SKScene {
             if swipeDirection == .up && stageRegen == true {
                 
                 // Add a new block to the stage
+//                bottomStageNode.stageRegen()
                 bottomStageNode.addBlockToEmptyStage()
                 
                 // Reset the stage regen bool to false
@@ -374,6 +380,7 @@ class GameScene: SKScene {
             } else if swipeDirection == .down && stageRegen == true {
                 
                 // Add a new block to the stage
+//                topStageNode.stageRegen()
                 topStageNode.addBlockToEmptyStage()
                 
                 // Reset the stage regen bool to false
@@ -428,7 +435,7 @@ class GameScene: SKScene {
                             // Perform the collision rules
                             collisionRules(currentBlock, nextBlock: nextBlock)
                             
-                            
+//                            rightStageNode.stageRegen()
                             
                         }
                             
@@ -445,7 +452,7 @@ class GameScene: SKScene {
                             // Perform the collision rules
                             collisionRules(currentBlock, nextBlock: nextBlock)
                             
-                            
+//                            leftStageNode.stageRegen()
                             
                         }
                         
@@ -478,6 +485,7 @@ class GameScene: SKScene {
                 
                 // Add a new block to the stage
                 rightStageNode.addBlockToEmptyStage()
+//                rightStageNode.stageRegen()
                 
                 // Reset the stage regen bool to false
                 stageRegen = false
@@ -486,6 +494,7 @@ class GameScene: SKScene {
             } else if swipeDirection == .right && stageRegen == true {
                 
                 // Add a new block to the stage
+//                leftStageNode.stageRegen()
                 leftStageNode.addBlockToEmptyStage()
                 
                 // Reset the stage regen bool to false
@@ -667,8 +676,32 @@ class GameScene: SKScene {
             let move = SKAction.moveTo(destination, duration: 0.2)
             let remove = SKAction.removeFromParent()
             let wait = SKAction.waitForDuration(0.4)
+           
             
-            winNode.position = winBlock.position
+            
+            if winBlock.parent == topStageNode.stageArray {
+                
+                winNode.position.y = CGFloat(1410)
+                
+                print(winNode.position)
+            } else if winBlock.parent == rightStageNode.stageArray {
+                
+                winNode.position.x = CGFloat(990)
+                
+                print(winNode.position)
+                
+            } else {
+                winNode.position = winBlock.position
+            }
+
+            
+//            if winBlock.parent == topStageNode.stageArray {
+//                
+//                print("topstage")
+//            }
+//            
+//            winNode.position = winBlock.gsPosition!
+            
             /* Position winNode at the location of the winning block */
             winNode.anchorPoint = winBlock.anchorPoint
             winNode.size = winBlock.size
@@ -696,7 +729,32 @@ class GameScene: SKScene {
             let remove2 = SKAction.removeFromParent()
             //            let wait2 = SKAction.waitForDuration(0.4)
             
-            winNode2.position = winBlock.position
+            
+            
+            if winBlock.parent == topStageNode.stageArray {
+                
+                winNode2.position.y = CGFloat(1410)
+                
+                print(winNode2.position)
+                
+            } else if winBlock.parent == rightStageNode.stageArray {
+                
+                winNode2.position.x = CGFloat(990)
+                
+                print(winNode2.position)
+            } else {
+                winNode2.position = winBlock.position
+            }
+
+            
+//            
+//            if winBlock.parent == topStageNode.stageArray {
+//                
+//                print("topstage")
+//            }
+//            
+//            winNode2.position = winBlock.gsPosition!
+            
             /* Position winNode at the location of the winning block */
             winNode2.anchorPoint = winBlock.anchorPoint
             winNode2.size = winBlock.size
@@ -726,7 +784,38 @@ class GameScene: SKScene {
             let remove = SKAction.removeFromParent()
             let wait = SKAction.waitForDuration(0.4)
             
-            winNode.position = winBlock.position
+            
+            
+            if winBlock.parent == topStageNode.stageArray {
+                
+                winNode.position.y = CGFloat(1410)
+                print(winNode.position)
+                
+            } else if winBlock.parent == rightStageNode.stageArray {
+                
+                winNode.position.x = CGFloat(990)
+                print(winNode.position)
+                
+            } else {
+                winNode.position = winBlock.position
+            }
+
+            
+            
+//            if winBlock.parent == topStageNode.stageArray {
+//                
+//                print("topstage")
+//            }
+//            
+//            winNode.position = winBlock.gsPosition!
+            
+//            var positionInScene: CGPoint = self.scene.convertPoint(self.position, fromNode: self.parent)
+//            if (parent.self == topStageNode.stageArray) || (parent.self == bottomStageNode.stageArray) || (parent.self == leftStageNode.stageArray) || (parent.self == rightStageNode.stageArray) {
+//
+//            }
+            
+            
+            
             /* Position winNode at the location of the winning block */
             winNode.anchorPoint = winBlock.anchorPoint
             winNode.size = winBlock.size
@@ -757,7 +846,23 @@ class GameScene: SKScene {
             let remove2 = SKAction.removeFromParent()
             //            let wait2 = SKAction.waitForDuration(0.4)
             
-            winNode2.position = winBlock.position
+            
+            if winBlock.parent == topStageNode.stageArray {
+                
+                winNode2.position.y = CGFloat(1410)
+                print(winNode2.position)
+                
+            } else if winBlock.parent == rightStageNode.stageArray {
+                
+                winNode2.position.x = CGFloat(990)
+                
+                print(winNode2.position)
+                
+            } else {
+                winNode2.position = winBlock.position
+            }
+            
+            
             /* Position winNode at the location of the winning block */
             winNode2.anchorPoint = winBlock.anchorPoint
             winNode2.size = winBlock.size
@@ -783,19 +888,16 @@ class GameScene: SKScene {
         }
         
         
-        /* Play SFX */
-        let combineSFX = SKAction.playSoundFileNamed("clearDot", waitForCompletion: true)
-        self.runAction(combineSFX)
         
     }
     
     func collisionRules (currentBlock: Block, nextBlock: Block) {
         
-        // Is the Next Inactive?
+        // Is the Next Active?
         if nextBlock.state != .inactive {
             
             
-            // Is the Current Inactive?
+            // Is the Current Active?
             if currentBlock.state != .inactive {
                 
                 // Are Current & Next the same values?
@@ -808,9 +910,15 @@ class GameScene: SKScene {
                     // Combine stack values
                     currentBlock.stack += nextBlock.stack
                     
+                    /* Play SFX */
+                    let combineSFX = SKAction.playSoundFileNamed("clearDot", waitForCompletion: true)
+                    self.runAction(combineSFX)
+                    
+                    
                     
                     // Set the Next block to .inactive
                     nextBlock.state = .inactive
+                    
                     
                 } else {
                     
@@ -867,7 +975,7 @@ class GameScene: SKScene {
                     break
                 }
                 
-                if (monkeyBeer == 3)   {
+                if (monkeyBeer == (rows-1))   {
                     
                     //Call clear row and/or clear blocks function
 //                    clearRow(gridY)
@@ -906,7 +1014,7 @@ class GameScene: SKScene {
                     break
                 }
                 
-                if (monkeyBeer == 3)   {
+                if (monkeyBeer == (columns-1))   {
                     
                     //Call clear column and/or clear blocks function
 //                    clearColumn(gridX)

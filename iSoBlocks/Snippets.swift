@@ -1177,4 +1177,43 @@ import Foundation
 //}
 
 
+// AddBlockToEmptyGrid
+//
+//func addBlockToEmptyGrid() {
+//    var blockCreated: Bool = false
+//    var xRand = Int.random(columns)
+//    var yRand = Int.random(rows)
+//    var block = gridArray[xRand][yRand]
+//    var index = 0
+//    
+//    while blockCreated == false {
+//        if block.state == .inactive {
+//            let typeRand = Int.random(3)+1
+//            switch typeRand {
+//            //case 0?
+//            case 1:
+//                block.state = .red
+//            case 2:
+//                block.state = .blue
+//            case 3:
+//                block.state = .green
+//            default:
+//                print("switch statement in addBlockToEmptyGrid didn't work")
+//            }
+//            
+//            blockCreated = true
+//        } else if block.state != .inactive && index < rows*columns{
+//            xRand = Int.random(columns)
+//            yRand = Int.random(rows)
+//            block = gridArray[xRand][yRand]
+//            index += 1
+//            
+//        } else {
+//            break
+//        }
+//        
+//    }
+//}
+
+
 

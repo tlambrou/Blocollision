@@ -28,6 +28,8 @@ class Block: SKSpriteNode {
     var label: SKLabelNode!
     //var labelBG: SKLabelNode!
     
+    
+    
     var state:BlockType = .inactive
         {
         
@@ -65,11 +67,15 @@ class Block: SKSpriteNode {
         
     }
     
+    var gsPosition: CGPoint?
     
     init() {
         /* Initialize with 'block' asset */
         let texture = SKTexture(imageNamed: "RoundRect")
         super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
+        
+        self.gsPosition = self.position
+        
         hidden = false
         
         

@@ -36,8 +36,8 @@ class StageH: SKSpriteNode {
         for stageX in 0..<spaces {
             let block = Block()
             //Convert the row/column position into a stage screen position
-            let stagePosition = CGPoint(x: stageX*cellWidth + (cellWidth/2), y: 0 + (cellHeight/2))
-            block.position = stagePosition
+            block.position.x = CGFloat(stageX*cellWidth + (cellWidth/2))
+            block.position.y = CGFloat(0 + CGFloat((cellHeight/2)))
             
             block.size.width = CGFloat(cellWidth)*0.87
             block.size.height = CGFloat(cellHeight)*0.87
@@ -48,6 +48,21 @@ class StageH: SKSpriteNode {
             //Add block to the stageArray at the x,y position
             stageArray.append(block)
             
+//            randomActiveBlock(stageX)
+            
+//            let x = block.position.x
+//            let y = block.position.y
+//            let labelX = SKLabelNode(text: "\(x)")
+//            labelX.fontName = "Helvetica"
+//            labelX.fontSize = 40
+//            labelX.zPosition = 100
+//            block.addChild(labelX)
+//            let labelY = SKLabelNode(text: "\(y)")
+//            labelY.fontName = "Helvetica"
+//            labelY.fontSize = 40
+//            labelY.position.offset(dx: CGFloat(0), dy: CGFloat(-45))
+//            labelY.zPosition = 100
+//            block.addChild(labelY)
         }
 
         
@@ -91,7 +106,48 @@ class StageH: SKSpriteNode {
         }
     }
     
+    func stageRegen() {
+        
+        for gridSpace in 0..<spaces {
+            
+            if stageArray[gridSpace].state == .inactive {
+                
+                randomActiveBlock(gridSpace)
+                
+            }
+        }
+        
+    }
     
+    
+    func randomActiveBlock(x: Int) {
+        var blockCreated: Bool = false
+        let block = stageArray[x]
+        
+        while blockCreated == false {
+            if block.state == .inactive {
+                let typeRand = Int.random(3)+1
+                switch typeRand {
+                //case 0?
+                case 1:
+                    block.state = .red
+                    block.stack = 1
+                case 2:
+                    block.state = .blue
+                    block.stack = 1
+                case 3:
+                    block.state = .green
+                    block.stack = 1
+                default:
+                    print("switch statement in addBlockToEmptyGrid didn't work")
+                }
+                
+                blockCreated = true
+                
+            }
+        }
+    }
+
     
 }
 
