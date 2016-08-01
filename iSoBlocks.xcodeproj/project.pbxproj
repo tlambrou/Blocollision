@@ -41,6 +41,15 @@
 		968914431D41461F00CD2AD6 /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968914421D41461F00CD2AD6 /* UIColorExt.swift */; };
 		968914471D41529500CD2AD6 /* ASAttributedLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968914461D41529500CD2AD6 /* ASAttributedLabelNode.swift */; };
 		968914501D4828FB00CD2AD6 /* clearRow.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9689144F1D4828FB00CD2AD6 /* clearRow.caf */; };
+		968ABF101D4FF40D00776165 /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968ABF0F1D4FF40D00776165 /* SwiftyUserDefaults.swift */; };
+		968ABF141D4FFE2900776165 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968ABF131D4FFE2900776165 /* GameManager.swift */; };
+		96CF7FE01D4C0F070096DEF3 /* switch33.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96CF7FDD1D4C0F070096DEF3 /* switch33.wav */; };
+		96CF7FE11D4C0F070096DEF3 /* switch34.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96CF7FDE1D4C0F070096DEF3 /* switch34.wav */; };
+		96CF7FE21D4C0F070096DEF3 /* switch38.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96CF7FDF1D4C0F070096DEF3 /* switch38.wav */; };
+		96CF7FE61D4C0F300096DEF3 /* click1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96CF7FE31D4C0F300096DEF3 /* click1.wav */; };
+		96CF7FE71D4C0F300096DEF3 /* click2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96CF7FE41D4C0F300096DEF3 /* click2.wav */; };
+		96CF7FE81D4C0F300096DEF3 /* click3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96CF7FE51D4C0F300096DEF3 /* click3.wav */; };
+		96CF7FEA1D4C10BC0096DEF3 /* whoosh.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96CF7FE91D4C10BC0096DEF3 /* whoosh.wav */; };
 		96F3A4491D3E9EB900DD41D8 /* Snippets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F3A4481D3E9EB900DD41D8 /* Snippets.swift */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +111,15 @@
 		968914421D41461F00CD2AD6 /* UIColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
 		968914461D41529500CD2AD6 /* ASAttributedLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASAttributedLabelNode.swift; sourceTree = "<group>"; };
 		9689144F1D4828FB00CD2AD6 /* clearRow.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = clearRow.caf; sourceTree = "<group>"; };
+		968ABF0F1D4FF40D00776165 /* SwiftyUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyUserDefaults.swift; sourceTree = "<group>"; };
+		968ABF131D4FFE2900776165 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		96CF7FDD1D4C0F070096DEF3 /* switch33.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = switch33.wav; sourceTree = "<group>"; };
+		96CF7FDE1D4C0F070096DEF3 /* switch34.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = switch34.wav; sourceTree = "<group>"; };
+		96CF7FDF1D4C0F070096DEF3 /* switch38.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = switch38.wav; sourceTree = "<group>"; };
+		96CF7FE31D4C0F300096DEF3 /* click1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click1.wav; sourceTree = "<group>"; };
+		96CF7FE41D4C0F300096DEF3 /* click2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click2.wav; sourceTree = "<group>"; };
+		96CF7FE51D4C0F300096DEF3 /* click3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click3.wav; sourceTree = "<group>"; };
+		96CF7FE91D4C10BC0096DEF3 /* whoosh.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = whoosh.wav; sourceTree = "<group>"; };
 		96F3A4481D3E9EB900DD41D8 /* Snippets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snippets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,6 +190,7 @@
 		96492F271D318CE6004F887C /* iSoBlocks */ = {
 			isa = PBXGroup;
 			children = (
+				968ABF0E1D4FF3FB00776165 /* GameManager */,
 				96044AB61D3589B90097D096 /* SKTUtils */,
 				96492F281D318CE6004F887C /* AppDelegate.swift */,
 				96492F2A1D318CE6004F887C /* GameScene.sks */,
@@ -219,10 +238,26 @@
 		9689144B1D481C0B00CD2AD6 /* SFX */ = {
 			isa = PBXGroup;
 			children = (
+				96CF7FE31D4C0F300096DEF3 /* click1.wav */,
+				96CF7FE41D4C0F300096DEF3 /* click2.wav */,
+				96CF7FE51D4C0F300096DEF3 /* click3.wav */,
+				96CF7FDD1D4C0F070096DEF3 /* switch33.wav */,
+				96CF7FDE1D4C0F070096DEF3 /* switch34.wav */,
+				96CF7FDF1D4C0F070096DEF3 /* switch38.wav */,
 				96518AFC1D49831900BEB2FA /* clearDot.wav */,
 				9689144F1D4828FB00CD2AD6 /* clearRow.caf */,
+				96CF7FE91D4C10BC0096DEF3 /* whoosh.wav */,
 			);
 			name = SFX;
+			sourceTree = "<group>";
+		};
+		968ABF0E1D4FF3FB00776165 /* GameManager */ = {
+			isa = PBXGroup;
+			children = (
+				968ABF0F1D4FF40D00776165 /* SwiftyUserDefaults.swift */,
+				968ABF131D4FFE2900776165 /* GameManager.swift */,
+			);
+			name = GameManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,13 +367,20 @@
 			files = (
 				9620C1771D3DA1F800B045E7 /* Paper.sks in Resources */,
 				96492F2B1D318CE6004F887C /* GameScene.sks in Resources */,
+				96CF7FE01D4C0F070096DEF3 /* switch33.wav in Resources */,
+				96CF7FE11D4C0F070096DEF3 /* switch34.wav in Resources */,
+				96CF7FE71D4C0F300096DEF3 /* click2.wav in Resources */,
 				96492F371D318CE6004F887C /* LaunchScreen.storyboard in Resources */,
+				96CF7FE21D4C0F070096DEF3 /* switch38.wav in Resources */,
 				96492F341D318CE6004F887C /* Assets.xcassets in Resources */,
 				96518AFD1D49831900BEB2FA /* clearDot.wav in Resources */,
 				9620C1751D3DA16800B045E7 /* Rock.sks in Resources */,
 				96492F321D318CE6004F887C /* Main.storyboard in Resources */,
 				968914501D4828FB00CD2AD6 /* clearRow.caf in Resources */,
 				9620C1791D3DA22B00B045E7 /* Scissors.sks in Resources */,
+				96CF7FE61D4C0F300096DEF3 /* click1.wav in Resources */,
+				96CF7FEA1D4C10BC0096DEF3 /* whoosh.wav in Resources */,
+				96CF7FE81D4C0F300096DEF3 /* click3.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +410,7 @@
 				96492F2F1D318CE6004F887C /* GameViewController.swift in Sources */,
 				96044AC51D3589B90097D096 /* CGVector+Extensions.swift in Sources */,
 				96044AC41D3589B90097D096 /* CGPoint+Extensions.swift in Sources */,
+				968ABF101D4FF40D00776165 /* SwiftyUserDefaults.swift in Sources */,
 				968914471D41529500CD2AD6 /* ASAttributedLabelNode.swift in Sources */,
 				96044AC31D3589B90097D096 /* CGFloat+Extensions.swift in Sources */,
 				96492F6E1D31BC7E004F887C /* Block.swift in Sources */,
@@ -376,6 +419,7 @@
 				968914431D41461F00CD2AD6 /* UIColorExt.swift in Sources */,
 				96F3A4491D3E9EB900DD41D8 /* Snippets.swift in Sources */,
 				96492F291D318CE6004F887C /* AppDelegate.swift in Sources */,
+				968ABF141D4FFE2900776165 /* GameManager.swift in Sources */,
 				96044ACA1D3589B90097D096 /* SKNode+Extensions.swift in Sources */,
 				96044AC71D3589B90097D096 /* SKAction+Extensions.swift in Sources */,
 				96044AC81D3589B90097D096 /* SKAction+SpecialEffects.swift in Sources */,

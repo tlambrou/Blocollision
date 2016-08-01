@@ -37,16 +37,22 @@ didSet {
     score = multiplierScore + sumScore
 }
 }
+var scoreLabel: SKLabelNode!
 var score: Int = multiplierScore + sumScore {
 didSet {
+    // Upadate the score's label
     scoreLabel.text = String(score)
+    
+    // Set the difficulty equal to 1
+    if (score > 100) && (score < 200){
+        difficulty = 1
+    }
 } }
+
 
 var idle: Bool = false
 var instShown: Bool = false
 var firstInstShown: Bool = false
-var scoreLabel: SKLabelNode!
-
 
 
 var timeElapsed: Int = 0 {
@@ -61,10 +67,13 @@ didSet {
 }
 }
 
+var difficulty: Int = 0
 
 class GameScene: SKScene {
     
-    
+    let gameManager = GameManager.sharedInstance
+    var myLabel: SKLabelNode!
+
     var gridNode: Grid!
     var topStageNode: StageH!
     var bottomStageNode: StageH!
@@ -75,9 +84,14 @@ class GameScene: SKScene {
 //    var instructions: SKLabelNode!
     
     
-    
     func swipedUp(sender:UISwipeGestureRecognizer) {
         swipe(.up)
+        
+        // Sound effect
+        
+        /* Play SFX */
+        let scoreSFX = SKAction.playSoundFileNamed("switch33", waitForCompletion: true)
+        self.runAction(scoreSFX)
         
         // Check for complete rows
         rowsCheck()
@@ -87,11 +101,22 @@ class GameScene: SKScene {
         
         // Calculate the grid score (sumScore)
         gridScore()
+        
+        
+        // Evaluate & Set High Score
+        if score > gameManager.highScore {
+            gameManager.highScore = score
+            myLabel.text = String("Highscore: \(gameManager.highScore)")
+        }
     }
     
     func swipedDown(sender:UISwipeGestureRecognizer) {
         swipe(.down)
         
+        /* Play SFX */
+        let scoreSFX = SKAction.playSoundFileNamed("switch34", waitForCompletion: true)
+        self.runAction(scoreSFX)
+        
         // Check for complete rows
         rowsCheck()
         
@@ -100,11 +125,21 @@ class GameScene: SKScene {
         
         // Calculate the grid score (sumScore)
         gridScore()
+        
+        // Evaluate & Set High Score
+        if score > gameManager.highScore {
+            gameManager.highScore = score
+            myLabel.text = String("Highscore: \(gameManager.highScore)")
+        }
     }
     
     func swipedLeft(sender:UISwipeGestureRecognizer) {
         swipe(.left)
         
+        /* Play SFX */
+        let scoreSFX = SKAction.playSoundFileNamed("switch33", waitForCompletion: true)
+        self.runAction(scoreSFX)
+        
         // Check for complete rows
         rowsCheck()
         
@@ -113,11 +148,21 @@ class GameScene: SKScene {
         
         // Calculate the grid score (sumScore)
         gridScore()
+        
+        // Evaluate & Set High Score
+        if score > gameManager.highScore {
+            gameManager.highScore = score
+            myLabel.text = String("Highscore: \(gameManager.highScore)")
+        }
     }
     
     func swipedRight(sender:UISwipeGestureRecognizer) {
         swipe(.right)
         
+        /* Play SFX */
+        let scoreSFX = SKAction.playSoundFileNamed("switch34", waitForCompletion: true)
+        self.runAction(scoreSFX)
+        
         // Check for complete rows
         rowsCheck()
         
@@ -126,10 +171,29 @@ class GameScene: SKScene {
         
         // Calculate the grid score (sumScore)
         gridScore()
+        
+        // Evaluate & Set High Score
+        if score > gameManager.highScore {
+            gameManager.highScore = score
+            myLabel.text = String("Highscore: \(gameManager.highScore)")
+        }
     }
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+        
+        
+        // Setup for High Score & Retrieval
+        myLabel = SKLabelNode(fontNamed:"Helvetica Neue")
+        myLabel.text = "Highscore: \(gameManager.highScore)"
+        myLabel.fontSize = 100
+        myLabel.fontColor = UIColor(netHex: 0xA8C2C0)
+        myLabel.zPosition = 101
+        myLabel.horizontalAlignmentMode = .Left
+        myLabel.position = CGPoint(x:20, y:1660)
+        
+        self.addChild(myLabel)
+
         
         gridNode = childNodeWithName("gridNode") as! Grid
         topStageNode = childNodeWithName("topStage") as! StageH
@@ -161,6 +225,11 @@ class GameScene: SKScene {
             
             /* Restart GameScene */
             skView.presentScene(scene)
+            
+            // Reset the score
+            multiplierScore = 0
+            sumScore = 0
+            
         }
         
         let swipeRight:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedRight(_:)))
@@ -373,6 +442,8 @@ class GameScene: SKScene {
 //                bottomStageNode.stageRegen()
                 bottomStageNode.addBlockToEmptyStage()
                 
+                bottomStageNode.addBlockToEmptyStage()
+                
                 // Reset the stage regen bool to false
                 stageRegen = false
                 
@@ -381,6 +452,7 @@ class GameScene: SKScene {
                 
                 // Add a new block to the stage
 //                topStageNode.stageRegen()
+                topStageNode.addBlockToEmptyStage()
                 topStageNode.addBlockToEmptyStage()
                 
                 // Reset the stage regen bool to false
@@ -485,6 +557,7 @@ class GameScene: SKScene {
                 
                 // Add a new block to the stage
                 rightStageNode.addBlockToEmptyStage()
+                rightStageNode.addBlockToEmptyStage()
 //                rightStageNode.stageRegen()
                 
                 // Reset the stage regen bool to false
@@ -495,6 +568,7 @@ class GameScene: SKScene {
                 
                 // Add a new block to the stage
 //                leftStageNode.stageRegen()
+                leftStageNode.addBlockToEmptyStage()
                 leftStageNode.addBlockToEmptyStage()
                 
                 // Reset the stage regen bool to false
@@ -616,8 +690,6 @@ class GameScene: SKScene {
         
         var winAssetString = ""
         var loseAssetString = ""
-        var winAssetString2 = ""
-        var loseAssetString2 = ""
         
         switch winBlock.state {
         case .red:
@@ -643,251 +715,64 @@ class GameScene: SKScene {
             
         }
         
-        switch winBlock.state {
-        case .red:
-            winAssetString2 = "RoundRectCoral"
-        case .blue:
-            winAssetString2 = "RoundRectTeal"
-        case .green:
-            winAssetString2 = "RoundRectGreen"
-        case .inactive:
-            winAssetString2 = "RoundRect"
-            
-        }
-        
-        switch loseBlock.state {
-        case .red:
-            loseAssetString2 = "RoundRectCoral"
-        case .blue:
-            loseAssetString2 = "RoundRectTeal"
-        case .green:
-            loseAssetString2 = "RoundRectGreen"
-        case .inactive:
-            loseAssetString2 = "RoundRect"
-            
-        }
-        
-        if (tie == 0) && (winBlock == block2) && (loseBlock.state != .inactive) {
+        if block1.state == block2.state {
             
             let winNode = SKSpriteNode(imageNamed: winAssetString)
             let scale = SKAction.scaleTo(1.35, duration: 0.1)
             let descale = SKAction.scaleTo(1, duration: 0.1)
-            let destination = loseBlock.position
+            let destination = winBlock.position
             let move = SKAction.moveTo(destination, duration: 0.2)
             let remove = SKAction.removeFromParent()
-            let wait = SKAction.waitForDuration(0.4)
+            //            let wait2 = SKAction.waitForDuration(0.4)
+            
            
-            
-            
-            if winBlock.parent == topStageNode.stageArray {
-                
-                winNode.position.y = CGFloat(1410)
-                
-                print(winNode.position)
-            } else if winBlock.parent == rightStageNode.stageArray {
-                
-                winNode.position.x = CGFloat(990)
-                
-                print(winNode.position)
-                
-            } else {
-                winNode.position = winBlock.position
-            }
-
-            
-//            if winBlock.parent == topStageNode.stageArray {
-//                
-//                print("topstage")
-//            }
-//            
-//            winNode.position = winBlock.gsPosition!
-            
+            winNode.position = winBlock.position
             /* Position winNode at the location of the winning block */
-            winNode.anchorPoint = winBlock.anchorPoint
-            winNode.size = winBlock.size
+            winNode.anchorPoint = block1.anchorPoint
+            winNode.size = block1.size
             let loseNode = SKSpriteNode(imageNamed: loseAssetString)
-            loseNode.position = loseBlock.position
+           
             loseNode.size = loseBlock.size
             loseNode.anchorPoint = loseBlock.anchorPoint
             loseNode.zPosition = 2
             winNode.zPosition = 3
-            gridNode.addChild(loseNode)
-            gridNode.addChild(winNode)
-            let collisionSeq = SKAction.sequence([scale, move, descale, remove])
-            winNode.runAction(collisionSeq)
-            loseNode.runAction(SKAction.sequence([wait, remove]))
-            
-            
-        } else if (tie == 0) && (winBlock == block1) && (loseBlock.state != .inactive){
-            
-            
-            let winNode2 = SKSpriteNode(imageNamed: winAssetString2)
-            let scale2 = SKAction.scaleTo(1.35, duration: 0.1)
-            let descale2 = SKAction.scaleTo(1, duration: 0.1)
-            let destination2 = winBlock.position
-            let move2 = SKAction.moveTo(destination2, duration: 0.2)
-            let remove2 = SKAction.removeFromParent()
-            //            let wait2 = SKAction.waitForDuration(0.4)
-            
-            
-            
-            if winBlock.parent == topStageNode.stageArray {
-                
-                winNode2.position.y = CGFloat(1410)
-                
-                print(winNode2.position)
-                
-            } else if winBlock.parent == rightStageNode.stageArray {
-                
-                winNode2.position.x = CGFloat(990)
-                
-                print(winNode2.position)
-            } else {
-                winNode2.position = winBlock.position
-            }
-
-            
-//            
-//            if winBlock.parent == topStageNode.stageArray {
-//                
-//                print("topstage")
-//            }
-//            
-//            winNode2.position = winBlock.gsPosition!
-            
-            /* Position winNode at the location of the winning block */
-            winNode2.anchorPoint = winBlock.anchorPoint
-            winNode2.size = winBlock.size
-            let loseNode2 = SKSpriteNode(imageNamed: loseAssetString2)
-            loseNode2.position = loseBlock.position
-            loseNode2.size = loseBlock.size
-            loseNode2.anchorPoint = loseBlock.anchorPoint
-            loseNode2.zPosition = 2
-            winNode2.zPosition = 3
-            
-            gridNode.addChild(loseNode2)
-            gridNode.addChild(winNode2)
-            
-            let collisionSeq2 = SKAction.sequence([scale2, descale2, remove2])
-            winNode2.runAction(collisionSeq2)
-            loseNode2.runAction(SKAction.sequence([move2, remove2]))
-            
-            
-            
-        } else if (tie == 2) && loseBlock.state != .inactive {
-            
-            let winNode = SKSpriteNode(imageNamed: winAssetString)
-            //            let scale = SKAction.scaleTo(1.35, duration: 0.1)
-            //            let descale = SKAction.scaleTo(1, duration: 0.1)
-            let destination = loseBlock.position
-            let move = SKAction.moveTo(destination, duration: 0.2)
-            let remove = SKAction.removeFromParent()
-            let wait = SKAction.waitForDuration(0.4)
-            
-            
-            
-            if winBlock.parent == topStageNode.stageArray {
-                
-                winNode.position.y = CGFloat(1410)
-                print(winNode.position)
-                
-            } else if winBlock.parent == rightStageNode.stageArray {
-                
-                winNode.position.x = CGFloat(990)
-                print(winNode.position)
-                
-            } else {
-                winNode.position = winBlock.position
-            }
-
-            
-            
-//            if winBlock.parent == topStageNode.stageArray {
-//                
-//                print("topstage")
-//            }
-//            
-//            winNode.position = winBlock.gsPosition!
-            
-//            var positionInScene: CGPoint = self.scene.convertPoint(self.position, fromNode: self.parent)
-//            if (parent.self == topStageNode.stageArray) || (parent.self == bottomStageNode.stageArray) || (parent.self == leftStageNode.stageArray) || (parent.self == rightStageNode.stageArray) {
-//
-//            }
-            
-            
-            
-            /* Position winNode at the location of the winning block */
-            winNode.anchorPoint = winBlock.anchorPoint
-            winNode.size = winBlock.size
-            let loseNode = SKSpriteNode(imageNamed: loseAssetString)
-            loseNode.position = loseBlock.position
-            loseNode.size = loseBlock.size
-            loseNode.anchorPoint = loseBlock.anchorPoint
-            loseNode.zPosition = 2
-            winNode.zPosition = 3
-            //
-            //            print("winNode State: \(winBlock.state)")
-            //            print("winNode Position: \(winNode.position)")
-            //            print("loseNode Position: \(loseNode.position)")
-            gridNode.addChild(loseNode)
-            gridNode.addChild(winNode)
-            let collisionSeq = SKAction.sequence([ move, wait, remove])
-            winNode.runAction(collisionSeq)
-            loseNode.runAction(SKAction.sequence([wait, remove]))
-            
-            
-        } else if (tie == 1) && loseBlock.state != .inactive {
-            
-            let winNode2 = SKSpriteNode(imageNamed: winAssetString2)
-            let scale2 = SKAction.scaleTo(1.35, duration: 0.1)
-            let descale2 = SKAction.scaleTo(1, duration: 0.1)
-            let destination2 = winBlock.position
-            let move2 = SKAction.moveTo(destination2, duration: 0.2)
-            let remove2 = SKAction.removeFromParent()
-            //            let wait2 = SKAction.waitForDuration(0.4)
-            
-            
-            if winBlock.parent == topStageNode.stageArray {
-                
-                winNode2.position.y = CGFloat(1410)
-                print(winNode2.position)
-                
-            } else if winBlock.parent == rightStageNode.stageArray {
-                
-                winNode2.position.x = CGFloat(990)
-                
-                print(winNode2.position)
-                
-            } else {
-                winNode2.position = winBlock.position
-            }
-            
-            
-            /* Position winNode at the location of the winning block */
-            winNode2.anchorPoint = winBlock.anchorPoint
-            winNode2.size = winBlock.size
-            let loseNode2 = SKSpriteNode(imageNamed: loseAssetString2)
-            loseNode2.position = loseBlock.position
-            loseNode2.size = loseBlock.size
-            loseNode2.anchorPoint = loseBlock.anchorPoint
-            loseNode2.zPosition = 2
-            winNode2.zPosition = 3
             //
             //            print("winNode2 State: \(winBlock.state)")
             //            print("winNode2 Position: \(winNode2.position)")
             //            print("loseNode2 Position: \(loseNode2.position)")
             
-            gridNode.addChild(loseNode2)
-            gridNode.addChild(winNode2)
+            loseNode.position = block2.position
             
-            let collisionSeq2 = SKAction.sequence([scale2, descale2, remove2])
-            winNode2.runAction(collisionSeq2)
-            loseNode2.runAction(SKAction.sequence([move2, remove2]))
+//            print(loseNode.position)
             
+            if block2.parent == topStageNode {
+                
+                loseNode.position.y = CGFloat(810)
+//                print("New LoseNode Position: \(loseNode.position)")
+//                print("WinNode Position: \(winNode.position)")
+                
+            } else if block2.parent == rightStageNode {
+                
+                loseNode.position.x = CGFloat(810)
+                
+//                print(loseNode.position)
+                
+            } else {
+                
+            }
+//            
+//            print(loseNode.position)
+//            
             
+            gridNode.addChild(loseNode)
+            gridNode.addChild(winNode)
+            
+            let collisionSeq = SKAction.sequence([scale, descale, remove])
+            winNode.runAction(collisionSeq)
+            loseNode.runAction(SKAction.sequence([move, remove]))
         }
         
-        
+  
         
     }
     

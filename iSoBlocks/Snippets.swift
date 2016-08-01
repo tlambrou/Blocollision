@@ -1217,3 +1217,228 @@ import Foundation
 
 
 
+
+/// ANIMATION IF ELSE 
+//if (tie == 0) && (winBlock == block2) && (loseBlock.state != .inactive) {
+//
+//            let winNode = SKSpriteNode(imageNamed: winAssetString)
+//            let scale = SKAction.scaleTo(1.35, duration: 0.1)
+//            let descale = SKAction.scaleTo(1, duration: 0.1)
+//            let destination = loseBlock.position
+//            let move = SKAction.moveTo(destination, duration: 0.2)
+//            let remove = SKAction.removeFromParent()
+//            let wait = SKAction.waitForDuration(0.4)
+//
+//
+//
+//            if winBlock.parent == topStageNode.stageArray {
+//
+//                winNode.position.y = CGFloat(1410)
+//
+//                print(winNode.position)
+//            } else if winBlock.parent == rightStageNode.stageArray {
+//
+//                winNode.position.x = CGFloat(990)
+//
+//                print(winNode.position)
+//
+//            } else {
+//                winNode.position = winBlock.position
+//            }
+//
+//
+////            if winBlock.parent == topStageNode.stageArray {
+////
+////                print("topstage")
+////            }
+////
+////            winNode.position = winBlock.gsPosition!
+//
+//            /* Position winNode at the location of the winning block */
+//            winNode.anchorPoint = winBlock.anchorPoint
+//            winNode.size = winBlock.size
+//            let loseNode = SKSpriteNode(imageNamed: loseAssetString)
+//            loseNode.position = loseBlock.position
+//            loseNode.size = loseBlock.size
+//            loseNode.anchorPoint = loseBlock.anchorPoint
+//            loseNode.zPosition = 2
+//            winNode.zPosition = 3
+//            gridNode.addChild(loseNode)
+//            gridNode.addChild(winNode)
+//            let collisionSeq = SKAction.sequence([scale, move, descale, remove])
+//            winNode.runAction(collisionSeq)
+//            loseNode.runAction(SKAction.sequence([wait, remove]))
+//
+//
+//        } else if (tie == 0) && (winBlock == block1) && (loseBlock.state != .inactive){
+//
+//
+//            let winNode = SKSpriteNode(imageNamed: winAssetString)
+//            let scale = SKAction.scaleTo(1.35, duration: 0.1)
+//            let descale = SKAction.scaleTo(1, duration: 0.1)
+//            let destination = winBlock.position
+//            let move = SKAction.moveTo(destination, duration: 0.2)
+//            let remove = SKAction.removeFromParent()
+//            //            let wait2 = SKAction.waitForDuration(0.4)
+//
+//
+//
+//            if winBlock.parent == topStageNode.stageArray {
+//
+//                winNode.position.y = CGFloat(1410)
+//
+//                print(winNode.position)
+//
+//            } else if winBlock.parent == rightStageNode.stageArray {
+//
+//                winNode.position.x = CGFloat(990)
+//
+//                print(winNode.position)
+//            } else {
+//                winNode.position = winBlock.position
+//            }
+//
+//
+////
+////            if winBlock.parent == topStageNode.stageArray {
+////
+////                print("topstage")
+////            }
+////
+////            winNode2.position = winBlock.gsPosition!
+//
+//            /* Position winNode at the location of the winning block */
+//            winNode.anchorPoint = winBlock.anchorPoint
+//            winNode.size = winBlock.size
+//            let loseNode = SKSpriteNode(imageNamed: loseAssetString)
+//            loseNode.position = loseBlock.position
+//            loseNode.size = loseBlock.size
+//            loseNode.anchorPoint = loseBlock.anchorPoint
+//            loseNode.zPosition = 2
+//            winNode.zPosition = 3
+//
+//            gridNode.addChild(loseNode)
+//            gridNode.addChild(winNode)
+//
+//            let collisionSeq2 = SKAction.sequence([scale, descale, remove])
+//            winNode.runAction(collisionSeq2)
+//            loseNode.runAction(SKAction.sequence([move, remove]))
+//
+//
+//
+//        } else if (tie == 2) && loseBlock.state != .inactive {
+//
+//            let winNode = SKSpriteNode(imageNamed: winAssetString)
+//            //            let scale = SKAction.scaleTo(1.35, duration: 0.1)
+//            //            let descale = SKAction.scaleTo(1, duration: 0.1)
+//            let destination = loseBlock.position
+//            let move = SKAction.moveTo(destination, duration: 0.2)
+//            let remove = SKAction.removeFromParent()
+//            let wait = SKAction.waitForDuration(0.4)
+//
+//
+//
+//            if winBlock.parent == topStageNode.stageArray {
+//
+//                winNode.position.y = CGFloat(1410)
+//                print(winNode.position)
+//
+//            } else if winBlock.parent == rightStageNode.stageArray {
+//
+//                winNode.position.x = CGFloat(990)
+//                print(winNode.position)
+//
+//            } else {
+//                winNode.position = winBlock.position
+//            }
+//
+//
+//
+////            if winBlock.parent == topStageNode.stageArray {
+////
+////                print("topstage")
+////            }
+////
+////            winNode.position = winBlock.gsPosition!
+//
+////            var positionInScene: CGPoint = self.scene.convertPoint(self.position, fromNode: self.parent)
+////            if (parent.self == topStageNode.stageArray) || (parent.self == bottomStageNode.stageArray) || (parent.self == leftStageNode.stageArray) || (parent.self == rightStageNode.stageArray) {
+////
+////            }
+//
+//
+//
+//            /* Position winNode at the location of the winning block */
+//            winNode.anchorPoint = winBlock.anchorPoint
+//            winNode.size = winBlock.size
+//            let loseNode = SKSpriteNode(imageNamed: loseAssetString)
+//            loseNode.position = loseBlock.position
+//            loseNode.size = loseBlock.size
+//            loseNode.anchorPoint = loseBlock.anchorPoint
+//            loseNode.zPosition = 2
+//            winNode.zPosition = 3
+//            //
+//            //            print("winNode State: \(winBlock.state)")
+//            //            print("winNode Position: \(winNode.position)")
+//            //            print("loseNode Position: \(loseNode.position)")
+//            gridNode.addChild(loseNode)
+//            gridNode.addChild(winNode)
+//            let collisionSeq = SKAction.sequence([ move, wait, remove])
+//            winNode.runAction(collisionSeq)
+//            loseNode.runAction(SKAction.sequence([wait, remove]))
+//
+//
+//        } else if (tie == 1) && loseBlock.state != .inactive {
+//
+//            let winNode = SKSpriteNode(imageNamed: winAssetString)
+//            let scale = SKAction.scaleTo(1.35, duration: 0.1)
+//            let descale = SKAction.scaleTo(1, duration: 0.1)
+//            let destination = winBlock.position
+//            let move = SKAction.moveTo(destination, duration: 0.2)
+//            let remove = SKAction.removeFromParent()
+//            //            let wait2 = SKAction.waitForDuration(0.4)
+//
+////            print(block1.parent)
+////
+////            if block1.parent == topStageNode.stageArray {
+////
+////                winNode.position.y = CGFloat(1410)
+////                print(winNode.position)
+////
+////            } else if block1.parent == rightStageNode.stageArray {
+////
+////                winNode.position.x = CGFloat(990)
+////
+////                print(winNode.position)
+////
+////            } else {
+////                winNode.position = block1.position
+////            }
+////
+//
+//            /* Position winNode at the location of the winning block */
+//            winNode.anchorPoint = block1.anchorPoint
+//            winNode.size = block1.size
+//            let loseNode = SKSpriteNode(imageNamed: loseAssetString)
+//            loseNode.position = loseBlock.position
+//            loseNode.size = loseBlock.size
+//            loseNode.anchorPoint = loseBlock.anchorPoint
+//            loseNode.zPosition = 2
+//            winNode.zPosition = 3
+//            //
+//            //            print("winNode2 State: \(winBlock.state)")
+//            //            print("winNode2 Position: \(winNode2.position)")
+//            //            print("loseNode2 Position: \(loseNode2.position)")
+//
+//            gridNode.addChild(loseNode)
+//            gridNode.addChild(winNode)
+//
+//            let collisionSeq = SKAction.sequence([scale, descale, remove])
+//            winNode.runAction(collisionSeq)
+//            loseNode.runAction(SKAction.sequence([move, remove]))
+//
+//
+//        }
+//
+
+
