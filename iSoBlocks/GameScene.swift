@@ -14,6 +14,12 @@ enum swipeType {
     case up, down, left, right
 }
 
+enum GameState {
+    case ready, playing, paused, gameover
+}
+
+
+
 struct Outcome {
     var winnner:Block
     var loser:Block
@@ -71,6 +77,25 @@ var difficulty: Int = 0
 
 class GameScene: SKScene {
     
+    var gameState: GameState = .playing {
+        didSet {
+            switch gameState {
+            case .ready:
+                print("Ready!")
+                break
+            case .playing:
+                print("Playing!")
+                break
+            case .paused:
+                print("Paused!")
+                break
+            case .gameover:
+                print("Game Over!")
+                break
+            }
+        }
+    }
+    
     let gameManager = GameManager.sharedInstance
     var myLabel: SKLabelNode!
 
@@ -108,6 +133,10 @@ class GameScene: SKScene {
             gameManager.highScore = score
             myLabel.text = String("Highscore: \(gameManager.highScore)")
         }
+        
+        // Check for Game Over State
+        gameOverCheck()
+        
     }
     
     func swipedDown(sender:UISwipeGestureRecognizer) {
@@ -131,6 +160,10 @@ class GameScene: SKScene {
             gameManager.highScore = score
             myLabel.text = String("Highscore: \(gameManager.highScore)")
         }
+        
+        // Check for Game Over State
+        gameOverCheck()
+        
     }
     
     func swipedLeft(sender:UISwipeGestureRecognizer) {
@@ -154,6 +187,10 @@ class GameScene: SKScene {
             gameManager.highScore = score
             myLabel.text = String("Highscore: \(gameManager.highScore)")
         }
+        
+        // Check for Game Over State
+        gameOverCheck()
+        
     }
     
     func swipedRight(sender:UISwipeGestureRecognizer) {
@@ -177,6 +214,10 @@ class GameScene: SKScene {
             gameManager.highScore = score
             myLabel.text = String("Highscore: \(gameManager.highScore)")
         }
+        
+        // Check for Game Over State
+        gameOverCheck()
+        
     }
     
     override func didMoveToView(view: SKView) {
@@ -225,6 +266,8 @@ class GameScene: SKScene {
             
             /* Restart GameScene */
             skView.presentScene(scene)
+            
+            self.gameState = .playing
             
             // Reset the score
             multiplierScore = 0
@@ -686,7 +729,7 @@ class GameScene: SKScene {
         
         let winBlock = result.winnner
         let loseBlock = result.loser
-        let tie = result.tie
+//        let tie = result.tie
         
         var winAssetString = ""
         var loseAssetString = ""
@@ -1097,6 +1140,395 @@ class GameScene: SKScene {
         }
         
     }
+    
+    
+    struct Copy {
+        let gridCopy: Grid
+        let topStageCopy: StageH
+        let bottomStageCopy: StageH
+        let leftStageCopy: StageV
+        let rightStageCopy: StageV
+        
+        init(grid: Grid, topStage: StageH, bottomStage: StageH, leftStage: StageV, rightStage: StageV){
+            gridCopy = grid
+            topStageCopy = topStage
+            bottomStageCopy = bottomStage
+            leftStageCopy = leftStage
+            rightStageCopy = rightStage
+        }
+        
+    }
+    
+    func gameOverCheck() {
+        
+        var possibleMoves: Int
+        
+        possibleMoves = swipeCheck(.up, grid: gridNode, topStage: topStageNode, bottomStage: bottomStageNode, leftStage: leftStageNode, rightStage: rightStageNode)
+        
+        possibleMoves += swipeCheck(.down, grid: gridNode, topStage: topStageNode, bottomStage: bottomStageNode, leftStage: leftStageNode, rightStage: rightStageNode)
+        
+        possibleMoves += swipeCheck(.left, grid: gridNode, topStage: topStageNode, bottomStage: bottomStageNode, leftStage: leftStageNode, rightStage: rightStageNode)
+        
+        possibleMoves += swipeCheck(.right, grid: gridNode, topStage: topStageNode, bottomStage: bottomStageNode, leftStage: leftStageNode, rightStage: rightStageNode)
+        
+        if possibleMoves <= 0 {
+            
+            //Game is gameover!
+            gameState = .gameover
+        }
+        
+    }
+    
+    func swipeCheck(swipeDirection: swipeType, grid: Grid, topStage: StageH, bottomStage: StageH, leftStage: StageV, rightStage: StageV) -> Int {
+        
+        let copy = Copy(grid: grid, topStage: topStage, bottomStage: bottomStage, leftStage: leftStage, rightStage: rightStage)
+
+        let gridCopy = copy.gridCopy
+        let topStageCopy = copy.topStageCopy
+        let bottomStageCopy = copy.bottomStageCopy
+        let leftStageCopy = copy.leftStageCopy
+        let rightStageCopy = copy.rightStageCopy
+        
+        // Make all of the copies hidden
+//        gridCopy.hidden = true
+//        topStageCopy.hidden = true
+//        bottomStageCopy.hidden = true
+//        leftStageCopy.hidden = true
+//        rightStageCopy.hidden = true
+        
+        var moveCount: Int = 0
+        
+        var xStart: Int
+        var xEnd: Int
+        var yStart: Int
+        var yEnd: Int
+        var xIncrement: Int = 1
+        var yIncrement: Int = 1
+        
+        switch swipeDirection {
+        case .up:
+            //print("swiped up")
+            xStart = 0
+            xEnd = columns-1
+            yStart = rows-1
+            yEnd = 0
+            xIncrement = 1
+            yIncrement = -1
+            
+        case .down:
+            //print("swiped down")
+            xStart = columns-1
+            xEnd = 0
+            yStart = 0
+            yEnd = rows-1
+            xIncrement = -1
+            yIncrement = 1
+            
+        case .left:
+            //print("swiped left")
+            xStart = 0
+            xEnd = columns-1
+            yStart = 0
+            yEnd = rows-1
+            xIncrement = 1
+            yIncrement = 1
+            
+        case .right:
+            //print("swiped right")
+            xStart = columns-1
+            xEnd = 0
+            yStart = rows-1
+            yEnd = 0
+            xIncrement = -1
+            yIncrement = -1
+            
+            
+        }
+        
+        
+        // If direction of swipe is vertical...
+        if (swipeDirection == .up) || (swipeDirection == .down) {
+            
+            // loop through the columns
+            for gridX in xStart.stride(through: xEnd, by: xIncrement){
+                
+                // loop through the rows
+                for gridY in yStart.stride(through: yEnd, by: yIncrement) {
+                    
+                    if gridY != yEnd {
+                        // Set the current & next blocks
+                        let currentBlock = gridCopy.gridArray[gridX][gridY]
+                        let nextBlock = gridCopy.gridArray[gridX][gridY+yIncrement]
+                        
+                        // Perform the collision rules
+                        moveCount += collisionRulesCheck(currentBlock, nextBlock: nextBlock)
+                        
+                        
+//                        // Check to see if the Stage Regen needs to be reset
+//                        if ((nextBlock.state != .inactive) && (currentBlock.state == nextBlock.state)) || ((nextBlock.state != .inactive) && (currentBlock.state == .inactive)) {
+//                            stageRegen = true
+//                        }
+                        
+                        //MARK: Last Row Vertical
+                        // Is it the last row?
+                    } else if gridY == yEnd {
+                        
+                        let currentBlock = gridCopy.gridArray[gridX][gridY]
+                        
+                        //MARK: Swipe Up
+                        // Is it a swipe up?
+                        if swipeDirection == .up {
+                            
+                            
+                            // Change the Next Block to the Stage
+                            let nextBlock = bottomStageCopy.stageArray[gridX]
+                            
+//                            // Check to see if the Stage Regen needs to be reset
+//                            if ((nextBlock.state != .inactive) && (currentBlock.state == nextBlock.state)) || ((nextBlock.state != .inactive) && (currentBlock.state == .inactive)) {
+//                                stageRegen = true
+//                            }
+                            // Perform the collision rules
+                            moveCount += collisionRulesCheck(currentBlock, nextBlock: nextBlock)
+                            
+                            //                            topStageNode.stageRegen()
+                            
+                            
+                        }
+                            
+                            //MARK: Swipe Down
+                            // Is it a swipe down?
+                        else if swipeDirection == .down {
+                            let nextBlock = topStageCopy.stageArray[gridX]
+                            
+//                            // Check to see if the Stage Regen needs to be reset
+//                            if ((nextBlock.state != .inactive) && (currentBlock.state == nextBlock.state)) || ((nextBlock.state != .inactive) && (currentBlock.state == .inactive)) {
+//                                stageRegen = true
+//                            }
+                            
+                            // Perform the collision rules
+                            moveCount += collisionRulesCheck(currentBlock, nextBlock: nextBlock)
+                            
+//                            topStageNode.stageRegen()
+                            
+                            
+                            
+                        }
+                        
+                        
+                    }
+                    
+                }
+                
+//                // Is the regen bool equal to true?
+//                if stageRegen == true {
+//                    
+//                    // Is it swipe up?
+//                    if swipeDirection == .up {
+//                        
+//                        // Clear the stage
+//                        bottomStageCopy.stageArray[gridX].state = .inactive
+//                        
+//                        // Is it swipe down?
+//                    } else if swipeDirection == .down {
+//                        
+//                        // Clear the stage
+//                        topStageCopy.stageArray[gridX].state = .inactive
+//                        
+//                    }
+//                }
+            }
+            
+            // Is the swipe up & stage regen is true?
+//            if swipeDirection == .up && stageRegen == true {
+//                
+//                // Add a new block to the stage
+//                //                bottomStageNode.stageRegen()
+//                bottomStageNode.addBlockToEmptyStage()
+//                
+//                bottomStageNode.addBlockToEmptyStage()
+//
+//                // Reset the stage regen bool to false
+//                stageRegen = false
+//                
+//                //Is the swipe down & stage regen is true?
+//            } else if swipeDirection == .down && stageRegen == true {
+//                
+//                // Add a new block to the stage
+//                //                topStageNode.stageRegen()
+//                topStageNode.addBlockToEmptyStage()
+//                topStageNode.addBlockToEmptyStage()
+//                
+//                // Reset the stage regen bool to false
+//                stageRegen = false
+//            }
+        }
+        
+        
+        // If direction of swipe is horizontal...
+        if (swipeDirection == .left) || (swipeDirection == .right) {
+            
+            // loop through the rows
+            for gridY in yStart.stride(through: yEnd, by: yIncrement){
+                
+                // loop through the columns
+                for gridX in xStart.stride(through: xEnd, by: xIncrement) {
+                    
+                    if gridX != xEnd {
+                        // Set the current & next blocks
+                        let currentBlock = gridCopy.gridArray[gridX][gridY]
+                        let nextBlock = gridCopy.gridArray[gridX+xIncrement][gridY]
+                        
+                        // Perform the collision rules
+                        moveCount += collisionRulesCheck(currentBlock, nextBlock: nextBlock)
+                        
+
+//                        // Check to see if the Stage Regen needs to be reset
+//                        if ((nextBlock.state != .inactive) && (currentBlock.state == nextBlock.state)) || ((nextBlock.state != .inactive) && (currentBlock.state == .inactive)) {
+//                            stageRegen = true
+//                        }
+                        
+                        //MARK: Last Column Horizontal
+                        // Is it the last column?
+                    } else if gridX == xEnd {
+                        
+                        let currentBlock = gridCopy.gridArray[gridX][gridY]
+                        
+                        //MARK: Swipe Left
+                        // Is it a swipe left?
+                        if swipeDirection == .left {
+                            
+                            
+                            // Change the Next Block to the Stage
+                            let nextBlock = rightStageCopy.stageArray[gridY]
+                            
+//                            // Check to see if the Stage Regen needs to be reset
+//                            if ((nextBlock.state != .inactive) && (currentBlock.state == nextBlock.state)) || ((nextBlock.state != .inactive) && (currentBlock.state == .inactive)) {
+//                                stageRegen = true
+//                            }
+                            
+                            //                            print(currentBlock.position)
+                            
+                            // Perform the collision rules
+                            moveCount += collisionRulesCheck(currentBlock, nextBlock: nextBlock)
+                            
+//                            rightStageNode.stageRegen()
+                            
+                        }
+                            
+                            //MARK: Swipe Right
+                            // Is it a swipe right?
+                        else if swipeDirection == .right {
+                            let nextBlock = leftStageCopy.stageArray[gridY]
+                            
+//                            // Check to see if the Stage Regen needs to be reset
+//                            if ((nextBlock.state != .inactive) && (currentBlock.state == nextBlock.state)) || ((nextBlock.state != .inactive) && (currentBlock.state == .inactive)) {
+//                                stageRegen = true
+//                            }
+                            
+                            // Perform the collision rules
+                            moveCount += collisionRulesCheck(currentBlock, nextBlock: nextBlock)
+                            
+//                            leftStageNode.stageRegen()
+                            
+                        }
+                        
+                        
+                    }
+                    
+                }
+                
+//                // Is the regen bool equal to true?
+//                if stageRegen == true {
+//                    
+//                    // Is it swipe left?
+//                    if swipeDirection == .left {
+//                        
+//                        // Clear the stage
+//                        rightStageCopy.stageArray[gridY].state = .inactive
+//                        
+//                        // Is it swipe right?
+//                    } else if swipeDirection == .right {
+//                        
+//                        // Clear the stage
+//                        leftStageCopy.stageArray[gridY].state = .inactive
+//                        
+//                    }
+//                }
+            }
+            
+//            // Is the swipe left & stage regen is true?
+//            if swipeDirection == .left && stageRegen == true {
+//                
+//                // Add a new block to the stage
+//                rightStageCopy.addBlockToEmptyStage()
+//                rightStageCopy.addBlockToEmptyStage()
+//                //                rightStageNode.stageRegen()
+//                
+//                // Reset the stage regen bool to false
+//                stageRegen = false
+//                
+//                //Is the swipe right & stage regen is true?
+//            } else if swipeDirection == .right && stageRegen == true {
+//                
+//                // Add a new block to the stage
+//                //                leftStageNode.stageRegen()
+//                leftStageCopy.addBlockToEmptyStage()
+//                leftStageCopy.addBlockToEmptyStage()
+//                
+//                // Reset the stage regen bool to false
+//                stageRegen = false
+//            }
+        }
+        
+        
+        return moveCount
+        
+        
+    }
+    
+    func collisionRulesCheck (currentBlock: Block, nextBlock: Block) -> Int {
+        
+        var moveCount: Int = 0
+        
+        // Is the Next Active?
+        if nextBlock.state != .inactive {
+            
+            
+            // Is the Current Active?
+            if currentBlock.state != .inactive {
+                
+                // Are Current & Next the same values?
+                if currentBlock.state == nextBlock.state {
+                    
+                    moveCount += 1
+                    
+                    
+                    
+                } else {
+                    
+                    // Do Nothing
+                    
+                }
+                
+                
+            } else if currentBlock.state == .inactive {
+                
+                moveCount += 1
+                
+                
+            }
+            
+            
+        } else {
+            
+            // Do Nothing
+            
+        }
+        
+        return moveCount
+        
+    }
+    
     
 }
 
