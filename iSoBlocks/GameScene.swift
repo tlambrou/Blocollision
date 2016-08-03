@@ -91,6 +91,7 @@ class GameScene: SKScene {
                 break
             case .gameover:
                 print("Game Over!")
+                gameOver.hidden = false
                 break
             }
         }
@@ -105,8 +106,8 @@ class GameScene: SKScene {
     var leftStageNode: StageV!
     var rightStageNode: StageV!
     var restartButton: MSButtonNode!
+    var gameOver: MSButtonNode!
     var swipeInstructions: SKSpriteNode!
-//    var instructions: SKLabelNode!
     
     
     func swipedUp(sender:UISwipeGestureRecognizer) {
@@ -235,7 +236,10 @@ class GameScene: SKScene {
         
         self.addChild(myLabel)
 
-        
+//        instructionLabel = childNodeWithName("instructionLabel") as! SKLabelNode
+//        instruct1 = childNodeWithName("instruct1") as! SKLabelNode
+//        instruct2 = childNodeWithName("instruct2") as! SKLabelNode
+//        instruct3 = childNodeWithName("instruct3") as! SKLabelNode
         gridNode = childNodeWithName("gridNode") as! Grid
         topStageNode = childNodeWithName("topStage") as! StageH
         bottomStageNode = childNodeWithName("bottomStage") as! StageH
@@ -243,6 +247,8 @@ class GameScene: SKScene {
         rightStageNode = childNodeWithName("rightStage") as! StageV
         /* Set UI connections */
         restartButton = self.childNodeWithName("restartButton") as! MSButtonNode
+        gameOver = self.childNodeWithName("gameOver") as! MSButtonNode
+        gameOver.hidden = true
         swipeInstructions = childNodeWithName("swipeInstructions") as! SKSpriteNode
         scoreLabel = childNodeWithName("scoreLabel") as! SKLabelNode
         
@@ -274,6 +280,29 @@ class GameScene: SKScene {
             sumScore = 0
             
         }
+        
+        gameOver.selectedHandler = {
+            
+            /* Grab reference to the SpriteKit view */
+            let skView = self.view as SKView!
+            
+            /* Load Game scene */
+            let scene = GameScene(fileNamed:"GameScene") as GameScene!
+            
+            /* Ensure correct aspect mode */
+            scene.scaleMode = .AspectFill
+            
+            /* Restart GameScene */
+            skView.presentScene(scene)
+            
+            self.gameState = .playing
+            
+            // Reset the score
+            multiplierScore = 0
+            sumScore = 0
+            
+        }
+
         
         let swipeRight:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedRight(_:)))
         swipeRight.direction = .Right

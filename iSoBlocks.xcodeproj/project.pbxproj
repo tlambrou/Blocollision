@@ -26,6 +26,7 @@
 		9620C1751D3DA16800B045E7 /* Rock.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9620C1741D3DA16800B045E7 /* Rock.sks */; };
 		9620C1771D3DA1F800B045E7 /* Paper.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9620C1761D3DA1F800B045E7 /* Paper.sks */; };
 		9620C1791D3DA22B00B045E7 /* Scissors.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9620C1781D3DA22B00B045E7 /* Scissors.sks */; };
+		9640E2701D514DF000719E7F /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9640E26F1D514DF000719E7F /* Title.swift */; };
 		96492F291D318CE6004F887C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F281D318CE6004F887C /* AppDelegate.swift */; };
 		96492F2B1D318CE6004F887C /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 96492F2A1D318CE6004F887C /* GameScene.sks */; };
 		96492F2D1D318CE6004F887C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F2C1D318CE6004F887C /* GameScene.swift */; };
@@ -37,6 +38,7 @@
 		96492F4D1D318CE6004F887C /* iSoBlocksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F4C1D318CE6004F887C /* iSoBlocksUITests.swift */; };
 		96492F5B1D318E8F004F887C /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F5A1D318E8F004F887C /* Grid.swift */; };
 		96492F6E1D31BC7E004F887C /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F6D1D31BC7E004F887C /* Block.swift */; };
+		96498EBD1D5142DF0057B54C /* Title.sks in Resources */ = {isa = PBXBuildFile; fileRef = 96498EBC1D5142DF0057B54C /* Title.sks */; };
 		96518AFD1D49831900BEB2FA /* clearDot.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96518AFC1D49831900BEB2FA /* clearDot.wav */; };
 		968914431D41461F00CD2AD6 /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968914421D41461F00CD2AD6 /* UIColorExt.swift */; };
 		968914471D41529500CD2AD6 /* ASAttributedLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968914461D41529500CD2AD6 /* ASAttributedLabelNode.swift */; };
@@ -90,6 +92,7 @@
 		9620C1741D3DA16800B045E7 /* Rock.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Rock.sks; sourceTree = "<group>"; };
 		9620C1761D3DA1F800B045E7 /* Paper.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Paper.sks; sourceTree = "<group>"; };
 		9620C1781D3DA22B00B045E7 /* Scissors.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Scissors.sks; sourceTree = "<group>"; };
+		9640E26F1D514DF000719E7F /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		96492F251D318CE6004F887C /* iSoBlocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSoBlocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96492F281D318CE6004F887C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96492F2A1D318CE6004F887C /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -107,6 +110,7 @@
 		96492F4E1D318CE6004F887C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96492F5A1D318E8F004F887C /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		96492F6D1D31BC7E004F887C /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
+		96498EBC1D5142DF0057B54C /* Title.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Title.sks; sourceTree = "<group>"; };
 		96518AFC1D49831900BEB2FA /* clearDot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clearDot.wav; sourceTree = "<group>"; };
 		968914421D41461F00CD2AD6 /* UIColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
 		968914461D41529500CD2AD6 /* ASAttributedLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASAttributedLabelNode.swift; sourceTree = "<group>"; };
@@ -193,11 +197,7 @@
 				968ABF0E1D4FF3FB00776165 /* GameManager */,
 				96044AB61D3589B90097D096 /* SKTUtils */,
 				96492F281D318CE6004F887C /* AppDelegate.swift */,
-				96492F2A1D318CE6004F887C /* GameScene.sks */,
-				96492F2C1D318CE6004F887C /* GameScene.swift */,
-				9620C1741D3DA16800B045E7 /* Rock.sks */,
-				9620C1761D3DA1F800B045E7 /* Paper.sks */,
-				9620C1781D3DA22B00B045E7 /* Scissors.sks */,
+				96498EBB1D5142A90057B54C /* Scenes */,
 				96492F6D1D31BC7E004F887C /* Block.swift */,
 				96492F5A1D318E8F004F887C /* Grid.swift */,
 				96044ACF1D3598330097D096 /* StageH.swift */,
@@ -233,6 +233,20 @@
 				96492F4E1D318CE6004F887C /* Info.plist */,
 			);
 			path = iSoBlocksUITests;
+			sourceTree = "<group>";
+		};
+		96498EBB1D5142A90057B54C /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				96492F2A1D318CE6004F887C /* GameScene.sks */,
+				96492F2C1D318CE6004F887C /* GameScene.swift */,
+				96498EBC1D5142DF0057B54C /* Title.sks */,
+				9640E26F1D514DF000719E7F /* Title.swift */,
+				9620C1741D3DA16800B045E7 /* Rock.sks */,
+				9620C1761D3DA1F800B045E7 /* Paper.sks */,
+				9620C1781D3DA22B00B045E7 /* Scissors.sks */,
+			);
+			name = Scenes;
 			sourceTree = "<group>";
 		};
 		9689144B1D481C0B00CD2AD6 /* SFX */ = {
@@ -371,6 +385,7 @@
 				96CF7FE11D4C0F070096DEF3 /* switch34.wav in Resources */,
 				96CF7FE71D4C0F300096DEF3 /* click2.wav in Resources */,
 				96492F371D318CE6004F887C /* LaunchScreen.storyboard in Resources */,
+				96498EBD1D5142DF0057B54C /* Title.sks in Resources */,
 				96CF7FE21D4C0F070096DEF3 /* switch38.wav in Resources */,
 				96492F341D318CE6004F887C /* Assets.xcassets in Resources */,
 				96518AFD1D49831900BEB2FA /* clearDot.wav in Resources */,
@@ -406,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96492F2D1D318CE6004F887C /* GameScene.swift in Sources */,
+				9640E2701D514DF000719E7F /* Title.swift in Sources */,
 				96044ACD1D3589B90097D096 /* SKTTimingFunctions.swift in Sources */,
 				96492F2F1D318CE6004F887C /* GameViewController.swift in Sources */,
 				96044AC51D3589B90097D096 /* CGVector+Extensions.swift in Sources */,
@@ -578,7 +594,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iSoBlocks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Ssos.iSoBlocks;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Ssos.Blocollision;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -592,7 +608,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iSoBlocks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Ssos.iSoBlocks;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Ssos.Blocollision;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
