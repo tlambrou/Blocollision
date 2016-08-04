@@ -13,22 +13,31 @@ enum BlockType { case inactive, red, blue, green }
 
 class Block: SKSpriteNode {
     
+    var score: Int = 0
     
-    var stack: Int = 0 {
+    var stack: Int = -1 {
         didSet {
-            if stack > 1 {
+            score = factorial(stack)
+            
+            if stack > 0 {
                 label.text = String(stack)
                 label.hidden = false
-//                labelBG.text = String(stack)
-//                labelBG.hidden = false
+                factLabel.hidden = false
+                label.zPosition = 4
+                
+            } else if stack == 0 {
+                label.text = String(stack)
+                label.hidden = false
+                factLabel.hidden = true
+                label.zPosition = 4
                 
             }
+            
+            
         }
     }
     var label: SKLabelNode!
-    //var labelBG: SKLabelNode!
-    
-    
+    var factLabel: SKLabelNode!
     
     var state:BlockType = .inactive
         {
@@ -39,9 +48,9 @@ class Block: SKSpriteNode {
             case .inactive:
                 let action = SKAction.setTexture(SKTexture(imageNamed: "RoundRect"))
                 runAction(action)
-                stack = 0
+                stack = -1
                 label.hidden = true
-//                labelBG.hidden = true
+                factLabel.hidden = true
                 hidden = false
                 
             case .red:
@@ -74,47 +83,39 @@ class Block: SKSpriteNode {
         let texture = SKTexture(imageNamed: "RoundRect")
         super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
         
-        self.gsPosition = self.position
-        
-        hidden = false
-        
-        
-        label = SKLabelNode(text: String(stack))
-        label.hidden = true
-        label.fontName = "AvenirNext-Bold"
-        label.fontSize = 60
-//        label.fontColor = UIColor(netHex:0x00C5B8)
-        
-        let xLabel: CGFloat = CGFloat(1080/columns/5)
-        let yLabel: CGFloat = -xLabel
-        label.position.offset(dx: xLabel, dy: yLabel)
-        
-        label.verticalAlignmentMode = .Baseline
-        label.horizontalAlignmentMode = .Right
-        label.zPosition = 10
-        
-//        labelBG = SKLabelNode(text: String(stack))
-//        labelBG.fontSize = 60
-//        labelBG.fontName = "AvenirNext-Heavy"
-//        labelBG.hidden = true
-//        labelBG.position.offset(dx: xLabel, dy: yLabel)
-//        labelBG.verticalAlignmentMode = .Baseline
-//        labelBG.horizontalAlignmentMode = .Right
-//        labelBG.zPosition = 9
-//        labelBG.alpha = 0.9
-//        labelBG.fontColor = UIColor(netHex:0xBE1D30)
-        
-        addChild(label)
-//        addChild(labelBG)
-       
-        
-        
         /* Set Z-Position, ensure it's on top of grid */
         zPosition = 1
         
         /* Set anchor point to center */
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
+        // Set block visible
+        hidden = false
+        
+        // Create the Stack label
+        label = SKLabelNode(text: String(stack))
+        label.hidden = true
+        label.fontName = "AvenirNext-Bold"
+        label.fontSize = 60
+        let xLabel: CGFloat = CGFloat(1080/columns/6)
+        let yLabel: CGFloat = -xLabel
+        label.position.offset(dx: xLabel - 10, dy: yLabel)
+        
+        label.verticalAlignmentMode = .Baseline
+        label.horizontalAlignmentMode = .Right
+        label.zPosition = 4
+        addChild(label)
+       
+        // Create the Factorial Label
+        factLabel = SKLabelNode(text: String("!"))
+        factLabel.hidden = true
+        factLabel.fontName = "Verdana-Bold"
+        factLabel.fontSize = 60
+        factLabel.position.offset(dx: xLabel, dy: yLabel)
+        factLabel.verticalAlignmentMode = .Baseline
+        factLabel.horizontalAlignmentMode = .Left
+        factLabel.zPosition = 4
+        addChild(factLabel)
         
         
     }

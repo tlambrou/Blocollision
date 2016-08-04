@@ -659,6 +659,8 @@ class GameScene: SKScene {
         let inactive: BlockType = .inactive
         let block1State = block1.state
         let block2State = block2.state
+        let block1Stack = block1.stack
+        let block2Stack = block2.stack
         
         //red vs blue...
         if (block1State == red) && (block2State == blue) {
@@ -727,6 +729,11 @@ class GameScene: SKScene {
             
             // red vs red
         } else if ((block1State == red) && (block2State == red)) || ((block1State == red) && (block2State == red)) {
+            
+            // Check to see who has the bigger stack and return the winner
+//            if block1Stack >= block2Stack {
+//                return Outcome(winnner: block1, loser: block2, tie: 1)
+//            } else if b
             // combine
             return Outcome(winnner: block1, loser: block2, tie: 1)
             
@@ -750,6 +757,14 @@ class GameScene: SKScene {
         }
         
         
+    }
+    
+    var animateComplete: Bool = false {
+        didSet {
+            if animateComplete == true {
+                
+            }
+        }
     }
     
     func animateCollision(block1: Block, block2: Block) {
@@ -789,8 +804,11 @@ class GameScene: SKScene {
         
         if block1.state == block2.state {
             
-            let winNode = SKSpriteNode(imageNamed: winAssetString)
-            let scale = SKAction.scaleTo(1.35, duration: 0.1)
+            let winNode = Block()
+//            let winNode = SKSpriteNode(imageNamed: winAssetString)
+            winNode.state = winBlock.state
+            winNode.stack = winBlock.stack
+            let scale = SKAction.scaleTo(1.15, duration: 0.1)
             let descale = SKAction.scaleTo(1, duration: 0.1)
             let destination = winBlock.position
             let move = SKAction.moveTo(destination, duration: 0.2)
@@ -806,8 +824,8 @@ class GameScene: SKScene {
            
             loseNode.size = loseBlock.size
             loseNode.anchorPoint = loseBlock.anchorPoint
-            loseNode.zPosition = 2
-            winNode.zPosition = 3
+            loseNode.zPosition = 5
+            winNode.zPosition = 6
             //
             //            print("winNode2 State: \(winBlock.state)")
             //            print("winNode2 Position: \(winNode2.position)")
@@ -829,7 +847,13 @@ class GameScene: SKScene {
                 
 //                print(loseNode.position)
                 
-            } else {
+            } else if block2.parent == leftStageNode {
+                
+                loseNode.position.x = CGFloat(-90)
+                
+            } else if block2.parent == bottomStageNode {
+                
+                loseNode.position.y = CGFloat(-90)
                 
             }
 //            
@@ -842,7 +866,81 @@ class GameScene: SKScene {
             let collisionSeq = SKAction.sequence([scale, descale, remove])
             winNode.runAction(collisionSeq)
             loseNode.runAction(SKAction.sequence([move, remove]))
-        }
+            
+            
+        } else if (block1.state == .inactive) && (block2.state != .inactive) {
+            
+            let winNode = Block()
+            //winNode = SKSpriteNode(imageNamed: winAssetString)
+            winNode.state = winBlock.state
+            winNode.stack = winBlock.stack
+            
+            let scale = SKAction.scaleTo(1.15, duration: 0.1)
+            let descale = SKAction.scaleTo(1, duration: 0.1)
+            let destination = loseBlock.position
+            let wait = SKAction.waitForDuration(NSTimeInterval(0.4))
+            let move = SKAction.moveTo(destination, duration: 0.2)
+            let remove = SKAction.removeFromParent()
+            //            let wait2 = SKAction.waitForDuration(0.4)
+            
+            
+            winNode.position = winBlock.position
+            /* Position winNode at the location of the winning block */
+            winNode.anchorPoint = block2.anchorPoint
+            winNode.size = block2.size
+            
+            
+            let loseNode = SKSpriteNode(imageNamed: "RoundRect")
+            loseNode.size = loseBlock.size
+            loseNode.anchorPoint = loseBlock.anchorPoint
+            loseNode.zPosition = 4
+            winNode.zPosition = 6
+            //
+            //            print("winNode2 State: \(winBlock.state)")
+            //            print("winNode2 Position: \(winNode2.position)")
+            //            print("loseNode2 Position: \(loseNode2.position)")
+            
+            loseNode.position = block1.position
+            
+            //            print(loseNode.position)
+            
+            if block2.parent == topStageNode {
+                
+                winNode.position.y = CGFloat(810)
+                //                print("New LoseNode Position: \(loseNode.position)")
+                //                print("WinNode Position: \(winNode.position)")
+                
+            } else if block2.parent == rightStageNode {
+                
+                winNode.position.x = CGFloat(810)
+                
+                //                print(loseNode.position)
+                
+            } else if block2.parent == leftStageNode {
+                
+                winNode.position.x = CGFloat(-90)
+            
+            } else if block2.parent == bottomStageNode {
+                
+                winNode.position.y = CGFloat(-90)
+                
+            }
+            //
+            //            print(loseNode.position)
+            //
+            
+            gridNode.addChild(loseNode)
+            gridNode.addChild(winNode)
+        
+            let collisionSeq = SKAction.sequence([scale, move, descale, remove])
+            winNode.runAction(collisionSeq, completion: {
+                self.animateComplete = true
+                
+            })
+            loseNode.runAction(SKAction.sequence([wait, remove]))
+            
+            
+        } 
         
   
         
@@ -865,7 +963,7 @@ class GameScene: SKScene {
 //
                     
                     // Combine stack values
-                    currentBlock.stack += nextBlock.stack
+                    currentBlock.stack -= 1
                     
                     /* Play SFX */
                     let combineSFX = SKAction.playSoundFileNamed("clearDot", waitForCompletion: true)
@@ -1559,5 +1657,13 @@ class GameScene: SKScene {
     }
     
     
+}
+
+func factorial(number: Int) -> (Int) {
+    if (number <= 1) {
+        return 1
+    }
+    
+    return number * factorial(number - 1)
 }
 
