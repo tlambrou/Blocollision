@@ -23,9 +23,6 @@
 		96044AD21D35C53F0097D096 /* StageV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96044AD11D35C53F0097D096 /* StageV.swift */; };
 		96044AD51D35EBDD0097D096 /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96044AD31D35EBDD0097D096 /* MSButtonNode.swift */; };
 		96044AD61D35EBDD0097D096 /* MSReferenceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96044AD41D35EBDD0097D096 /* MSReferenceNode.swift */; };
-		9620C1751D3DA16800B045E7 /* Rock.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9620C1741D3DA16800B045E7 /* Rock.sks */; };
-		9620C1771D3DA1F800B045E7 /* Paper.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9620C1761D3DA1F800B045E7 /* Paper.sks */; };
-		9620C1791D3DA22B00B045E7 /* Scissors.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9620C1781D3DA22B00B045E7 /* Scissors.sks */; };
 		9640E2701D514DF000719E7F /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9640E26F1D514DF000719E7F /* Title.swift */; };
 		96492F291D318CE6004F887C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F281D318CE6004F887C /* AppDelegate.swift */; };
 		96492F2B1D318CE6004F887C /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 96492F2A1D318CE6004F887C /* GameScene.sks */; };
@@ -89,9 +86,6 @@
 		96044AD11D35C53F0097D096 /* StageV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageV.swift; sourceTree = "<group>"; };
 		96044AD31D35EBDD0097D096 /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
 		96044AD41D35EBDD0097D096 /* MSReferenceNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSReferenceNode.swift; sourceTree = "<group>"; };
-		9620C1741D3DA16800B045E7 /* Rock.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Rock.sks; sourceTree = "<group>"; };
-		9620C1761D3DA1F800B045E7 /* Paper.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Paper.sks; sourceTree = "<group>"; };
-		9620C1781D3DA22B00B045E7 /* Scissors.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Scissors.sks; sourceTree = "<group>"; };
 		9640E26F1D514DF000719E7F /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		96492F251D318CE6004F887C /* iSoBlocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSoBlocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96492F281D318CE6004F887C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -242,9 +236,6 @@
 				96492F2C1D318CE6004F887C /* GameScene.swift */,
 				96498EBC1D5142DF0057B54C /* Title.sks */,
 				9640E26F1D514DF000719E7F /* Title.swift */,
-				9620C1741D3DA16800B045E7 /* Rock.sks */,
-				9620C1761D3DA1F800B045E7 /* Paper.sks */,
-				9620C1781D3DA22B00B045E7 /* Scissors.sks */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -379,7 +370,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9620C1771D3DA1F800B045E7 /* Paper.sks in Resources */,
 				96492F2B1D318CE6004F887C /* GameScene.sks in Resources */,
 				96CF7FE01D4C0F070096DEF3 /* switch33.wav in Resources */,
 				96CF7FE11D4C0F070096DEF3 /* switch34.wav in Resources */,
@@ -389,10 +379,8 @@
 				96CF7FE21D4C0F070096DEF3 /* switch38.wav in Resources */,
 				96492F341D318CE6004F887C /* Assets.xcassets in Resources */,
 				96518AFD1D49831900BEB2FA /* clearDot.wav in Resources */,
-				9620C1751D3DA16800B045E7 /* Rock.sks in Resources */,
 				96492F321D318CE6004F887C /* Main.storyboard in Resources */,
 				968914501D4828FB00CD2AD6 /* clearRow.caf in Resources */,
-				9620C1791D3DA22B00B045E7 /* Scissors.sks in Resources */,
 				96CF7FE61D4C0F300096DEF3 /* click1.wav in Resources */,
 				96CF7FEA1D4C10BC0096DEF3 /* whoosh.wav in Resources */,
 				96CF7FE81D4C0F300096DEF3 /* click3.wav in Resources */,

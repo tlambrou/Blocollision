@@ -15,25 +15,21 @@ class Block: SKSpriteNode {
     
     var score: Int = 0
     
-    var stack: Int = -1 {
+    var stack: Int = 0 {
         didSet {
+            
+            if stack < 0 {
+                stack = 0
+            }
+            
             score = factorial(stack)
             
-            if stack > 0 {
+            if stack >= 0 {
                 label.text = String(stack)
                 label.hidden = false
                 factLabel.hidden = false
                 label.zPosition = 4
-                
-            } else if stack == 0 {
-                label.text = String(stack)
-                label.hidden = false
-                factLabel.hidden = true
-                label.zPosition = 4
-                
             }
-            
-            
         }
     }
     var label: SKLabelNode!
@@ -48,7 +44,7 @@ class Block: SKSpriteNode {
             case .inactive:
                 let action = SKAction.setTexture(SKTexture(imageNamed: "RoundRect"))
                 runAction(action)
-                stack = -1
+                stack = 0
                 label.hidden = true
                 factLabel.hidden = true
                 hidden = false

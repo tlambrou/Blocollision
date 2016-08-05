@@ -762,7 +762,15 @@ class GameScene: SKScene {
     var animateComplete: Bool = false {
         didSet {
             if animateComplete == true {
+                // Check for complete rows
+                rowsCheck()
                 
+                // Check for complete columns
+                columnsCheck()
+                
+                // Calculate the grid score (sumScore)
+                gridScore()
+                animateComplete = false
             }
         }
     }
@@ -808,10 +816,10 @@ class GameScene: SKScene {
 //            let winNode = SKSpriteNode(imageNamed: winAssetString)
             winNode.state = winBlock.state
             winNode.stack = winBlock.stack
-            let scale = SKAction.scaleTo(1.15, duration: 0.1)
-            let descale = SKAction.scaleTo(1, duration: 0.1)
+            let scale = SKAction.scaleTo(1.15, duration: 0.07)
+            let descale = SKAction.scaleTo(1, duration: 0.07)
             let destination = winBlock.position
-            let move = SKAction.moveTo(destination, duration: 0.2)
+            let move = SKAction.moveTo(destination, duration: 0.1)
             let remove = SKAction.removeFromParent()
             //            let wait2 = SKAction.waitForDuration(0.4)
             
@@ -824,8 +832,8 @@ class GameScene: SKScene {
            
             loseNode.size = loseBlock.size
             loseNode.anchorPoint = loseBlock.anchorPoint
-            loseNode.zPosition = 5
-            winNode.zPosition = 6
+            loseNode.zPosition = 7
+            winNode.zPosition = 8
             //
             //            print("winNode2 State: \(winBlock.state)")
             //            print("winNode2 Position: \(winNode2.position)")
@@ -875,11 +883,11 @@ class GameScene: SKScene {
             winNode.state = winBlock.state
             winNode.stack = winBlock.stack
             
-            let scale = SKAction.scaleTo(1.15, duration: 0.1)
-            let descale = SKAction.scaleTo(1, duration: 0.1)
+            let scale = SKAction.scaleTo(1.15, duration: 0.07)
+            let descale = SKAction.scaleTo(1, duration: 0.07)
             let destination = loseBlock.position
-            let wait = SKAction.waitForDuration(NSTimeInterval(0.4))
-            let move = SKAction.moveTo(destination, duration: 0.2)
+            let wait = SKAction.waitForDuration(NSTimeInterval(0.24))
+            let move = SKAction.moveTo(destination, duration: 0.1)
             let remove = SKAction.removeFromParent()
             //            let wait2 = SKAction.waitForDuration(0.4)
             
@@ -893,8 +901,8 @@ class GameScene: SKScene {
             let loseNode = SKSpriteNode(imageNamed: "RoundRect")
             loseNode.size = loseBlock.size
             loseNode.anchorPoint = loseBlock.anchorPoint
-            loseNode.zPosition = 4
-            winNode.zPosition = 6
+            loseNode.zPosition = 6
+            winNode.zPosition = 8
             //
             //            print("winNode2 State: \(winBlock.state)")
             //            print("winNode2 Position: \(winNode2.position)")
@@ -960,10 +968,12 @@ class GameScene: SKScene {
                     
                     // Animate the collision
                     animateCollision(currentBlock, block2: nextBlock)
-//
                     
-                    // Combine stack values
-                    currentBlock.stack -= 1
+                    // Find the higher block stack
+                    let comparison = [currentBlock.stack, nextBlock.stack]
+                    
+                    // Set the new block's stack equal to the highest block's stack minus 1
+                    currentBlock.stack = comparison.maxElement()! - 1
                     
                     /* Play SFX */
                     let combineSFX = SKAction.playSoundFileNamed("clearDot", waitForCompletion: true)
@@ -990,8 +1000,8 @@ class GameScene: SKScene {
                 // Copy over state
                 currentBlock.state = nextBlock.state
                 
-                // Combine stack values
-                currentBlock.stack += nextBlock.stack
+                // Copy over the stack
+                currentBlock.stack = nextBlock.stack
                 
                 // Set the Next block to .inactive
                 nextBlock.state = .inactive
@@ -1086,76 +1096,7 @@ class GameScene: SKScene {
         
     }
     
-    func clearRow (rowNumber: Int) {
-        let gridY = rowNumber
-        var rowScore: Int = 1
-        var stackSum: Int = 0
-        
-        // Loop through the row
-        for gridX in 0..<columns {
-            
-            let currentBlock = gridNode.gridArray[gridX][gridY]
-            
-            // Add the stack to the stack sum
-            stackSum += currentBlock.stack
-            
-            // Multiply the current stack times the rowScore
-            rowScore = rowScore * currentBlock.stack
-            
-            // Animate the block's death
-            animateBlockClear(currentBlock)
-            
-            //            // Set the node equal to inactive
-            //            currentBlock.state = .inactive
-            
-        }
-        
-        //Add the stackSum to the rowScore
-        rowScore += stackSum
-        
-        // Add the rowScore to the player's score
-        score += rowScore
-        
-        /* Play SFX */
-        let scoreSFX = SKAction.playSoundFileNamed("clearRow", waitForCompletion: true)
-        self.runAction(scoreSFX)
-    }
-    
-    func clearColumn (columnNumber: Int) {
-        let gridX = columnNumber
-        var columnScore: Int = 1
-        var stackSum: Int = 0
-        
-        // Loop through the row
-        for gridY in 0..<rows {
-            
-            let currentBlock = gridNode.gridArray[gridX][gridY]
-            
-            // Add the stack to the stack sum
-            stackSum += currentBlock.stack
-            
-            // Multiply the current stack times the rowScore
-            columnScore = columnScore * currentBlock.stack
-            
-            // Animate the block's death
-            animateBlockClear(currentBlock)
-            
-            // Set the node equal to inactive
-            //            currentBlock.state = .inactive
-            
-        }
-        
-        //Add the stackSum to the columnScore
-        columnScore += stackSum
-        
-        // Add the rowScore to the player's score
-        score += columnScore
-        
-        /* Play SFX */
-        let scoreSFX = SKAction.playSoundFileNamed("clearRow", waitForCompletion: true)
-        self.runAction(scoreSFX)
-    }
-    
+
     func animateBlockClear (dieBlock: Block) {
         
         // Create variables & particulars
@@ -1173,7 +1114,11 @@ class GameScene: SKScene {
             
         }
         
-        let dieNode = SKSpriteNode(imageNamed: assetString)
+        var dieNode = Block()
+        
+        // Set the dieNode equal to the original block states
+        dieNode.stack = dieBlock.stack
+        dieNode.state = dieBlock.state
         
         /* Position dieNode at the location of the gridNode block */
         dieNode.anchorPoint = dieBlock.anchorPoint
@@ -1182,13 +1127,13 @@ class GameScene: SKScene {
         dieNode.zPosition = dieBlock.zPosition + 1
         
         // Create a scale action
-        let scale = SKAction.scaleTo(1.35, duration: 0.1)
+        let scale = SKAction.scaleTo(1.15, duration: 0.1)
         
         // Create a descale action
-        let descale = SKAction.scaleTo(0, duration: 0.5)
+        let descale = SKAction.scaleTo(0, duration: 0.2)
         
         // Create a wait action just in case
-        //        let wait = SKAction.waitForDuration(0.4)
+        let wait = SKAction.waitForDuration(0.25)
         
         // Create a "poof" animation
         
@@ -1196,11 +1141,11 @@ class GameScene: SKScene {
         let remove = SKAction.removeFromParent()
         
         // Create a sound effect action
-        //        let scoreSFX = SKAction.playSoundFileNamed("poof", waitForCompletion: true)
-        //        self.runAction(scoreSFX)
+
+        let scoreSFX = SKAction.playSoundFileNamed("clearRow", waitForCompletion: false)
         
         // Create the sequence action
-        let dieSeq = SKAction.sequence([scale, descale, remove])
+        let dieSeq = SKAction.sequence([scale, scoreSFX, wait, descale, remove])
         
         // Add the node as a child of the parent
         gridNode.addChild(dieNode)
@@ -1218,6 +1163,8 @@ class GameScene: SKScene {
         var clearScore: Int = 1
 //        var stackSum: Int = 0
         
+        
+        
         // Loop through the row
         for gridX in 0..<columns {
             for gridY in 0..<rows {
@@ -1226,7 +1173,7 @@ class GameScene: SKScene {
                 if currentBlock.state == color {
 //                    
 //                    stackSum += currentBlock.stack
-                    clearScore *= currentBlock.stack
+                    clearScore += currentBlock.score
                     
                     // Animate the block's death
                     animateBlockClear(currentBlock)
@@ -1241,9 +1188,7 @@ class GameScene: SKScene {
         // Add the clearScore to the player's score
         multiplierScore += clearScore
         
-        /* Play SFX */
-        let scoreSFX = SKAction.playSoundFileNamed("clearRow", waitForCompletion: true)
-        self.runAction(scoreSFX)
+       
     }
     
     func gridScore() {
@@ -1258,7 +1203,7 @@ class GameScene: SKScene {
                 // Set the current block
                 let currentBlock = gridNode.gridArray[gridX][gridY]
                 
-                if currentBlock.stack > 1 {
+                if currentBlock.stack < 4 {
                     sumScore += currentBlock.stack
                 }
                 

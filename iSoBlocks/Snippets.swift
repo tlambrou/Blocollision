@@ -1442,3 +1442,80 @@ import Foundation
 //
 
 
+
+
+
+
+// CLEAR ROWS & COLUMNS FUNCTIONS
+//func clearRow (rowNumber: Int) {
+//    let gridY = rowNumber
+//    var rowScore: Int = 1
+//    var stackSum: Int = 0
+//    
+//    // Loop through the row
+//    for gridX in 0..<columns {
+//        
+//        let currentBlock = gridNode.gridArray[gridX][gridY]
+//        
+//        // Add the stack to the stack sum
+//        stackSum += currentBlock.stack
+//        
+//        // Multiply the current stack times the rowScore
+//        rowScore = rowScore * currentBlock.stack
+//        
+//        // Animate the block's death
+//        animateBlockClear(currentBlock)
+//        
+//        //            // Set the node equal to inactive
+//        //            currentBlock.state = .inactive
+//        
+//    }
+//    
+//    //Add the stackSum to the rowScore
+//    rowScore += stackSum
+//    
+//    // Add the rowScore to the player's score
+//    score += rowScore
+//    
+//    /* Play SFX */
+//    let scoreSFX = SKAction.playSoundFileNamed("clearRow", waitForCompletion: true)
+//    self.runAction(scoreSFX)
+//}
+//
+//func clearColumn (columnNumber: Int) {
+//    let gridX = columnNumber
+//    var columnScore: Int = 1
+//    var stackSum: Int = 0
+//    
+//    // Loop through the row
+//    for gridY in 0..<rows {
+//        
+//        let currentBlock = gridNode.gridArray[gridX][gridY]
+//        
+//        // Add the stack to the stack sum
+//        stackSum += currentBlock.stack
+//        
+//        // Multiply the current stack times the rowScore
+//        columnScore = columnScore * currentBlock.stack
+//        
+//        // Animate the block's death
+//        animateBlockClear(currentBlock)
+//        
+//        // Set the node equal to inactive
+//        //            currentBlock.state = .inactive
+//        
+//    }
+//    
+//    //Add the stackSum to the columnScore
+//    columnScore += stackSum
+//    
+//    // Add the rowScore to the player's score
+//    score += columnScore
+//    
+//    /* Play SFX */
+//    let scoreSFX = SKAction.playSoundFileNamed("clearRow", waitForCompletion: true)
+//    self.runAction(scoreSFX)
+//}
+
+
+

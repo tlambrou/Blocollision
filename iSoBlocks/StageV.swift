@@ -85,13 +85,13 @@ class StageV: SKSpriteNode {
                 //case 0?
                 case 1:
                     block.state = .red
-                    block.stack = 3
+                    block.stack = 5
                 case 2:
                     block.state = .blue
-                    block.stack = 3
+                    block.stack = 5
                 case 3:
                     block.state = .green
-                    block.stack = 3
+                    block.stack = 5
                 default:
                     print("switch statement in addBlockToEmptyStage didn't work")
                 }
@@ -120,13 +120,13 @@ class StageV: SKSpriteNode {
                 //case 0?
                 case 1:
                     block.state = .red
-                    block.stack = 3
+                    block.stack = 5
                 case 2:
                     block.state = .blue
-                    block.stack = 3
+                    block.stack = 5
                 case 3:
                     block.state = .green
-                    block.stack = 3
+                    block.stack = 5
                 default:
                     print("switch statement in addBlockToEmptyGrid didn't work")
                 }

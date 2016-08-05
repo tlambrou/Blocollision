@@ -61,22 +61,32 @@ class Title: SKScene {
     
     func createBlock () {
         
-        var imageAsset: String = ""
+        var state: BlockType = .inactive
         
         let rand:Int = Int.random(3)+1
         switch rand {
         case 1:
-            imageAsset = "RoundRectGreen"
+            state = .red
         case 2:
-            imageAsset = "RoundRectCoral"
+            state = .blue
         case 3:
-            imageAsset = "RoundRectTeal"
+            state = .green
         default:
-            imageAsset = "RoundRect"
+            state = .inactive
             print("random texture assignment didn't work")
         }
         
-        let block = SKSpriteNode(imageNamed: imageAsset)
+        let block = Block()
+        block.state = state
+        let randum: Int = Int.random(9)
+        
+        block.stack = randum
+        block.size.height = CGFloat(104)
+        block.size.width = CGFloat(104)
+        block.label.fontSize = 50
+        block.factLabel.fontSize = 50
+        block.label.position.offset(dx: -20, dy: 20)
+        block.factLabel.position.offset(dx: -20, dy: 20)
         
         block.zPosition = 1
         
