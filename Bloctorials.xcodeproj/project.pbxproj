@@ -121,8 +121,12 @@
 		96492F6D1D31BC7E004F887C /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Block.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		96498EBC1D5142DF0057B54C /* Title.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Title.sks; sourceTree = "<group>"; };
 		96518AFC1D49831900BEB2FA /* clearDot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clearDot.wav; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		9670F4051D555809004D04D6 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BridgingHeader.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		968914421D41461F00CD2AD6 /* UIColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UIColorExt.swift; sourceTree = "<group>"; };
+=======
+		968914421D41461F00CD2AD6 /* UIColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
+>>>>>>> parent of 964a463... Week 7: Added AppIcon with Sketch & Corrected for Differing Resolutions
 		968914461D41529500CD2AD6 /* ASAttributedLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASAttributedLabelNode.swift; sourceTree = "<group>"; };
 		9689144F1D4828FB00CD2AD6 /* clearRow.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = clearRow.caf; sourceTree = "<group>"; };
 		968ABF0F1D4FF40D00776165 /* SwiftyUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyUserDefaults.swift; sourceTree = "<group>"; };
@@ -202,11 +206,17 @@
 		96492F1C1D318CE6004F887C = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				96492F381D318CE6004F887C /*  */,
 				9634EEEF1D55D75D0015E053 /* Default-568h@2x.png */,
 				96492F271D318CE6004F887C /* bloctorials */,
 				96492F401D318CE6004F887C /* bloctorialsTests */,
 				96492F4B1D318CE6004F887C /* bloctorialsUITests */,
+=======
+				96492F271D318CE6004F887C /* iSoBlocks */,
+				96492F401D318CE6004F887C /* iSoBlocksTests */,
+				96492F4B1D318CE6004F887C /* iSoBlocksUITests */,
+>>>>>>> parent of 964a463... Week 7: Added AppIcon with Sketch & Corrected for Differing Resolutions
 				96492F261D318CE6004F887C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -221,10 +231,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		96492F271D318CE6004F887C /* bloctorials */ = {
 			isa = PBXGroup;
 			children = (
 				9670F4051D555809004D04D6 /* BridgingHeader.h */,
+=======
+		96492F271D318CE6004F887C /* iSoBlocks */ = {
+			isa = PBXGroup;
+			children = (
+>>>>>>> parent of 964a463... Week 7: Added AppIcon with Sketch & Corrected for Differing Resolutions
 				968ABF0E1D4FF3FB00776165 /* GameManager */,
 				96044AB61D3589B90097D096 /* SKTUtils */,
 				96492F281D318CE6004F887C /* AppDelegate.swift */,
@@ -245,7 +261,11 @@
 				96492F351D318CE6004F887C /* LaunchScreen.storyboard */,
 				9689144B1D481C0B00CD2AD6 /* SFX */,
 			);
+<<<<<<< HEAD
 			path = bloctorials;
+=======
+			path = iSoBlocks;
+>>>>>>> parent of 964a463... Week 7: Added AppIcon with Sketch & Corrected for Differing Resolutions
 			sourceTree = "<group>";
 		};
 		96492F401D318CE6004F887C /* bloctorialsTests */ = {
@@ -370,7 +390,7 @@
 				TargetAttributes = {
 					96492F241D318CE6004F887C = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = U7U4U44M6F;
+						DevelopmentTeam = BZC5V9PB4N;
 					};
 					96492F3C1D318CE6004F887C = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -573,8 +593,11 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+<<<<<<< HEAD
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+=======
+>>>>>>> parent of 964a463... Week 7: Added AppIcon with Sketch & Corrected for Differing Resolutions
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -617,8 +640,11 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited), @executable_path/Frameworks, @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+<<<<<<< HEAD
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+=======
+>>>>>>> parent of 964a463... Week 7: Added AppIcon with Sketch & Corrected for Differing Resolutions
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -636,12 +662,20 @@
 					"$(PROJECT_DIR)/bloctorials/",
 					"$(PROJECT_DIR)/bloctorials",
 				);
+<<<<<<< HEAD
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/bloctorials/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SsosSoft.bloctorials;
 				PRODUCT_NAME = bloctorials;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+=======
+				INFOPLIST_FILE = iSoBlocks/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Ssos.Bloctorials;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+>>>>>>> parent of 964a463... Week 7: Added AppIcon with Sketch & Corrected for Differing Resolutions
 			};
 			name = Debug;
 		};
@@ -657,12 +691,20 @@
 					"$(PROJECT_DIR)/bloctorials/",
 					"$(PROJECT_DIR)/bloctorials",
 				);
+<<<<<<< HEAD
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/bloctorials/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SsosSoft.bloctorials;
 				PRODUCT_NAME = bloctorials;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+=======
+				INFOPLIST_FILE = iSoBlocks/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Ssos.Bloctorials;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+>>>>>>> parent of 964a463... Week 7: Added AppIcon with Sketch & Corrected for Differing Resolutions
 			};
 			name = Release;
 		};
