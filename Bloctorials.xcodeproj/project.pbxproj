@@ -55,7 +55,6 @@
 		96CF7FE71D4C0F300096DEF3 /* click2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96CF7FE41D4C0F300096DEF3 /* click2.wav */; };
 		96CF7FE81D4C0F300096DEF3 /* click3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96CF7FE51D4C0F300096DEF3 /* click3.wav */; };
 		96CF7FEA1D4C10BC0096DEF3 /* whoosh.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96CF7FE91D4C10BC0096DEF3 /* whoosh.wav */; };
-		96E30A031D55F3C0005E8535 /* iSoBlocksTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 96492F3D1D318CE6004F887C /* iSoBlocksTests.xctest */; };
 		96F3A4491D3E9EB900DD41D8 /* Snippets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F3A4481D3E9EB900DD41D8 /* Snippets.swift */; };
 /* End PBXBuildFile section */
 
@@ -389,7 +388,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
-				ORGANIZATIONNAME = SsosSoft;
+				ORGANIZATIONNAME = "Ssos Games";
 				TargetAttributes = {
 					96492F241D318CE6004F887C = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -439,7 +438,6 @@
 				96CF7FE21D4C0F070096DEF3 /* switch38.wav in Resources */,
 				96492F341D318CE6004F887C /* Assets.xcassets in Resources */,
 				96518AFD1D49831900BEB2FA /* clearDot.wav in Resources */,
-				96E30A031D55F3C0005E8535 /* iSoBlocksTests.xctest in Resources */,
 				96492F321D318CE6004F887C /* Main.storyboard in Resources */,
 				968914501D4828FB00CD2AD6 /* clearRow.caf in Resources */,
 				96CF7FE61D4C0F300096DEF3 /* click1.wav in Resources */,
@@ -641,7 +639,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -661,7 +658,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -682,9 +678,9 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = BloctorialsTests/Info.plist;
+				INFOPLIST_FILE = iSoBlocksTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.SsosSoft.Bloctorials;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Ssos.iSoBlocksTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iSoBlocks.app/iSoBlocks";
 			};
@@ -694,9 +690,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = BloctorialsTests/Info.plist;
+				INFOPLIST_FILE = iSoBlocksTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.SsosSoft.Bloctorials;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Ssos.iSoBlocksTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iSoBlocks.app/iSoBlocks";
 			};
@@ -706,22 +702,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = BloctorialsUITests/Info.plist;
+				INFOPLIST_FILE = iSoBlocksUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.SsosSoft.BloctorialsUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Ssos.iSoBlocksUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = Bloctorials;
+				TEST_TARGET_NAME = iSoBlocks;
 			};
 			name = Debug;
 		};
 		96492F591D318CE6004F887C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = BloctorialsUITests/Info.plist;
+				INFOPLIST_FILE = iSoBlocksUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.SsosSoft.BloctorialsUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Ssos.iSoBlocksUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = Bloctorials;
+				TEST_TARGET_NAME = iSoBlocks;
 			};
 			name = Release;
 		};
