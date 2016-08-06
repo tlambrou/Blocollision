@@ -645,7 +645,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/iSoBlocks",
 				);
-				INFOPLIST_FILE = iSoBlocks/Info.plist;
+				INFOPLIST_FILE = Bloctorials/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SsosSoft.Bloctorials;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -664,7 +664,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/iSoBlocks",
 				);
-				INFOPLIST_FILE = iSoBlocks/Info.plist;
+				INFOPLIST_FILE = Bloctorials/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SsosSoft.Bloctorials;
 				PRODUCT_NAME = "$(TARGET_NAME)";
