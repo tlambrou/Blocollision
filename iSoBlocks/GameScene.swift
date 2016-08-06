@@ -124,7 +124,7 @@ class GameScene: SKScene {
         // Evaluate & Set High Score
         if score > gameManager.highScore {
             gameManager.highScore = score
-            myLabel.text = String("Highscore: \(gameManager.highScore)")
+            myLabel.text = String(gameManager.highScore)
         }
         
         // Check for Game Over State
@@ -247,7 +247,7 @@ class GameScene: SKScene {
             let skView = self.view as SKView!
             
             /* Load Game scene */
-            let scene = GameScene(fileNamed:"GameScene") as GameScene!
+            let scene = Title(fileNamed:"Title") as Title!
             
             /* Ensure correct aspect mode */
             scene.scaleMode = .AspectFill
@@ -255,7 +255,7 @@ class GameScene: SKScene {
             /* Restart GameScene */
             skView.presentScene(scene)
             
-            self.gameState = .playing
+            self.gameState = .ready
             
             // Reset the score
             multiplierScore = 0
