@@ -9,7 +9,7 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iSoBlocks/GameScene.swift"
+            filePath = "GameScene.swift"
             timestampString = "492126163.109119"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"

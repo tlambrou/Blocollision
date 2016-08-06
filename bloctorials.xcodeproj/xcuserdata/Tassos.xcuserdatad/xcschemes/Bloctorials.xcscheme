@@ -28,26 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "96492F3C1D318CE6004F887C"
-               BuildableName = "bloctorials.temp_caseinsensitive_rename.temp_caseinsensitive_renames.xctest"
-               BlueprintName = "bloctorialsTests"
-               ReferencedContainer = "container:bloctorials.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "96492F471D318CE6004F887C"
-               BuildableName = "bloctorials.temp_caseinsensitive_rename.temp_caseinsensitive_renames.xctest"
-               BlueprintName = "bloctorialsUITests"
-               ReferencedContainer = "container:bloctorials.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
