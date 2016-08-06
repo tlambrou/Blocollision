@@ -94,6 +94,7 @@
 		96044AD11D35C53F0097D096 /* StageV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StageV.swift; sourceTree = "<group>"; };
 		96044AD31D35EBDD0097D096 /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
 		96044AD41D35EBDD0097D096 /* MSReferenceNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSReferenceNode.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD:iSoBlocks.xcodeproj/project.pbxproj
 <<<<<<< HEAD:Bloctorials.xcodeproj/project.pbxproj
 		9634EEEF1D55D75D0015E053 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9640E26F1D514DF000719E7F /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Title.swift; sourceTree = "<group>"; };
@@ -106,6 +107,8 @@
 		96492F251D318CE6004F887C /* bloctorials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bloctorials.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96492F281D318CE6004F887C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 =======
+=======
+>>>>>>> parent of d24e168... Week 7: Updated Graphics & Layout:iSoBlocks.xcodeproj/project.pbxproj
 		9640E26F1D514DF000719E7F /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		96492F251D318CE6004F887C /* iSoBlocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSoBlocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96492F281D318CE6004F887C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -152,12 +155,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD:iSoBlocks.xcodeproj/project.pbxproj
 <<<<<<< HEAD:Bloctorials.xcodeproj/project.pbxproj
 				9634EEF61D55DE4E0015E053 /* StoreKit.framework in Frameworks */,
 				9634EEF51D55DE430015E053 /* Foundation.framework in Frameworks */,
 				9634EEF41D55DE380015E053 /* CoreGraphics.framework in Frameworks */,
 				9634EEF31D55DE2E0015E053 /* UIKit.framework in Frameworks */,
 				9634EEF21D55DE230015E053 /* CoreMotion.framework in Frameworks */,
+=======
+>>>>>>> parent of d24e168... Week 7: Updated Graphics & Layout:iSoBlocks.xcodeproj/project.pbxproj
 =======
 >>>>>>> parent of d24e168... Week 7: Updated Graphics & Layout:iSoBlocks.xcodeproj/project.pbxproj
 			);
@@ -397,8 +403,12 @@
 					};
 				};
 			};
+<<<<<<< HEAD:iSoBlocks.xcodeproj/project.pbxproj
 <<<<<<< HEAD:Bloctorials.xcodeproj/project.pbxproj
 			buildConfigurationList = 96492F201D318CE6004F887C /* Build configuration list for PBXProject "bloctorials" */;
+=======
+			buildConfigurationList = 96492F201D318CE6004F887C /* Build configuration list for PBXProject "iSoBlocks" */;
+>>>>>>> parent of d24e168... Week 7: Updated Graphics & Layout:iSoBlocks.xcodeproj/project.pbxproj
 =======
 			buildConfigurationList = 96492F201D318CE6004F887C /* Build configuration list for PBXProject "iSoBlocks" */;
 >>>>>>> parent of d24e168... Week 7: Updated Graphics & Layout:iSoBlocks.xcodeproj/project.pbxproj
@@ -656,6 +666,7 @@
 				CLANG_OPTIMIZATION_PROFILE_FILE = "$(SRCROOT)/bloctorials/OptimizationProfiles/$(PROJECT_NAME).profdata";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+<<<<<<< HEAD:iSoBlocks.xcodeproj/project.pbxproj
 <<<<<<< HEAD:Bloctorials.xcodeproj/project.pbxproj
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -670,6 +681,8 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 =======
+=======
+>>>>>>> parent of d24e168... Week 7: Updated Graphics & Layout:iSoBlocks.xcodeproj/project.pbxproj
 =======
 >>>>>>> parent of d24e168... Week 7: Updated Graphics & Layout:iSoBlocks.xcodeproj/project.pbxproj
 				INFOPLIST_FILE = iSoBlocks/Info.plist;
@@ -688,6 +701,7 @@
 				CLANG_OPTIMIZATION_PROFILE_FILE = "$(SRCROOT)/bloctorials/OptimizationProfiles/$(PROJECT_NAME).profdata";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+<<<<<<< HEAD:iSoBlocks.xcodeproj/project.pbxproj
 <<<<<<< HEAD:Bloctorials.xcodeproj/project.pbxproj
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -702,6 +716,8 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 =======
+=======
+>>>>>>> parent of d24e168... Week 7: Updated Graphics & Layout:iSoBlocks.xcodeproj/project.pbxproj
 =======
 >>>>>>> parent of d24e168... Week 7: Updated Graphics & Layout:iSoBlocks.xcodeproj/project.pbxproj
 				INFOPLIST_FILE = iSoBlocks/Info.plist;
@@ -764,8 +780,12 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+<<<<<<< HEAD:iSoBlocks.xcodeproj/project.pbxproj
 <<<<<<< HEAD:Bloctorials.xcodeproj/project.pbxproj
 		96492F201D318CE6004F887C /* Build configuration list for PBXProject "bloctorials" */ = {
+=======
+		96492F201D318CE6004F887C /* Build configuration list for PBXProject "iSoBlocks" */ = {
+>>>>>>> parent of d24e168... Week 7: Updated Graphics & Layout:iSoBlocks.xcodeproj/project.pbxproj
 =======
 		96492F201D318CE6004F887C /* Build configuration list for PBXProject "iSoBlocks" */ = {
 >>>>>>> parent of d24e168... Week 7: Updated Graphics & Layout:iSoBlocks.xcodeproj/project.pbxproj
