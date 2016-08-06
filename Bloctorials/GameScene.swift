@@ -109,7 +109,15 @@ class GameScene: SKScene {
     var gameOver: MSButtonNode!
     var swipeInstructions: SKSpriteNode!
     
-    func afterSwipe() {
+    
+    func swipedUp(sender:UISwipeGestureRecognizer) {
+        swipe(.up)
+        
+        // Sound effect
+        
+        /* Play SFX */
+        let scoreSFX = SKAction.playSoundFileNamed("switch33", waitForCompletion: true)
+        self.runAction(scoreSFX)
         
         // Check for complete rows
         rowsCheck()
@@ -129,20 +137,6 @@ class GameScene: SKScene {
         
         // Check for Game Over State
         gameOverCheck()
-
-    }
-    
-    func swipedUp(sender:UISwipeGestureRecognizer) {
-        swipe(.up)
-        
-        // Sound effect
-        
-        /* Play SFX */
-        let scoreSFX = SKAction.playSoundFileNamed("switch33", waitForCompletion: true)
-        self.runAction(scoreSFX)
-        
-        // Call After Swipe Routine
-        afterSwipe()
         
     }
     
@@ -153,8 +147,24 @@ class GameScene: SKScene {
         let scoreSFX = SKAction.playSoundFileNamed("switch34", waitForCompletion: true)
         self.runAction(scoreSFX)
         
-        // Call After Swipe Routine
-        afterSwipe()
+        // Check for complete rows
+        rowsCheck()
+        
+        // Check for complete columns
+        columnsCheck()
+        
+        // Calculate the grid score (sumScore)
+        gridScore()
+        
+        // Evaluate & Set High Score
+        if score > gameManager.highScore {
+            gameManager.highScore = score
+            myLabel.text = String("Highscore: \(gameManager.highScore)")
+        }
+        
+        // Check for Game Over State
+        gameOverCheck()
+        
     }
     
     func swipedLeft(sender:UISwipeGestureRecognizer) {
@@ -164,8 +174,23 @@ class GameScene: SKScene {
         let scoreSFX = SKAction.playSoundFileNamed("switch33", waitForCompletion: true)
         self.runAction(scoreSFX)
         
-        // Call After Swipe Routine
-        afterSwipe()
+        // Check for complete rows
+        rowsCheck()
+        
+        // Check for complete columns
+        columnsCheck()
+        
+        // Calculate the grid score (sumScore)
+        gridScore()
+        
+        // Evaluate & Set High Score
+        if score > gameManager.highScore {
+            gameManager.highScore = score
+            myLabel.text = String("Highscore: \(gameManager.highScore)")
+        }
+        
+        // Check for Game Over State
+        gameOverCheck()
         
     }
     
@@ -176,8 +201,23 @@ class GameScene: SKScene {
         let scoreSFX = SKAction.playSoundFileNamed("switch34", waitForCompletion: true)
         self.runAction(scoreSFX)
         
-        // Call After Swipe Routine
-        afterSwipe()
+        // Check for complete rows
+        rowsCheck()
+        
+        // Check for complete columns
+        columnsCheck()
+        
+        // Calculate the grid score (sumScore)
+        gridScore()
+        
+        // Evaluate & Set High Score
+        if score > gameManager.highScore {
+            gameManager.highScore = score
+            myLabel.text = String("Highscore: \(gameManager.highScore)")
+        }
+        
+        // Check for Game Over State
+        gameOverCheck()
         
     }
     
@@ -186,13 +226,13 @@ class GameScene: SKScene {
         
         
         // Setup for High Score & Retrieval
-        myLabel = SKLabelNode(fontNamed:"ChalkboardSE-Bold")
-        myLabel.text = String(gameManager.highScore)
-        myLabel.fontSize = 120
-        myLabel.fontColor = UIColor(netHex: 0xC6E3E9)
+        myLabel = SKLabelNode(fontNamed:"Helvetica Neue")
+        myLabel.text = "Highscore: \(gameManager.highScore)"
+        myLabel.fontSize = 100
+        myLabel.fontColor = UIColor(netHex: 0xA8C2C0)
         myLabel.zPosition = 101
         myLabel.horizontalAlignmentMode = .Left
-        myLabel.position = CGPoint(x:512, y:1630)
+        myLabel.position = CGPoint(x:20, y:1660)
         
         self.addChild(myLabel)
 
