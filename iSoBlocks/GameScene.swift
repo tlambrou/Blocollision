@@ -619,8 +619,8 @@ class GameScene: SKScene {
         let inactive: BlockType = .inactive
         let block1State = block1.state
         let block2State = block2.state
-        let block1Stack = block1.stack
-        let block2Stack = block2.stack
+//        let block1Stack = block1.stack
+//        let block2Stack = block2.stack
         
         //red vs blue...
         if (block1State == red) && (block2State == blue) {
@@ -743,20 +743,20 @@ class GameScene: SKScene {
         let loseBlock = result.loser
 //        let tie = result.tie
         
-        var winAssetString = ""
+//        var winAssetString = ""
         var loseAssetString = ""
         
-        switch winBlock.state {
-        case .red:
-            winAssetString = "RoundRectCoral"
-        case .blue:
-            winAssetString = "RoundRectTeal"
-        case .green:
-            winAssetString = "RoundRectGreen"
-        case .inactive:
-            winAssetString = "RoundRect"
-            
-        }
+//        switch winBlock.state {
+//        case .red:
+//            winAssetString = "RoundRectCoral"
+//        case .blue:
+//            winAssetString = "RoundRectTeal"
+//        case .green:
+//            winAssetString = "RoundRectGreen"
+//        case .inactive:
+//            winAssetString = "RoundRect"
+//            
+//        }
         
         switch loseBlock.state {
         case .red:
@@ -1060,21 +1060,21 @@ class GameScene: SKScene {
     func animateBlockClear (dieBlock: Block) {
         
         // Create variables & particulars
-        var assetString = ""
+//        var assetString = ""
+//        
+//        switch dieBlock.state {
+//        case .red:
+//            assetString = "RoundRectCoral"
+//        case .blue:
+//            assetString = "RoundRectTeal"
+//        case .green:
+//            assetString = "RoundRectGreen"
+//        case .inactive:
+//            assetString = "RoundRect"
+//            
+//        }
         
-        switch dieBlock.state {
-        case .red:
-            assetString = "RoundRectCoral"
-        case .blue:
-            assetString = "RoundRectTeal"
-        case .green:
-            assetString = "RoundRectGreen"
-        case .inactive:
-            assetString = "RoundRect"
-            
-        }
-        
-        var dieNode = Block()
+        let dieNode = Block()
         
         // Set the dieNode equal to the original block states
         dieNode.stack = dieBlock.stack
