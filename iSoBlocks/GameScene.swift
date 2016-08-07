@@ -15,90 +15,55 @@ enum swipeType {
 }
 
 enum GameState {
-    case ready, playing, paused, gameover
+    case ready, playing, paused, gameover, won
 }
 
-
+var gameState: GameState = .ready {
+didSet {
+    switch gameState {
+    case .ready:
+        print("Ready!")
+        break
+    case .playing:
+        print("Playing!")
+        break
+    case .paused:
+        print("Paused!")
+        break
+    case .gameover:
+        print("Game Over!")
+        
+        break
+    case .won:
+        print("YOU WON THE GAME!")
+        break
+    }
+}
+}
 
 struct Outcome {
     var winnner:Block
     var loser:Block
-    //Int that is 0 if tied, 1 if block 1 wins, and 2 if block 2 wins
+    
+    // Create Int called "tie" that is 0 if tied, 1 if block 1 wins, and 2 if block 2 wins
     var tie: Int
 }
 
-struct structBlock {
-    
-    var block: Block
-    
-}
-
-var sumScore: Int = 0 {
-didSet {
-    score = multiplierScore + sumScore
-}
-}
-var multiplierScore: Int = 0 {
-didSet {
-    score = multiplierScore + sumScore
-}
-}
-var scoreLabel: SKLabelNode!
-var score: Int = multiplierScore + sumScore {
-didSet {
-    // Upadate the score's label
-    scoreLabel.text = String(score)
-    
-    // Set the difficulty equal to 1
-    if (score > 100) && (score < 200){
-        difficulty = 1
-    }
-} }
 
 
-var idle: Bool = false
-var instShown: Bool = false
-var firstInstShown: Bool = false
 
-
-var timeElapsed: Int = 0 {
-didSet {
-    if timeElapsed > 180 && firstInstShown == false {
-        idle = true
-    } else if timeElapsed > 600 && firstInstShown == true {
-        idle = true
-    } else if timeElapsed < 180 {
-        idle = false
-    }
-}
-}
-
-var difficulty: Int = 0
 
 class GameScene: SKScene {
     
-    var gameState: GameState = .playing {
+    var gameTracker = GameTracker.init() {
         didSet {
-            switch gameState {
-            case .ready:
-                print("Ready!")
-                break
-            case .playing:
-                print("Playing!")
-                break
-            case .paused:
-                print("Paused!")
-                break
-            case .gameover:
-                print("Game Over!")
-                gameOver.hidden = false
-                break
-            }
+            scoreLabel.text = String(gameTracker.score)
         }
     }
     
     let gameManager = GameManager.sharedInstance
-    var myLabel: SKLabelNode!
+    var hiScoreLabel: SKLabelNode!
+    var scoreLabel: SKLabelNode!
 
     var gridNode: Grid!
     var topStageNode: StageH!
@@ -107,9 +72,36 @@ class GameScene: SKScene {
     var rightStageNode: StageV!
     var restartButton: MSButtonNode!
     var gameOver: MSButtonNode!
+    
     var swipeInstructions: SKSpriteNode!
     
     func afterSwipe() {
+        
+        // Create random swipe sound effect if the game is in play
+        if gameState == .playing {
+            
+            // Create a random selector
+            let ranDumb: Int = Int.random(2)
+            print(ranDumb)
+            
+            switch ranDumb {
+                
+            case 0:
+                
+                /* Play SFX */
+                let scoreSFX = SKAction.playSoundFileNamed("switch33", waitForCompletion: true)
+                self.runAction(scoreSFX)
+                
+            case 1 :
+                
+                /* Play SFX */
+                let scoreSFX = SKAction.playSoundFileNamed("switch34", waitForCompletion: true)
+                self.runAction(scoreSFX)
+                
+            default:
+                print("Didn't play any swipe SFX for some reason.  Check afterSwipe()")
+            }
+        }
         
         // Check for complete rows
         rowsCheck()
@@ -122,9 +114,9 @@ class GameScene: SKScene {
         
         
         // Evaluate & Set High Score
-        if score > gameManager.highScore {
-            gameManager.highScore = score
-            myLabel.text = String(gameManager.highScore)
+        if gameTracker.score > gameManager.highScore {
+            gameManager.highScore = gameTracker.score
+            hiScoreLabel.text = String(gameManager.highScore)
         }
         
         // Check for Game Over State
@@ -133,13 +125,10 @@ class GameScene: SKScene {
     }
     
     func swipedUp(sender:UISwipeGestureRecognizer) {
-        swipe(.up)
         
-        // Sound effect
-        
-        /* Play SFX */
-        let scoreSFX = SKAction.playSoundFileNamed("switch33", waitForCompletion: true)
-        self.runAction(scoreSFX)
+        if gameState == .playing {
+            swipe(.up)
+        }
         
         // Call After Swipe Routine
         afterSwipe()
@@ -147,22 +136,18 @@ class GameScene: SKScene {
     }
     
     func swipedDown(sender:UISwipeGestureRecognizer) {
-        swipe(.down)
-        
-        /* Play SFX */
-        let scoreSFX = SKAction.playSoundFileNamed("switch34", waitForCompletion: true)
-        self.runAction(scoreSFX)
+        if gameState == .playing {
+            swipe(.down)
+        }
         
         // Call After Swipe Routine
         afterSwipe()
     }
     
     func swipedLeft(sender:UISwipeGestureRecognizer) {
-        swipe(.left)
-        
-        /* Play SFX */
-        let scoreSFX = SKAction.playSoundFileNamed("switch33", waitForCompletion: true)
-        self.runAction(scoreSFX)
+        if gameState == .playing {
+            swipe(.left)
+        }
         
         // Call After Swipe Routine
         afterSwipe()
@@ -170,11 +155,9 @@ class GameScene: SKScene {
     }
     
     func swipedRight(sender:UISwipeGestureRecognizer) {
-        swipe(.right)
-        
-        /* Play SFX */
-        let scoreSFX = SKAction.playSoundFileNamed("switch34", waitForCompletion: true)
-        self.runAction(scoreSFX)
+        if gameState == .playing {
+            swipe(.right)
+        }
         
         // Call After Swipe Routine
         afterSwipe()
@@ -184,31 +167,34 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-        
         // Setup for High Score & Retrieval
-        myLabel = SKLabelNode(fontNamed:"ChalkboardSE-Bold")
-        myLabel.text = String(gameManager.highScore)
-        myLabel.fontSize = 120
-        myLabel.fontColor = UIColor(netHex: 0xC6E3E9)
-        myLabel.zPosition = 101
-        myLabel.horizontalAlignmentMode = .Left
-        myLabel.position = CGPoint(x:512, y:1630)
+        hiScoreLabel = SKLabelNode(fontNamed:"ChalkboardSE-Bold")
+        hiScoreLabel.text = String(gameManager.highScore)
+        hiScoreLabel.fontSize = 120
+        hiScoreLabel.fontColor = UIColor(netHex: 0xFFFFFF)
+        hiScoreLabel.zPosition = 101
+        hiScoreLabel.horizontalAlignmentMode = .Left
+        hiScoreLabel.position = CGPoint(x:512, y:1630)
         
-        self.addChild(myLabel)
+        
+        self.addChild(hiScoreLabel)
 
 //        instructionLabel = childNodeWithName("instructionLabel") as! SKLabelNode
 //        instruct1 = childNodeWithName("instruct1") as! SKLabelNode
 //        instruct2 = childNodeWithName("instruct2") as! SKLabelNode
 //        instruct3 = childNodeWithName("instruct3") as! SKLabelNode
+        
         gridNode = childNodeWithName("gridNode") as! Grid
         topStageNode = childNodeWithName("topStage") as! StageH
         bottomStageNode = childNodeWithName("bottomStage") as! StageH
         leftStageNode = childNodeWithName("leftStage") as! StageV
         rightStageNode = childNodeWithName("rightStage") as! StageV
         /* Set UI connections */
-        restartButton = self.childNodeWithName("restartButton") as! MSButtonNode
+        
         gameOver = self.childNodeWithName("gameOver") as! MSButtonNode
         gameOver.hidden = true
+
+        restartButton = self.childNodeWithName("restartButton") as! MSButtonNode
         swipeInstructions = childNodeWithName("swipeInstructions") as! SKSpriteNode
         scoreLabel = childNodeWithName("scoreLabel") as! SKLabelNode
         
@@ -233,11 +219,12 @@ class GameScene: SKScene {
             /* Restart GameScene */
             skView.presentScene(scene)
             
-            self.gameState = .playing
+            gameState = .playing
             
             // Reset the score
-            multiplierScore = 0
-            sumScore = 0
+            self.gameTracker.multiplierScore = 0
+            self.gameTracker.sumScore = 0
+            self.gameTracker.score = 0
             
         }
         
@@ -255,11 +242,12 @@ class GameScene: SKScene {
             /* Restart GameScene */
             skView.presentScene(scene)
             
-            self.gameState = .ready
+            gameState = .ready
             
             // Reset the score
-            multiplierScore = 0
-            sumScore = 0
+            self.gameTracker.multiplierScore = 0
+            self.gameTracker.sumScore = 0
+            self.gameTracker.score = 0
             
         }
 
@@ -289,32 +277,30 @@ class GameScene: SKScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         
-        timeElapsed = 0
+        gameTracker.timeElapsedSinceIdle  = 0
         
     }
     
     override func update(currentTime: CFTimeInterval) {
+        
+        
         time += 1
         
         /* Called before each frame is rendered */
-        timeElapsed += 1
-        //        print("timeElapsed: \(timeElapsed)")
-        //        print("idle: \(idle)")
-        //        print("instShown: \(instShown)")
-        //        print("firstInstShown: \(firstInstShown)")
-        //        print("alpha: \(swipeInstructions.alpha)")
-        if instShown == false && idle == true {
-            instShown = true
+        gameTracker.timeElapsedSinceIdle += 1
+        
+        //MARK: Idle variable actions
+        if gameTracker.instShown == false && gameTracker.idle == true {
+            gameTracker.instShown = true
             
             let fadeUp = SKAction.fadeAlphaTo(1.0, duration: NSTimeInterval(1.0))
             let fadeDown = SKAction.fadeAlphaTo(0.55, duration: NSTimeInterval(1.0))
-            
             let sequence = SKAction.repeatActionForever(SKAction.sequence([fadeUp, fadeDown]))
             swipeInstructions.runAction(sequence)
-            firstInstShown = true
+            gameTracker.firstInstShown = true
             
-        } else if instShown == true && idle == false {
-            instShown = false
+        } else if gameTracker.instShown == true && gameTracker.idle == false {
+            gameTracker.instShown = false
             let fadeDown = SKAction.fadeAlphaTo(0, duration: NSTimeInterval(0.5))
             swipeInstructions.removeAllActions()
             swipeInstructions.runAction(fadeDown)
@@ -334,7 +320,7 @@ class GameScene: SKScene {
         var yIncrement: Int = 1
         var stageRegen: Bool = false
         
-        timeElapsed = 0
+        gameTracker.timeElapsedSinceIdle = 0
         
         switch swipeDirection {
         case .up:
@@ -474,7 +460,6 @@ class GameScene: SKScene {
 //                bottomStageNode.stageRegen()
                 bottomStageNode.addBlockToEmptyStage()
                 
-                bottomStageNode.addBlockToEmptyStage()
                 
                 // Reset the stage regen bool to false
                 stageRegen = false
@@ -484,7 +469,6 @@ class GameScene: SKScene {
                 
                 // Add a new block to the stage
 //                topStageNode.stageRegen()
-                topStageNode.addBlockToEmptyStage()
                 topStageNode.addBlockToEmptyStage()
                 
                 // Reset the stage regen bool to false
@@ -589,7 +573,6 @@ class GameScene: SKScene {
                 
                 // Add a new block to the stage
                 rightStageNode.addBlockToEmptyStage()
-                rightStageNode.addBlockToEmptyStage()
 //                rightStageNode.stageRegen()
                 
                 // Reset the stage regen bool to false
@@ -600,7 +583,6 @@ class GameScene: SKScene {
                 
                 // Add a new block to the stage
 //                leftStageNode.stageRegen()
-                leftStageNode.addBlockToEmptyStage()
                 leftStageNode.addBlockToEmptyStage()
                 
                 // Reset the stage regen bool to false
@@ -765,6 +747,8 @@ class GameScene: SKScene {
             loseAssetString = "RoundRectTeal"
         case .green:
             loseAssetString = "RoundRectGreen"
+        case .yellow:
+            loseAssetString = "RoundRectYellow"
         case .inactive:
             loseAssetString = "RoundRect"
             
@@ -933,7 +917,7 @@ class GameScene: SKScene {
                     let comparison = [currentBlock.stack, nextBlock.stack]
                     
                     // Set the new block's stack equal to the highest block's stack minus 1
-                    currentBlock.stack = comparison.maxElement()! - 1
+                    currentBlock.stack = comparison.maxElement()! - (comparison.maxElement()! - comparison.minElement()!)
                     
                     /* Play SFX */
                     let combineSFX = SKAction.playSoundFileNamed("clearDot", waitForCompletion: true)
@@ -1007,6 +991,9 @@ class GameScene: SKScene {
                     
                     //Clear the color
                     clearColor(currentBlock.state)
+                    
+                    // Add one to the cleared aisles global variable
+                    gameTracker.clrdAisles += 1
                     
                     monkeyBeer = 0
                     break
@@ -1133,7 +1120,7 @@ class GameScene: SKScene {
                 if currentBlock.state == color {
 //                    
 //                    stackSum += currentBlock.stack
-                    clearScore += currentBlock.score
+                    clearScore += currentBlock.factScore
                     
                     // Animate the block's death
                     animateBlockClear(currentBlock)
@@ -1146,14 +1133,14 @@ class GameScene: SKScene {
 //        clearScore += stackSum
         
         // Add the clearScore to the player's score
-        multiplierScore += clearScore
+        gameTracker.multiplierScore += clearScore
         
        
     }
     
     func gridScore() {
         
-        sumScore = 0
+        gameTracker.sumScore = 0
         
         //Loop through the columns
         for gridX in 0..<columns {
@@ -1164,7 +1151,7 @@ class GameScene: SKScene {
                 let currentBlock = gridNode.gridArray[gridX][gridY]
                 
                 if currentBlock.stack < 4 {
-                    sumScore += currentBlock.stack
+                    gameTracker.sumScore += currentBlock.stack
                 }
                 
                 
@@ -1191,25 +1178,7 @@ class GameScene: SKScene {
         
     }
     
-    func gameOverCheck() {
-        
-        var possibleMoves: Int
-        
-        possibleMoves = swipeCheck(.up, grid: gridNode, topStage: topStageNode, bottomStage: bottomStageNode, leftStage: leftStageNode, rightStage: rightStageNode)
-        
-        possibleMoves += swipeCheck(.down, grid: gridNode, topStage: topStageNode, bottomStage: bottomStageNode, leftStage: leftStageNode, rightStage: rightStageNode)
-        
-        possibleMoves += swipeCheck(.left, grid: gridNode, topStage: topStageNode, bottomStage: bottomStageNode, leftStage: leftStageNode, rightStage: rightStageNode)
-        
-        possibleMoves += swipeCheck(.right, grid: gridNode, topStage: topStageNode, bottomStage: bottomStageNode, leftStage: leftStageNode, rightStage: rightStageNode)
-        
-        if possibleMoves <= 0 {
-            
-            //Game is gameover!
-            gameState = .gameover
-        }
-        
-    }
+    
     
     func swipeCheck(swipeDirection: swipeType, grid: Grid, topStage: StageH, bottomStage: StageH, leftStage: StageV, rightStage: StageV) -> Int {
         
@@ -1558,6 +1527,35 @@ class GameScene: SKScene {
         }
         
         return moveCount
+        
+    }
+    
+    func gameOverCheck() {
+        
+        var possibleMoves: Int
+        
+        possibleMoves = swipeCheck(.up, grid: gridNode, topStage: topStageNode, bottomStage: bottomStageNode, leftStage: leftStageNode, rightStage: rightStageNode)
+        
+        possibleMoves += swipeCheck(.down, grid: gridNode, topStage: topStageNode, bottomStage: bottomStageNode, leftStage: leftStageNode, rightStage: rightStageNode)
+        
+        possibleMoves += swipeCheck(.left, grid: gridNode, topStage: topStageNode, bottomStage: bottomStageNode, leftStage: leftStageNode, rightStage: rightStageNode)
+        
+        possibleMoves += swipeCheck(.right, grid: gridNode, topStage: topStageNode, bottomStage: bottomStageNode, leftStage: leftStageNode, rightStage: rightStageNode)
+        
+        if possibleMoves <= 0 {
+            
+            //Game is gameover!
+            gameState = .gameover
+            
+            gameOverAction()
+        }
+        
+    }
+    
+    func gameOverAction () {
+        
+        gameOver.hidden = false
+        
         
     }
     

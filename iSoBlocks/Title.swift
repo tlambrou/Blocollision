@@ -27,14 +27,18 @@ class Title: SKScene {
             /* Load Game scene */
             let scene = GameScene(fileNamed:"GameScene") as GameScene!
             
+            // Change Game State to Playing
+            gameState = .playing 
+            
             /* Ensure correct aspect mode */
             scene.scaleMode = .AspectFill
             
             /* Restart GameScene */
             skView.presentScene(scene)
+
             
             // Reset the score
-            multiplierScore = 0
+            gameTracker.multiplierScore = 0
             sumScore = 0
             
         }

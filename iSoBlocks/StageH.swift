@@ -79,7 +79,7 @@ class StageH: SKSpriteNode {
         
         while blockCreated == false {
             if block.state == .inactive {
-                let typeRand = Int.random(3)+1
+                let typeRand = Int.random(numBlocks)+1
                 switch typeRand {
                 //case 0?
                 case 1:
@@ -90,6 +90,9 @@ class StageH: SKSpriteNode {
                     block.stack = 5
                 case 3:
                     block.state = .green
+                    block.stack = 5
+                case 4:
+                    block.state = .yellow
                     block.stack = 5
                 default:
                     print("switch statement in addBlockToEmptyStage didn't work")
@@ -138,6 +141,9 @@ class StageH: SKSpriteNode {
                     block.stack = 5
                 case 3:
                     block.state = .green
+                    block.stack = 5
+                case 4:
+                    block.state = .yellow
                     block.stack = 5
                 default:
                     print("switch statement in addBlockToEmptyGrid didn't work")

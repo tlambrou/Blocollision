@@ -9,11 +9,11 @@
 import Foundation
 import SpriteKit
 
-enum BlockType { case inactive, red, blue, green }
+enum BlockType { case inactive, red, blue, green, yellow }
 
 class Block: SKSpriteNode {
     
-    var score: Int = 0
+    var factScore: Int = 0
     
     var stack: Int = 0 {
         didSet {
@@ -22,7 +22,7 @@ class Block: SKSpriteNode {
                 stack = 0
             }
             
-            score = factorial(stack)
+            factScore = factorial(stack)
             
             if stack >= 0 {
                 label.text = String(stack)
@@ -66,7 +66,12 @@ class Block: SKSpriteNode {
                 runAction(action)
                 hidden = false
                 break;
-                
+            case .yellow:
+                let action = SKAction.setTexture(SKTexture(imageNamed: "RoundRectYellow"))
+                runAction(action)
+                hidden = false
+                break;
+            
             }
         }
         

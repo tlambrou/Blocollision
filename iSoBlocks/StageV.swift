@@ -80,7 +80,7 @@ class StageV: SKSpriteNode {
         
         while blockCreated == false {
             if block.state == .inactive {
-                let typeRand = Int.random(3)+1
+                let typeRand = Int.random(numBlocks)+1
                 switch typeRand {
                 //case 0?
                 case 1:
@@ -115,7 +115,7 @@ class StageV: SKSpriteNode {
         
         while blockCreated == false {
             if block.state == .inactive {
-                let typeRand = Int.random(3)+1
+                let typeRand = Int.random(numBlocks)+1
                 switch typeRand {
                 //case 0?
                 case 1:
