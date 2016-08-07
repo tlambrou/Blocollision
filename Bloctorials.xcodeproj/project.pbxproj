@@ -100,7 +100,7 @@
 		9640E27F1D5554A100719E7F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		9640E2811D5554AD00719E7F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9640E2831D5554B400719E7F /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		96492F251D318CE6004F887C /* iSoBlocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSoBlocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		96492F251D318CE6004F887C /* Bloctorials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bloctorials.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96492F281D318CE6004F887C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96492F2A1D318CE6004F887C /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		96492F2C1D318CE6004F887C /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = GameScene.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -109,10 +109,10 @@
 		96492F331D318CE6004F887C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96492F361D318CE6004F887C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96492F381D318CE6004F887C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96492F3D1D318CE6004F887C /* iSoBlocksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iSoBlocksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		96492F3D1D318CE6004F887C /* BloctorialsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BloctorialsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96492F411D318CE6004F887C /* iSoBlocksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iSoBlocksTests.swift; sourceTree = "<group>"; };
 		96492F431D318CE6004F887C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96492F481D318CE6004F887C /* iSoBlocksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iSoBlocksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		96492F481D318CE6004F887C /* BloctorialsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BloctorialsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96492F4C1D318CE6004F887C /* iSoBlocksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iSoBlocksUITests.swift; sourceTree = "<group>"; };
 		96492F4E1D318CE6004F887C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96492F5A1D318E8F004F887C /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
@@ -212,9 +212,9 @@
 		96492F261D318CE6004F887C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				96492F251D318CE6004F887C /* iSoBlocks.app */,
-				96492F3D1D318CE6004F887C /* iSoBlocksTests.xctest */,
-				96492F481D318CE6004F887C /* iSoBlocksUITests.xctest */,
+				96492F251D318CE6004F887C /* Bloctorials.app */,
+				96492F3D1D318CE6004F887C /* BloctorialsTests.xctest */,
+				96492F481D318CE6004F887C /* BloctorialsUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -314,9 +314,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		96492F241D318CE6004F887C /* iSoBlocks */ = {
+		96492F241D318CE6004F887C /* Bloctorials */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 96492F511D318CE6004F887C /* Build configuration list for PBXNativeTarget "iSoBlocks" */;
+			buildConfigurationList = 96492F511D318CE6004F887C /* Build configuration list for PBXNativeTarget "Bloctorials" */;
 			buildPhases = (
 				96492F211D318CE6004F887C /* Sources */,
 				96492F221D318CE6004F887C /* Frameworks */,
@@ -326,14 +326,14 @@
 			);
 			dependencies = (
 			);
-			name = iSoBlocks;
+			name = Bloctorials;
 			productName = iSoBlocks;
-			productReference = 96492F251D318CE6004F887C /* iSoBlocks.app */;
+			productReference = 96492F251D318CE6004F887C /* Bloctorials.app */;
 			productType = "com.apple.product-type.application";
 		};
-		96492F3C1D318CE6004F887C /* iSoBlocksTests */ = {
+		96492F3C1D318CE6004F887C /* BloctorialsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 96492F541D318CE6004F887C /* Build configuration list for PBXNativeTarget "iSoBlocksTests" */;
+			buildConfigurationList = 96492F541D318CE6004F887C /* Build configuration list for PBXNativeTarget "BloctorialsTests" */;
 			buildPhases = (
 				96492F391D318CE6004F887C /* Sources */,
 				96492F3A1D318CE6004F887C /* Frameworks */,
@@ -344,14 +344,14 @@
 			dependencies = (
 				96492F3F1D318CE6004F887C /* PBXTargetDependency */,
 			);
-			name = iSoBlocksTests;
+			name = BloctorialsTests;
 			productName = iSoBlocksTests;
-			productReference = 96492F3D1D318CE6004F887C /* iSoBlocksTests.xctest */;
+			productReference = 96492F3D1D318CE6004F887C /* BloctorialsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		96492F471D318CE6004F887C /* iSoBlocksUITests */ = {
+		96492F471D318CE6004F887C /* BloctorialsUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 96492F571D318CE6004F887C /* Build configuration list for PBXNativeTarget "iSoBlocksUITests" */;
+			buildConfigurationList = 96492F571D318CE6004F887C /* Build configuration list for PBXNativeTarget "BloctorialsUITests" */;
 			buildPhases = (
 				96492F441D318CE6004F887C /* Sources */,
 				96492F451D318CE6004F887C /* Frameworks */,
@@ -362,9 +362,9 @@
 			dependencies = (
 				96492F4A1D318CE6004F887C /* PBXTargetDependency */,
 			);
-			name = iSoBlocksUITests;
+			name = BloctorialsUITests;
 			productName = iSoBlocksUITests;
-			productReference = 96492F481D318CE6004F887C /* iSoBlocksUITests.xctest */;
+			productReference = 96492F481D318CE6004F887C /* BloctorialsUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -404,9 +404,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				96492F241D318CE6004F887C /* iSoBlocks */,
-				96492F3C1D318CE6004F887C /* iSoBlocksTests */,
-				96492F471D318CE6004F887C /* iSoBlocksUITests */,
+				96492F241D318CE6004F887C /* Bloctorials */,
+				96492F3C1D318CE6004F887C /* BloctorialsTests */,
+				96492F471D318CE6004F887C /* BloctorialsUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -506,12 +506,12 @@
 /* Begin PBXTargetDependency section */
 		96492F3F1D318CE6004F887C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 96492F241D318CE6004F887C /* iSoBlocks */;
+			target = 96492F241D318CE6004F887C /* Bloctorials */;
 			targetProxy = 96492F3E1D318CE6004F887C /* PBXContainerItemProxy */;
 		};
 		96492F4A1D318CE6004F887C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 96492F241D318CE6004F887C /* iSoBlocks */;
+			target = 96492F241D318CE6004F887C /* Bloctorials */;
 			targetProxy = 96492F491D318CE6004F887C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -721,7 +721,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		96492F511D318CE6004F887C /* Build configuration list for PBXNativeTarget "iSoBlocks" */ = {
+		96492F511D318CE6004F887C /* Build configuration list for PBXNativeTarget "Bloctorials" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96492F521D318CE6004F887C /* Debug */,
@@ -730,7 +730,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		96492F541D318CE6004F887C /* Build configuration list for PBXNativeTarget "iSoBlocksTests" */ = {
+		96492F541D318CE6004F887C /* Build configuration list for PBXNativeTarget "BloctorialsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96492F551D318CE6004F887C /* Debug */,
@@ -739,7 +739,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		96492F571D318CE6004F887C /* Build configuration list for PBXNativeTarget "iSoBlocksUITests" */ = {
+		96492F571D318CE6004F887C /* Build configuration list for PBXNativeTarget "BloctorialsUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96492F581D318CE6004F887C /* Debug */,

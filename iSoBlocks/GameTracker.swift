@@ -89,22 +89,22 @@ struct GameTracker {
                 prevDiffScore = score
                 break
             case 2:
-                spawnRate = 1
-                numBlocks = 2
-                prevDiffScore = score
-                break
-            case 3:
                 spawnRate = 2
                 numBlocks = 2
                 prevDiffScore = score
                 break
-            case 4:
+            case 3:
                 spawnRate = 3
                 numBlocks = 2
                 prevDiffScore = score
                 break
-            case 5:
+            case 4:
                 spawnRate = 4
+                numBlocks = 2
+                prevDiffScore = score
+                break
+            case 5:
+                spawnRate = 5
                 numBlocks = 2
                 prevDiffScore = score
                 break

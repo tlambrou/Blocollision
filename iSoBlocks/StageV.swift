@@ -72,42 +72,64 @@ class StageV: SKSpriteNode {
         
     }
     
-    func addBlockToEmptyStage() {
+    func addBlockToEmptyStage() -> Bool {
         var blockCreated: Bool = false
+        var numActive: Int = 0
         var rand = Int.random(spaces)
         var block = stageArray[rand]
         var index = 0
         let factorialValue = factorialWeights()
         
-        while blockCreated == false {
-            if block.state == .inactive {
-                let typeRand = Int.random(numBlocks)+1
-                switch typeRand {
-                //case 0?
-                case 1:
-                    block.state = .red
-                    block.stack = factorialValue
-                case 2:
-                    block.state = .blue
-                    block.stack = factorialValue
-                case 3:
-                    block.state = .green
-                    block.stack = factorialValue
-                default:
-                    print("switch statement in addBlockToEmptyStage didn't work")
+        //Loop through the array
+        for j in 0..<spaces {
+            if stageArray[j].state != .inactive {
+                numActive += 1
+            }
+        }
+        
+        if numActive == spaces {
+            return false
+            
+        } else {
+            
+            while blockCreated == false {
+                if block.state == .inactive {
+                    let typeRand = Int.random(numBlocks)+1
+                    switch typeRand {
+                    //case 0?
+                    case 1:
+                        block.state = .red
+                        block.stack = factorialValue
+                    case 2:
+                        block.state = .blue
+                        block.stack = factorialValue
+                    case 3:
+                        block.state = .green
+                        block.stack = factorialValue
+                    case 4:
+                        block.state = .yellow
+                        block.stack = factorialValue
+                    default:
+                        print("switch statement in addBlockToEmptyStage didn't work")
+                    }
+                    
+                    blockCreated = true
+                } else if block.state != .inactive && index < spaces{
+                    rand = Int.random(spaces)
+                    block = stageArray[rand]
+                    index += 1
+                } else {
+                    
+                    break
                 }
                 
-                blockCreated = true
-            } else if block.state != .inactive && index < spaces{
-                rand = Int.random(spaces)
-                block = stageArray[rand]
-                index += 1
-            } else {
-                break
             }
             
+            return true
         }
+        
     }
+
 
     
     func randomActiveBlock(y: Int) {
