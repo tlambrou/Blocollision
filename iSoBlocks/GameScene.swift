@@ -58,6 +58,10 @@ class GameScene: SKScene {
     var gameTracker = GameTracker.init() {
         didSet {
             scoreLabel.text = String(gameTracker.score)
+            print("Difficulty: \(gameTracker.difficulty)")
+            print("Cleared Lines: \(gameTracker.clrdAisles)")
+            print("Scored: \(gameTracker.scored)")
+            
         }
     }
     
@@ -82,7 +86,6 @@ class GameScene: SKScene {
             
             // Create a random selector
             let ranDumb: Int = Int.random(2)
-            print(ranDumb)
             
             switch ranDumb {
                 
@@ -112,6 +115,7 @@ class GameScene: SKScene {
         // Calculate the grid score (sumScore)
         gridScore()
         
+        gameTracker.difficultyRules()
         
         // Evaluate & Set High Score
         if gameTracker.score > gameManager.highScore {
@@ -175,14 +179,8 @@ class GameScene: SKScene {
         hiScoreLabel.zPosition = 101
         hiScoreLabel.horizontalAlignmentMode = .Left
         hiScoreLabel.position = CGPoint(x:512, y:1630)
-        
-        
+    
         self.addChild(hiScoreLabel)
-
-//        instructionLabel = childNodeWithName("instructionLabel") as! SKLabelNode
-//        instruct1 = childNodeWithName("instruct1") as! SKLabelNode
-//        instruct2 = childNodeWithName("instruct2") as! SKLabelNode
-//        instruct3 = childNodeWithName("instruct3") as! SKLabelNode
         
         gridNode = childNodeWithName("gridNode") as! Grid
         topStageNode = childNodeWithName("topStage") as! StageH
@@ -200,10 +198,20 @@ class GameScene: SKScene {
         
         swipeInstructions.alpha = CGFloat(0)
         
-        topStageNode.addBlockToEmptyStage()
-        bottomStageNode.addBlockToEmptyStage()
-        leftStageNode.addBlockToEmptyStage()
-        rightStageNode.addBlockToEmptyStage()
+        let ranDumb: Int = Int.random(4)
+        
+        switch ranDumb {
+        case 0:
+            stageRegen(.up)
+        case 1:
+            stageRegen(.down)
+        case 2:
+            stageRegen(.left)
+        case 3:
+            stageRegen(.right)
+        default:
+            print("Stage spawn initializer switch didn't work")
+        }
         
         restartButton.selectedHandler = {
             
@@ -318,7 +326,7 @@ class GameScene: SKScene {
         var yEnd: Int
         var xIncrement: Int = 1
         var yIncrement: Int = 1
-        var stageRegen: Bool = false
+//        var stageRegen: Bool = false
         
         gameTracker.timeElapsedSinceIdle = 0
         
@@ -381,9 +389,9 @@ class GameScene: SKScene {
                         collisionRules(currentBlock, nextBlock: nextBlock)
                         
                         // Check to see if the Stage Regen needs to be reset
-                        if ((nextBlock.state != .inactive) && (currentBlock.state == nextBlock.state)) || ((nextBlock.state != .inactive) && (currentBlock.state == .inactive)) {
-                            stageRegen = true
-                        }
+//                        if ((nextBlock.state != .inactive) && (currentBlock.state == nextBlock.state)) || ((nextBlock.state != .inactive) && (currentBlock.state == .inactive)) {
+//                            stageRegen = true
+//                        }
                         
                         //MARK: Last Row Vertical
                         // Is it the last row?
@@ -400,9 +408,9 @@ class GameScene: SKScene {
                             let nextBlock = bottomStageNode.stageArray[gridX]
                             
                             // Check to see if the Stage Regen needs to be reset
-                            if ((nextBlock.state != .inactive) && (currentBlock.state == nextBlock.state)) || ((nextBlock.state != .inactive) && (currentBlock.state == .inactive)) {
-                                stageRegen = true
-                            }
+//                            if ((nextBlock.state != .inactive) && (currentBlock.state == nextBlock.state)) || ((nextBlock.state != .inactive) && (currentBlock.state == .inactive)) {
+//                                stageRegen = true
+//                            }
                             
                             // Perform the collision rules
                             collisionRules(currentBlock, nextBlock: nextBlock)
@@ -417,9 +425,9 @@ class GameScene: SKScene {
                             let nextBlock = topStageNode.stageArray[gridX]
                             
                             // Check to see if the Stage Regen needs to be reset
-                            if ((nextBlock.state != .inactive) && (currentBlock.state == nextBlock.state)) || ((nextBlock.state != .inactive) && (currentBlock.state == .inactive)) {
-                                stageRegen = true
-                            }
+//                            if ((nextBlock.state != .inactive) && (currentBlock.state == nextBlock.state)) || ((nextBlock.state != .inactive) && (currentBlock.state == .inactive)) {
+//                                stageRegen = true
+//                            }
                             
                             // Perform the collision rules
                             collisionRules(currentBlock, nextBlock: nextBlock)
@@ -435,45 +443,45 @@ class GameScene: SKScene {
                 }
                 
                 // Is the regen bool equal to true?
-                if stageRegen == true {
-                    
-                    // Is it swipe up?
-                    if swipeDirection == .up {
-                        
-                        // Clear the stage
-                        bottomStageNode.stageArray[gridX].state = .inactive
-                        
-                        // Is it swipe down?
-                    } else if swipeDirection == .down {
-                        
-                        // Clear the stage
-                        topStageNode.stageArray[gridX].state = .inactive
-                        
-                    }
-                }
+//                if stageRegen == true {
+//                    
+//                    // Is it swipe up?
+//                    if swipeDirection == .up {
+//                        
+//                        // Clear the stage
+//                        bottomStageNode.stageArray[gridX].state = .inactive
+//                        
+//                        // Is it swipe down?
+//                    } else if swipeDirection == .down {
+//                        
+//                        // Clear the stage
+//                        topStageNode.stageArray[gridX].state = .inactive
+//                        
+//                    }
+//                }
             }
             
             // Is the swipe up & stage regen is true?
-            if swipeDirection == .up && stageRegen == true {
-                
-                // Add a new block to the stage
-//                bottomStageNode.stageRegen()
-                bottomStageNode.addBlockToEmptyStage()
-                
-                
-                // Reset the stage regen bool to false
-                stageRegen = false
-                
-                //Is the swipe down & stage regen is true?
-            } else if swipeDirection == .down && stageRegen == true {
-                
-                // Add a new block to the stage
-//                topStageNode.stageRegen()
-                topStageNode.addBlockToEmptyStage()
-                
-                // Reset the stage regen bool to false
-                stageRegen = false
-            }
+//            if swipeDirection == .up && stageRegen == true {
+//                
+//                // Add a new block to the stage
+////                bottomStageNode.stageRegen()
+//                bottomStageNode.addBlockToEmptyStage()
+//                
+//                
+//                // Reset the stage regen bool to false
+//                stageRegen = false
+//                
+//                //Is the swipe down & stage regen is true?
+//            } else if swipeDirection == .down && stageRegen == true {
+//                
+//                // Add a new block to the stage
+////                topStageNode.stageRegen()
+//                topStageNode.addBlockToEmptyStage()
+//                
+//                // Reset the stage regen bool to false
+//                stageRegen = false
+//            }
         }
         
         
@@ -495,9 +503,9 @@ class GameScene: SKScene {
                         collisionRules(currentBlock, nextBlock: nextBlock)
                         
                         // Check to see if the Stage Regen needs to be reset
-                        if ((nextBlock.state != .inactive) && (currentBlock.state == nextBlock.state)) || ((nextBlock.state != .inactive) && (currentBlock.state == .inactive)) {
-                            stageRegen = true
-                        }
+//                        if ((nextBlock.state != .inactive) && (currentBlock.state == nextBlock.state)) || ((nextBlock.state != .inactive) && (currentBlock.state == .inactive)) {
+//                            stageRegen = true
+//                        }
                         
                         //MARK: Last Column Horizontal
                         // Is it the last column?
@@ -514,9 +522,9 @@ class GameScene: SKScene {
                             let nextBlock = rightStageNode.stageArray[gridY]
                             
                             // Check to see if the Stage Regen needs to be reset
-                            if ((nextBlock.state != .inactive) && (currentBlock.state == nextBlock.state)) || ((nextBlock.state != .inactive) && (currentBlock.state == .inactive)) {
-                                stageRegen = true
-                            }
+//                            if ((nextBlock.state != .inactive) && (currentBlock.state == nextBlock.state)) || ((nextBlock.state != .inactive) && (currentBlock.state == .inactive)) {
+//                                stageRegen = true
+//                            }
                             
                             //                            print(currentBlock.position)
                             
@@ -533,9 +541,9 @@ class GameScene: SKScene {
                             let nextBlock = leftStageNode.stageArray[gridY]
                             
                             // Check to see if the Stage Regen needs to be reset
-                            if ((nextBlock.state != .inactive) && (currentBlock.state == nextBlock.state)) || ((nextBlock.state != .inactive) && (currentBlock.state == .inactive)) {
-                                stageRegen = true
-                            }
+//                            if ((nextBlock.state != .inactive) && (currentBlock.state == nextBlock.state)) || ((nextBlock.state != .inactive) && (currentBlock.state == .inactive)) {
+//                                stageRegen = true
+//                            }
                             
                             // Perform the collision rules
                             collisionRules(currentBlock, nextBlock: nextBlock)
@@ -550,48 +558,139 @@ class GameScene: SKScene {
                 }
                 
                 // Is the regen bool equal to true?
-                if stageRegen == true {
-                    
-                    // Is it swipe left?
-                    if swipeDirection == .left {
-                        
-                        // Clear the stage
-                        rightStageNode.stageArray[gridY].state = .inactive
-                        
-                        // Is it swipe right?
-                    } else if swipeDirection == .right {
-                        
-                        // Clear the stage
-                        leftStageNode.stageArray[gridY].state = .inactive
-                        
-                    }
-                }
+//                if stageRegen == true {
+//                    
+//                    // Is it swipe left?
+//                    if swipeDirection == .left {
+//                        
+//                        // Clear the stage
+//                        rightStageNode.stageArray[gridY].state = .inactive
+//                        
+//                        // Is it swipe right?
+//                    } else if swipeDirection == .right {
+//                        
+//                        // Clear the stage
+//                        leftStageNode.stageArray[gridY].state = .inactive
+//                        
+//                    }
+//                }
             }
             
             // Is the swipe left & stage regen is true?
-            if swipeDirection == .left && stageRegen == true {
-                
-                // Add a new block to the stage
-                rightStageNode.addBlockToEmptyStage()
-//                rightStageNode.stageRegen()
-                
-                // Reset the stage regen bool to false
-                stageRegen = false
-                
-                //Is the swipe right & stage regen is true?
-            } else if swipeDirection == .right && stageRegen == true {
-                
-                // Add a new block to the stage
-//                leftStageNode.stageRegen()
-                leftStageNode.addBlockToEmptyStage()
-                
-                // Reset the stage regen bool to false
-                stageRegen = false
+//            if swipeDirection == .left && stageRegen == true {
+//                
+//                // Add a new block to the stage
+//                rightStageNode.addBlockToEmptyStage()
+////                rightStageNode.stageRegen()
+//                
+//                // Reset the stage regen bool to false
+//                stageRegen = false
+//                
+//                //Is the swipe right & stage regen is true?
+//            } else if swipeDirection == .right && stageRegen == true {
+//                
+//                // Add a new block to the stage
+////                leftStageNode.stageRegen()
+//                leftStageNode.addBlockToEmptyStage()
+//                
+//                // Reset the stage regen bool to false
+//                stageRegen = false
+//            }
+        }
+        
+        stageRegen(swipeDirection)
+        
+    }
+    
+    func stageRegen(swipeDirection: swipeType) {
+        
+        // Store the stage active count
+        let activeCount = stageActiveCount()
+        
+        // Evaluate if the activeCount is less than or equal to the spawn rate
+        if activeCount < spawnRate {
+            
+            // For each swipe
+            switch swipeDirection {
+            case .up:
+                for _ in 0..<spawnRate {
+                    bottomStageNode.addBlockToEmptyStage()
+                }
+            case .down:
+                for _ in 0..<spawnRate {
+                    topStageNode.addBlockToEmptyStage()
+                }
+            case .left:
+                for _ in 0..<spawnRate {
+                    rightStageNode.addBlockToEmptyStage()
+                }
+            case .right:
+                for _ in 0..<spawnRate {
+                    leftStageNode.addBlockToEmptyStage()
+                }
             }
         }
         
+    }
+    
+    func stageActiveCount() -> Int {
+    
+        var activeCount: Int = 0
         
+        // Loop through the stages
+        for i in 0..<4 {
+            switch i {
+            case 0:
+                // Loop through the columns
+                for j in 0..<columns {
+                    
+                    if topStageNode.stageArray[j].state != .inactive {
+                        
+                        // Increase the count
+                        activeCount += 1
+                    }
+                }
+                
+            case 1:
+                // Loop through the columns
+                for j in 0..<columns {
+                    
+                    if bottomStageNode.stageArray[j].state != .inactive {
+                        
+                        // Increase the count
+                        activeCount += 1
+                    }
+                }
+                
+            case 2:
+                // Loop through the columns
+                for j in 0..<columns {
+                    
+                    if leftStageNode.stageArray[j].state != .inactive {
+                        
+                        // Increase the count
+                        activeCount += 1
+                    }
+                }
+                
+            case 3:
+                // Loop through the columns
+                for j in 0..<columns {
+                    
+                    if rightStageNode.stageArray[j].state != .inactive {
+                        
+                        // Increase the count
+                        activeCount += 1
+                    }
+                }
+                
+            default:
+                print("First Switch in checkStages() didn't work")
+            
+            }
+        }
         
+        return activeCount
     }
     
     func collision(block1: Block, block2: Block) -> Outcome {
@@ -778,26 +877,17 @@ class GameScene: SKScene {
             loseNode.anchorPoint = loseBlock.anchorPoint
             loseNode.zPosition = 7
             winNode.zPosition = 8
-            //
-            //            print("winNode2 State: \(winBlock.state)")
-            //            print("winNode2 Position: \(winNode2.position)")
-            //            print("loseNode2 Position: \(loseNode2.position)")
+        
             
             loseNode.position = block2.position
-            
-//            print(loseNode.position)
             
             if block2.parent == topStageNode {
                 
                 loseNode.position.y = CGFloat(810)
-//                print("New LoseNode Position: \(loseNode.position)")
-//                print("WinNode Position: \(winNode.position)")
                 
             } else if block2.parent == rightStageNode {
                 
                 loseNode.position.x = CGFloat(810)
-                
-//                print(loseNode.position)
                 
             } else if block2.parent == leftStageNode {
                 
@@ -808,10 +898,6 @@ class GameScene: SKScene {
                 loseNode.position.y = CGFloat(-90)
                 
             }
-//            
-//            print(loseNode.position)
-//            
-            
             gridNode.addChild(loseNode)
             gridNode.addChild(winNode)
             
@@ -847,26 +933,16 @@ class GameScene: SKScene {
             loseNode.anchorPoint = loseBlock.anchorPoint
             loseNode.zPosition = 6
             winNode.zPosition = 8
-            //
-            //            print("winNode2 State: \(winBlock.state)")
-            //            print("winNode2 Position: \(winNode2.position)")
-            //            print("loseNode2 Position: \(loseNode2.position)")
             
             loseNode.position = block1.position
-            
-            //            print(loseNode.position)
             
             if block2.parent == topStageNode {
                 
                 winNode.position.y = CGFloat(810)
-                //                print("New LoseNode Position: \(loseNode.position)")
-                //                print("WinNode Position: \(winNode.position)")
                 
             } else if block2.parent == rightStageNode {
                 
                 winNode.position.x = CGFloat(810)
-                
-                //                print(loseNode.position)
                 
             } else if block2.parent == leftStageNode {
                 
@@ -877,9 +953,6 @@ class GameScene: SKScene {
                 winNode.position.y = CGFloat(-90)
                 
             }
-            //
-            //            print(loseNode.position)
-            //
             
             gridNode.addChild(loseNode)
             gridNode.addChild(winNode)
@@ -922,9 +995,7 @@ class GameScene: SKScene {
                     /* Play SFX */
                     let combineSFX = SKAction.playSoundFileNamed("clearDot", waitForCompletion: true)
                     self.runAction(combineSFX)
-                    
-                    
-                    
+                                        
                     // Set the Next block to .inactive
                     nextBlock.state = .inactive
                     
@@ -1033,6 +1104,9 @@ class GameScene: SKScene {
                     
                     // Clear the color
                     clearColor(currentBlock.state)
+                    
+                    // Add one to the cleared aisles global variable
+                    gameTracker.clrdAisles += 1
                     
                     monkeyBeer = 0
                     break
@@ -1568,5 +1642,28 @@ func factorial(number: Int) -> (Int) {
     }
     
     return number * factorial(number - 1)
+}
+
+func factorialWeights() -> Int{
+    let ranDumb: Int = Int.random(100)+1
+    
+    if ranDumb <= 12 {
+        return 1
+    } else if (ranDumb > 12) && (ranDumb <= 36) {
+        return 2
+    } else if (ranDumb > 36) && (ranDumb <= 76) {
+        return 3
+    } else if (ranDumb > 76) && (ranDumb <= 94) {
+        return 4
+    } else if (ranDumb > 94) && (ranDumb <= 99) {
+        return 5
+    } else if ranDumb == 100 {
+        return 6
+    } else {
+        print("Something went wrong with the factorailWeights()")
+        return 0
+    }
+    
+    
 }
 

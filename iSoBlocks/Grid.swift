@@ -111,6 +111,7 @@ class Grid: SKSpriteNode {
     func randomActiveBlock(x: Int, y: Int) {
         var blockCreated: Bool = false
         let block = gridArray[x][y]
+        let factorialValue = factorialWeights()
         
         while blockCreated == false {
             if block.state == .inactive {
@@ -118,16 +119,16 @@ class Grid: SKSpriteNode {
                 switch typeRand {
                 case 1:
                     block.state = .red
-                    block.stack = 5
+                    block.stack = factorialValue
                 case 2:
                     block.state = .blue
-                    block.stack = 5
+                    block.stack = factorialValue
                 case 3:
                     block.state = .green
-                    block.stack = 5
+                    block.stack = factorialValue
                 case 4:
                     block.state = .yellow
-                    block.stack = 5
+                    block.stack = factorialValue
                 default:
                     print("switch statement in randomActiveBlock() didn't work")
                 }

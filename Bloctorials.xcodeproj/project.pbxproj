@@ -222,17 +222,17 @@
 		96492F271D318CE6004F887C /* Bloctorials */ = {
 			isa = PBXGroup;
 			children = (
-				9670F4051D555809004D04D6 /* BridgingHeader.h */,
-				9670F4181D55AD6F004D04D6 /* Assets.atlas */,
-				968ABF0E1D4FF3FB00776165 /* GameManager */,
-				96044AB61D3589B90097D096 /* SKTUtils */,
 				96492F281D318CE6004F887C /* AppDelegate.swift */,
-				96498EBB1D5142A90057B54C /* Scenes */,
+				96492F2E1D318CE6004F887C /* GameViewController.swift */,
 				96492F6D1D31BC7E004F887C /* Block.swift */,
 				96492F5A1D318E8F004F887C /* Grid.swift */,
 				96044ACF1D3598330097D096 /* StageH.swift */,
 				96044AD11D35C53F0097D096 /* StageV.swift */,
-				96492F2E1D318CE6004F887C /* GameViewController.swift */,
+				96498EBB1D5142A90057B54C /* Scenes */,
+				968ABF0E1D4FF3FB00776165 /* GameManager */,
+				9670F4051D555809004D04D6 /* BridgingHeader.h */,
+				9670F4181D55AD6F004D04D6 /* Assets.atlas */,
+				96044AB61D3589B90097D096 /* SKTUtils */,
 				96044AD31D35EBDD0097D096 /* MSButtonNode.swift */,
 				96044AD41D35EBDD0097D096 /* MSReferenceNode.swift */,
 				968914421D41461F00CD2AD6 /* UIColorExt.swift */,
@@ -304,9 +304,9 @@
 		968ABF0E1D4FF3FB00776165 /* GameManager */ = {
 			isa = PBXGroup;
 			children = (
+				96F92DA01D56CFAA00063E42 /* GameTracker.swift */,
 				968ABF0F1D4FF40D00776165 /* SwiftyUserDefaults.swift */,
 				968ABF131D4FFE2900776165 /* GameManager.swift */,
-				96F92DA01D56CFAA00063E42 /* GameTracker.swift */,
 			);
 			name = GameManager;
 			sourceTree = "<group>";

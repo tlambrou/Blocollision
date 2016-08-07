@@ -119,6 +119,7 @@ class Block: SKSpriteNode {
         addChild(factLabel)
         
         
+        
     }
     
     
@@ -127,8 +128,6 @@ class Block: SKSpriteNode {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
-    
     
     
     

@@ -37,9 +37,6 @@ class Title: SKScene {
             skView.presentScene(scene)
 
             
-            // Reset the score
-            gameTracker.multiplierScore = 0
-            sumScore = 0
             
         }
 

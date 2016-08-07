@@ -77,6 +77,7 @@ class StageV: SKSpriteNode {
         var rand = Int.random(spaces)
         var block = stageArray[rand]
         var index = 0
+        let factorialValue = factorialWeights()
         
         while blockCreated == false {
             if block.state == .inactive {
@@ -85,13 +86,13 @@ class StageV: SKSpriteNode {
                 //case 0?
                 case 1:
                     block.state = .red
-                    block.stack = 5
+                    block.stack = factorialValue
                 case 2:
                     block.state = .blue
-                    block.stack = 5
+                    block.stack = factorialValue
                 case 3:
                     block.state = .green
-                    block.stack = 5
+                    block.stack = factorialValue
                 default:
                     print("switch statement in addBlockToEmptyStage didn't work")
                 }
@@ -112,6 +113,7 @@ class StageV: SKSpriteNode {
     func randomActiveBlock(y: Int) {
         var blockCreated: Bool = false
         let block = stageArray[y]
+        let factorialValue = factorialWeights()
         
         while blockCreated == false {
             if block.state == .inactive {
@@ -120,13 +122,13 @@ class StageV: SKSpriteNode {
                 //case 0?
                 case 1:
                     block.state = .red
-                    block.stack = 5
+                    block.stack = factorialValue
                 case 2:
                     block.state = .blue
-                    block.stack = 5
+                    block.stack = factorialValue
                 case 3:
                     block.state = .green
-                    block.stack = 5
+                    block.stack = factorialValue
                 default:
                     print("switch statement in addBlockToEmptyGrid didn't work")
                 }

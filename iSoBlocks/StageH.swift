@@ -76,6 +76,7 @@ class StageH: SKSpriteNode {
         var rand = Int.random(spaces)
         var block = stageArray[rand]
         var index = 0
+        let factorialValue = factorialWeights()
         
         while blockCreated == false {
             if block.state == .inactive {
@@ -84,16 +85,16 @@ class StageH: SKSpriteNode {
                 //case 0?
                 case 1:
                     block.state = .red
-                    block.stack = 5
+                    block.stack = factorialValue
                 case 2:
                     block.state = .blue
-                    block.stack = 5
+                    block.stack = factorialValue
                 case 3:
                     block.state = .green
-                    block.stack = 5
+                    block.stack = factorialValue
                 case 4:
                     block.state = .yellow
-                    block.stack = 5
+                    block.stack = factorialValue
                 default:
                     print("switch statement in addBlockToEmptyStage didn't work")
                 }
@@ -127,6 +128,7 @@ class StageH: SKSpriteNode {
     func randomActiveBlock(x: Int) {
         var blockCreated: Bool = false
         let block = stageArray[x]
+        let factorialValue = factorialWeights()
         
         while blockCreated == false {
             if block.state == .inactive {
@@ -135,16 +137,16 @@ class StageH: SKSpriteNode {
                 //case 0?
                 case 1:
                     block.state = .red
-                    block.stack = 5
+                    block.stack = factorialValue
                 case 2:
                     block.state = .blue
-                    block.stack = 5
+                    block.stack = factorialValue
                 case 3:
                     block.state = .green
-                    block.stack = 5
+                    block.stack = factorialValue
                 case 4:
                     block.state = .yellow
-                    block.stack = 5
+                    block.stack = factorialValue
                 default:
                     print("switch statement in addBlockToEmptyGrid didn't work")
                 }
