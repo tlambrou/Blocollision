@@ -8,12 +8,23 @@
 
 import UIKit
 import SpriteKit
+import AVFoundation
+
+
 
 class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+            try AVAudioSession.sharedInstance().setActive(true)
+        }
+        catch let error as NSError {
+            print(error)
+        }
+        
         if let scene = Title(fileNamed:"Title") {
             // Configure the view.
             let skView = self.view as! SKView

@@ -100,101 +100,101 @@ struct GameTracker {
                 break
             case 4:
                 spawnRate = 4
-                numBlocks = 2
+                numBlocks = 3
                 prevDiffScore = score
                 break
             case 5:
                 spawnRate = 5
-                numBlocks = 2
+                numBlocks = 3
                 prevDiffScore = score
                 break
             case 6:
-                spawnRate = 4
+                spawnRate = 6
                 numBlocks = 3
                 prevDiffScore = score
                 break
             case 7:
-                spawnRate = 5
+                spawnRate = 7
                 numBlocks = 3
                 prevDiffScore = score
                 break
             case 8:
-                spawnRate = 6
+                spawnRate = 8
                 numBlocks = 3
                 prevDiffScore = score
                 break
             case 9:
-                spawnRate = 7
+                spawnRate = 9
                 numBlocks = 3
                 prevDiffScore = score
                 break
             case 10:
-                spawnRate = 8
-                numBlocks = 3
+                spawnRate = 4
+                numBlocks = 4
                 prevDiffScore = score
                 break
             case 11:
-                spawnRate = 9
-                numBlocks = 3
+                spawnRate = 5
+                numBlocks = 4
                 prevDiffScore = score
                 break
             case 12:
-                spawnRate = 10
-                numBlocks = 3
-                prevDiffScore = score
-                break
-            case 13:
-                spawnRate = 11
-                numBlocks = 3
-                prevDiffScore = score
-                break
-            case 14:
                 spawnRate = 6
                 numBlocks = 4
                 prevDiffScore = score
                 break
-            case 15:
+            case 13:
                 spawnRate = 7
                 numBlocks = 4
                 prevDiffScore = score
                 break
-            case 16:
+            case 14:
                 spawnRate = 8
                 numBlocks = 4
                 prevDiffScore = score
                 break
-            case 17:
+            case 15:
                 spawnRate = 9
                 numBlocks = 4
                 prevDiffScore = score
                 break
-            case 18:
+            case 16:
                 spawnRate = 10
                 numBlocks = 4
                 prevDiffScore = score
                 break
-            case 19:
+            case 17:
                 spawnRate = 11
                 numBlocks = 4
                 prevDiffScore = score
                 break
-            case 20:
+            case 18:
                 spawnRate = 12
                 numBlocks = 4
                 prevDiffScore = score
                 break
-            case 21:
+            case 19:
                 spawnRate = 13
                 numBlocks = 4
                 prevDiffScore = score
                 break
-            case 22:
+            case 20:
                 spawnRate = 14
                 numBlocks = 4
                 prevDiffScore = score
                 break
-            case 23:
+            case 21:
                 spawnRate = 15
+                numBlocks = 4
+                prevDiffScore = score
+                break
+            case 22:
+                spawnRate = 16
+                numBlocks = 4
+                prevDiffScore = score
+                break
+            case 23:
+                spawnRate = 16
                 numBlocks = 4
                 prevDiffScore = score
                 break

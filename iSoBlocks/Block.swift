@@ -18,6 +18,10 @@ class Block: SKSpriteNode {
     var stack: Int = 0 {
         didSet {
             
+            let asset = getImageName(state, stack: stack)
+            let action = SKAction.setTexture(SKTexture(imageNamed: asset))
+            runAction(action)
+            
             if stack < 0 {
                 stack = 0
             }
@@ -42,7 +46,8 @@ class Block: SKSpriteNode {
             
             switch state {
             case .inactive:
-                let action = SKAction.setTexture(SKTexture(imageNamed: "RoundRect"))
+                let asset = getImageName(state, stack: stack)
+                let action = SKAction.setTexture(SKTexture(imageNamed: asset))
                 runAction(action)
                 stack = 0
                 label.hidden = true
@@ -50,24 +55,28 @@ class Block: SKSpriteNode {
                 hidden = false
                 
             case .red:
-                let action = SKAction.setTexture(SKTexture(imageNamed: "RoundRectCoral"))
+                let asset = getImageName(state, stack: stack)
+                let action = SKAction.setTexture(SKTexture(imageNamed: asset))
                 runAction(action)
                 hidden = false
                 break;
                 
             case .blue:
-                let action = SKAction.setTexture(SKTexture(imageNamed: "RoundRectTeal"))
+                let asset = getImageName(state, stack: stack)
+                let action = SKAction.setTexture(SKTexture(imageNamed: asset))
                 runAction(action)
                 hidden = false
                 break;
                 
             case .green:
-                let action = SKAction.setTexture(SKTexture(imageNamed: "RoundRectGreen"))
+                let asset = getImageName(state, stack: stack)
+                let action = SKAction.setTexture(SKTexture(imageNamed: asset))
                 runAction(action)
                 hidden = false
                 break;
             case .yellow:
-                let action = SKAction.setTexture(SKTexture(imageNamed: "RoundRectYellow"))
+                let asset = getImageName(state, stack: stack)
+                let action = SKAction.setTexture(SKTexture(imageNamed: asset))
                 runAction(action)
                 hidden = false
                 break;
@@ -129,6 +138,248 @@ class Block: SKSpriteNode {
         super.init(coder: aDecoder)
     }
     
-    
+    func getImageName(state: BlockType, stack: Int) -> String {
+        
+        var assetString: String = ""
+        
+        switch stack {
+        case 0:
+            switch state {
+            case .inactive:
+                assetString = "RoundRect"
+                // Return string value
+                return assetString
+            case .red:
+                assetString = "RedBlock1"
+                // Return string value
+                return assetString
+            case .blue:
+                assetString = "TealBlock1"
+                // Return string value
+                return assetString
+            case .green:
+                assetString = "GreenBlock1"
+                // Return string value
+                return assetString
+            case .yellow:
+                assetString = "YellowBlock1"
+                // Return string value
+                return assetString
+            }
+        case 1:
+            switch state {
+            case .inactive:
+                assetString = "RoundRect"
+                // Return string value
+                return assetString
+            case .red:
+                assetString = "RedBlock1"
+                // Return string value
+                return assetString
+            case .blue:
+                assetString = "TealBlock1"
+                // Return string value
+                return assetString
+            case .green:
+                assetString = "GreenBlock1"
+                // Return string value
+                return assetString
+            case .yellow:
+                assetString = "YellowBlock1"
+                // Return string value
+                return assetString
+            }
+        case 2:
+            switch state {
+            case .inactive:
+                assetString = "RoundRect"
+                // Return string value
+                return assetString
+            case .red:
+                assetString = "RedBlock1"
+                // Return string value
+                return assetString
+            case .blue:
+                assetString = "TealBlock1"
+                // Return string value
+                return assetString
+            case .green:
+                assetString = "GreenBlock1"
+                // Return string value
+                return assetString
+            case .yellow:
+                assetString = "YellowBlock1"
+                // Return string value
+                return assetString
+            }
+        case 3:
+            switch state {
+            case .inactive:
+                assetString = "RoundRec1"
+                // Return string value
+                return assetString
+            case .red:
+                assetString = "RedBlock1"
+                // Return string value
+                return assetString
+            case .blue:
+                assetString = "TealBlock1"
+                // Return string value
+                return assetString
+            case .green:
+                assetString = "GreenBlock1"
+                // Return string value
+                return assetString
+            case .yellow:
+                assetString = "YellowBlock1"
+                // Return string value
+                return assetString
+            }
+        case 4:
+            switch state {
+            case .inactive:
+                assetString = "RoundRect"
+                // Return string value
+                return assetString
+            case .red:
+                assetString = "RedBlock2"
+                // Return string value
+                return assetString
+            case .blue:
+                assetString = "TealBlock2"
+                // Return string value
+                return assetString
+            case .green:
+                assetString = "GreenBlock2"
+                // Return string value
+                return assetString
+            case .yellow:
+                assetString = "YellowBlock2"
+                // Return string value
+                return assetString
+            }
+        case 5:
+            switch state {
+            case .inactive:
+                assetString = "RoundRect"
+                // Return string value
+                return assetString
+            case .red:
+                assetString = "RedBlock3"
+                // Return string value
+                return assetString
+            case .blue:
+                assetString = "TealBlock3"
+                // Return string value
+                return assetString
+            case .green:
+                assetString = "GreenBlock3"
+                // Return string value
+                return assetString
+            case .yellow:
+                assetString = "YellowBlock3"
+                // Return string value
+                return assetString
+            }
+        case 6:
+            switch state {
+            case .inactive:
+                assetString = "RoundRect"
+                // Return string value
+                return assetString
+            case .red:
+                assetString = "RedBlock4"
+                // Return string value
+                return assetString
+            case .blue:
+                assetString = "TealBlock4"
+                // Return string value
+                return assetString
+            case .green:
+                assetString = "GreenBlock4"
+                // Return string value
+                return assetString
+            case .yellow:
+                assetString = "YellowBlock4"
+                // Return string value
+                return assetString
+            }
+        case 7:
+            switch state {
+            case .inactive:
+                assetString = "RoundRect"
+                // Return string value
+                return assetString
+            case .red:
+                assetString = "RedBlock5"
+                // Return string value
+                return assetString
+            case .blue:
+                assetString = "TealBlock5"
+                // Return string value
+                return assetString
+            case .green:
+                assetString = "GreenBlock5"
+                // Return string value
+                return assetString
+            case .yellow:
+                assetString = "YellowBlock5"
+                // Return string value
+                return assetString
+            }
+        case 8:
+            switch state {
+            case .inactive:
+                assetString = "RoundRect"
+                // Return string value
+                return assetString
+            case .red:
+                assetString = "RedBlock5"
+                // Return string value
+                return assetString
+            case .blue:
+                assetString = "TealBlock5"
+                // Return string value
+                return assetString
+            case .green:
+                assetString = "GreenBlock5"
+                // Return string value
+                return assetString
+            case .yellow:
+                assetString = "YellowBlock5"
+                // Return string value
+                return assetString
+            }
+        case 9:
+            switch state {
+            case .inactive:
+                assetString = "RoundRect"
+                // Return string value
+                return assetString
+            case .red:
+                assetString = "RedBlock5"
+                // Return string value
+                return assetString
+            case .blue:
+                assetString = "TealBlock5"
+                // Return string value
+                return assetString
+            case .green:
+                assetString = "GreenBlock5"
+                // Return string value
+                return assetString
+            case .yellow:
+                assetString = "YellowBlock5"
+                // Return string value
+                return assetString
+            }
+        default:
+            print("Failed to Assign assetString properly in Block.getImageName()")
+            assetString = "RoundRect"
+        }
+        
+        // Return string value
+        return assetString
+    }
     
 }
