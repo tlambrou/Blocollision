@@ -3,7 +3,7 @@
 //  Bloctorials
 //
 //  Created by Tassos Lambrou on 8/6/16.
-//  Copyright © 2016 Ssos Games. All rights reserved.
+//  Copyright © 2016 SsosSoft. All rights reserved.
 //
 
 import Foundation

@@ -3,10 +3,10 @@
 //  iSoBlocks
 //
 //  Created by Tassos Lambrou on 7/19/16.
-//  Copyright © 2016 Ssos Games. All rights reserved.
+//  Copyright © 2016 SsosSoft. All rights reserved.
 //
-
-import Foundation
+//
+//import Foundation
 
 
 

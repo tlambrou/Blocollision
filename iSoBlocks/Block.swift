@@ -3,7 +3,7 @@
 //  iSoBlocks
 //
 //  Created by Tassos Lambrou on 7/9/16.
-//  Copyright © 2016 Ssos Games. All rights reserved.
+//  Copyright © 2016 SsosSoft. All rights reserved.
 //
 
 import Foundation
@@ -18,9 +18,10 @@ class Block: SKSpriteNode {
     var stack: Int = 0 {
         didSet {
             
-            let asset = getImageName(state, stack: stack)
+            let asset = getBlockImageName(state, stack: stack)
             let action = SKAction.setTexture(SKTexture(imageNamed: asset))
             runAction(action)
+            
             
             if stack < 0 {
                 stack = 0
@@ -29,15 +30,20 @@ class Block: SKSpriteNode {
             factScore = factorial(stack)
             
             if stack >= 0 {
-                label.text = String(stack)
+//                label.text = String(stack)
+                let assetString = String(stack)
+                let action = SKAction.setTexture(SKTexture(imageNamed: assetString))
+                label.runAction(action)
                 label.hidden = false
-                factLabel.hidden = false
+//                factLabel.hidden = false
                 label.zPosition = 4
             }
         }
     }
-    var label: SKLabelNode!
-    var factLabel: SKLabelNode!
+    var label: SKSpriteNode!
+    var factLabel: SKSpriteNode!
+    
+ 
     
     var state:BlockType = .inactive
         {
@@ -46,36 +52,36 @@ class Block: SKSpriteNode {
             
             switch state {
             case .inactive:
-                let asset = getImageName(state, stack: stack)
+                let asset = getBlockImageName(state, stack: stack)
                 let action = SKAction.setTexture(SKTexture(imageNamed: asset))
                 runAction(action)
                 stack = 0
                 label.hidden = true
-                factLabel.hidden = true
+//                factLabel.hidden = true
                 hidden = false
                 
             case .red:
-                let asset = getImageName(state, stack: stack)
+                let asset = getBlockImageName(state, stack: stack)
                 let action = SKAction.setTexture(SKTexture(imageNamed: asset))
                 runAction(action)
                 hidden = false
                 break;
                 
             case .blue:
-                let asset = getImageName(state, stack: stack)
+                let asset = getBlockImageName(state, stack: stack)
                 let action = SKAction.setTexture(SKTexture(imageNamed: asset))
                 runAction(action)
                 hidden = false
                 break;
                 
             case .green:
-                let asset = getImageName(state, stack: stack)
+                let asset = getBlockImageName(state, stack: stack)
                 let action = SKAction.setTexture(SKTexture(imageNamed: asset))
                 runAction(action)
                 hidden = false
                 break;
             case .yellow:
-                let asset = getImageName(state, stack: stack)
+                let asset = getBlockImageName(state, stack: stack)
                 let action = SKAction.setTexture(SKTexture(imageNamed: asset))
                 runAction(action)
                 hidden = false
@@ -90,7 +96,7 @@ class Block: SKSpriteNode {
     
     init() {
         /* Initialize with 'block' asset */
-        let texture = SKTexture(imageNamed: "RoundRect")
+        let texture = SKTexture(imageNamed: "Inactive")
         super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
         
         /* Set Z-Position, ensure it's on top of grid */
@@ -103,29 +109,45 @@ class Block: SKSpriteNode {
         hidden = false
         
         // Create the Stack label
-        label = SKLabelNode(text: String(stack))
-        label.hidden = true
-        label.fontName = "AvenirNext-Bold"
-        label.fontSize = 60
-        let xLabel: CGFloat = CGFloat(1080/columns/6)
-        let yLabel: CGFloat = -xLabel
-        label.position.offset(dx: xLabel - 10, dy: yLabel)
+//        label = SKLabelNode(text: String(stack))
+//        label.hidden = true
+//        label.fontName = "MarkerFelt-Wide"
+//        label.fontSize = 100
         
-        label.verticalAlignmentMode = .Baseline
-        label.horizontalAlignmentMode = .Right
+        let assetString = String(stack)
+        label = SKSpriteNode(imageNamed: assetString)
+        label.hidden = true
+        label.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
+        label.size = CGSize(width: cellWidth/2, height: cellHeight/2)
+
+        label.position.offset(dx: 0, dy: (label.size.height/4))
+       
+//        label.verticalAlignmentMode = .Bottom
+//        label.horizontalAlignmentMode = .Right
         label.zPosition = 4
         addChild(label)
        
         // Create the Factorial Label
-        factLabel = SKLabelNode(text: String("!"))
-        factLabel.hidden = true
-        factLabel.fontName = "Verdana-Bold"
-        factLabel.fontSize = 60
-        factLabel.position.offset(dx: xLabel, dy: yLabel)
-        factLabel.verticalAlignmentMode = .Baseline
-        factLabel.horizontalAlignmentMode = .Left
-        factLabel.zPosition = 4
-        addChild(factLabel)
+//        factLabel = SKSpriteNode(imageNamed: "Factorial")
+//        factLabel.anchorPoint = CGPoint(x: 0, y: 0.5)
+////        factLabel = SKLabelNode(text: String(" !"))
+//        factLabel.size.height = label.size.height
+//        factLabel.size.width = 42*label.size.height/165
+//        factLabel.hidden = true
+//        
+////        let xOffset = CGFloat(10)
+//        label.position.offset(dx: ((factLabel.size.width + label.size.width)/4) , dy: (label.size.height/4))
+////        label.position.offset(dx: xOffset, dy: 0)
+////        factLabel.position.offset(dx: xOffset + 10, dy: CGFloat(0))
+//        
+////        factLabel.fontName = "MarkerFelt-Wide"
+////        factLabel.fontSize = 100
+//        factLabel.position.offset(dx: (((factLabel.size.width + label.size.width)/4) + factLabel.size.width), dy: (label.size.height/4))
+////        factLabel.verticalAlignmentMode = .Bottom
+////        factLabel.horizontalAlignmentMode = .Left
+//        factLabel.zPosition = 4
+//        addChild(factLabel)
         
         
         
@@ -138,7 +160,21 @@ class Block: SKSpriteNode {
         super.init(coder: aDecoder)
     }
     
-    func getImageName(state: BlockType, stack: Int) -> String {
+//    func getStackImageName(stack: Int) -> String {
+//        
+//        var assetString: String = ""
+//        
+//        switch stack {
+//        case 0:
+//            assetString = "0"
+//            return assetString
+//        default:
+//            <#code#>
+//        }
+//        
+//    }
+    
+    func getBlockImageName(state: BlockType, stack: Int) -> String {
         
         var assetString: String = ""
         
@@ -146,7 +182,7 @@ class Block: SKSpriteNode {
         case 0:
             switch state {
             case .inactive:
-                assetString = "RoundRect"
+                assetString = "Inactive"
                 // Return string value
                 return assetString
             case .red:
@@ -169,7 +205,7 @@ class Block: SKSpriteNode {
         case 1:
             switch state {
             case .inactive:
-                assetString = "RoundRect"
+                assetString = "Inactive"
                 // Return string value
                 return assetString
             case .red:
@@ -192,7 +228,7 @@ class Block: SKSpriteNode {
         case 2:
             switch state {
             case .inactive:
-                assetString = "RoundRect"
+                assetString = "Inactive"
                 // Return string value
                 return assetString
             case .red:
@@ -238,7 +274,7 @@ class Block: SKSpriteNode {
         case 4:
             switch state {
             case .inactive:
-                assetString = "RoundRect"
+                assetString = "Inactive"
                 // Return string value
                 return assetString
             case .red:
@@ -261,7 +297,7 @@ class Block: SKSpriteNode {
         case 5:
             switch state {
             case .inactive:
-                assetString = "RoundRect"
+                assetString = "Inactive"
                 // Return string value
                 return assetString
             case .red:
@@ -284,7 +320,7 @@ class Block: SKSpriteNode {
         case 6:
             switch state {
             case .inactive:
-                assetString = "RoundRect"
+                assetString = "Inactive"
                 // Return string value
                 return assetString
             case .red:
@@ -307,7 +343,7 @@ class Block: SKSpriteNode {
         case 7:
             switch state {
             case .inactive:
-                assetString = "RoundRect"
+                assetString = "Inactive"
                 // Return string value
                 return assetString
             case .red:
@@ -330,7 +366,7 @@ class Block: SKSpriteNode {
         case 8:
             switch state {
             case .inactive:
-                assetString = "RoundRect"
+                assetString = "Inactive"
                 // Return string value
                 return assetString
             case .red:
@@ -353,7 +389,7 @@ class Block: SKSpriteNode {
         case 9:
             switch state {
             case .inactive:
-                assetString = "RoundRect"
+                assetString = "Inactive"
                 // Return string value
                 return assetString
             case .red:
@@ -375,7 +411,7 @@ class Block: SKSpriteNode {
             }
         default:
             print("Failed to Assign assetString properly in Block.getImageName()")
-            assetString = "RoundRect"
+            assetString = "Inactive"
         }
         
         // Return string value

@@ -3,7 +3,7 @@
 //  iSoBlocks
 //
 //  Created by Tassos Lambrou on 7/9/16.
-//  Copyright © 2016 Ssos Games. All rights reserved.
+//  Copyright © 2016 SsosSoft. All rights reserved.
 //
 
 import Foundation
@@ -12,6 +12,10 @@ import SpriteKit
 let rows = 4
 let columns = 4
 
+var cellWidth = 0
+var cellHeight = 0
+
+
 class Grid: SKSpriteNode {
     
     
@@ -19,8 +23,6 @@ class Grid: SKSpriteNode {
     
     /* Individual cell dimension, calculated in setup*/
     var label:SKLabelNode!
-    var cellWidth = 0
-    var cellHeight = 0
     
     /* block Array */
     var gridArray = [[Block]]()

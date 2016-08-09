@@ -3,10 +3,11 @@
 //  iSoBlocks
 //
 //  Created by Tassos Lambrou on 7/9/16.
-//  Copyright (c) 2016 Ssos Games. All rights reserved.
+//  Copyright (c) 2016 SsosSoft. All rights reserved.
 //
 import Foundation
 import SpriteKit
+import AVFoundation
 
 var time: Int = 0
 
@@ -41,6 +42,28 @@ didSet {
 }
 }
 
+enum GameMode {
+    case menu, mortality, timed, moves
+}
+
+var gameMode: GameMode = .menu {
+didSet {
+    switch gameMode {
+    case .menu:
+        print("Menu Mode")
+    case .mortality:
+        print("Mortality Mode")
+    case .timed:
+        print("Timed Mode")
+        
+//        var time: SKSpriteNode!
+        
+    case .moves:
+        print("Moves Mode")
+    }
+}
+}
+
 struct Outcome {
     var winnner:Block
     var loser:Block
@@ -48,9 +71,6 @@ struct Outcome {
     // Create Int called "tie" that is 0 if tied, 1 if block 1 wins, and 2 if block 2 wins
     var tie: Int
 }
-
-
-
 
 
 class GameScene: SKScene {
@@ -65,6 +85,8 @@ class GameScene: SKScene {
         }
     }
     
+
+    
     let gameManager = GameManager.sharedInstance
     var hiScoreLabel: SKLabelNode!
     var scoreLabel: SKLabelNode!
@@ -74,6 +96,7 @@ class GameScene: SKScene {
     var bottomStageNode: StageH!
     var leftStageNode: StageV!
     var rightStageNode: StageV!
+    var menuButton: MSButtonNode!
     var restartButton: MSButtonNode!
     var gameOver: MSButtonNode!
     
@@ -168,17 +191,29 @@ class GameScene: SKScene {
         
     }
     
+    //MARK: didMoveToView
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
+        // For background audio (playing continuously)
+//       SKTAudio.sharedInstance().playBackgroundMusic("Tame Your Crickets.caf") // Start the music
+//        var pauseMusic = SKTAudio.sharedInstance().pauseBackgroundMusic() // Pause the music
+//        var resumeMusic = SKTAudio.sharedInstance().resumeBackgroundMusic() // Resume the music
+        //
+        
+        
+        
+        //    // For short sounds
+//            SKTAudio.sharedInstance().playSoundEffect("sound.wav") // Plasy the sound once
+        
         // Setup for High Score & Retrieval
-        hiScoreLabel = SKLabelNode(fontNamed:"ChalkboardSE-Bold")
+        hiScoreLabel = SKLabelNode(fontNamed:"Menlo-Bold")
         hiScoreLabel.text = String(gameManager.highScore)
         hiScoreLabel.fontSize = 120
         hiScoreLabel.fontColor = UIColor(netHex: 0xFFFFFF)
         hiScoreLabel.zPosition = 101
         hiScoreLabel.horizontalAlignmentMode = .Left
-        hiScoreLabel.position = CGPoint(x:512, y:1630)
+        hiScoreLabel.position = CGPoint(x:512, y:1600)
         
         self.addChild(hiScoreLabel)
         
@@ -191,12 +226,27 @@ class GameScene: SKScene {
         
         gameOver = self.childNodeWithName("gameOver") as! MSButtonNode
         gameOver.hidden = true
-        
+        menuButton = self.childNodeWithName("menuButton") as! MSButtonNode
         restartButton = self.childNodeWithName("restartButton") as! MSButtonNode
         swipeInstructions = childNodeWithName("swipeInstructions") as! SKSpriteNode
         scoreLabel = childNodeWithName("scoreLabel") as! SKLabelNode
         
         swipeInstructions.alpha = CGFloat(0)
+        
+//        var timeLeft: Int = 60
+//        let delay = SKAction.waitForDuration(1)
+//        
+//        let block = SKAction.runBlock({
+//            if self.timeLeft > 0 { self.timeLeft -= 1 }
+//            if self.timeLeft < 11 {
+//                self.time.fontColor = UIColor.redColor()
+//            }
+//            if self.timeLeft == 0 { self.state = .GameOver }
+//            self.time.text = "\(self.timeLeft)"
+//        })
+//        
+//        let sequence = SKAction.sequence([wait, block])
+//        self.runAction(SKAction.repeatActionForever(sequence))
         
         let ranDumb: Int = Int.random(4)
         
@@ -212,6 +262,30 @@ class GameScene: SKScene {
         default:
             print("Stage spawn initializer switch didn't work")
         }
+        
+        menuButton.selectedHandler = {
+            
+            /* Grab reference to the SpriteKit view */
+            let skView = self.view as SKView!
+            
+            /* Load Game scene */
+            let scene = Title(fileNamed:"Title") as Title!
+            
+            /* Ensure correct aspect mode */
+            scene.scaleMode = .AspectFill
+            
+            /* Restart GameScene */
+            skView.presentScene(scene)
+            
+            gameState = .ready
+            
+            // Reset the score
+            self.gameTracker.multiplierScore = 0
+            self.gameTracker.sumScore = 0
+            self.gameTracker.score = 0
+            
+        }
+
         
         restartButton.selectedHandler = {
             
@@ -860,19 +934,21 @@ class GameScene: SKScene {
         //
         //        }
         
-        switch loseBlock.state {
-        case .red:
-            loseAssetString = "RoundRectCoral"
-        case .blue:
-            loseAssetString = "RoundRectTeal"
-        case .green:
-            loseAssetString = "RoundRectGreen"
-        case .yellow:
-            loseAssetString = "RoundRectYellow"
-        case .inactive:
-            loseAssetString = "RoundRect"
-            
-        }
+//        switch loseBlock.state {
+//        case .red:
+//            loseAssetString = "RoundRectCoral"
+//        case .blue:
+//            loseAssetString = "RoundRectTeal"
+//        case .green:
+//            loseAssetString = "RoundRectGreen"
+//        case .yellow:
+//            loseAssetString = "RoundRectYellow"
+//        case .inactive:
+//            loseAssetString = "RoundRect"
+//            
+//        }
+        
+        loseAssetString = loseBlock.getBlockImageName(loseBlock.state, stack: loseBlock.stack)
         
         if block1.state == block2.state {
             
@@ -949,7 +1025,7 @@ class GameScene: SKScene {
             winNode.size = block2.size
             
             
-            let loseNode = SKSpriteNode(imageNamed: "RoundRect")
+            let loseNode = SKSpriteNode(imageNamed: "Inactive")
             loseNode.size = loseBlock.size
             loseNode.anchorPoint = loseBlock.anchorPoint
             loseNode.zPosition = 6
@@ -1011,10 +1087,10 @@ class GameScene: SKScene {
                     let comparison = [currentBlock.stack, nextBlock.stack]
                     
                     // Set the new block's stack equal to the highest block's stack minus 1
-                    currentBlock.stack = comparison.maxElement()! - (comparison.maxElement()! - comparison.minElement()!)
+                    currentBlock.stack = comparison.maxElement()! - 1
                     
                     /* Play SFX */
-                    let combineSFX = SKAction.playSoundFileNamed("clearDot", waitForCompletion: true)
+                    let combineSFX = SKAction.playSoundFileNamed("panBeep", waitForCompletion: true)
                     self.runAction(combineSFX)
                     
                     // Set the Next block to .inactive
@@ -1168,6 +1244,12 @@ class GameScene: SKScene {
         dieNode.position = dieBlock.position
         dieNode.zPosition = dieBlock.zPosition + 1
         
+        let particles = SKEmitterNode(fileNamed: "Spark")!
+        particles.position = convertPoint(dieNode.position, toNode: dieNode)
+        particles.numParticlesToEmit = 30
+        particles.zPosition = dieNode.zPosition - 1
+        
+        dieNode.addChild(particles)
         // Create a scale action
         let scale = SKAction.scaleTo(1.15, duration: 0.1)
         
@@ -1184,7 +1266,7 @@ class GameScene: SKScene {
         
         // Create a sound effect action
         
-        let scoreSFX = SKAction.playSoundFileNamed("clearRow", waitForCompletion: false)
+        let scoreSFX = SKAction.playSoundFileNamed("clearAisle", waitForCompletion: false)
         
         // Create the sequence action
         let dieSeq = SKAction.sequence([scale, scoreSFX, wait, descale, remove])
@@ -1666,20 +1748,22 @@ func factorial(number: Int) -> (Int) {
 }
 
 func factorialWeights() -> Int{
-    let ranDumb: Int = Int.random(100)+1
+    let ranDumb: Int = Int.random(1000)+1
     
-    if ranDumb <= 12 {
+    if ranDumb <= 110 {
         return 1
-    } else if (ranDumb > 12) && (ranDumb <= 36) {
+    } else if (ranDumb > 110) && (ranDumb <= 350) {
         return 2
-    } else if (ranDumb > 36) && (ranDumb <= 76) {
+    } else if (ranDumb > 350) && (ranDumb <= 750) {
         return 3
-    } else if (ranDumb > 76) && (ranDumb <= 94) {
+    } else if (ranDumb > 750) && (ranDumb <= 930) {
         return 4
-    } else if (ranDumb > 94) && (ranDumb <= 99) {
+    } else if (ranDumb > 930) && (ranDumb <= 985) {
         return 5
-    } else if ranDumb == 100 {
+    } else if (ranDumb > 985) && (ranDumb <= 995) {
         return 6
+    } else if (ranDumb > 995) && (ranDumb <= 1000) {
+        return 7
     } else {
         print("Something went wrong with the factorailWeights()")
         return 0

@@ -23,6 +23,9 @@
 		96044AD21D35C53F0097D096 /* StageV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96044AD11D35C53F0097D096 /* StageV.swift */; };
 		96044AD51D35EBDD0097D096 /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96044AD31D35EBDD0097D096 /* MSButtonNode.swift */; };
 		96044AD61D35EBDD0097D096 /* MSReferenceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96044AD41D35EBDD0097D096 /* MSReferenceNode.swift */; };
+		96053A921D5837B1004E72CD /* Spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 96053A901D5837B1004E72CD /* Spark.sks */; };
+		96053A931D5837B1004E72CD /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 96053A911D5837B1004E72CD /* spark.png */; };
+		96053A951D596964004E72CD /* Tame Your Crickets.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96053A941D596964004E72CD /* Tame Your Crickets.caf */; };
 		9640E2701D514DF000719E7F /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9640E26F1D514DF000719E7F /* Title.swift */; };
 		9640E27A1D55545300719E7F /* Chartboost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9640E2791D55545100719E7F /* Chartboost.framework */; };
 		9640E27C1D55548600719E7F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9640E27B1D55548600719E7F /* StoreKit.framework */; };
@@ -48,6 +51,8 @@
 		968914501D4828FB00CD2AD6 /* clearRow.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9689144F1D4828FB00CD2AD6 /* clearRow.caf */; };
 		968ABF101D4FF40D00776165 /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968ABF0F1D4FF40D00776165 /* SwiftyUserDefaults.swift */; };
 		968ABF141D4FFE2900776165 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968ABF131D4FFE2900776165 /* GameManager.swift */; };
+		9694340A1D5A97EF006DDF0D /* panBeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 969434091D5A97EF006DDF0D /* panBeep.wav */; };
+		9694340C1D5A9C4D006DDF0D /* clearAisle.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9694340B1D5A9C4D006DDF0D /* clearAisle.caf */; };
 		96CF7FE01D4C0F070096DEF3 /* switch33.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96CF7FDD1D4C0F070096DEF3 /* switch33.wav */; };
 		96CF7FE11D4C0F070096DEF3 /* switch34.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96CF7FDE1D4C0F070096DEF3 /* switch34.wav */; };
 		96CF7FE21D4C0F070096DEF3 /* switch38.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96CF7FDF1D4C0F070096DEF3 /* switch38.wav */; };
@@ -93,6 +98,9 @@
 		96044AD11D35C53F0097D096 /* StageV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageV.swift; sourceTree = "<group>"; };
 		96044AD31D35EBDD0097D096 /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
 		96044AD41D35EBDD0097D096 /* MSReferenceNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSReferenceNode.swift; sourceTree = "<group>"; };
+		96053A901D5837B1004E72CD /* Spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Spark.sks; sourceTree = "<group>"; };
+		96053A911D5837B1004E72CD /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		96053A941D596964004E72CD /* Tame Your Crickets.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Tame Your Crickets.caf"; sourceTree = "<group>"; };
 		9640E26F1D514DF000719E7F /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Title.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9640E2791D55545100719E7F /* Chartboost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Chartboost.framework; sourceTree = "<group>"; };
 		9640E27B1D55548600719E7F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -125,6 +133,8 @@
 		9689144F1D4828FB00CD2AD6 /* clearRow.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = clearRow.caf; sourceTree = "<group>"; };
 		968ABF0F1D4FF40D00776165 /* SwiftyUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyUserDefaults.swift; sourceTree = "<group>"; };
 		968ABF131D4FFE2900776165 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		969434091D5A97EF006DDF0D /* panBeep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = panBeep.wav; sourceTree = "<group>"; };
+		9694340B1D5A9C4D006DDF0D /* clearAisle.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = clearAisle.caf; sourceTree = "<group>"; };
 		96CF7FDD1D4C0F070096DEF3 /* switch33.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = switch33.wav; sourceTree = "<group>"; };
 		96CF7FDE1D4C0F070096DEF3 /* switch34.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = switch34.wav; sourceTree = "<group>"; };
 		96CF7FDF1D4C0F070096DEF3 /* switch38.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = switch38.wav; sourceTree = "<group>"; };
@@ -272,6 +282,8 @@
 			children = (
 				96492F2A1D318CE6004F887C /* GameScene.sks */,
 				96492F2C1D318CE6004F887C /* GameScene.swift */,
+				96053A901D5837B1004E72CD /* Spark.sks */,
+				96053A911D5837B1004E72CD /* spark.png */,
 				96498EBC1D5142DF0057B54C /* Title.sks */,
 				9640E26F1D514DF000719E7F /* Title.swift */,
 			);
@@ -288,6 +300,9 @@
 		9689144B1D481C0B00CD2AD6 /* SFX */ = {
 			isa = PBXGroup;
 			children = (
+				969434091D5A97EF006DDF0D /* panBeep.wav */,
+				9694340B1D5A9C4D006DDF0D /* clearAisle.caf */,
+				96053A941D596964004E72CD /* Tame Your Crickets.caf */,
 				96CF7FE31D4C0F300096DEF3 /* click1.wav */,
 				96CF7FE41D4C0F300096DEF3 /* click2.wav */,
 				96CF7FE51D4C0F300096DEF3 /* click3.wav */,
@@ -416,18 +431,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9694340A1D5A97EF006DDF0D /* panBeep.wav in Resources */,
 				96492F2B1D318CE6004F887C /* GameScene.sks in Resources */,
 				96CF7FE01D4C0F070096DEF3 /* switch33.wav in Resources */,
 				96CF7FE11D4C0F070096DEF3 /* switch34.wav in Resources */,
 				96CF7FE71D4C0F300096DEF3 /* click2.wav in Resources */,
 				96492F371D318CE6004F887C /* LaunchScreen.storyboard in Resources */,
 				96498EBD1D5142DF0057B54C /* Title.sks in Resources */,
+				96053A951D596964004E72CD /* Tame Your Crickets.caf in Resources */,
 				96CF7FE21D4C0F070096DEF3 /* switch38.wav in Resources */,
 				96492F341D318CE6004F887C /* Assets.xcassets in Resources */,
 				96518AFD1D49831900BEB2FA /* clearDot.wav in Resources */,
 				96492F321D318CE6004F887C /* Main.storyboard in Resources */,
 				968914501D4828FB00CD2AD6 /* clearRow.caf in Resources */,
+				96053A921D5837B1004E72CD /* Spark.sks in Resources */,
 				96CF7FE61D4C0F300096DEF3 /* click1.wav in Resources */,
+				96053A931D5837B1004E72CD /* spark.png in Resources */,
+				9694340C1D5A9C4D006DDF0D /* clearAisle.caf in Resources */,
 				96CF7FEA1D4C10BC0096DEF3 /* whoosh.wav in Resources */,
 				96CF7FE81D4C0F300096DEF3 /* click3.wav in Resources */,
 			);

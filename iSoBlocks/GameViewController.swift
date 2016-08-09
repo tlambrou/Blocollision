@@ -3,7 +3,7 @@
 //  iSoBlocks
 //
 //  Created by Tassos Lambrou on 7/9/16.
-//  Copyright (c) 2016 Ssos Games. All rights reserved.
+//  Copyright (c) 2016 SsosSoft. All rights reserved.
 //
 
 import UIKit
@@ -28,8 +28,8 @@ class GameViewController: UIViewController {
         if let scene = Title(fileNamed:"Title") {
             // Configure the view.
             let skView = self.view as! SKView
-            skView.showsFPS = true
-            skView.showsNodeCount = true
+            skView.showsFPS = false
+            skView.showsNodeCount = false
             
             /* Sprite Kit applies additional optimizations to improve rendering performance */
             skView.ignoresSiblingOrder = true

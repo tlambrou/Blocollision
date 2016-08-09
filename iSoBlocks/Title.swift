@@ -3,7 +3,7 @@
 //  iSoBlocks
 //
 //  Created by Tassos Lambrou on 8/2/16.
-//  Copyright © 2016 Ssos Games. All rights reserved.
+//  Copyright © 2016 SsosSoft. All rights reserved.
 //
 
 import Foundation
@@ -17,6 +17,9 @@ class Title: SKScene {
     var motionManager = CMMotionManager()
     
     override func didMoveToView(view: SKView) {
+        
+//        SKTAudio.sharedInstance().playBackgroundMusic("Tame Your Crickets.caf") // Start the music
+        
         playButton = self.childNodeWithName("playButton") as! MSButtonNode
         
         playButton.selectedHandler = {
@@ -44,7 +47,7 @@ class Title: SKScene {
         
         let creation = SKAction.runBlock({self.createBlock()})
         let wait = SKAction.waitForDuration(NSTimeInterval(0.4))
-        let seq = SKAction.repeatAction(SKAction.sequence([creation, wait]), count: 100)
+        let seq = SKAction.repeatAction(SKAction.sequence([creation, wait]), count: 130)
         runAction(seq)
     }
     
@@ -64,7 +67,7 @@ class Title: SKScene {
         
         var state: BlockType = .inactive
         
-        let rand:Int = Int.random(3)+1
+        let rand:Int = Int.random(4)+1
         switch rand {
         case 1:
             state = .red
@@ -72,29 +75,44 @@ class Title: SKScene {
             state = .blue
         case 3:
             state = .green
+        case 4:
+            state = .yellow
         default:
             state = .inactive
             print("random texture assignment didn't work")
         }
         
-        let block = Block()
+        let block = Block.init()
         block.state = state
-        let randum: Int = Int.random(9)
+        let randum: Int = Int.random(8)
         
         block.stack = randum
-        block.size.height = CGFloat(104)
-        block.size.width = CGFloat(104)
-        block.label.fontSize = 50
-        block.factLabel.fontSize = 50
-        block.label.position.offset(dx: -20, dy: 20)
-        block.factLabel.position.offset(dx: -20, dy: 20)
+        block.size.height = CGFloat(90)
+        block.size.width = CGFloat(90)
+//        block.label.fontSize = 50
+//        block.factLabel.fontSize = 50
+//        block.label.position.offset(dx: -20, dy: 20)
+//        block.factLabel.position.offset(dx: -20, dy: 20)
         
         block.zPosition = 1
         
+        block.label.hidden = true
+//        block.label.hidden = false
+//        block.label.texture = SKTexture(imageNamed: String("3"))
         let xRandom: Int = Int.random(870)+1
         block.position = CGPoint(x: xRandom, y: 2005)
+//        block.label.zPosition = 200
         
-        block.physicsBody = SKPhysicsBody.init(rectangleOfSize: CGSize(width: 104, height: 104))
+        let label = SKSpriteNode(imageNamed: String(block.stack))
+        label.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        label.position = convertPoint(block.position, toNode: block)
+        let scale: CGFloat = CGFloat((block.size.height / label.size.height) * (3/5))
+        label.setScale(scale)
+        label.zPosition = block.zPosition + 1
+        block.addChild(label)
+
+        
+        block.physicsBody = SKPhysicsBody.init(rectangleOfSize: CGSize(width: 90, height: 90))
         block.physicsBody?.affectedByGravity = true
         block.physicsBody?.allowsRotation = true
         block.zRotation = CGFloat(4.0)
@@ -102,6 +120,7 @@ class Title: SKScene {
         block.physicsBody?.angularVelocity = CGFloat(0.6)
         block.physicsBody?.mass = CGFloat(6.3)
         
+
         addChild(block)
         
     }
