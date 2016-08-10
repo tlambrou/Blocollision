@@ -1,0 +1,6 @@
+framework module Pods_BloctorialsUITests {
+  umbrella header "Pods-BloctorialsUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

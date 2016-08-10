@@ -1,0 +1,6 @@
+framework module Pods_Bloctorials {
+  umbrella header "Pods-Bloctorials-umbrella.h"
+
+  export *
+  module * { export * }
+}

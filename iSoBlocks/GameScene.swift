@@ -272,7 +272,7 @@ class GameScene: SKScene {
             let scene = Title(fileNamed:"Title") as Title!
             
             /* Ensure correct aspect mode */
-            scene.scaleMode = .AspectFill
+            scene.scaleMode = .AspectFit
             
             /* Restart GameScene */
             skView.presentScene(scene)
@@ -296,7 +296,7 @@ class GameScene: SKScene {
             let scene = GameScene(fileNamed:"GameScene") as GameScene!
             
             /* Ensure correct aspect mode */
-            scene.scaleMode = .AspectFill
+            scene.scaleMode = .AspectFit
             
             /* Restart GameScene */
             skView.presentScene(scene)
@@ -319,7 +319,7 @@ class GameScene: SKScene {
             let scene = Title(fileNamed:"Title") as Title!
             
             /* Ensure correct aspect mode */
-            scene.scaleMode = .AspectFill
+            scene.scaleMode = .AspectFit
             
             /* Restart GameScene */
             skView.presentScene(scene)

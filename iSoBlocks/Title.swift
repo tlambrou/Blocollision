@@ -34,7 +34,7 @@ class Title: SKScene {
             gameState = .playing 
             
             /* Ensure correct aspect mode */
-            scene.scaleMode = .AspectFill
+            scene.scaleMode = .AspectFit
             
             /* Restart GameScene */
             skView.presentScene(scene)
