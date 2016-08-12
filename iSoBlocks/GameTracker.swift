@@ -9,6 +9,11 @@
 import Foundation
 import SpriteKit
 
+
+
+var gameTrackerState: GameState = .playing
+
+
 var numBlocks: Int = 1 {
 didSet {
     if numBlocks > 4 {
@@ -32,9 +37,11 @@ didSet {
 struct GameTracker {
     
     init() {
+       
         numBlocks = 1
         spawnRate = 1
     }
+    
     
     var idle: Bool = false
     var instShown: Bool = false
@@ -204,7 +211,8 @@ struct GameTracker {
                 prevDiffScore = score
                 break
             default:
-                gameState = .won
+                gameTrackerState = .won
+
                 
             }
             
@@ -332,13 +340,13 @@ struct GameTracker {
             break
         case 24:
             if scored >= 10000 && clrdAisles >= 150 {
-                gameState = .won
+                gameTrackerState = .won
             }
             break
             
             
         default:
-            gameState = .won
+            gameTrackerState = .won
         }
         
     }

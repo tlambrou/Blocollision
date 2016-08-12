@@ -168,7 +168,7 @@ class StageV: SKSpriteNode {
     }
 
     func animateWiggle(block: Block) {
-        let time = NSTimeInterval(0.06)
+        let time = NSTimeInterval(0.1)
         
         let sfx1 = SKAction.playSoundFileNamed("click1", waitForCompletion: false)
         let sfx2 = SKAction.playSoundFileNamed("click2", waitForCompletion: false)

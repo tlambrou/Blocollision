@@ -24,14 +24,19 @@ class Title: SKScene {
         
         playButton.selectedHandler = {
             
+            /* Play SFX */
+            let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
+            self.runAction(click)
+            
             /* Grab reference to the SpriteKit view */
             let skView = self.view as SKView!
             
             /* Load Game scene */
             let scene = GameScene(fileNamed:"GameScene") as GameScene!
             
-            // Change Game State to Playing
-            gameState = .playing 
+            // Set GameState to playing
+            gameState = .playing
+            
             
             /* Ensure correct aspect mode */
             scene.scaleMode = .AspectFit

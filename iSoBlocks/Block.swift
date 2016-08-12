@@ -15,6 +15,27 @@ class Block: SKSpriteNode {
     
     var factScore: Int = 0
     
+    var factStack: Bool = false {
+        didSet{
+            
+            if state != .inactive {
+                
+                if factStack == true {
+                    
+                    label.hidden = true
+                    factLabel.hidden = false
+                    
+                } else if factStack == false {
+                    
+                    label.hidden = false
+                    factLabel.hidden = true
+                    
+                }
+                
+            }
+        }
+    }
+    
     var stack: Int = 0 {
         didSet {
             
@@ -30,12 +51,27 @@ class Block: SKSpriteNode {
             factScore = factorial(stack)
             
             if stack >= 0 {
-//                label.text = String(stack)
+                //                label.text = String(stack)
                 let assetString = String(stack)
                 let action = SKAction.setTexture(SKTexture(imageNamed: assetString))
                 label.runAction(action)
-                label.hidden = false
-//                factLabel.hidden = false
+                
+                if factStack == false {
+                    
+                    label.hidden = false
+                    factLabel.hidden = true
+                }
+                //                factLabel.hidden = false
+                label.zPosition = 4
+                
+                let faction = SKAction.setTexture(SKTexture(imageNamed: assetString + "Fact"))
+                factLabel.runAction(faction)
+                
+                if factStack == true {
+                    label.hidden = true
+                    factLabel.hidden = false
+                }
+                
                 label.zPosition = 4
             }
         }
@@ -43,7 +79,7 @@ class Block: SKSpriteNode {
     var label: SKSpriteNode!
     var factLabel: SKSpriteNode!
     
- 
+    
     
     var state:BlockType = .inactive
         {
@@ -57,7 +93,8 @@ class Block: SKSpriteNode {
                 runAction(action)
                 stack = 0
                 label.hidden = true
-//                factLabel.hidden = true
+                factLabel.hidden = true
+                //                factLabel.hidden = true
                 hidden = false
                 
             case .red:
@@ -80,13 +117,14 @@ class Block: SKSpriteNode {
                 runAction(action)
                 hidden = false
                 break;
+                
             case .yellow:
                 let asset = getBlockImageName(state, stack: stack)
                 let action = SKAction.setTexture(SKTexture(imageNamed: asset))
                 runAction(action)
                 hidden = false
                 break;
-            
+                
             }
         }
         
@@ -109,10 +147,10 @@ class Block: SKSpriteNode {
         hidden = false
         
         // Create the Stack label
-//        label = SKLabelNode(text: String(stack))
-//        label.hidden = true
-//        label.fontName = "MarkerFelt-Wide"
-//        label.fontSize = 100
+        //        label = SKLabelNode(text: String(stack))
+        //        label.hidden = true
+        //        label.fontName = "MarkerFelt-Wide"
+        //        label.fontSize = 100
         
         let assetString = String(stack)
         label = SKSpriteNode(imageNamed: assetString)
@@ -120,34 +158,46 @@ class Block: SKSpriteNode {
         label.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         label.size = CGSize(width: cellWidth/2, height: cellHeight/2)
-
+        
         label.position.offset(dx: 0, dy: (label.size.height/4))
-       
-//        label.verticalAlignmentMode = .Bottom
-//        label.horizontalAlignmentMode = .Right
         label.zPosition = 4
         addChild(label)
-       
+        
+        
+        factLabel = SKSpriteNode(imageNamed: (String(assetString) + "Fact"))
+        factLabel.hidden = true
+        factLabel.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
+        factLabel.size = CGSize(width: cellWidth/2, height: cellHeight/2)
+        
+        factLabel.position.offset(dx: 0, dy: (factLabel.size.height/4))
+        factLabel.zPosition = 4
+        addChild(factLabel)
+        
+        //        label.verticalAlignmentMode = .Bottom
+        //        label.horizontalAlignmentMode = .Right
+        
+        
         // Create the Factorial Label
-//        factLabel = SKSpriteNode(imageNamed: "Factorial")
-//        factLabel.anchorPoint = CGPoint(x: 0, y: 0.5)
-////        factLabel = SKLabelNode(text: String(" !"))
-//        factLabel.size.height = label.size.height
-//        factLabel.size.width = 42*label.size.height/165
-//        factLabel.hidden = true
-//        
-////        let xOffset = CGFloat(10)
-//        label.position.offset(dx: ((factLabel.size.width + label.size.width)/4) , dy: (label.size.height/4))
-////        label.position.offset(dx: xOffset, dy: 0)
-////        factLabel.position.offset(dx: xOffset + 10, dy: CGFloat(0))
-//        
-////        factLabel.fontName = "MarkerFelt-Wide"
-////        factLabel.fontSize = 100
-//        factLabel.position.offset(dx: (((factLabel.size.width + label.size.width)/4) + factLabel.size.width), dy: (label.size.height/4))
-////        factLabel.verticalAlignmentMode = .Bottom
-////        factLabel.horizontalAlignmentMode = .Left
-//        factLabel.zPosition = 4
-//        addChild(factLabel)
+        //        factLabel = SKSpriteNode(imageNamed: "Factorial")
+        //        factLabel.anchorPoint = CGPoint(x: 0, y: 0.5)
+        ////        factLabel = SKLabelNode(text: String(" !"))
+        //        factLabel.size.height = label.size.height
+        //        factLabel.size.width = 42*label.size.height/165
+        //        factLabel.hidden = true
+        //
+        ////        let xOffset = CGFloat(10)
+        //        label.position.offset(dx: ((factLabel.size.width + label.size.width)/4) , dy: (label.size.height/4))
+        ////        label.position.offset(dx: xOffset, dy: 0)
+        ////        factLabel.position.offset(dx: xOffset + 10, dy: CGFloat(0))
+        //
+        ////        factLabel.fontName = "MarkerFelt-Wide"
+        ////        factLabel.fontSize = 100
+        //        factLabel.position.offset(dx: (((factLabel.size.width + label.size.width)/4) + factLabel.size.width), dy: (label.size.height/4))
+        ////        factLabel.verticalAlignmentMode = .Bottom
+        ////        factLabel.horizontalAlignmentMode = .Left
+        //        factLabel.zPosition = 4
+        //        addChild(factLabel)
         
         
         
@@ -160,19 +210,19 @@ class Block: SKSpriteNode {
         super.init(coder: aDecoder)
     }
     
-//    func getStackImageName(stack: Int) -> String {
-//        
-//        var assetString: String = ""
-//        
-//        switch stack {
-//        case 0:
-//            assetString = "0"
-//            return assetString
-//        default:
-//            <#code#>
-//        }
-//        
-//    }
+    //    func getStackImageName(stack: Int) -> String {
+    //
+    //        var assetString: String = ""
+    //
+    //        switch stack {
+    //        case 0:
+    //            assetString = "0"
+    //            return assetString
+    //        default:
+    //            <#code#>
+    //        }
+    //
+    //    }
     
     func getBlockImageName(state: BlockType, stack: Int) -> String {
         

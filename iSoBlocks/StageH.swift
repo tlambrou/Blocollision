@@ -136,7 +136,7 @@ class StageH: SKSpriteNode {
     }
     
     func animateWiggle(block: Block) {
-        let time = NSTimeInterval(0.06)
+        let time = NSTimeInterval(0.1)
         
         let sfx1 = SKAction.playSoundFileNamed("click1", waitForCompletion: false)
         let sfx2 = SKAction.playSoundFileNamed("click2", waitForCompletion: false)
@@ -222,7 +222,5 @@ class StageH: SKSpriteNode {
     
 }
 
-func randomBetweenNumbers(firstNum: CGFloat, secondNum: CGFloat) -> CGFloat{
-    return CGFloat(arc4random()) / CGFloat(UINT32_MAX) * abs(firstNum - secondNum) + min(firstNum, secondNum)
-}
+
     

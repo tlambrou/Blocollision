@@ -11,18 +11,21 @@ import AVFoundation
 
 var time: Int = 0
 
+// Create Swipe Type enumerations
 enum swipeType {
     case up, down, left, right
 }
 
+// Create gamestate enumeration
 enum GameState {
-    case ready, playing, paused, gameover, won
+    case menu, playing, paused, gameover, won
 }
 
-var gameState: GameState = .ready {
+
+var gameState: GameState = .playing {
 didSet {
     switch gameState {
-    case .ready:
+    case .menu:
         print("Ready!")
         break
     case .playing:
@@ -42,9 +45,11 @@ didSet {
 }
 }
 
+// Create Game Mode Enumeration
 enum GameMode {
     case menu, mortality, timed, moves
 }
+
 
 var gameMode: GameMode = .menu {
 didSet {
@@ -56,13 +61,17 @@ didSet {
     case .timed:
         print("Timed Mode")
         
-//        var time: SKSpriteNode!
+        //        var time: SKSpriteNode!
         
     case .moves:
         print("Moves Mode")
     }
 }
 }
+
+// Create the score label node
+var scoreLabel: SKLabelNode = SKLabelNode(text: "")
+var levelLabel: SKLabelNode = SKLabelNode(text: "")
 
 struct Outcome {
     var winnner:Block
@@ -78,18 +87,23 @@ class GameScene: SKScene {
     var gameTracker = GameTracker.init() {
         didSet {
             scoreLabel.text = String(gameTracker.score)
+            levelLabel.text = String(gameTracker.difficulty)
             print("Difficulty: \(gameTracker.difficulty)")
             print("Cleared Lines: \(gameTracker.clrdAisles)")
             print("Scored: \(gameTracker.scored)")
             
+            if gameTrackerState == .won {
+                gameState = .won
+            }
         }
     }
     
-
+    var hiScoreSet: Bool = false
     
     let gameManager = GameManager.sharedInstance
     var hiScoreLabel: SKLabelNode!
-    var scoreLabel: SKLabelNode!
+    
+    
     
     var gridNode: Grid!
     var topStageNode: StageH!
@@ -98,7 +112,9 @@ class GameScene: SKScene {
     var rightStageNode: StageV!
     var menuButton: MSButtonNode!
     var restartButton: MSButtonNode!
+    var factHelpButton: MSButtonNode!
     var gameOver: MSButtonNode!
+    
     
     var swipeInstructions: SKSpriteNode!
     
@@ -144,6 +160,7 @@ class GameScene: SKScene {
         if gameTracker.score > gameManager.highScore {
             gameManager.highScore = gameTracker.score
             hiScoreLabel.text = String(gameManager.highScore)
+            hiScoreSet = true
         }
         
         // Check for Game Over State
@@ -195,16 +212,16 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-        // For background audio (playing continuously)
-//       SKTAudio.sharedInstance().playBackgroundMusic("Tame Your Crickets.caf") // Start the music
-//        var pauseMusic = SKTAudio.sharedInstance().pauseBackgroundMusic() // Pause the music
-//        var resumeMusic = SKTAudio.sharedInstance().resumeBackgroundMusic() // Resume the music
+        ////         For background audio (playing continuously)
+        //       SKTAudio.sharedInstance().playBackgroundMusic("Tame Your Crickets.caf") // Start the music
+        //        var pauseMusic = SKTAudio.sharedInstance().pauseBackgroundMusic() // Pause the music
+        //        var resumeMusic = SKTAudio.sharedInstance().resumeBackgroundMusic() // Resume the music
         //
         
         
         
         //    // For short sounds
-//            SKTAudio.sharedInstance().playSoundEffect("sound.wav") // Plasy the sound once
+        //            SKTAudio.sharedInstance().playSoundEffect("sound.wav") // Plasy the sound once
         
         // Setup for High Score & Retrieval
         hiScoreLabel = SKLabelNode(fontNamed:"Menlo-Bold")
@@ -213,7 +230,7 @@ class GameScene: SKScene {
         hiScoreLabel.fontColor = UIColor(netHex: 0xFFFFFF)
         hiScoreLabel.zPosition = 101
         hiScoreLabel.horizontalAlignmentMode = .Left
-        hiScoreLabel.position = CGPoint(x:512, y:1600)
+        hiScoreLabel.position = CGPoint(x:512, y:1650)
         
         self.addChild(hiScoreLabel)
         
@@ -227,27 +244,30 @@ class GameScene: SKScene {
         gameOver = self.childNodeWithName("gameOver") as! MSButtonNode
         gameOver.hidden = true
         menuButton = self.childNodeWithName("menuButton") as! MSButtonNode
+        factHelpButton = self.childNodeWithName("factHelpButton") as! MSButtonNode
         restartButton = self.childNodeWithName("restartButton") as! MSButtonNode
         swipeInstructions = childNodeWithName("swipeInstructions") as! SKSpriteNode
         scoreLabel = childNodeWithName("scoreLabel") as! SKLabelNode
+        levelLabel = childNodeWithName("levelLabel") as! SKLabelNode
         
         swipeInstructions.alpha = CGFloat(0)
         
-//        var timeLeft: Int = 60
-//        let delay = SKAction.waitForDuration(1)
-//        
-//        let block = SKAction.runBlock({
-//            if self.timeLeft > 0 { self.timeLeft -= 1 }
-//            if self.timeLeft < 11 {
-//                self.time.fontColor = UIColor.redColor()
-//            }
-//            if self.timeLeft == 0 { self.state = .GameOver }
-//            self.time.text = "\(self.timeLeft)"
-//        })
-//        
-//        let sequence = SKAction.sequence([wait, block])
-//        self.runAction(SKAction.repeatActionForever(sequence))
+        //        var timeLeft: Int = 60
+        //        let delay = SKAction.waitForDuration(1)
+        //
+        //        let block = SKAction.runBlock({
+        //            if self.timeLeft > 0 { self.timeLeft -= 1 }
+        //            if self.timeLeft < 11 {
+        //                self.time.fontColor = UIColor.redColor()
+        //            }
+        //            if self.timeLeft == 0 { self.state = .GameOver }
+        //            self.time.text = "\(self.timeLeft)"
+        //        })
+        //
+        //        let sequence = SKAction.sequence([wait, block])
+        //        self.runAction(SKAction.repeatActionForever(sequence))
         
+        // Create randomizer for picking the stage to regen in
         let ranDumb: Int = Int.random(4)
         
         switch ranDumb {
@@ -265,6 +285,10 @@ class GameScene: SKScene {
         
         menuButton.selectedHandler = {
             
+            /* Play SFX */
+            let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
+            self.runAction(click)
+            
             /* Grab reference to the SpriteKit view */
             let skView = self.view as SKView!
             
@@ -277,7 +301,7 @@ class GameScene: SKScene {
             /* Restart GameScene */
             skView.presentScene(scene)
             
-            gameState = .ready
+            gameState = .menu
             
             // Reset the score
             self.gameTracker.multiplierScore = 0
@@ -285,9 +309,138 @@ class GameScene: SKScene {
             self.gameTracker.score = 0
             
         }
-
+        
+        factHelpButton.selectedHandler = {
+            
+            /* Play SFX */
+            let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
+            self.runAction(click)
+            
+            //Loop through columns
+            for i in 0..<columns {
+                //Loop through rows
+                for j in 0..<rows {
+                    
+                    self.gridNode.gridArray[i][j].factStack = !self.gridNode.gridArray[i][j].factStack
+                    
+//                    if self.gridNode.gridArray[i][j].state != .inactive {
+//                        // Flip the regular label
+//                        self.gridNode.gridArray[i][j].label.hidden = !self.gridNode.gridArray[i][j].label.hidden
+//                        
+//                        // Flip the factorials value label
+//                        self.gridNode.gridArray[i][j].factLabel.hidden = !self.gridNode.gridArray[i][j].factLabel.hidden
+//                        
+//                    }
+                }
+            }
+            
+            //Loop through top stage
+            for i in 0..<columns {
+                
+                self.topStageNode.stageArray[i].factStack = !self.topStageNode.stageArray[i].factStack
+                
+//                if self.topStageNode.stageArray[i].state != .inactive {
+//                    
+//                    
+//                    // Turn off the regular label
+//                    self.topStageNode.stageArray[i].label.hidden = !self.topStageNode.stageArray[i].label.hidden
+//                    
+//                    // Turn on the factorials value label
+//                    self.topStageNode.stageArray[i].factLabel.hidden = !self.topStageNode.stageArray[i].factLabel.hidden
+//                }
+                
+            }
+            
+            //Loop through bottom stage
+            for i in 0..<columns {
+                
+                self.bottomStageNode.stageArray[i].factStack = !self.bottomStageNode.stageArray[i].factStack
+                
+//                if self.bottomStageNode.stageArray[i].state != .inactive {
+//                    
+//                    // Turn off the regular label
+//                    self.bottomStageNode.stageArray[i].label.hidden = !self.bottomStageNode.stageArray[i].label.hidden
+//                    
+//                    // Turn on the factorials value label
+//                    self.bottomStageNode.stageArray[i].factLabel.hidden = !self.bottomStageNode.stageArray[i].factLabel.hidden
+//                }
+                
+            }
+            
+            //Loop through left stage
+            for i in 0..<rows {
+                
+                self.leftStageNode.stageArray[i].factStack = !self.leftStageNode.stageArray[i].factStack
+                
+//                if self.leftStageNode.stageArray[i].state != .inactive {
+//                    
+//                    // Turn off the regular label
+//                    self.leftStageNode.stageArray[i].label.hidden = !self.leftStageNode.stageArray[i].label.hidden
+//                    
+//                    // Turn on the factorials value label
+//                    self.leftStageNode.stageArray[i].factLabel.hidden = !self.leftStageNode.stageArray[i].factLabel.hidden
+//                }
+                
+            }
+            
+            //Loop through right stage
+            for i in 0..<rows {
+                
+                self.rightStageNode.stageArray[i].factStack = !self.rightStageNode.stageArray[i].factStack
+                
+//                if self.rightStageNode.stageArray[i].state != .inactive {
+//                    
+//                    // Turn off the regular label
+//                    self.rightStageNode.stageArray[i].label.hidden = !self.rightStageNode.stageArray[i].label.hidden
+//                    
+//                    // Turn on the factorials value label
+//                    self.rightStageNode.stageArray[i].factLabel.hidden = !self.rightStageNode.stageArray[i].factLabel.hidden
+//                    
+//                }
+            }
+            
+            if self.gridNode.gridArray[0][0].factStack == false {
+                
+                let factLabelOff = SKSpriteNode(imageNamed: "FactLabelOff")
+                factLabelOff.alpha = CGFloat(0.0)
+                factLabelOff.position = CGPoint(x: 540, y: 834)
+                factLabelOff.setScale(0.9)
+                factLabelOff.zPosition = 30
+                self.addChild(factLabelOff)
+                let alphaUp = SKAction.fadeAlphaTo(CGFloat(1.0), duration: NSTimeInterval(0.7))
+                let scale = SKAction.scaleTo(CGFloat(1.0), duration: 0.7)
+                let alphaDown = SKAction.fadeAlphaTo(CGFloat(0.0), duration: 0.7)
+                let remove = SKAction.removeFromParent()
+                let sequence = SKAction.sequence([alphaUp, scale, alphaDown, remove])
+                factLabelOff.runAction(sequence)
+                
+                
+            } else if self.gridNode.gridArray[0][0].factStack == true {
+                
+                let factLabelOn = SKSpriteNode(imageNamed: "FactLabelOn")
+                factLabelOn.alpha = CGFloat(0.0)
+                factLabelOn.position = CGPoint(x: 540, y: 834)
+                factLabelOn.setScale(0.9)
+                factLabelOn.zPosition = 30
+                self.addChild(factLabelOn)
+                let alphaUp = SKAction.fadeAlphaTo(CGFloat(1.0), duration: NSTimeInterval(0.7))
+                let scale = SKAction.scaleTo(CGFloat(1.0), duration: 0.7)
+                let alphaDown = SKAction.fadeAlphaTo(CGFloat(0.0), duration: 0.7)
+                let remove = SKAction.removeFromParent()
+                let sequence = SKAction.sequence([alphaUp, scale, alphaDown, remove])
+                factLabelOn.runAction(sequence)
+                
+            }
+            
+        }
+        
+        
         
         restartButton.selectedHandler = {
+            
+            /* Play SFX */
+            let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
+            self.runAction(click)
             
             /* Grab reference to the SpriteKit view */
             let skView = self.view as SKView!
@@ -312,6 +465,10 @@ class GameScene: SKScene {
         
         gameOver.selectedHandler = {
             
+            /* Play SFX */
+            let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
+            self.runAction(click)
+            
             /* Grab reference to the SpriteKit view */
             let skView = self.view as SKView!
             
@@ -324,7 +481,7 @@ class GameScene: SKScene {
             /* Restart GameScene */
             skView.presentScene(scene)
             
-            gameState = .ready
+            gameState = .menu
             
             // Reset the score
             self.gameTracker.multiplierScore = 0
@@ -359,6 +516,8 @@ class GameScene: SKScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         
+        
+        
         gameTracker.timeElapsedSinceIdle  = 0
         
     }
@@ -389,6 +548,11 @@ class GameScene: SKScene {
             
             
         }
+        
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
         
     }
     
@@ -792,6 +956,7 @@ class GameScene: SKScene {
         let red: BlockType = .red
         let blue: BlockType = .blue
         let green: BlockType = .green
+        let yellow: BlockType = .yellow
         let inactive: BlockType = .inactive
         let block1State = block1.state
         let block2State = block2.state
@@ -882,7 +1047,54 @@ class GameScene: SKScene {
         } else if ((block1State == green) && (block2State == green)) || ((block1State == green) && (block2State == green)) {
             // combine
             return Outcome(winnner: block1, loser: block2, tie: 1)
+            
+            // yellow vs yellow
+        } else if ((block1State == yellow) && (block2State == yellow)) || ((block1State == yellow) && (block2State == yellow)) {
+            // combine
+            return Outcome(winnner: block1, loser: block2, tie: 1)
+            
+            //yellow vs blue
+        } else if (block1State == yellow) && (block2State == blue) {
+            //Do nothing
+            return Outcome(winnner: block1, loser: block2, tie: 0)
+            
+            //yellow vs green
+        } else if (block1State == yellow) && (block2State == green) {
+            //Do nothing
+            return Outcome(winnner: block1, loser: block2, tie: 0)
+            
+            //yellow vs red
+        } else if (block1State == yellow) && (block2State == red) {
+            //Do nothing
+            return Outcome(winnner: block1, loser: block2, tie: 0)
+            
+            //blue vs yellow
+        } else if (block1State == blue) && (block2State == yellow) {
+            //Do nothing
+            return Outcome(winnner: block1, loser: block2, tie: 0)
+            
+            //green vs yellow
+        } else if (block1State == green) && (block2State == yellow) {
+            //Do nothing
+            return Outcome(winnner: block1, loser: block2, tie: 0)
+            
+            //red vs yellow
+        } else if (block1State == red) && (block2State == yellow) {
+            //Do nothing
+            return Outcome(winnner: block1, loser: block2, tie: 0)
+            
+            // yellow vs nothing
+        } else if (block1State == yellow) && (block2State == inactive) {
+            //block1 wins!!
+            return Outcome(winnner: block1, loser: block2, tie: 1)
+            
+            // nothing vs yellow
+        } else if (block1State == inactive) && (block2State == yellow){
+            //block2 wins!!
+            return Outcome(winnner: block2, loser: block1, tie: 2)
+            
         }
+            
             
         else{
             
@@ -934,28 +1146,31 @@ class GameScene: SKScene {
         //
         //        }
         
-//        switch loseBlock.state {
-//        case .red:
-//            loseAssetString = "RoundRectCoral"
-//        case .blue:
-//            loseAssetString = "RoundRectTeal"
-//        case .green:
-//            loseAssetString = "RoundRectGreen"
-//        case .yellow:
-//            loseAssetString = "RoundRectYellow"
-//        case .inactive:
-//            loseAssetString = "RoundRect"
-//            
-//        }
+        //        switch loseBlock.state {
+        //        case .red:
+        //            loseAssetString = "RoundRectCoral"
+        //        case .blue:
+        //            loseAssetString = "RoundRectTeal"
+        //        case .green:
+        //            loseAssetString = "RoundRectGreen"
+        //        case .yellow:
+        //            loseAssetString = "RoundRectYellow"
+        //        case .inactive:
+        //            loseAssetString = "RoundRect"
+        //
+        //        }
         
         loseAssetString = loseBlock.getBlockImageName(loseBlock.state, stack: loseBlock.stack)
         
+        // If they are combining
         if block1.state == block2.state {
             
             let winNode = Block()
             //            let winNode = SKSpriteNode(imageNamed: winAssetString)
             winNode.state = winBlock.state
             winNode.stack = winBlock.stack
+            winNode.factStack = winBlock.factStack
+            
             let scale = SKAction.scaleTo(1.15, duration: 0.07)
             let descale = SKAction.scaleTo(1, duration: 0.07)
             let destination = winBlock.position
@@ -1003,12 +1218,14 @@ class GameScene: SKScene {
             loseNode.runAction(SKAction.sequence([move, remove]))
             
             
+            // If they are moving into an inactive space
         } else if (block1.state == .inactive) && (block2.state != .inactive) {
             
             let winNode = Block()
             //winNode = SKSpriteNode(imageNamed: winAssetString)
             winNode.state = winBlock.state
             winNode.stack = winBlock.stack
+            winNode.factStack = winBlock.factStack
             
             let scale = SKAction.scaleTo(1.15, duration: 0.07)
             let descale = SKAction.scaleTo(1, duration: 0.07)
@@ -1266,7 +1483,7 @@ class GameScene: SKScene {
         
         // Create a sound effect action
         
-        let scoreSFX = SKAction.playSoundFileNamed("clearAisle", waitForCompletion: false)
+        let scoreSFX = SKAction.playSoundFileNamed("clearAisleLow", waitForCompletion: false)
         
         // Create the sequence action
         let dieSeq = SKAction.sequence([scale, scoreSFX, wait, descale, remove])
@@ -1641,18 +1858,18 @@ class GameScene: SKScene {
             //                rightStageCopy.addBlockToEmptyStage()
             //                rightStageCopy.addBlockToEmptyStage()
             //                //                rightStageNode.stageRegen()
-            //                
+            //
             //                // Reset the stage regen bool to false
             //                stageRegen = false
-            //                
+            //
             //                //Is the swipe right & stage regen is true?
             //            } else if swipeDirection == .right && stageRegen == true {
-            //                
+            //
             //                // Add a new block to the stage
             //                //                leftStageNode.stageRegen()
             //                leftStageCopy.addBlockToEmptyStage()
             //                leftStageCopy.addBlockToEmptyStage()
-            //                
+            //
             //                // Reset the stage regen bool to false
             //                stageRegen = false
             //            }
@@ -1724,7 +1941,9 @@ class GameScene: SKScene {
             //Game is gameover!
             gameState = .gameover
             
-            gameOverAction()
+            gameOver.hidden = false
+            
+            
         }
         
     }
@@ -1770,5 +1989,9 @@ func factorialWeights() -> Int{
     }
     
     
+}
+
+func randomBetweenNumbers(firstNum: CGFloat, secondNum: CGFloat) -> CGFloat{
+    return CGFloat(arc4random()) / CGFloat(UINT32_MAX) * abs(firstNum - secondNum) + min(firstNum, secondNum)
 }
 
