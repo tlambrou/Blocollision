@@ -13,6 +13,9 @@ import CoreMotion
 class Title: SKScene {
     
     var playButton: MSButtonNode!
+    var timedButton: MSButtonNode!
+    var movesButton: MSButtonNode!
+    var howtoButton: MSButtonNode!
     
     var motionManager = CMMotionManager()
     
@@ -21,6 +24,9 @@ class Title: SKScene {
 //        SKTAudio.sharedInstance().playBackgroundMusic("Tame Your Crickets.caf") // Start the music
         
         playButton = self.childNodeWithName("playButton") as! MSButtonNode
+        timedButton = self.childNodeWithName("timedButton") as! MSButtonNode
+        movesButton = self.childNodeWithName("movesButton") as! MSButtonNode
+        howtoButton = self.childNodeWithName("howtoButton") as! MSButtonNode
         
         playButton.selectedHandler = {
             
@@ -34,6 +40,9 @@ class Title: SKScene {
             /* Load Game scene */
             let scene = GameScene(fileNamed:"GameScene") as GameScene!
             
+            // Set Play Mode to "Mortality"
+            gameMode = .mortality
+            
             // Set GameState to playing
             gameState = .playing
             
@@ -44,6 +53,74 @@ class Title: SKScene {
             /* Restart GameScene */
             skView.presentScene(scene)
 
+            
+            
+        }
+        
+        timedButton.selectedHandler = {
+            
+            /* Play SFX */
+            let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
+            self.runAction(click)
+            
+            /* Grab reference to the SpriteKit view */
+            let skView = self.view as SKView!
+            
+            /* Load Game scene */
+            let scene = GameScene(fileNamed:"GameScene") as GameScene!
+            
+            // Set Play Mode to "Mortality"
+            gameMode = .timed
+            
+            // Set GameState to playing
+            gameState = .playing
+            
+            
+            /* Ensure correct aspect mode */
+            scene.scaleMode = .AspectFit
+            
+            /* Restart GameScene */
+            skView.presentScene(scene)
+            
+            
+            
+        }
+        
+        movesButton.selectedHandler = {
+            
+            /* Play SFX */
+            let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
+            self.runAction(click)
+            
+            /* Grab reference to the SpriteKit view */
+            let skView = self.view as SKView!
+            
+            /* Load Game scene */
+            let scene = GameScene(fileNamed:"GameScene") as GameScene!
+            
+            // Set Play Mode to "Mortality"
+            gameMode = .moves
+            
+            // Set GameState to playing
+            gameState = .playing
+            
+            
+            /* Ensure correct aspect mode */
+            scene.scaleMode = .AspectFit
+            
+            /* Restart GameScene */
+            skView.presentScene(scene)
+            
+            
+            
+        }
+        
+        howtoButton.selectedHandler = {
+            
+            /* Play SFX */
+            let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
+            self.runAction(click)
+            
             
             
         }

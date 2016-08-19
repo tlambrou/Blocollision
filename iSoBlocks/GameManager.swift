@@ -25,4 +25,22 @@ class GameManager {
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
+    
+    var timedHighScore: Int = NSUserDefaults.standardUserDefaults().integerForKey("timedHighScore") ?? 0 {
+        didSet {
+            NSUserDefaults.standardUserDefaults().setInteger(timedHighScore, forKey:"timedHighScore")
+            // Saves to disk immediately, otherwise it will save when it has time
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
+    
+    var movesHighScore: Int = NSUserDefaults.standardUserDefaults().integerForKey("movesHighScore") ?? 0 {
+        didSet {
+            NSUserDefaults.standardUserDefaults().setInteger(movesHighScore, forKey:"movesHighScore")
+            // Saves to disk immediately, otherwise it will save when it has time
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
+    
+    
 }

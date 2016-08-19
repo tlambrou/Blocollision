@@ -86,7 +86,11 @@ class GameScene: SKScene {
     
     var gameTracker = GameTracker.init() {
         didSet {
+            if gameTracker.prevScore <= gameTracker.score {
             scoreLabel.text = String(gameTracker.score)
+                gameTracker.prevScore = gameTracker.score
+            }
+            
             levelLabel.text = String(gameTracker.difficulty)
             print("Difficulty: \(gameTracker.difficulty)")
             print("Cleared Lines: \(gameTracker.clrdAisles)")
@@ -95,6 +99,8 @@ class GameScene: SKScene {
             if gameTrackerState == .won {
                 gameState = .won
             }
+            
+            
         }
     }
     
@@ -102,8 +108,6 @@ class GameScene: SKScene {
     
     let gameManager = GameManager.sharedInstance
     var hiScoreLabel: SKLabelNode!
-    
-    
     
     var gridNode: Grid!
     var topStageNode: StageH!
@@ -115,13 +119,20 @@ class GameScene: SKScene {
     var factHelpButton: MSButtonNode!
     var gameOver: MSButtonNode!
     
+    var swipeCount: Int = 0
+    
     
     var swipeInstructions: SKSpriteNode!
     
     func afterSwipe() {
         
+        
+        
         // Create random swipe sound effect if the game is in play
         if gameState == .playing {
+            
+            // Increase the swipe count
+            swipeCount += 1
             
             // Create a random selector
             let ranDumb: Int = Int.random(2)
@@ -131,14 +142,14 @@ class GameScene: SKScene {
             case 0:
                 
                 /* Play SFX */
-                let scoreSFX = SKAction.playSoundFileNamed("switch33", waitForCompletion: true)
-                self.runAction(scoreSFX)
+                let swipeSFX = SKAction.playSoundFileNamed("switch33", waitForCompletion: true)
+                self.runAction(swipeSFX)
                 
             case 1 :
                 
                 /* Play SFX */
-                let scoreSFX = SKAction.playSoundFileNamed("switch34", waitForCompletion: true)
-                self.runAction(scoreSFX)
+                let swipeSFX = SKAction.playSoundFileNamed("switch34", waitForCompletion: true)
+                self.runAction(swipeSFX)
                 
             default:
                 print("Didn't play any swipe SFX for some reason.  Check afterSwipe()")
@@ -156,11 +167,36 @@ class GameScene: SKScene {
         
         gameTracker.difficultyRules()
         
-        // Evaluate & Set High Score
-        if gameTracker.score > gameManager.highScore {
-            gameManager.highScore = gameTracker.score
-            hiScoreLabel.text = String(gameManager.highScore)
-            hiScoreSet = true
+        switch gameMode {
+        case .menu:
+            print("Shouldn't be in Menu Mode while in game play")
+        case .mortality:
+            
+            // Evaluate & Set High Score
+            if gameTracker.score > gameManager.highScore {
+                gameManager.highScore = gameTracker.score
+                hiScoreLabel.text = String(gameManager.highScore)
+                hiScoreSet = true
+            }
+
+        case .timed:
+            
+            // Evaluate & Set High Score
+            if gameTracker.score > gameManager.timedHighScore {
+                gameManager.timedHighScore = gameTracker.score
+                hiScoreLabel.text = String(gameManager.timedHighScore)
+                hiScoreSet = true
+            }
+            
+        case .moves:
+        
+            // Evaluate & Set High Score
+            if gameTracker.score > gameManager.movesHighScore {
+                gameManager.movesHighScore = gameTracker.score
+                hiScoreLabel.text = String(gameManager.movesHighScore)
+                hiScoreSet = true
+            }
+            
         }
         
         // Check for Game Over State
@@ -407,9 +443,9 @@ class GameScene: SKScene {
                 factLabelOff.setScale(0.9)
                 factLabelOff.zPosition = 30
                 self.addChild(factLabelOff)
-                let alphaUp = SKAction.fadeAlphaTo(CGFloat(1.0), duration: NSTimeInterval(0.7))
-                let scale = SKAction.scaleTo(CGFloat(1.0), duration: 0.7)
-                let alphaDown = SKAction.fadeAlphaTo(CGFloat(0.0), duration: 0.7)
+                let alphaUp = SKAction.fadeAlphaTo(CGFloat(1.0), duration: NSTimeInterval(0.4))
+                let scale = SKAction.scaleTo(CGFloat(1.0), duration: 0.4)
+                let alphaDown = SKAction.fadeAlphaTo(CGFloat(0.0), duration: 0.4)
                 let remove = SKAction.removeFromParent()
                 let sequence = SKAction.sequence([alphaUp, scale, alphaDown, remove])
                 factLabelOff.runAction(sequence)
@@ -423,9 +459,9 @@ class GameScene: SKScene {
                 factLabelOn.setScale(0.9)
                 factLabelOn.zPosition = 30
                 self.addChild(factLabelOn)
-                let alphaUp = SKAction.fadeAlphaTo(CGFloat(1.0), duration: NSTimeInterval(0.7))
-                let scale = SKAction.scaleTo(CGFloat(1.0), duration: 0.7)
-                let alphaDown = SKAction.fadeAlphaTo(CGFloat(0.0), duration: 0.7)
+                let alphaUp = SKAction.fadeAlphaTo(CGFloat(1.0), duration: NSTimeInterval(0.4))
+                let scale = SKAction.scaleTo(CGFloat(1.0), duration: 0.4)
+                let alphaDown = SKAction.fadeAlphaTo(CGFloat(0.0), duration: 0.4)
                 let remove = SKAction.removeFromParent()
                 let sequence = SKAction.sequence([alphaUp, scale, alphaDown, remove])
                 factLabelOn.runAction(sequence)

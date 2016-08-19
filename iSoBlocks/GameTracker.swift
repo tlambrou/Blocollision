@@ -71,6 +71,8 @@ struct GameTracker {
         }
     }
     
+    var prevScore: Int = 0
+    
     var score: Int = 0 {
         didSet {
            scored = score - prevDiffScore

@@ -67,12 +67,35 @@ class Block: SKSpriteNode {
                 let faction = SKAction.setTexture(SKTexture(imageNamed: assetString + "Fact"))
                 factLabel.runAction(faction)
                 
+                let dummyLabel = SKTexture(imageNamed: assetString + "Fact")
+                
+                let factHeight = dummyLabel.size().height
+                let factWidth = dummyLabel.size().width
+                
+                let heightRatio = CGFloat(factHeight/CGFloat(cellHeight))
+                let widthRatio = CGFloat(factWidth/CGFloat(cellWidth))
+                
+                if factWidth > factHeight {
+                    
+                    factLabel.setScale(widthRatio * 1)
+//                    factLabel.size = CGSize(width: CGFloat(cellWidth/2), height: ((CGFloat(cellWidth/2) * factWidth) / factHeight))
+                    
+                } else if factHeight > factWidth {
+                    
+                    factLabel.setScale(heightRatio * 1)
+                    
+//                    factLabel.size = CGSize(width: ((CGFloat(cellHeight/2) * factHeight) / factWidth), height: CGFloat(cellHeight/2))
+                    
+                }
+                
                 if factStack == true {
                     label.hidden = true
                     factLabel.hidden = false
                 }
                 
                 label.zPosition = 4
+                
+                
             }
         }
     }
@@ -168,7 +191,6 @@ class Block: SKSpriteNode {
         factLabel.hidden = true
         factLabel.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
-        factLabel.size = CGSize(width: cellWidth/2, height: cellHeight/2)
         
         factLabel.position.offset(dx: 0, dy: (factLabel.size.height/4))
         factLabel.zPosition = 4
