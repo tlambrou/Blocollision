@@ -60,9 +60,6 @@ didSet {
         print("Mortality Mode")
     case .timed:
         print("Timed Mode")
-        
-        //        var time: SKSpriteNode!
-        
     case .moves:
         print("Moves Mode")
     }
@@ -84,17 +81,32 @@ struct Outcome {
 
 class GameScene: SKScene {
     
+    var timeLeft: Int = 60
+    
     var gameTracker = GameTracker.init() {
         didSet {
             if gameTracker.prevScore <= gameTracker.score {
-            scoreLabel.text = String(gameTracker.score)
+                scoreLabel.text = String(gameTracker.score)
                 gameTracker.prevScore = gameTracker.score
             }
             
-            levelLabel.text = String(gameTracker.difficulty)
-            print("Difficulty: \(gameTracker.difficulty)")
-            print("Cleared Lines: \(gameTracker.clrdAisles)")
-            print("Scored: \(gameTracker.scored)")
+            switch gameMode {
+            case .mortality:
+                levelLabel.text = String(gameTracker.difficulty)
+                
+            case .timed:
+                levelLabel.text = String(timeLeft)
+                
+            case .moves:
+                levelLabel.text = String(swipeCount)
+            default:
+                break
+            }
+            
+            //
+            //            print("Difficulty: \(gameTracker.difficulty)")
+            //            print("Cleared Lines: \(gameTracker.clrdAisles)")
+            //            print("Scored: \(gameTracker.scored)")
             
             if gameTrackerState == .won {
                 gameState = .won
@@ -118,8 +130,15 @@ class GameScene: SKScene {
     var restartButton: MSButtonNode!
     var factHelpButton: MSButtonNode!
     var gameOver: MSButtonNode!
+    var levelText: SKSpriteNode!
     
-    var swipeCount: Int = 0
+    var swipeCount: Int = 50 {
+        didSet {
+            if swipeCount < 0 {
+                swipeCount = 0
+            }
+        }
+    }
     
     
     var swipeInstructions: SKSpriteNode!
@@ -132,7 +151,7 @@ class GameScene: SKScene {
         if gameState == .playing {
             
             // Increase the swipe count
-            swipeCount += 1
+            swipeCount -= 1
             
             // Create a random selector
             let ranDumb: Int = Int.random(2)
@@ -154,51 +173,54 @@ class GameScene: SKScene {
             default:
                 print("Didn't play any swipe SFX for some reason.  Check afterSwipe()")
             }
+            
+            
+            // Check for complete rows
+            rowsCheck()
+            
+            // Check for complete columns
+            columnsCheck()
+            
+            // Calculate the grid score (sumScore)
+            gridScore()
+            
+            // Check the game mode
+            switch gameMode {
+            case .menu:
+                print("Shouldn't be in Menu Mode while in game play")
+            case .mortality:
+                
+                // Level Evaluation
+                gameTracker.difficultyRules()
+                
+                // Evaluate & Set High Score
+                if gameTracker.score > gameManager.highScore {
+                    gameManager.highScore = gameTracker.score
+                    hiScoreLabel.text = String(gameManager.highScore)
+                    hiScoreSet = true
+                }
+                
+            case .timed:
+                
+                // Evaluate & Set High Score
+                if gameTracker.score > gameManager.timedHighScore {
+                    gameManager.timedHighScore = gameTracker.score
+                    hiScoreLabel.text = String(gameManager.timedHighScore)
+                    hiScoreSet = true
+                }
+                
+            case .moves:
+                
+                // Evaluate & Set High Score
+                if gameTracker.score > gameManager.movesHighScore {
+                    gameManager.movesHighScore = gameTracker.score
+                    hiScoreLabel.text = String(gameManager.movesHighScore)
+                    hiScoreSet = true
+                }
+                
+            }
+            
         }
-        
-        // Check for complete rows
-        rowsCheck()
-        
-        // Check for complete columns
-        columnsCheck()
-        
-        // Calculate the grid score (sumScore)
-        gridScore()
-        
-        gameTracker.difficultyRules()
-        
-        switch gameMode {
-        case .menu:
-            print("Shouldn't be in Menu Mode while in game play")
-        case .mortality:
-            
-            // Evaluate & Set High Score
-            if gameTracker.score > gameManager.highScore {
-                gameManager.highScore = gameTracker.score
-                hiScoreLabel.text = String(gameManager.highScore)
-                hiScoreSet = true
-            }
-
-        case .timed:
-            
-            // Evaluate & Set High Score
-            if gameTracker.score > gameManager.timedHighScore {
-                gameManager.timedHighScore = gameTracker.score
-                hiScoreLabel.text = String(gameManager.timedHighScore)
-                hiScoreSet = true
-            }
-            
-        case .moves:
-        
-            // Evaluate & Set High Score
-            if gameTracker.score > gameManager.movesHighScore {
-                gameManager.movesHighScore = gameTracker.score
-                hiScoreLabel.text = String(gameManager.movesHighScore)
-                hiScoreSet = true
-            }
-            
-        }
-        
         // Check for Game Over State
         gameOverCheck()
         
@@ -261,7 +283,7 @@ class GameScene: SKScene {
         
         // Setup for High Score & Retrieval
         hiScoreLabel = SKLabelNode(fontNamed:"Menlo-Bold")
-        hiScoreLabel.text = String(gameManager.highScore)
+        
         hiScoreLabel.fontSize = 120
         hiScoreLabel.fontColor = UIColor(netHex: 0xFFFFFF)
         hiScoreLabel.zPosition = 101
@@ -285,39 +307,90 @@ class GameScene: SKScene {
         swipeInstructions = childNodeWithName("swipeInstructions") as! SKSpriteNode
         scoreLabel = childNodeWithName("scoreLabel") as! SKLabelNode
         levelLabel = childNodeWithName("levelLabel") as! SKLabelNode
+        levelText = childNodeWithName("levelText") as! SKSpriteNode
         
         swipeInstructions.alpha = CGFloat(0)
         
-        //        var timeLeft: Int = 60
-        //        let delay = SKAction.waitForDuration(1)
-        //
-        //        let block = SKAction.runBlock({
-        //            if self.timeLeft > 0 { self.timeLeft -= 1 }
-        //            if self.timeLeft < 11 {
-        //                self.time.fontColor = UIColor.redColor()
-        //            }
-        //            if self.timeLeft == 0 { self.state = .GameOver }
-        //            self.time.text = "\(self.timeLeft)"
-        //        })
-        //
-        //        let sequence = SKAction.sequence([wait, block])
-        //        self.runAction(SKAction.repeatActionForever(sequence))
+        
+        
+        
+        // Check to see game mode
+        
+        switch gameMode {
+        case .mortality:
+            
+            hiScoreLabel.text = String(gameManager.highScore)
+            
+            // Pick random stage for the first regen
+            let ranDumb: Int = Int.random(4)
+            
+            switch ranDumb {
+            case 0:
+                stageRegen(.up)
+            case 1:
+                stageRegen(.down)
+            case 2:
+                stageRegen(.left)
+            case 3:
+                stageRegen(.right)
+            default:
+                print("Stage spawn initializer switch didn't work")
+            }
+            
+        case .timed:
+            
+            hiScoreLabel.text = String(gameManager.timedHighScore)
+            
+            // Set the default respawn and block amounts
+            numBlocks = 3
+            spawnRate = 8
+            
+            // Regen all stages
+            stageRegen(.up)
+            stageRegen(.down)
+            stageRegen(.left)
+            stageRegen(.right)
+            
+            // Change the level text texture
+            levelText.texture = SKTexture(imageNamed: "Time")
+            
+            let delay = SKAction.waitForDuration(1)
+            
+            let block = SKAction.runBlock({
+                if self.timeLeft > 0 { self.timeLeft -= 1 }
+                if self.timeLeft < 11 {
+                    levelLabel.fontColor = UIColor.redColor()
+                }
+                if self.timeLeft == 0 { gameState = .gameover }
+            
+            })
+            
+            let sequence = SKAction.sequence([delay, block])
+            self.runAction(SKAction.repeatActionForever(sequence))
+            
+        case .moves:
+            
+            hiScoreLabel.text = String(gameManager.movesHighScore)
+            
+            // Set the default respawn and block amounts
+            numBlocks = 3
+            spawnRate = 8
+            
+            // Regen all stages
+            stageRegen(.up)
+            stageRegen(.down)
+            stageRegen(.left)
+            stageRegen(.right)
+            
+            // Change the level text texture
+            levelText.texture = SKTexture(imageNamed: "Moves")
+        default:
+            break
+        }
+        
         
         // Create randomizer for picking the stage to regen in
-        let ranDumb: Int = Int.random(4)
         
-        switch ranDumb {
-        case 0:
-            stageRegen(.up)
-        case 1:
-            stageRegen(.down)
-        case 2:
-            stageRegen(.left)
-        case 3:
-            stageRegen(.right)
-        default:
-            print("Stage spawn initializer switch didn't work")
-        }
         
         menuButton.selectedHandler = {
             
@@ -359,14 +432,6 @@ class GameScene: SKScene {
                     
                     self.gridNode.gridArray[i][j].factStack = !self.gridNode.gridArray[i][j].factStack
                     
-//                    if self.gridNode.gridArray[i][j].state != .inactive {
-//                        // Flip the regular label
-//                        self.gridNode.gridArray[i][j].label.hidden = !self.gridNode.gridArray[i][j].label.hidden
-//                        
-//                        // Flip the factorials value label
-//                        self.gridNode.gridArray[i][j].factLabel.hidden = !self.gridNode.gridArray[i][j].factLabel.hidden
-//                        
-//                    }
                 }
             }
             
@@ -375,31 +440,12 @@ class GameScene: SKScene {
                 
                 self.topStageNode.stageArray[i].factStack = !self.topStageNode.stageArray[i].factStack
                 
-//                if self.topStageNode.stageArray[i].state != .inactive {
-//                    
-//                    
-//                    // Turn off the regular label
-//                    self.topStageNode.stageArray[i].label.hidden = !self.topStageNode.stageArray[i].label.hidden
-//                    
-//                    // Turn on the factorials value label
-//                    self.topStageNode.stageArray[i].factLabel.hidden = !self.topStageNode.stageArray[i].factLabel.hidden
-//                }
-                
             }
             
             //Loop through bottom stage
             for i in 0..<columns {
                 
                 self.bottomStageNode.stageArray[i].factStack = !self.bottomStageNode.stageArray[i].factStack
-                
-//                if self.bottomStageNode.stageArray[i].state != .inactive {
-//                    
-//                    // Turn off the regular label
-//                    self.bottomStageNode.stageArray[i].label.hidden = !self.bottomStageNode.stageArray[i].label.hidden
-//                    
-//                    // Turn on the factorials value label
-//                    self.bottomStageNode.stageArray[i].factLabel.hidden = !self.bottomStageNode.stageArray[i].factLabel.hidden
-//                }
                 
             }
             
@@ -408,15 +454,6 @@ class GameScene: SKScene {
                 
                 self.leftStageNode.stageArray[i].factStack = !self.leftStageNode.stageArray[i].factStack
                 
-//                if self.leftStageNode.stageArray[i].state != .inactive {
-//                    
-//                    // Turn off the regular label
-//                    self.leftStageNode.stageArray[i].label.hidden = !self.leftStageNode.stageArray[i].label.hidden
-//                    
-//                    // Turn on the factorials value label
-//                    self.leftStageNode.stageArray[i].factLabel.hidden = !self.leftStageNode.stageArray[i].factLabel.hidden
-//                }
-                
             }
             
             //Loop through right stage
@@ -424,15 +461,6 @@ class GameScene: SKScene {
                 
                 self.rightStageNode.stageArray[i].factStack = !self.rightStageNode.stageArray[i].factStack
                 
-//                if self.rightStageNode.stageArray[i].state != .inactive {
-//                    
-//                    // Turn off the regular label
-//                    self.rightStageNode.stageArray[i].label.hidden = !self.rightStageNode.stageArray[i].label.hidden
-//                    
-//                    // Turn on the factorials value label
-//                    self.rightStageNode.stageArray[i].factLabel.hidden = !self.rightStageNode.stageArray[i].factLabel.hidden
-//                    
-//                }
             }
             
             if self.gridNode.gridArray[0][0].factStack == false {
@@ -491,6 +519,8 @@ class GameScene: SKScene {
             skView.presentScene(scene)
             
             gameState = .playing
+            
+            
             
             // Reset the score
             self.gameTracker.multiplierScore = 0
@@ -1972,6 +2002,7 @@ class GameScene: SKScene {
         
         possibleMoves += swipeCheck(.right, grid: gridNode, topStage: topStageNode, bottomStage: bottomStageNode, leftStage: leftStageNode, rightStage: rightStageNode)
         
+        
         if possibleMoves <= 0 {
             
             //Game is gameover!
@@ -1980,6 +2011,23 @@ class GameScene: SKScene {
             gameOver.hidden = false
             
             
+        }
+        
+        switch gameMode {
+        case .mortality:
+            break
+        case .timed:
+            if timeLeft == 0 {
+                gameState = .gameover
+                gameOver.hidden = false
+            }
+        case .moves:
+            if swipeCount == 0 {
+                gameState = .gameover
+                gameOver.hidden = false
+            }
+        default:
+            break
         }
         
     }
