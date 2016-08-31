@@ -167,44 +167,6 @@ class StageV: SKSpriteNode {
         }
     }
 
-    func animateWiggle(block: Block) {
-        let time = NSTimeInterval(0.1)
-        
-        let sfx1 = SKAction.playSoundFileNamed("click1", waitForCompletion: false)
-        let sfx2 = SKAction.playSoundFileNamed("click2", waitForCompletion: false)
-        let rotate1 = SKAction.rotateByAngle(randomBetweenNumbers(0, secondNum: 0.7), duration: time)
-        let rotate2 = SKAction.rotateByAngle(randomBetweenNumbers(0, secondNum: -0.7), duration: time)
-        let rotate3 = SKAction.rotateByAngle(randomBetweenNumbers(0, secondNum: 1.2), duration: time)
-        let rotate4 = SKAction.rotateByAngle(randomBetweenNumbers(0, secondNum: -1.2), duration: time)
-        let rotate5 = SKAction.rotateByAngle(randomBetweenNumbers(0, secondNum: 1.5), duration: time)
-        let rotate6 = SKAction.rotateByAngle(randomBetweenNumbers(0, secondNum: -1.5), duration: time)
-        let rotate7 = SKAction.rotateByAngle(randomBetweenNumbers(0, secondNum: 2), duration: time)
-        let rotate8 = SKAction.rotateByAngle(randomBetweenNumbers(0, secondNum: -2), duration: time)
-        let rotateCenter = SKAction.rotateToAngle(0, duration: time)
-        let seq1 = SKAction.sequence([sfx1, rotate1, rotateCenter, sfx2, rotate2, rotateCenter])
-        let seq2 = SKAction.sequence([sfx1, rotate3, rotateCenter, sfx2, rotate4, rotateCenter])
-        let seq3 = SKAction.sequence([sfx1, rotate5, rotateCenter, sfx2, rotate6, rotateCenter])
-        let seq4 = SKAction.sequence([sfx1, rotate7, rotateCenter, sfx2, rotate8, rotateCenter])
-        
-        
-        switch block.stack {
-        case 4:
-            let sequence = SKAction.sequence([seq1])
-            block.runAction(sequence)
-        case 5:
-            let sequence = SKAction.sequence([seq1, seq2])
-            block.runAction(sequence)
-        case 6:
-            let sequence = SKAction.sequence([seq1, seq2, seq3])
-            block.runAction(sequence)
-        case 7:
-            let sequence = SKAction.sequence([seq1, seq2, seq3, seq4])
-            block.runAction(sequence)
-        default:
-            print("Wiggles not set right")
-        }
-        
-    }
     
     func stageRegen() {
         

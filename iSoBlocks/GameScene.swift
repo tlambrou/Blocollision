@@ -362,7 +362,7 @@ class GameScene: SKScene {
                     levelLabel.fontColor = UIColor.redColor()
                 }
                 if self.timeLeft == 0 { gameState = .gameover }
-            
+                
             })
             
             let sequence = SKAction.sequence([delay, block])
@@ -597,22 +597,24 @@ class GameScene: SKScene {
         gameTracker.timeElapsedSinceIdle += 1
         
         //MARK: Idle variable actions
-        if gameTracker.instShown == false && gameTracker.idle == true {
-            gameTracker.instShown = true
-            
-            let fadeUp = SKAction.fadeAlphaTo(1.0, duration: NSTimeInterval(1.0))
-            let fadeDown = SKAction.fadeAlphaTo(0.55, duration: NSTimeInterval(1.0))
-            let sequence = SKAction.repeatActionForever(SKAction.sequence([fadeUp, fadeDown]))
-            swipeInstructions.runAction(sequence)
-            gameTracker.firstInstShown = true
-            
-        } else if gameTracker.instShown == true && gameTracker.idle == false {
-            gameTracker.instShown = false
-            let fadeDown = SKAction.fadeAlphaTo(0, duration: NSTimeInterval(0.5))
-            swipeInstructions.removeAllActions()
-            swipeInstructions.runAction(fadeDown)
-            
-            
+        if gameState != .gameover {
+            if gameTracker.instShown == false && gameTracker.idle == true {
+                gameTracker.instShown = true
+                
+                let fadeUp = SKAction.fadeAlphaTo(1.0, duration: NSTimeInterval(1.0))
+                let fadeDown = SKAction.fadeAlphaTo(0.55, duration: NSTimeInterval(1.0))
+                let sequence = SKAction.repeatActionForever(SKAction.sequence([fadeUp, fadeDown]))
+                swipeInstructions.runAction(sequence)
+                gameTracker.firstInstShown = true
+                
+            } else if gameTracker.instShown == true && gameTracker.idle == false {
+                gameTracker.instShown = false
+                let fadeDown = SKAction.fadeAlphaTo(0, duration: NSTimeInterval(0.5))
+                swipeInstructions.removeAllActions()
+                swipeInstructions.runAction(fadeDown)
+                
+                
+            }
         }
         
     }
@@ -2006,9 +2008,7 @@ class GameScene: SKScene {
         if possibleMoves <= 0 {
             
             //Game is gameover!
-            gameState = .gameover
-            
-            gameOver.hidden = false
+            gameOverAction()
             
             
         }
@@ -2018,13 +2018,11 @@ class GameScene: SKScene {
             break
         case .timed:
             if timeLeft == 0 {
-                gameState = .gameover
-                gameOver.hidden = false
+                gameOverAction()
             }
         case .moves:
             if swipeCount == 0 {
-                gameState = .gameover
-                gameOver.hidden = false
+                gameOverAction()
             }
         default:
             break
@@ -2033,6 +2031,15 @@ class GameScene: SKScene {
     }
     
     func gameOverAction () {
+        
+        gameOver.alpha = CGFloat(0)
+        
+        let fadeUp = SKAction.fadeAlphaTo(CGFloat(1.0), duration: 1.0)
+        
+        gameOver.runAction(fadeUp)
+        gameState = .gameover
+        
+        
         
         gameOver.hidden = false
         
