@@ -22,13 +22,13 @@ class Block: SKSpriteNode {
                 
                 if factStack == true {
                     
-                    label.hidden = true
-                    factLabel.hidden = false
+                    label.isHidden = true
+                    factLabel.isHidden = false
                     
                 } else if factStack == false {
                     
-                    label.hidden = false
-                    factLabel.hidden = true
+                    label.isHidden = false
+                    factLabel.isHidden = true
                     
                 }
                 
@@ -41,7 +41,7 @@ class Block: SKSpriteNode {
             
             let asset = getBlockImageName(state, stack: stack)
             let action = SKAction.setTexture(SKTexture(imageNamed: asset))
-            runAction(action)
+            run(action)
             
             
             if stack < 0 {
@@ -54,18 +54,18 @@ class Block: SKSpriteNode {
                 //                label.text = String(stack)
                 let assetString = String(stack)
                 let action = SKAction.setTexture(SKTexture(imageNamed: assetString))
-                label.runAction(action)
+                label.run(action)
                 
                 if factStack == false {
                     
-                    label.hidden = false
-                    factLabel.hidden = true
+                    label.isHidden = false
+                    factLabel.isHidden = true
                 }
                 //                factLabel.hidden = false
                 label.zPosition = 4
                 
                 let faction = SKAction.setTexture(SKTexture(imageNamed: assetString + "Fact"))
-                factLabel.runAction(faction)
+                factLabel.run(faction)
                 
                 let dummyLabel = SKTexture(imageNamed: assetString + "Fact")
                 
@@ -89,8 +89,8 @@ class Block: SKSpriteNode {
                 }
                 
                 if factStack == true {
-                    label.hidden = true
-                    factLabel.hidden = false
+                    label.isHidden = true
+                    factLabel.isHidden = false
                 }
                 
                 label.zPosition = 4
@@ -113,39 +113,39 @@ class Block: SKSpriteNode {
             case .inactive:
                 let asset = getBlockImageName(state, stack: stack)
                 let action = SKAction.setTexture(SKTexture(imageNamed: asset))
-                runAction(action)
+                run(action)
                 stack = 0
-                label.hidden = true
-                factLabel.hidden = true
+                label.isHidden = true
+                factLabel.isHidden = true
                 //                factLabel.hidden = true
-                hidden = false
+                isHidden = false
                 
             case .red:
                 let asset = getBlockImageName(state, stack: stack)
                 let action = SKAction.setTexture(SKTexture(imageNamed: asset))
-                runAction(action)
-                hidden = false
+                run(action)
+                isHidden = false
                 break;
                 
             case .blue:
                 let asset = getBlockImageName(state, stack: stack)
                 let action = SKAction.setTexture(SKTexture(imageNamed: asset))
-                runAction(action)
-                hidden = false
+                run(action)
+                isHidden = false
                 break;
                 
             case .green:
                 let asset = getBlockImageName(state, stack: stack)
                 let action = SKAction.setTexture(SKTexture(imageNamed: asset))
-                runAction(action)
-                hidden = false
+                run(action)
+                isHidden = false
                 break;
                 
             case .yellow:
                 let asset = getBlockImageName(state, stack: stack)
                 let action = SKAction.setTexture(SKTexture(imageNamed: asset))
-                runAction(action)
-                hidden = false
+                run(action)
+                isHidden = false
                 break;
                 
             }
@@ -158,7 +158,7 @@ class Block: SKSpriteNode {
     init() {
         /* Initialize with 'block' asset */
         let texture = SKTexture(imageNamed: "Inactive")
-        super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
+        super.init(texture: texture, color: UIColor.clear, size: texture.size())
         
         /* Set Z-Position, ensure it's on top of grid */
         zPosition = 1
@@ -167,7 +167,7 @@ class Block: SKSpriteNode {
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         // Set block visible
-        hidden = false
+        isHidden = false
         
         // Create the Stack label
         //        label = SKLabelNode(text: String(stack))
@@ -177,7 +177,7 @@ class Block: SKSpriteNode {
         
         let assetString = String(stack)
         label = SKSpriteNode(imageNamed: assetString)
-        label.hidden = true
+        label.isHidden = true
         label.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         label.size = CGSize(width: cellWidth/2, height: cellHeight/2)
@@ -188,7 +188,7 @@ class Block: SKSpriteNode {
         
         
         factLabel = SKSpriteNode(imageNamed: (String(assetString) + "Fact"))
-        factLabel.hidden = true
+        factLabel.isHidden = true
         factLabel.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         
@@ -246,7 +246,7 @@ class Block: SKSpriteNode {
     //
     //    }
     
-    func getBlockImageName(state: BlockType, stack: Int) -> String {
+    func getBlockImageName(_ state: BlockType, stack: Int) -> String {
         
         var assetString: String = ""
         

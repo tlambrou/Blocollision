@@ -19,20 +19,20 @@ class Title: SKScene {
     
     var motionManager = CMMotionManager()
     
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         
 //        SKTAudio.sharedInstance().playBackgroundMusic("Tame Your Crickets.caf") // Start the music
         
-        playButton = self.childNodeWithName("playButton") as! MSButtonNode
-        timedButton = self.childNodeWithName("timedButton") as! MSButtonNode
-        movesButton = self.childNodeWithName("movesButton") as! MSButtonNode
-        howtoButton = self.childNodeWithName("howtoButton") as! MSButtonNode
+        playButton = self.childNode(withName: "playButton") as! MSButtonNode
+        timedButton = self.childNode(withName: "timedButton") as! MSButtonNode
+        movesButton = self.childNode(withName: "movesButton") as! MSButtonNode
+        howtoButton = self.childNode(withName: "howtoButton") as! MSButtonNode
         
         playButton.selectedHandler = {
             
             /* Play SFX */
             let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
-            self.runAction(click)
+            self.run(click)
             
             /* Grab reference to the SpriteKit view */
             let skView = self.view as SKView!
@@ -48,10 +48,10 @@ class Title: SKScene {
             
             
             /* Ensure correct aspect mode */
-            scene.scaleMode = .AspectFit
+            scene?.scaleMode = .aspectFit
             
             /* Restart GameScene */
-            skView.presentScene(scene)
+            skView?.presentScene(scene)
 
             
             
@@ -61,7 +61,7 @@ class Title: SKScene {
             
             /* Play SFX */
             let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
-            self.runAction(click)
+            self.run(click)
             
             /* Grab reference to the SpriteKit view */
             let skView = self.view as SKView!
@@ -77,10 +77,10 @@ class Title: SKScene {
             
             
             /* Ensure correct aspect mode */
-            scene.scaleMode = .AspectFit
+            scene?.scaleMode = .aspectFit
             
             /* Restart GameScene */
-            skView.presentScene(scene)
+            skView?.presentScene(scene)
             
             
             
@@ -90,7 +90,7 @@ class Title: SKScene {
             
             /* Play SFX */
             let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
-            self.runAction(click)
+            self.run(click)
             
             /* Grab reference to the SpriteKit view */
             let skView = self.view as SKView!
@@ -106,10 +106,10 @@ class Title: SKScene {
             
             
             /* Ensure correct aspect mode */
-            scene.scaleMode = .AspectFit
+            scene?.scaleMode = .aspectFit
             
             /* Restart GameScene */
-            skView.presentScene(scene)
+            skView?.presentScene(scene)
             
             
             
@@ -119,7 +119,7 @@ class Title: SKScene {
             
             /* Play SFX */
             let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
-            self.runAction(click)
+            self.run(click)
             
             
             
@@ -127,13 +127,13 @@ class Title: SKScene {
 
         
         
-        let creation = SKAction.runBlock({self.createBlock()})
-        let wait = SKAction.waitForDuration(NSTimeInterval(0.4))
-        let seq = SKAction.repeatAction(SKAction.sequence([creation, wait]), count: 130)
-        runAction(seq)
+        let creation = SKAction.run({self.createBlock()})
+        let wait = SKAction.wait(forDuration: TimeInterval(0.4))
+        let seq = SKAction.repeat(SKAction.sequence([creation, wait]), count: 130)
+        run(seq)
     }
     
-    override func update(currentTime: NSTimeInterval) {
+    override func update(_ currentTime: TimeInterval) {
         motionManager.startAccelerometerUpdates()
         
         if let accelerometerData = motionManager.accelerometerData {
@@ -178,7 +178,7 @@ class Title: SKScene {
         
         block.zPosition = 1
         
-        block.label.hidden = true
+        block.label.isHidden = true
 //        block.label.hidden = false
 //        block.label.texture = SKTexture(imageNamed: String("3"))
         let xRandom: Int = Int.random(870)+1
@@ -187,14 +187,14 @@ class Title: SKScene {
         
         let label = SKSpriteNode(imageNamed: String(block.stack))
         label.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        label.position = convertPoint(block.position, toNode: block)
+        label.position = convert(block.position, to: block)
         let scale: CGFloat = CGFloat((block.size.height / label.size.height) * (3/5))
         label.setScale(scale)
         label.zPosition = block.zPosition + 1
         block.addChild(label)
 
         
-        block.physicsBody = SKPhysicsBody.init(rectangleOfSize: CGSize(width: 90, height: 90))
+        block.physicsBody = SKPhysicsBody.init(rectangleOf: CGSize(width: 90, height: 90))
         block.physicsBody?.affectedByGravity = true
         block.physicsBody?.allowsRotation = true
         block.zRotation = CGFloat(4.0)

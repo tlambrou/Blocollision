@@ -25,7 +25,7 @@ class StageV: SKSpriteNode {
         super.init(coder: aDecoder)
         
         /* Enable own touch implefmentation for this node */
-        userInteractionEnabled = true
+        isUserInteractionEnabled = true
         
         /* Calculate individual cell dimensions */
         cellWidth = Int(self.size.width)
@@ -137,7 +137,7 @@ class StageV: SKSpriteNode {
 
 
     
-    func randomActiveBlock(y: Int) {
+    func randomActiveBlock(_ y: Int) {
         var blockCreated: Bool = false
         let block = stageArray[y]
         let factorialValue = factorialWeights()

@@ -24,7 +24,7 @@ class StageH: SKSpriteNode {
         super.init(coder: aDecoder)
         
         /* Enable own touch implefmentation for this node */
-        userInteractionEnabled = true
+        isUserInteractionEnabled = true
         
         /* Calculate individual cell dimensions */
         cellWidth = Int(self.size.width) / spaces
@@ -149,7 +149,7 @@ class StageH: SKSpriteNode {
     }
     
     
-    func randomActiveBlock(x: Int) {
+    func randomActiveBlock(_ x: Int) {
         var blockCreated: Bool = false
         let block = stageArray[x]
         let factorialValue = factorialWeights()
@@ -184,20 +184,20 @@ class StageH: SKSpriteNode {
     
 }
 
-func animateWiggle(block: Block) {
-    let time = NSTimeInterval(0.1)
+func animateWiggle(_ block: Block) {
+    let time = TimeInterval(0.1)
     
     let sfx1 = SKAction.playSoundFileNamed("click1", waitForCompletion: false)
     let sfx2 = SKAction.playSoundFileNamed("click2", waitForCompletion: false)
-    let rotate1 = SKAction.rotateByAngle(randomBetweenNumbers(0, secondNum: 0.7), duration: time)
-    let rotate2 = SKAction.rotateByAngle(randomBetweenNumbers(0, secondNum: -0.7), duration: time)
-    let rotate3 = SKAction.rotateByAngle(randomBetweenNumbers(0, secondNum: 1.2), duration: time)
-    let rotate4 = SKAction.rotateByAngle(randomBetweenNumbers(0, secondNum: -1.2), duration: time)
-    let rotate5 = SKAction.rotateByAngle(randomBetweenNumbers(0, secondNum: 1.5), duration: time)
-    let rotate6 = SKAction.rotateByAngle(randomBetweenNumbers(0, secondNum: -1.5), duration: time)
-    let rotate7 = SKAction.rotateByAngle(randomBetweenNumbers(0, secondNum: 2), duration: time)
-    let rotate8 = SKAction.rotateByAngle(randomBetweenNumbers(0, secondNum: -2), duration: time)
-    let rotateCenter = SKAction.rotateToAngle(0, duration: time)
+    let rotate1 = SKAction.rotate(byAngle: randomBetweenNumbers(0, secondNum: 0.7), duration: time)
+    let rotate2 = SKAction.rotate(byAngle: randomBetweenNumbers(0, secondNum: -0.7), duration: time)
+    let rotate3 = SKAction.rotate(byAngle: randomBetweenNumbers(0, secondNum: 1.2), duration: time)
+    let rotate4 = SKAction.rotate(byAngle: randomBetweenNumbers(0, secondNum: -1.2), duration: time)
+    let rotate5 = SKAction.rotate(byAngle: randomBetweenNumbers(0, secondNum: 1.5), duration: time)
+    let rotate6 = SKAction.rotate(byAngle: randomBetweenNumbers(0, secondNum: -1.5), duration: time)
+    let rotate7 = SKAction.rotate(byAngle: randomBetweenNumbers(0, secondNum: 2), duration: time)
+    let rotate8 = SKAction.rotate(byAngle: randomBetweenNumbers(0, secondNum: -2), duration: time)
+    let rotateCenter = SKAction.rotate(toAngle: 0, duration: time)
     let seq1 = SKAction.sequence([sfx1, rotate1, rotateCenter, sfx2, rotate2, rotateCenter])
     let seq2 = SKAction.sequence([sfx1, rotate3, rotateCenter, sfx2, rotate4, rotateCenter])
     let seq3 = SKAction.sequence([sfx1, rotate5, rotateCenter, sfx2, rotate6, rotateCenter])
@@ -206,16 +206,16 @@ func animateWiggle(block: Block) {
     switch block.stack {
     case 4:
         let sequence = SKAction.sequence([seq1])
-        block.runAction(sequence)
+        block.run(sequence)
     case 5:
         let sequence = SKAction.sequence([seq1, seq2])
-        block.runAction(sequence)
+        block.run(sequence)
     case 6:
         let sequence = SKAction.sequence([seq1, seq2, seq3])
-        block.runAction(sequence)
+        block.run(sequence)
     case 7:
         let sequence = SKAction.sequence([seq1, seq2, seq3, seq4])
-        block.runAction(sequence)
+        block.run(sequence)
     default:
         print("Wiggles not set right")
     }

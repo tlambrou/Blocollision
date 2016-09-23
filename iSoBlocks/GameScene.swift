@@ -162,13 +162,13 @@ class GameScene: SKScene {
                 
                 /* Play SFX */
                 let swipeSFX = SKAction.playSoundFileNamed("switch33", waitForCompletion: true)
-                self.runAction(swipeSFX)
+                self.run(swipeSFX)
                 
             case 1 :
                 
                 /* Play SFX */
                 let swipeSFX = SKAction.playSoundFileNamed("switch34", waitForCompletion: true)
-                self.runAction(swipeSFX)
+                self.run(swipeSFX)
                 
             default:
                 print("Didn't play any swipe SFX for some reason.  Check afterSwipe()")
@@ -226,7 +226,7 @@ class GameScene: SKScene {
         
     }
     
-    func swipedUp(sender:UISwipeGestureRecognizer) {
+    func swipedUp(_ sender:UISwipeGestureRecognizer) {
         
         if gameState == .playing {
             swipe(.up)
@@ -237,7 +237,7 @@ class GameScene: SKScene {
         
     }
     
-    func swipedDown(sender:UISwipeGestureRecognizer) {
+    func swipedDown(_ sender:UISwipeGestureRecognizer) {
         if gameState == .playing {
             swipe(.down)
         }
@@ -246,7 +246,7 @@ class GameScene: SKScene {
         afterSwipe()
     }
     
-    func swipedLeft(sender:UISwipeGestureRecognizer) {
+    func swipedLeft(_ sender:UISwipeGestureRecognizer) {
         if gameState == .playing {
             swipe(.left)
         }
@@ -256,7 +256,7 @@ class GameScene: SKScene {
         
     }
     
-    func swipedRight(sender:UISwipeGestureRecognizer) {
+    func swipedRight(_ sender:UISwipeGestureRecognizer) {
         if gameState == .playing {
             swipe(.right)
         }
@@ -267,7 +267,7 @@ class GameScene: SKScene {
     }
     
     //MARK: didMoveToView
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         /* Setup your scene here */
         
         ////         For background audio (playing continuously)
@@ -287,27 +287,27 @@ class GameScene: SKScene {
         hiScoreLabel.fontSize = 120
         hiScoreLabel.fontColor = UIColor(netHex: 0xFFFFFF)
         hiScoreLabel.zPosition = 101
-        hiScoreLabel.horizontalAlignmentMode = .Left
+        hiScoreLabel.horizontalAlignmentMode = .left
         hiScoreLabel.position = CGPoint(x:512, y:1650)
         
         self.addChild(hiScoreLabel)
         
-        gridNode = childNodeWithName("gridNode") as! Grid
-        topStageNode = childNodeWithName("topStage") as! StageH
-        bottomStageNode = childNodeWithName("bottomStage") as! StageH
-        leftStageNode = childNodeWithName("leftStage") as! StageV
-        rightStageNode = childNodeWithName("rightStage") as! StageV
+        gridNode = childNode(withName: "gridNode") as! Grid
+        topStageNode = childNode(withName: "topStage") as! StageH
+        bottomStageNode = childNode(withName: "bottomStage") as! StageH
+        leftStageNode = childNode(withName: "leftStage") as! StageV
+        rightStageNode = childNode(withName: "rightStage") as! StageV
         /* Set UI connections */
         
-        gameOver = self.childNodeWithName("gameOver") as! MSButtonNode
-        gameOver.hidden = true
-        menuButton = self.childNodeWithName("menuButton") as! MSButtonNode
-        factHelpButton = self.childNodeWithName("factHelpButton") as! MSButtonNode
-        restartButton = self.childNodeWithName("restartButton") as! MSButtonNode
-        swipeInstructions = childNodeWithName("swipeInstructions") as! SKSpriteNode
-        scoreLabel = childNodeWithName("scoreLabel") as! SKLabelNode
-        levelLabel = childNodeWithName("levelLabel") as! SKLabelNode
-        levelText = childNodeWithName("levelText") as! SKSpriteNode
+        gameOver = self.childNode(withName: "gameOver") as! MSButtonNode
+        gameOver.isHidden = true
+        menuButton = self.childNode(withName: "menuButton") as! MSButtonNode
+        factHelpButton = self.childNode(withName: "factHelpButton") as! MSButtonNode
+        restartButton = self.childNode(withName: "restartButton") as! MSButtonNode
+        swipeInstructions = childNode(withName: "swipeInstructions") as! SKSpriteNode
+        scoreLabel = childNode(withName: "scoreLabel") as! SKLabelNode
+        levelLabel = childNode(withName: "levelLabel") as! SKLabelNode
+        levelText = childNode(withName: "levelText") as! SKSpriteNode
         
         swipeInstructions.alpha = CGFloat(0)
         
@@ -354,19 +354,19 @@ class GameScene: SKScene {
             // Change the level text texture
             levelText.texture = SKTexture(imageNamed: "Time")
             
-            let delay = SKAction.waitForDuration(1)
+            let delay = SKAction.wait(forDuration: 1)
             
-            let block = SKAction.runBlock({
+            let block = SKAction.run({
                 if self.timeLeft > 0 { self.timeLeft -= 1 }
                 if self.timeLeft < 11 {
-                    levelLabel.fontColor = UIColor.redColor()
+                    levelLabel.fontColor = UIColor.red
                 }
                 if self.timeLeft == 0 { gameState = .gameover }
                 
             })
             
             let sequence = SKAction.sequence([delay, block])
-            self.runAction(SKAction.repeatActionForever(sequence))
+            self.run(SKAction.repeatForever(sequence))
             
         case .moves:
             
@@ -396,7 +396,7 @@ class GameScene: SKScene {
             
             /* Play SFX */
             let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
-            self.runAction(click)
+            self.run(click)
             
             /* Grab reference to the SpriteKit view */
             let skView = self.view as SKView!
@@ -405,10 +405,10 @@ class GameScene: SKScene {
             let scene = Title(fileNamed:"Title") as Title!
             
             /* Ensure correct aspect mode */
-            scene.scaleMode = .AspectFit
+            scene?.scaleMode = .aspectFit
             
             /* Restart GameScene */
-            skView.presentScene(scene)
+            skView?.presentScene(scene)
             
             gameState = .menu
             
@@ -423,7 +423,7 @@ class GameScene: SKScene {
             
             /* Play SFX */
             let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
-            self.runAction(click)
+            self.run(click)
             
             //Loop through columns
             for i in 0..<columns {
@@ -471,12 +471,12 @@ class GameScene: SKScene {
                 factLabelOff.setScale(0.9)
                 factLabelOff.zPosition = 30
                 self.addChild(factLabelOff)
-                let alphaUp = SKAction.fadeAlphaTo(CGFloat(1.0), duration: NSTimeInterval(0.4))
-                let scale = SKAction.scaleTo(CGFloat(1.0), duration: 0.4)
-                let alphaDown = SKAction.fadeAlphaTo(CGFloat(0.0), duration: 0.4)
+                let alphaUp = SKAction.fadeAlpha(to: CGFloat(1.0), duration: TimeInterval(0.4))
+                let scale = SKAction.scale(to: CGFloat(1.0), duration: 0.4)
+                let alphaDown = SKAction.fadeAlpha(to: CGFloat(0.0), duration: 0.4)
                 let remove = SKAction.removeFromParent()
                 let sequence = SKAction.sequence([alphaUp, scale, alphaDown, remove])
-                factLabelOff.runAction(sequence)
+                factLabelOff.run(sequence)
                 
                 
             } else if self.gridNode.gridArray[0][0].factStack == true {
@@ -487,12 +487,12 @@ class GameScene: SKScene {
                 factLabelOn.setScale(0.9)
                 factLabelOn.zPosition = 30
                 self.addChild(factLabelOn)
-                let alphaUp = SKAction.fadeAlphaTo(CGFloat(1.0), duration: NSTimeInterval(0.4))
-                let scale = SKAction.scaleTo(CGFloat(1.0), duration: 0.4)
-                let alphaDown = SKAction.fadeAlphaTo(CGFloat(0.0), duration: 0.4)
+                let alphaUp = SKAction.fadeAlpha(to: CGFloat(1.0), duration: TimeInterval(0.4))
+                let scale = SKAction.scale(to: CGFloat(1.0), duration: 0.4)
+                let alphaDown = SKAction.fadeAlpha(to: CGFloat(0.0), duration: 0.4)
                 let remove = SKAction.removeFromParent()
                 let sequence = SKAction.sequence([alphaUp, scale, alphaDown, remove])
-                factLabelOn.runAction(sequence)
+                factLabelOn.run(sequence)
                 
             }
             
@@ -504,7 +504,7 @@ class GameScene: SKScene {
             
             /* Play SFX */
             let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
-            self.runAction(click)
+            self.run(click)
             
             /* Grab reference to the SpriteKit view */
             let skView = self.view as SKView!
@@ -513,10 +513,10 @@ class GameScene: SKScene {
             let scene = GameScene(fileNamed:"GameScene") as GameScene!
             
             /* Ensure correct aspect mode */
-            scene.scaleMode = .AspectFit
+            scene?.scaleMode = .aspectFit
             
             /* Restart GameScene */
-            skView.presentScene(scene)
+            skView?.presentScene(scene)
             
             gameState = .playing
             
@@ -533,7 +533,7 @@ class GameScene: SKScene {
             
             /* Play SFX */
             let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
-            self.runAction(click)
+            self.run(click)
             
             /* Grab reference to the SpriteKit view */
             let skView = self.view as SKView!
@@ -542,10 +542,10 @@ class GameScene: SKScene {
             let scene = Title(fileNamed:"Title") as Title!
             
             /* Ensure correct aspect mode */
-            scene.scaleMode = .AspectFit
+            scene?.scaleMode = .aspectFit
             
             /* Restart GameScene */
-            skView.presentScene(scene)
+            skView?.presentScene(scene)
             
             gameState = .menu
             
@@ -558,28 +558,28 @@ class GameScene: SKScene {
         
         
         let swipeRight:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedRight(_:)))
-        swipeRight.direction = .Right
+        swipeRight.direction = .right
         view.addGestureRecognizer(swipeRight)
         
         
         let swipeLeft:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedLeft(_:)))
-        swipeLeft.direction = .Left
+        swipeLeft.direction = .left
         view.addGestureRecognizer(swipeLeft)
         
         
         let swipeUp:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedUp(_:)))
-        swipeUp.direction = .Up
+        swipeUp.direction = .up
         view.addGestureRecognizer(swipeUp)
         
         
         let swipeDown:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedDown(_:)))
-        swipeDown.direction = .Down
+        swipeDown.direction = .down
         view.addGestureRecognizer(swipeDown)
         
         
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         /* Called when a touch begins */
         
         
@@ -588,7 +588,7 @@ class GameScene: SKScene {
         
     }
     
-    override func update(currentTime: CFTimeInterval) {
+    override func update(_ currentTime: TimeInterval) {
         
         
         time += 1
@@ -601,17 +601,17 @@ class GameScene: SKScene {
             if gameTracker.instShown == false && gameTracker.idle == true {
                 gameTracker.instShown = true
                 
-                let fadeUp = SKAction.fadeAlphaTo(1.0, duration: NSTimeInterval(1.0))
-                let fadeDown = SKAction.fadeAlphaTo(0.55, duration: NSTimeInterval(1.0))
-                let sequence = SKAction.repeatActionForever(SKAction.sequence([fadeUp, fadeDown]))
-                swipeInstructions.runAction(sequence)
+                let fadeUp = SKAction.fadeAlpha(to: 1.0, duration: TimeInterval(1.0))
+                let fadeDown = SKAction.fadeAlpha(to: 0.55, duration: TimeInterval(1.0))
+                let sequence = SKAction.repeatForever(SKAction.sequence([fadeUp, fadeDown]))
+                swipeInstructions.run(sequence)
                 gameTracker.firstInstShown = true
                 
             } else if gameTracker.instShown == true && gameTracker.idle == false {
                 gameTracker.instShown = false
-                let fadeDown = SKAction.fadeAlphaTo(0, duration: NSTimeInterval(0.5))
+                let fadeDown = SKAction.fadeAlpha(to: 0, duration: TimeInterval(0.5))
                 swipeInstructions.removeAllActions()
-                swipeInstructions.runAction(fadeDown)
+                swipeInstructions.run(fadeDown)
                 
                 
             }
@@ -619,13 +619,13 @@ class GameScene: SKScene {
         
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         
     }
     
     //MAIN SWIPE FUNCTION
-    func swipe(swipeDirection: swipeType) {
+    func swipe(_ swipeDirection: swipeType) {
         var xStart: Int
         var xEnd: Int
         var yStart: Int
@@ -681,10 +681,10 @@ class GameScene: SKScene {
         if (swipeDirection == .up) || (swipeDirection == .down) {
             
             // loop through the columns
-            for gridX in xStart.stride(through: xEnd, by: xIncrement){
+            for gridX in stride(from: xStart, through: xEnd, by: xIncrement){
                 
                 // loop through the rows
-                for gridY in yStart.stride(through: yEnd, by: yIncrement) {
+                for gridY in stride(from: yStart, through: yEnd, by: yIncrement) {
                     
                     if gridY != yEnd {
                         // Set the current & next blocks
@@ -795,10 +795,10 @@ class GameScene: SKScene {
         if (swipeDirection == .left) || (swipeDirection == .right) {
             
             // loop through the rows
-            for gridY in yStart.stride(through: yEnd, by: yIncrement){
+            for gridY in stride(from: yStart, through: yEnd, by: yIncrement){
                 
                 // loop through the columns
-                for gridX in xStart.stride(through: xEnd, by: xIncrement) {
+                for gridX in stride(from: xStart, through: xEnd, by: xIncrement) {
                     
                     if gridX != xEnd {
                         // Set the current & next blocks
@@ -908,7 +908,7 @@ class GameScene: SKScene {
         
     }
     
-    func stageRegen(swipeDirection: swipeType) {
+    func stageRegen(_ swipeDirection: swipeType) {
         
         // Store the stage active count
         let activeCount = stageActiveCount()
@@ -1020,7 +1020,7 @@ class GameScene: SKScene {
         return activeCount
     }
     
-    func collision(block1: Block, block2: Block) -> Outcome {
+    func collision(_ block1: Block, block2: Block) -> Outcome {
         let red: BlockType = .red
         let blue: BlockType = .blue
         let green: BlockType = .green
@@ -1191,7 +1191,7 @@ class GameScene: SKScene {
         }
     }
     
-    func animateCollision(block1: Block, block2: Block) {
+    func animateCollision(_ block1: Block, block2: Block) {
         
         let result: Outcome = collision(block1, block2: block2)
         
@@ -1239,10 +1239,10 @@ class GameScene: SKScene {
             winNode.stack = winBlock.stack
             winNode.factStack = winBlock.factStack
             
-            let scale = SKAction.scaleTo(1.15, duration: 0.07)
-            let descale = SKAction.scaleTo(1, duration: 0.07)
+            let scale = SKAction.scale(to: 1.15, duration: 0.07)
+            let descale = SKAction.scale(to: 1, duration: 0.07)
             let destination = winBlock.position
-            let move = SKAction.moveTo(destination, duration: 0.1)
+            let move = SKAction.move(to: destination, duration: 0.1)
             let remove = SKAction.removeFromParent()
             //            let wait2 = SKAction.waitForDuration(0.4)
             
@@ -1282,8 +1282,8 @@ class GameScene: SKScene {
             gridNode.addChild(winNode)
             
             let collisionSeq = SKAction.sequence([scale, descale, remove])
-            winNode.runAction(collisionSeq)
-            loseNode.runAction(SKAction.sequence([move, remove]))
+            winNode.run(collisionSeq)
+            loseNode.run(SKAction.sequence([move, remove]))
             
             
             // If they are moving into an inactive space
@@ -1295,11 +1295,11 @@ class GameScene: SKScene {
             winNode.stack = winBlock.stack
             winNode.factStack = winBlock.factStack
             
-            let scale = SKAction.scaleTo(1.15, duration: 0.07)
-            let descale = SKAction.scaleTo(1, duration: 0.07)
+            let scale = SKAction.scale(to: 1.15, duration: 0.07)
+            let descale = SKAction.scale(to: 1, duration: 0.07)
             let destination = loseBlock.position
-            let wait = SKAction.waitForDuration(NSTimeInterval(0.24))
-            let move = SKAction.moveTo(destination, duration: 0.1)
+            let wait = SKAction.wait(forDuration: TimeInterval(0.24))
+            let move = SKAction.move(to: destination, duration: 0.1)
             let remove = SKAction.removeFromParent()
             //            let wait2 = SKAction.waitForDuration(0.4)
             
@@ -1340,11 +1340,11 @@ class GameScene: SKScene {
             gridNode.addChild(winNode)
             
             let collisionSeq = SKAction.sequence([scale, move, descale, remove])
-            winNode.runAction(collisionSeq, completion: {
+            winNode.run(collisionSeq, completion: {
                 self.animateComplete = true
                 
             })
-            loseNode.runAction(SKAction.sequence([wait, remove]))
+            loseNode.run(SKAction.sequence([wait, remove]))
             
             
         }
@@ -1353,7 +1353,7 @@ class GameScene: SKScene {
         
     }
     
-    func collisionRules (currentBlock: Block, nextBlock: Block) {
+    func collisionRules (_ currentBlock: Block, nextBlock: Block) {
         
         // Is the Next Active?
         if nextBlock.state != .inactive {
@@ -1372,11 +1372,11 @@ class GameScene: SKScene {
                     let comparison = [currentBlock.stack, nextBlock.stack]
                     
                     // Set the new block's stack equal to the highest block's stack minus 1
-                    currentBlock.stack = comparison.maxElement()! - 1
+                    currentBlock.stack = comparison.max()! - 1
                     
                     /* Play SFX */
                     let combineSFX = SKAction.playSoundFileNamed("panBeep", waitForCompletion: true)
-                    self.runAction(combineSFX)
+                    self.run(combineSFX)
                     
                     // Set the Next block to .inactive
                     nextBlock.state = .inactive
@@ -1500,7 +1500,7 @@ class GameScene: SKScene {
     }
     
     
-    func animateBlockClear (dieBlock: Block) {
+    func animateBlockClear (_ dieBlock: Block) {
         
         // Create variables & particulars
         //        var assetString = ""
@@ -1530,19 +1530,19 @@ class GameScene: SKScene {
         dieNode.zPosition = dieBlock.zPosition + 1
         
         let particles = SKEmitterNode(fileNamed: "Spark")!
-        particles.position = convertPoint(dieNode.position, toNode: dieNode)
+        particles.position = convert(dieNode.position, to: dieNode)
         particles.numParticlesToEmit = 30
         particles.zPosition = dieNode.zPosition - 1
         
         dieNode.addChild(particles)
         // Create a scale action
-        let scale = SKAction.scaleTo(1.15, duration: 0.1)
+        let scale = SKAction.scale(to: 1.15, duration: 0.1)
         
         // Create a descale action
-        let descale = SKAction.scaleTo(0, duration: 0.2)
+        let descale = SKAction.scale(to: 0, duration: 0.2)
         
         // Create a wait action just in case
-        let wait = SKAction.waitForDuration(0.25)
+        let wait = SKAction.wait(forDuration: 0.25)
         
         // Create a "poof" animation
         
@@ -1563,11 +1563,11 @@ class GameScene: SKScene {
         dieBlock.state = .inactive
         
         // Run the sequence
-        dieNode.runAction(dieSeq)
+        dieNode.run(dieSeq)
         
     }
     
-    func clearColor (color: BlockType) {
+    func clearColor (_ color: BlockType) {
         
         var clearScore: Int = 1
         //        var stackSum: Int = 0
@@ -1642,7 +1642,7 @@ class GameScene: SKScene {
     
     
     
-    func swipeCheck(swipeDirection: swipeType, grid: Grid, topStage: StageH, bottomStage: StageH, leftStage: StageV, rightStage: StageV) -> Int {
+    func swipeCheck(_ swipeDirection: swipeType, grid: Grid, topStage: StageH, bottomStage: StageH, leftStage: StageV, rightStage: StageV) -> Int {
         
         let copy = Copy(grid: grid, topStage: topStage, bottomStage: bottomStage, leftStage: leftStage, rightStage: rightStage)
         
@@ -1713,10 +1713,10 @@ class GameScene: SKScene {
         if (swipeDirection == .up) || (swipeDirection == .down) {
             
             // loop through the columns
-            for gridX in xStart.stride(through: xEnd, by: xIncrement){
+            for gridX in stride(from: xStart, through: xEnd, by: xIncrement){
                 
                 // loop through the rows
-                for gridY in yStart.stride(through: yEnd, by: yIncrement) {
+                for gridY in stride(from: yStart, through: yEnd, by: yIncrement) {
                     
                     if gridY != yEnd {
                         // Set the current & next blocks
@@ -1831,10 +1831,10 @@ class GameScene: SKScene {
         if (swipeDirection == .left) || (swipeDirection == .right) {
             
             // loop through the rows
-            for gridY in yStart.stride(through: yEnd, by: yIncrement){
+            for gridY in stride(from: yStart, through: yEnd, by: yIncrement){
                 
                 // loop through the columns
-                for gridX in xStart.stride(through: xEnd, by: xIncrement) {
+                for gridX in stride(from: xStart, through: xEnd, by: xIncrement) {
                     
                     if gridX != xEnd {
                         // Set the current & next blocks
@@ -1949,7 +1949,7 @@ class GameScene: SKScene {
         
     }
     
-    func collisionRulesCheck (currentBlock: Block, nextBlock: Block) -> Int {
+    func collisionRulesCheck (_ currentBlock: Block, nextBlock: Block) -> Int {
         
         var moveCount: Int = 0
         
@@ -2034,14 +2034,14 @@ class GameScene: SKScene {
         
         gameOver.alpha = CGFloat(0)
         
-        let fadeUp = SKAction.fadeAlphaTo(CGFloat(1.0), duration: 1.0)
+        let fadeUp = SKAction.fadeAlpha(to: CGFloat(1.0), duration: 1.0)
         
-        gameOver.runAction(fadeUp)
+        gameOver.run(fadeUp)
         gameState = .gameover
         
         
         
-        gameOver.hidden = false
+        gameOver.isHidden = false
         
         
     }
@@ -2049,7 +2049,7 @@ class GameScene: SKScene {
     
 }
 
-func factorial(number: Int) -> (Int) {
+func factorial(_ number: Int) -> (Int) {
     if (number <= 1) {
         return 1
     }
@@ -2082,7 +2082,7 @@ func factorialWeights() -> Int{
     
 }
 
-func randomBetweenNumbers(firstNum: CGFloat, secondNum: CGFloat) -> CGFloat{
+func randomBetweenNumbers(_ firstNum: CGFloat, secondNum: CGFloat) -> CGFloat{
     return CGFloat(arc4random()) / CGFloat(UINT32_MAX) * abs(firstNum - secondNum) + min(firstNum, secondNum)
 }
 

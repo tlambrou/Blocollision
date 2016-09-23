@@ -9,8 +9,8 @@
 #define BridgingHeader_h
 
 #import <UIKit/UIKit.h>
-#import <Chartboost/Chartboost.h>
 #import <CommonCrypto/CommonDigest.h>
+#import <Chartboost/Chartboost.h>
 #import <AdSupport/AdSupport.h>
 #import <UIKit/UIKit.h>
 

@@ -52,7 +52,7 @@ class Grid: SKSpriteNode {
         super.init(coder: aDecoder)
         
         /* Enable own touch implefmentation for this node */
-        userInteractionEnabled = true
+        isUserInteractionEnabled = true
         
         /* Calculate individual cell dimensions */
         cellWidth = Int(size.width) / columns
@@ -81,7 +81,7 @@ class Grid: SKSpriteNode {
         }
     }
     
-    func addBlockAtGrid(x x: Int, y: Int) {
+    func addBlockAtGrid(x: Int, y: Int) {
         //Initialize a new block object
         let block = Block()
         
@@ -110,7 +110,7 @@ class Grid: SKSpriteNode {
         
     }
     
-    func randomActiveBlock(x: Int, y: Int) {
+    func randomActiveBlock(_ x: Int, y: Int) {
         var blockCreated: Bool = false
         let block = gridArray[x][y]
         let factorialValue = factorialWeights()
@@ -143,7 +143,7 @@ class Grid: SKSpriteNode {
     
     
     
-    func countBlocks(blockstate: BlockType) -> Int{
+    func countBlocks(_ blockstate: BlockType) -> Int{
         /* Process array and update block status */
         var population: Int = 0
         
