@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import iSoBlocks
 
 class iSoBlocksTests: XCTestCase {
     

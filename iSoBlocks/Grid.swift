@@ -51,7 +51,7 @@ class Grid: SKSpriteNode {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        /* Enable own touch implefmentation for this node */
+        /* Enable own touch implementation for this node */
         isUserInteractionEnabled = true
         
         /* Calculate individual cell dimensions */

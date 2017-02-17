@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		15365A7BB2CF8DD8A4B82E40 /* Pods_Bloctorials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA797128A9872A83F8AEE6D7 /* Pods_Bloctorials.framework */; };
-		78F6D4D10B2423525EC40C9A /* Pods_BloctorialsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C82F562FD267B1A4AA3D61D7 /* Pods_BloctorialsUITests.framework */; };
 		96044AC31D3589B90097D096 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96044AB71D3589B90097D096 /* CGFloat+Extensions.swift */; };
 		96044AC41D3589B90097D096 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96044AB81D3589B90097D096 /* CGPoint+Extensions.swift */; };
 		96044AC51D3589B90097D096 /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96044AB91D3589B90097D096 /* CGVector+Extensions.swift */; };
@@ -40,8 +39,6 @@
 		96492F321D318CE6004F887C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96492F301D318CE6004F887C /* Main.storyboard */; };
 		96492F341D318CE6004F887C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96492F331D318CE6004F887C /* Assets.xcassets */; };
 		96492F371D318CE6004F887C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96492F351D318CE6004F887C /* LaunchScreen.storyboard */; };
-		96492F421D318CE6004F887C /* iSoBlocksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F411D318CE6004F887C /* iSoBlocksTests.swift */; };
-		96492F4D1D318CE6004F887C /* iSoBlocksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F4C1D318CE6004F887C /* iSoBlocksUITests.swift */; };
 		96492F5B1D318E8F004F887C /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F5A1D318E8F004F887C /* Grid.swift */; };
 		96492F6E1D31BC7E004F887C /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96492F6D1D31BC7E004F887C /* Block.swift */; };
 		96498EBD1D5142DF0057B54C /* Title.sks in Resources */ = {isa = PBXBuildFile; fileRef = 96498EBC1D5142DF0057B54C /* Title.sks */; };
@@ -68,25 +65,7 @@
 		96F0BA3F1D5D0629002F8B0B /* combine.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96F0BA3E1D5D0629002F8B0B /* combine.wav */; };
 		96F3A4491D3E9EB900DD41D8 /* Snippets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F3A4481D3E9EB900DD41D8 /* Snippets.swift */; };
 		96F92DA11D56CFAA00063E42 /* GameTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F92DA01D56CFAA00063E42 /* GameTracker.swift */; };
-		EFC964404218BAA0EC862DC4 /* Pods_BloctorialsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AAEB8356B4DB5AD3F53C551 /* Pods_BloctorialsTests.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		96492F3E1D318CE6004F887C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 96492F1D1D318CE6004F887C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 96492F241D318CE6004F887C;
-			remoteInfo = iSoBlocks;
-		};
-		96492F491D318CE6004F887C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 96492F1D1D318CE6004F887C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 96492F241D318CE6004F887C;
-			remoteInfo = iSoBlocks;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0FC7E809B59426BB443F913B /* Pods-BloctorialsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BloctorialsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BloctorialsTests/Pods-BloctorialsTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -128,12 +107,6 @@
 		96492F331D318CE6004F887C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96492F361D318CE6004F887C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96492F381D318CE6004F887C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96492F3D1D318CE6004F887C /* BloctorialsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BloctorialsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		96492F411D318CE6004F887C /* iSoBlocksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iSoBlocksTests.swift; sourceTree = "<group>"; };
-		96492F431D318CE6004F887C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96492F481D318CE6004F887C /* BloctorialsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BloctorialsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		96492F4C1D318CE6004F887C /* iSoBlocksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iSoBlocksUITests.swift; sourceTree = "<group>"; };
-		96492F4E1D318CE6004F887C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96492F5A1D318E8F004F887C /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		96492F6D1D31BC7E004F887C /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		96498EBC1D5142DF0057B54C /* Title.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Title.sks; sourceTree = "<group>"; };
@@ -181,22 +154,6 @@
 				9640E27C1D55548600719E7F /* StoreKit.framework in Frameworks */,
 				9640E27A1D55545300719E7F /* Chartboost.framework in Frameworks */,
 				15365A7BB2CF8DD8A4B82E40 /* Pods_Bloctorials.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		96492F3A1D318CE6004F887C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EFC964404218BAA0EC862DC4 /* Pods_BloctorialsTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		96492F451D318CE6004F887C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				78F6D4D10B2423525EC40C9A /* Pods_BloctorialsUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,8 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				96492F271D318CE6004F887C /* Bloctorials */,
-				96492F401D318CE6004F887C /* iSoBlocksTests */,
-				96492F4B1D318CE6004F887C /* iSoBlocksUITests */,
 				96492F261D318CE6004F887C /* Products */,
 				23D9A9E4A16C1E8E6DB8489D /* Pods */,
 				A3A1161F4BF2EF5177BA8A35 /* Frameworks */,
@@ -264,8 +219,6 @@
 			isa = PBXGroup;
 			children = (
 				96492F251D318CE6004F887C /* Bloctorials.app */,
-				96492F3D1D318CE6004F887C /* BloctorialsTests.xctest */,
-				96492F481D318CE6004F887C /* BloctorialsUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -297,24 +250,6 @@
 			);
 			name = Bloctorials;
 			path = iSoBlocks;
-			sourceTree = "<group>";
-		};
-		96492F401D318CE6004F887C /* iSoBlocksTests */ = {
-			isa = PBXGroup;
-			children = (
-				96492F411D318CE6004F887C /* iSoBlocksTests.swift */,
-				96492F431D318CE6004F887C /* Info.plist */,
-			);
-			path = iSoBlocksTests;
-			sourceTree = "<group>";
-		};
-		96492F4B1D318CE6004F887C /* iSoBlocksUITests */ = {
-			isa = PBXGroup;
-			children = (
-				96492F4C1D318CE6004F887C /* iSoBlocksUITests.swift */,
-				96492F4E1D318CE6004F887C /* Info.plist */,
-			);
-			path = iSoBlocksUITests;
 			sourceTree = "<group>";
 		};
 		96498EBB1D5142A90057B54C /* Scenes */ = {
@@ -405,47 +340,6 @@
 			productReference = 96492F251D318CE6004F887C /* Bloctorials.app */;
 			productType = "com.apple.product-type.application";
 		};
-		96492F3C1D318CE6004F887C /* BloctorialsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 96492F541D318CE6004F887C /* Build configuration list for PBXNativeTarget "BloctorialsTests" */;
-			buildPhases = (
-				94FAF28465A6923113523830 /* [CP] Check Pods Manifest.lock */,
-				96492F391D318CE6004F887C /* Sources */,
-				96492F3A1D318CE6004F887C /* Frameworks */,
-				96492F3B1D318CE6004F887C /* Resources */,
-				D2662113D23E02085562FC78 /* [CP] Embed Pods Frameworks */,
-				AA5A9FE5C0BC12D4960D90CF /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				96492F3F1D318CE6004F887C /* PBXTargetDependency */,
-			);
-			name = BloctorialsTests;
-			productName = iSoBlocksTests;
-			productReference = 96492F3D1D318CE6004F887C /* BloctorialsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		96492F471D318CE6004F887C /* BloctorialsUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 96492F571D318CE6004F887C /* Build configuration list for PBXNativeTarget "BloctorialsUITests" */;
-			buildPhases = (
-				EFF0B92515D6CC60760528E0 /* [CP] Check Pods Manifest.lock */,
-				96492F441D318CE6004F887C /* Sources */,
-				96492F451D318CE6004F887C /* Frameworks */,
-				96492F461D318CE6004F887C /* Resources */,
-				73481B2306B408169C31F1DC /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				96492F4A1D318CE6004F887C /* PBXTargetDependency */,
-			);
-			name = BloctorialsUITests;
-			productName = iSoBlocksUITests;
-			productReference = 96492F481D318CE6004F887C /* BloctorialsUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -467,15 +361,6 @@
 							};
 						};
 					};
-					96492F3C1D318CE6004F887C = {
-						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0800;
-					};
-					96492F471D318CE6004F887C = {
-						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0800;
-						TestTargetID = 96492F241D318CE6004F887C;
-					};
 				};
 			};
 			buildConfigurationList = 96492F201D318CE6004F887C /* Build configuration list for PBXProject "Bloctorials" */;
@@ -492,8 +377,6 @@
 			projectRoot = "";
 			targets = (
 				96492F241D318CE6004F887C /* Bloctorials */,
-				96492F3C1D318CE6004F887C /* BloctorialsTests */,
-				96492F471D318CE6004F887C /* BloctorialsUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -525,20 +408,6 @@
 				969650801D5DB638000C288B /* oops.caf in Resources */,
 				96CF7FE81D4C0F300096DEF3 /* click3.wav in Resources */,
 				96F0BA3F1D5D0629002F8B0B /* combine.wav in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		96492F3B1D318CE6004F887C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		96492F461D318CE6004F887C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,21 +444,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		73481B2306B408169C31F1DC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BloctorialsUITests/Pods-BloctorialsUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9342A788E54DA62863C98603 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -603,66 +457,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bloctorials/Pods-Bloctorials-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		94FAF28465A6923113523830 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		AA5A9FE5C0BC12D4960D90CF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BloctorialsTests/Pods-BloctorialsTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D2662113D23E02085562FC78 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BloctorialsTests/Pods-BloctorialsTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EFF0B92515D6CC60760528E0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -702,36 +496,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		96492F391D318CE6004F887C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				96492F421D318CE6004F887C /* iSoBlocksTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		96492F441D318CE6004F887C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				96492F4D1D318CE6004F887C /* iSoBlocksUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		96492F3F1D318CE6004F887C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 96492F241D318CE6004F887C /* Bloctorials */;
-			targetProxy = 96492F3E1D318CE6004F887C /* PBXContainerItemProxy */;
-		};
-		96492F4A1D318CE6004F887C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 96492F241D318CE6004F887C /* Bloctorials */;
-			targetProxy = 96492F491D318CE6004F887C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		96492F301D318CE6004F887C /* Main.storyboard */ = {
@@ -858,6 +623,7 @@
 					"$(PROJECT_DIR)/iSoBlocks",
 				);
 				INFOPLIST_FILE = iSoBlocks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SsosSoft.Bloctorials;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -881,6 +647,7 @@
 					"$(PROJECT_DIR)/iSoBlocks",
 				);
 				INFOPLIST_FILE = iSoBlocks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SsosSoft.Bloctorials;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -888,62 +655,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		96492F551D318CE6004F887C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0FC7E809B59426BB443F913B /* Pods-BloctorialsTests.debug.xcconfig */;
-			buildSettings = {
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = iSoBlocksTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Ssos.iSoBlocksTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		96492F561D318CE6004F887C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E0F9A411BE50A2EABC31EEF9 /* Pods-BloctorialsTests.release.xcconfig */;
-			buildSettings = {
-				INFOPLIST_FILE = iSoBlocksTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Ssos.iSoBlocksTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		96492F581D318CE6004F887C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBEC15D598098C1EAFA07FFA /* Pods-BloctorialsUITests.debug.xcconfig */;
-			buildSettings = {
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = iSoBlocksUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Ssos.iSoBlocksUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = iSoBlocks;
-			};
-			name = Debug;
-		};
-		96492F591D318CE6004F887C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE2484CD1572AC31C43778B8 /* Pods-BloctorialsUITests.release.xcconfig */;
-			buildSettings = {
-				INFOPLIST_FILE = iSoBlocksUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Ssos.iSoBlocksUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = iSoBlocks;
 			};
 			name = Release;
 		};
@@ -964,24 +675,6 @@
 			buildConfigurations = (
 				96492F521D318CE6004F887C /* Debug */,
 				96492F531D318CE6004F887C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		96492F541D318CE6004F887C /* Build configuration list for PBXNativeTarget "BloctorialsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				96492F551D318CE6004F887C /* Debug */,
-				96492F561D318CE6004F887C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		96492F571D318CE6004F887C /* Build configuration list for PBXNativeTarget "BloctorialsUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				96492F581D318CE6004F887C /* Debug */,
-				96492F591D318CE6004F887C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

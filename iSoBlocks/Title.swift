@@ -17,9 +17,12 @@ class Title: SKScene {
     var movesButton: MSButtonNode!
     var howtoButton: MSButtonNode!
     
+    
     var motionManager = CMMotionManager()
     
     override func didMove(to view: SKView) {
+        
+        
         
 //        SKTAudio.sharedInstance().playBackgroundMusic("Tame Your Crickets.caf") // Start the music
         
@@ -121,11 +124,8 @@ class Title: SKScene {
             let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
             self.run(click)
             
-            
-            
         }
 
-        
         
         let creation = SKAction.run({self.createBlock()})
         let wait = SKAction.wait(forDuration: TimeInterval(0.4))

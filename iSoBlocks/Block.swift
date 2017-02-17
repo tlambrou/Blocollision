@@ -35,7 +35,8 @@ class Block: SKSpriteNode {
             }
         }
     }
-    
+  
+  
     var stack: Int = 0 {
         didSet {
             
