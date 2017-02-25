@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		15365A7BB2CF8DD8A4B82E40 /* Pods_Bloctorials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA797128A9872A83F8AEE6D7 /* Pods_Bloctorials.framework */; };
+		9602CF391E6212120072A5D8 /* clearColor.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9602CF381E6212120072A5D8 /* clearColor.wav */; };
 		96044AC31D3589B90097D096 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96044AB71D3589B90097D096 /* CGFloat+Extensions.swift */; };
 		96044AC41D3589B90097D096 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96044AB81D3589B90097D096 /* CGPoint+Extensions.swift */; };
 		96044AC51D3589B90097D096 /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96044AB91D3589B90097D096 /* CGVector+Extensions.swift */; };
@@ -48,6 +49,20 @@
 		968914501D4828FB00CD2AD6 /* clearRow.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9689144F1D4828FB00CD2AD6 /* clearRow.caf */; };
 		968ABF101D4FF40D00776165 /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968ABF0F1D4FF40D00776165 /* SwiftyUserDefaults.swift */; };
 		968ABF141D4FFE2900776165 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968ABF131D4FFE2900776165 /* GameManager.swift */; };
+		968ADD501E5FBF5E00F15735 /* Tutorial1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 968ADD4F1E5FBF5E00F15735 /* Tutorial1.sks */; };
+		968ADD521E5FBF8100F15735 /* Tutorial1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968ADD511E5FBF8100F15735 /* Tutorial1.swift */; };
+		968ADD541E60BF7900F15735 /* Tutorial2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968ADD531E60BF7900F15735 /* Tutorial2.swift */; };
+		968ADD561E60BF8600F15735 /* Tutorial2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 968ADD551E60BF8600F15735 /* Tutorial2.sks */; };
+		968ADD581E60C20D00F15735 /* Tutorial3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968ADD571E60C20D00F15735 /* Tutorial3.swift */; };
+		968ADD5A1E60C23700F15735 /* Tutorial3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 968ADD591E60C23700F15735 /* Tutorial3.sks */; };
+		968ADD5C1E60C3FB00F15735 /* Tutorial4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 968ADD5B1E60C3FB00F15735 /* Tutorial4.sks */; };
+		968ADD5E1E60C41B00F15735 /* Tutorial4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968ADD5D1E60C41B00F15735 /* Tutorial4.swift */; };
+		968ADD601E60C44500F15735 /* Tutorial5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968ADD5F1E60C44500F15735 /* Tutorial5.swift */; };
+		968ADD621E60C4A300F15735 /* Tutorial6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968ADD611E60C4A300F15735 /* Tutorial6.swift */; };
+		968ADD641E60C4CB00F15735 /* Tutorial7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968ADD631E60C4CB00F15735 /* Tutorial7.swift */; };
+		968ADD661E60C50900F15735 /* Tutorial5.sks in Resources */ = {isa = PBXBuildFile; fileRef = 968ADD651E60C50900F15735 /* Tutorial5.sks */; };
+		968ADD681E60C5A300F15735 /* Tutorial6.sks in Resources */ = {isa = PBXBuildFile; fileRef = 968ADD671E60C5A300F15735 /* Tutorial6.sks */; };
+		968ADD6A1E60C64C00F15735 /* Tutorial7.sks in Resources */ = {isa = PBXBuildFile; fileRef = 968ADD691E60C64C00F15735 /* Tutorial7.sks */; };
 		9694340A1D5A97EF006DDF0D /* panBeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 969434091D5A97EF006DDF0D /* panBeep.wav */; };
 		9694340C1D5A9C4D006DDF0D /* clearAisle.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9694340B1D5A9C4D006DDF0D /* clearAisle.caf */; };
 		9696507E1D5DB35E000C288B /* uhOh.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9696507D1D5DB35E000C288B /* uhOh.caf */; };
@@ -72,6 +87,7 @@
 		2AAEB8356B4DB5AD3F53C551 /* Pods_BloctorialsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BloctorialsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66D53EB5AF44E72D7BE3FEFC /* Pods-Bloctorials.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bloctorials.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bloctorials/Pods-Bloctorials.debug.xcconfig"; sourceTree = "<group>"; };
 		798AA6A40F51CA6BB56B3C58 /* Pods-Bloctorials.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bloctorials.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bloctorials/Pods-Bloctorials.release.xcconfig"; sourceTree = "<group>"; };
+		9602CF381E6212120072A5D8 /* clearColor.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clearColor.wav; sourceTree = "<group>"; };
 		96044AB71D3589B90097D096 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		96044AB81D3589B90097D096 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		96044AB91D3589B90097D096 /* CGVector+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
@@ -116,6 +132,20 @@
 		9689144F1D4828FB00CD2AD6 /* clearRow.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = clearRow.caf; sourceTree = "<group>"; };
 		968ABF0F1D4FF40D00776165 /* SwiftyUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyUserDefaults.swift; sourceTree = "<group>"; };
 		968ABF131D4FFE2900776165 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		968ADD4F1E5FBF5E00F15735 /* Tutorial1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Tutorial1.sks; sourceTree = "<group>"; };
+		968ADD511E5FBF8100F15735 /* Tutorial1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial1.swift; sourceTree = "<group>"; };
+		968ADD531E60BF7900F15735 /* Tutorial2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial2.swift; sourceTree = "<group>"; };
+		968ADD551E60BF8600F15735 /* Tutorial2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Tutorial2.sks; sourceTree = "<group>"; };
+		968ADD571E60C20D00F15735 /* Tutorial3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial3.swift; sourceTree = "<group>"; };
+		968ADD591E60C23700F15735 /* Tutorial3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Tutorial3.sks; sourceTree = "<group>"; };
+		968ADD5B1E60C3FB00F15735 /* Tutorial4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Tutorial4.sks; sourceTree = "<group>"; };
+		968ADD5D1E60C41B00F15735 /* Tutorial4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial4.swift; sourceTree = "<group>"; };
+		968ADD5F1E60C44500F15735 /* Tutorial5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial5.swift; sourceTree = "<group>"; };
+		968ADD611E60C4A300F15735 /* Tutorial6.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial6.swift; sourceTree = "<group>"; };
+		968ADD631E60C4CB00F15735 /* Tutorial7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tutorial7.swift; sourceTree = "<group>"; };
+		968ADD651E60C50900F15735 /* Tutorial5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Tutorial5.sks; sourceTree = "<group>"; };
+		968ADD671E60C5A300F15735 /* Tutorial6.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Tutorial6.sks; sourceTree = "<group>"; };
+		968ADD691E60C64C00F15735 /* Tutorial7.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Tutorial7.sks; sourceTree = "<group>"; };
 		969434091D5A97EF006DDF0D /* panBeep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = panBeep.wav; sourceTree = "<group>"; };
 		9694340B1D5A9C4D006DDF0D /* clearAisle.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = clearAisle.caf; sourceTree = "<group>"; };
 		9696507D1D5DB35E000C288B /* uhOh.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = uhOh.caf; sourceTree = "<group>"; };
@@ -261,6 +291,20 @@
 				96053A911D5837B1004E72CD /* spark.png */,
 				96498EBC1D5142DF0057B54C /* Title.sks */,
 				9640E26F1D514DF000719E7F /* Title.swift */,
+				968ADD4F1E5FBF5E00F15735 /* Tutorial1.sks */,
+				968ADD551E60BF8600F15735 /* Tutorial2.sks */,
+				968ADD591E60C23700F15735 /* Tutorial3.sks */,
+				968ADD5B1E60C3FB00F15735 /* Tutorial4.sks */,
+				968ADD651E60C50900F15735 /* Tutorial5.sks */,
+				968ADD671E60C5A300F15735 /* Tutorial6.sks */,
+				968ADD691E60C64C00F15735 /* Tutorial7.sks */,
+				968ADD511E5FBF8100F15735 /* Tutorial1.swift */,
+				968ADD531E60BF7900F15735 /* Tutorial2.swift */,
+				968ADD571E60C20D00F15735 /* Tutorial3.swift */,
+				968ADD5D1E60C41B00F15735 /* Tutorial4.swift */,
+				968ADD5F1E60C44500F15735 /* Tutorial5.swift */,
+				968ADD611E60C4A300F15735 /* Tutorial6.swift */,
+				968ADD631E60C4CB00F15735 /* Tutorial7.swift */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -275,6 +319,8 @@
 		9689144B1D481C0B00CD2AD6 /* SFX */ = {
 			isa = PBXGroup;
 			children = (
+				9602CF381E6212120072A5D8 /* clearColor.wav */,
+				96518AFC1D49831900BEB2FA /* clearDot.wav */,
 				9696507F1D5DB638000C288B /* oops.caf */,
 				9696507D1D5DB35E000C288B /* uhOh.caf */,
 				96F0BA3E1D5D0629002F8B0B /* combine.wav */,
@@ -288,7 +334,6 @@
 				96CF7FDD1D4C0F070096DEF3 /* switch33.wav */,
 				96CF7FDE1D4C0F070096DEF3 /* switch34.wav */,
 				96CF7FDF1D4C0F070096DEF3 /* switch38.wav */,
-				96518AFC1D49831900BEB2FA /* clearDot.wav */,
 				9689144F1D4828FB00CD2AD6 /* clearRow.caf */,
 				96CF7FE91D4C10BC0096DEF3 /* whoosh.wav */,
 			);
@@ -392,21 +437,29 @@
 				96CF7FE11D4C0F070096DEF3 /* switch34.wav in Resources */,
 				96CF7FE71D4C0F300096DEF3 /* click2.wav in Resources */,
 				96492F371D318CE6004F887C /* LaunchScreen.storyboard in Resources */,
+				968ADD5C1E60C3FB00F15735 /* Tutorial4.sks in Resources */,
 				96498EBD1D5142DF0057B54C /* Title.sks in Resources */,
+				9602CF391E6212120072A5D8 /* clearColor.wav in Resources */,
 				96CF7FE21D4C0F070096DEF3 /* switch38.wav in Resources */,
 				9696507E1D5DB35E000C288B /* uhOh.caf in Resources */,
+				968ADD661E60C50900F15735 /* Tutorial5.sks in Resources */,
 				96492F341D318CE6004F887C /* Assets.xcassets in Resources */,
+				968ADD561E60BF8600F15735 /* Tutorial2.sks in Resources */,
 				96518AFD1D49831900BEB2FA /* clearDot.wav in Resources */,
 				96492F321D318CE6004F887C /* Main.storyboard in Resources */,
 				968914501D4828FB00CD2AD6 /* clearRow.caf in Resources */,
+				968ADD5A1E60C23700F15735 /* Tutorial3.sks in Resources */,
 				96053A921D5837B1004E72CD /* Spark.sks in Resources */,
 				96CF7FE61D4C0F300096DEF3 /* click1.wav in Resources */,
 				96053A931D5837B1004E72CD /* spark.png in Resources */,
 				969650821D5DB704000C288B /* clearAisleLow.caf in Resources */,
+				968ADD6A1E60C64C00F15735 /* Tutorial7.sks in Resources */,
 				9694340C1D5A9C4D006DDF0D /* clearAisle.caf in Resources */,
 				96CF7FEA1D4C10BC0096DEF3 /* whoosh.wav in Resources */,
+				968ADD501E5FBF5E00F15735 /* Tutorial1.sks in Resources */,
 				969650801D5DB638000C288B /* oops.caf in Resources */,
 				96CF7FE81D4C0F300096DEF3 /* click3.wav in Resources */,
+				968ADD681E60C5A300F15735 /* Tutorial6.sks in Resources */,
 				96F0BA3F1D5D0629002F8B0B /* combine.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,11 +519,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				968ADD621E60C4A300F15735 /* Tutorial6.swift in Sources */,
 				96492F2D1D318CE6004F887C /* GameScene.swift in Sources */,
 				9640E2701D514DF000719E7F /* Title.swift in Sources */,
 				96044ACD1D3589B90097D096 /* SKTTimingFunctions.swift in Sources */,
 				96492F2F1D318CE6004F887C /* GameViewController.swift in Sources */,
 				96044AC51D3589B90097D096 /* CGVector+Extensions.swift in Sources */,
+				968ADD521E5FBF8100F15735 /* Tutorial1.swift in Sources */,
 				96044AC41D3589B90097D096 /* CGPoint+Extensions.swift in Sources */,
 				96F92DA11D56CFAA00063E42 /* GameTracker.swift in Sources */,
 				968ABF101D4FF40D00776165 /* SwiftyUserDefaults.swift in Sources */,
@@ -481,16 +536,21 @@
 				96044AD01D3598330097D096 /* StageH.swift in Sources */,
 				968914431D41461F00CD2AD6 /* UIColorExt.swift in Sources */,
 				96F3A4491D3E9EB900DD41D8 /* Snippets.swift in Sources */,
+				968ADD541E60BF7900F15735 /* Tutorial2.swift in Sources */,
 				96492F291D318CE6004F887C /* AppDelegate.swift in Sources */,
+				968ADD641E60C4CB00F15735 /* Tutorial7.swift in Sources */,
 				968ABF141D4FFE2900776165 /* GameManager.swift in Sources */,
+				968ADD601E60C44500F15735 /* Tutorial5.swift in Sources */,
 				96044ACA1D3589B90097D096 /* SKNode+Extensions.swift in Sources */,
 				96044AC71D3589B90097D096 /* SKAction+Extensions.swift in Sources */,
 				96044AD21D35C53F0097D096 /* StageV.swift in Sources */,
 				96044AD61D35EBDD0097D096 /* MSReferenceNode.swift in Sources */,
 				96492F5B1D318E8F004F887C /* Grid.swift in Sources */,
 				96044ACC1D3589B90097D096 /* SKTEffects.swift in Sources */,
+				968ADD581E60C20D00F15735 /* Tutorial3.swift in Sources */,
 				96044AC61D3589B90097D096 /* Int+Extensions.swift in Sources */,
 				96044ACE1D3589B90097D096 /* Vector3.swift in Sources */,
+				968ADD5E1E60C41B00F15735 /* Tutorial4.swift in Sources */,
 				96044AC91D3589B90097D096 /* SKColor+Extensions.swift in Sources */,
 				96044AD51D35EBDD0097D096 /* MSButtonNode.swift in Sources */,
 			);

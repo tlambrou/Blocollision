@@ -1375,7 +1375,7 @@ class GameScene: SKScene {
                     currentBlock.stack = comparison.max()! - 1
                     
                     /* Play SFX */
-                    let combineSFX = SKAction.playSoundFileNamed("panBeep", waitForCompletion: true)
+                    let combineSFX = SKAction.playSoundFileNamed("clearDot", waitForCompletion: true)
                     self.run(combineSFX)
                     
                     // Set the Next block to .inactive
@@ -1551,10 +1551,14 @@ class GameScene: SKScene {
         
         // Create a sound effect action
         
-        let scoreSFX = SKAction.playSoundFileNamed("clearAisleLow", waitForCompletion: false)
+        let scoreSFX = SKAction.playSoundFileNamed("clearColor", waitForCompletion: false)
+      
+        let volumeDown = SKAction.changeVolume(by: -50, duration: 0)
+      
+        let volumeUp = SKAction.changeVolume(by: 50, duration: 0)
         
         // Create the sequence action
-        let dieSeq = SKAction.sequence([scale, scoreSFX, wait, descale, remove])
+        let dieSeq = SKAction.sequence([scale, volumeDown, scoreSFX, wait, descale, remove, volumeUp])
         
         // Add the node as a child of the parent
         gridNode.addChild(dieNode)
