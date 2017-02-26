@@ -62,6 +62,7 @@
 		968ADD661E60C50900F15735 /* Tutorial5.sks in Resources */ = {isa = PBXBuildFile; fileRef = 968ADD651E60C50900F15735 /* Tutorial5.sks */; };
 		968ADD681E60C5A300F15735 /* Tutorial6.sks in Resources */ = {isa = PBXBuildFile; fileRef = 968ADD671E60C5A300F15735 /* Tutorial6.sks */; };
 		968ADD6A1E60C64C00F15735 /* Tutorial7.sks in Resources */ = {isa = PBXBuildFile; fileRef = 968ADD691E60C64C00F15735 /* Tutorial7.sks */; };
+		9695FC2A1E62669F0056D3F2 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9695FC291E62669F0056D3F2 /* Sound.swift */; };
 		96A9871E1D5AB13D007B8FA9 /* Mixpanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96A9871D1D5AB13D007B8FA9 /* Mixpanel.framework */; };
 		96CEFB161D6925600075F3B2 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96CEFB151D6925600075F3B2 /* GameKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		96CF7FE01D4C0F070096DEF3 /* switch33.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96CF7FDD1D4C0F070096DEF3 /* switch33.wav */; };
@@ -140,6 +141,7 @@
 		968ADD691E60C64C00F15735 /* Tutorial7.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Tutorial7.sks; sourceTree = "<group>"; };
 		969434091D5A97EF006DDF0D /* panBeep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = panBeep.wav; sourceTree = "<group>"; };
 		9694340B1D5A9C4D006DDF0D /* clearAisle.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = clearAisle.caf; sourceTree = "<group>"; };
+		9695FC291E62669F0056D3F2 /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		9696507D1D5DB35E000C288B /* uhOh.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = uhOh.caf; sourceTree = "<group>"; };
 		9696507F1D5DB638000C288B /* oops.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = oops.caf; sourceTree = "<group>"; };
 		969650811D5DB704000C288B /* clearAisleLow.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = clearAisleLow.caf; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				96044AD41D35EBDD0097D096 /* MSReferenceNode.swift */,
 				968914421D41461F00CD2AD6 /* UIColorExt.swift */,
 				96F3A4481D3E9EB900DD41D8 /* Snippets.swift */,
+				9695FC291E62669F0056D3F2 /* Sound.swift */,
 				968914461D41529500CD2AD6 /* ASAttributedLabelNode.swift */,
 				96492F301D318CE6004F887C /* Main.storyboard */,
 				9640E2851D5554D300719E7F /* Frameworks */,
@@ -503,6 +506,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9695FC2A1E62669F0056D3F2 /* Sound.swift in Sources */,
 				968ADD621E60C4A300F15735 /* Tutorial6.swift in Sources */,
 				96492F2D1D318CE6004F887C /* GameScene.swift in Sources */,
 				9640E2701D514DF000719E7F /* Title.swift in Sources */,

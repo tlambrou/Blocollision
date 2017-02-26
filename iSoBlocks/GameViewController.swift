@@ -14,6 +14,8 @@ import AVFoundation
 
 class GameViewController: UIViewController {
 
+  var audioPlayer: AVAudioPlayer!
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,7 +40,10 @@ class GameViewController: UIViewController {
             scene.scaleMode = .aspectFit
             
             skView.presentScene(scene)
+          
+          
         }
+      
     }
 
     override var shouldAutorotate : Bool {
@@ -61,9 +66,6 @@ class GameViewController: UIViewController {
     override var prefersStatusBarHidden : Bool {
         return true
     }
-    
-    
-    
-    
-    
+  
+  
 }

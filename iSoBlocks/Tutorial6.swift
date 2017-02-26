@@ -27,9 +27,8 @@ class Tutorial6: SKScene {
     // Back to Home Button
     homeButton.selectedHandler = {
       
-      /* Play SFX */
-      let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
-      self.run(click)
+      // Play Sound Effect
+      Sound.play(file: "click2.wav")
       
       /* Grab reference to the SpriteKit view */
       let skView = self.view as SKView!
@@ -48,9 +47,8 @@ class Tutorial6: SKScene {
     // Back to Previous in Tutorial
     prevButton.selectedHandler = {
       
-      /* Play SFX */
-      let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
-      self.run(click)
+      // Play Sound Effect
+      Sound.play(file: "click2.wav")
       
       /* Grab reference to the SpriteKit view */
       let skView = self.view as SKView!
@@ -69,9 +67,8 @@ class Tutorial6: SKScene {
     // Next Button for Next in Tutorial
     nextButton.selectedHandler = {
       
-      /* Play SFX */
-      let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
-      self.run(click)
+      // Play Sound Effect
+      Sound.play(file: "click2.wav")
       
       /* Grab reference to the SpriteKit view */
       let skView = self.view as SKView!

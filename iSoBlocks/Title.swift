@@ -10,7 +10,13 @@ import Foundation
 import SpriteKit
 import CoreMotion
 
+protocol SKSceneDelegate {
+  func playClick()
+}
+
 class Title: SKScene {
+  
+  var sceneDelegate: SKSceneDelegate?
   
   var playButton: MSButtonNode!
   var timedButton: MSButtonNode!
@@ -33,9 +39,8 @@ class Title: SKScene {
     
     playButton.selectedHandler = {
       
-      /* Play SFX */
-      let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
-      self.run(click)
+      // Play Sound Effect
+      Sound.play(file: "click2.wav")
       
       /* Grab reference to the SpriteKit view */
       let skView = self.view as SKView!
@@ -62,9 +67,8 @@ class Title: SKScene {
     
     timedButton.selectedHandler = {
       
-      /* Play SFX */
-      let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
-      self.run(click)
+      
+      Sound.play(file: "click2.wav")
       
       /* Grab reference to the SpriteKit view */
       let skView = self.view as SKView!
@@ -91,9 +95,8 @@ class Title: SKScene {
     
     movesButton.selectedHandler = {
       
-      /* Play SFX */
-      let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
-      self.run(click)
+      // Play Sound Effect
+      Sound.play(file: "click2.wav")
       
       /* Grab reference to the SpriteKit view */
       let skView = self.view as SKView!
@@ -120,9 +123,8 @@ class Title: SKScene {
     
     howtoButton.selectedHandler = {
       
-      /* Play SFX */
-      let click = SKAction.playSoundFileNamed("click3", waitForCompletion: true)
-      self.run(click)
+      // Play Sound Effect
+      Sound.play(file: "click2.wav")
       
       /* Grab reference to the SpriteKit view */
       let skView = self.view as SKView!
