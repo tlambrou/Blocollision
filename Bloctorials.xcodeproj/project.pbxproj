@@ -46,7 +46,6 @@
 		96518AFD1D49831900BEB2FA /* clearDot.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96518AFC1D49831900BEB2FA /* clearDot.wav */; };
 		968914431D41461F00CD2AD6 /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968914421D41461F00CD2AD6 /* UIColorExt.swift */; };
 		968914471D41529500CD2AD6 /* ASAttributedLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968914461D41529500CD2AD6 /* ASAttributedLabelNode.swift */; };
-		968914501D4828FB00CD2AD6 /* clearRow.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9689144F1D4828FB00CD2AD6 /* clearRow.caf */; };
 		968ABF101D4FF40D00776165 /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968ABF0F1D4FF40D00776165 /* SwiftyUserDefaults.swift */; };
 		968ABF141D4FFE2900776165 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968ABF131D4FFE2900776165 /* GameManager.swift */; };
 		968ADD501E5FBF5E00F15735 /* Tutorial1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 968ADD4F1E5FBF5E00F15735 /* Tutorial1.sks */; };
@@ -63,11 +62,6 @@
 		968ADD661E60C50900F15735 /* Tutorial5.sks in Resources */ = {isa = PBXBuildFile; fileRef = 968ADD651E60C50900F15735 /* Tutorial5.sks */; };
 		968ADD681E60C5A300F15735 /* Tutorial6.sks in Resources */ = {isa = PBXBuildFile; fileRef = 968ADD671E60C5A300F15735 /* Tutorial6.sks */; };
 		968ADD6A1E60C64C00F15735 /* Tutorial7.sks in Resources */ = {isa = PBXBuildFile; fileRef = 968ADD691E60C64C00F15735 /* Tutorial7.sks */; };
-		9694340A1D5A97EF006DDF0D /* panBeep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 969434091D5A97EF006DDF0D /* panBeep.wav */; };
-		9694340C1D5A9C4D006DDF0D /* clearAisle.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9694340B1D5A9C4D006DDF0D /* clearAisle.caf */; };
-		9696507E1D5DB35E000C288B /* uhOh.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9696507D1D5DB35E000C288B /* uhOh.caf */; };
-		969650801D5DB638000C288B /* oops.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9696507F1D5DB638000C288B /* oops.caf */; };
-		969650821D5DB704000C288B /* clearAisleLow.caf in Resources */ = {isa = PBXBuildFile; fileRef = 969650811D5DB704000C288B /* clearAisleLow.caf */; };
 		96A9871E1D5AB13D007B8FA9 /* Mixpanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96A9871D1D5AB13D007B8FA9 /* Mixpanel.framework */; };
 		96CEFB161D6925600075F3B2 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96CEFB151D6925600075F3B2 /* GameKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		96CF7FE01D4C0F070096DEF3 /* switch33.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96CF7FDD1D4C0F070096DEF3 /* switch33.wav */; };
@@ -76,8 +70,6 @@
 		96CF7FE61D4C0F300096DEF3 /* click1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96CF7FE31D4C0F300096DEF3 /* click1.wav */; };
 		96CF7FE71D4C0F300096DEF3 /* click2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96CF7FE41D4C0F300096DEF3 /* click2.wav */; };
 		96CF7FE81D4C0F300096DEF3 /* click3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96CF7FE51D4C0F300096DEF3 /* click3.wav */; };
-		96CF7FEA1D4C10BC0096DEF3 /* whoosh.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96CF7FE91D4C10BC0096DEF3 /* whoosh.wav */; };
-		96F0BA3F1D5D0629002F8B0B /* combine.wav in Resources */ = {isa = PBXBuildFile; fileRef = 96F0BA3E1D5D0629002F8B0B /* combine.wav */; };
 		96F3A4491D3E9EB900DD41D8 /* Snippets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F3A4481D3E9EB900DD41D8 /* Snippets.swift */; };
 		96F92DA11D56CFAA00063E42 /* GameTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F92DA01D56CFAA00063E42 /* GameTracker.swift */; };
 /* End PBXBuildFile section */
@@ -431,7 +423,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9694340A1D5A97EF006DDF0D /* panBeep.wav in Resources */,
 				96492F2B1D318CE6004F887C /* GameScene.sks in Resources */,
 				96CF7FE01D4C0F070096DEF3 /* switch33.wav in Resources */,
 				96CF7FE11D4C0F070096DEF3 /* switch34.wav in Resources */,
@@ -441,26 +432,19 @@
 				96498EBD1D5142DF0057B54C /* Title.sks in Resources */,
 				9602CF391E6212120072A5D8 /* clearColor.wav in Resources */,
 				96CF7FE21D4C0F070096DEF3 /* switch38.wav in Resources */,
-				9696507E1D5DB35E000C288B /* uhOh.caf in Resources */,
 				968ADD661E60C50900F15735 /* Tutorial5.sks in Resources */,
 				96492F341D318CE6004F887C /* Assets.xcassets in Resources */,
 				968ADD561E60BF8600F15735 /* Tutorial2.sks in Resources */,
 				96518AFD1D49831900BEB2FA /* clearDot.wav in Resources */,
 				96492F321D318CE6004F887C /* Main.storyboard in Resources */,
-				968914501D4828FB00CD2AD6 /* clearRow.caf in Resources */,
 				968ADD5A1E60C23700F15735 /* Tutorial3.sks in Resources */,
 				96053A921D5837B1004E72CD /* Spark.sks in Resources */,
 				96CF7FE61D4C0F300096DEF3 /* click1.wav in Resources */,
 				96053A931D5837B1004E72CD /* spark.png in Resources */,
-				969650821D5DB704000C288B /* clearAisleLow.caf in Resources */,
 				968ADD6A1E60C64C00F15735 /* Tutorial7.sks in Resources */,
-				9694340C1D5A9C4D006DDF0D /* clearAisle.caf in Resources */,
-				96CF7FEA1D4C10BC0096DEF3 /* whoosh.wav in Resources */,
 				968ADD501E5FBF5E00F15735 /* Tutorial1.sks in Resources */,
-				969650801D5DB638000C288B /* oops.caf in Resources */,
 				96CF7FE81D4C0F300096DEF3 /* click3.wav in Resources */,
 				968ADD681E60C5A300F15735 /* Tutorial6.sks in Resources */,
-				96F0BA3F1D5D0629002F8B0B /* combine.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
