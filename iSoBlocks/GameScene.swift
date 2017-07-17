@@ -1549,12 +1549,20 @@ class GameScene: SKScene {
     
     let scoreSFX = SKAction.playSoundFileNamed("clearColor", waitForCompletion: false)
     
-    let volumeDown = SKAction.changeVolume(by: -50, duration: 0)
-    
-    let volumeUp = SKAction.changeVolume(by: 50, duration: 0)
+//    if #available(iOS 9.0, *) {
+//      let volumeDown = SKAction.changeVolume(by: -50, duration: 0)
+//    } else {
+//      // Fallback on earlier versions
+//    }
+//    
+//    if #available(iOS 9.0, *) {
+//      let volumeUp = SKAction.changeVolume(by: 50, duration: 0)
+//    } else {
+//      // Fallback on earlier versions
+//    }
     
     // Create the sequence action
-    let dieSeq = SKAction.sequence([scale, volumeDown, scoreSFX, wait, descale, remove, volumeUp])
+    let dieSeq = SKAction.sequence([scale, scoreSFX, wait, descale, remove])
     
     // Add the node as a child of the parent
     gridNode.addChild(dieNode)

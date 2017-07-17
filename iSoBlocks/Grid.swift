@@ -9,8 +9,8 @@
 import Foundation
 import SpriteKit
 
-let rows = 4
-let columns = 4
+let rows = 3
+let columns = 3
 
 var cellWidth = 0
 var cellHeight = 0
