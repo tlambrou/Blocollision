@@ -553,22 +553,22 @@ class GameScene: SKScene {
     }
     
     
-    let swipeRight:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedRight(_:)))
+    let swipeRight:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(self.swipedRight(_:)))
     swipeRight.direction = .right
     view.addGestureRecognizer(swipeRight)
     
     
-    let swipeLeft:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedLeft(_:)))
+    let swipeLeft:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(self.swipedLeft(_:)))
     swipeLeft.direction = .left
     view.addGestureRecognizer(swipeLeft)
     
     
-    let swipeUp:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedUp(_:)))
+    let swipeUp:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(self.swipedUp(_:)))
     swipeUp.direction = .up
     view.addGestureRecognizer(swipeUp)
     
     
-    let swipeDown:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedDown(_:)))
+    let swipeDown:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(self.swipedDown(_:)))
     swipeDown.direction = .down
     view.addGestureRecognizer(swipeDown)
     
